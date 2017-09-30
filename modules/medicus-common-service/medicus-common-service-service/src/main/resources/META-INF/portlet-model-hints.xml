@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.medicus.common.service.model.Campus">
+		<field name="campusId" type="long" />
+		<field name="schoolId" type="long" />
+		<field name="name" type="String" />
+		<field name="address1" type="String" />
+		<field name="address2" type="String" />
+		<field name="city" type="String" />
+		<field name="state" type="String" />
+		<field name="country" type="String" />
+		<field name="zipcode" type="String" />
+		<field name="contactNumber" type="String" />
+		<field name="websiteLink" type="String" />
+		<field name="contactPersonName" type="String" />
+		<field name="contactPersonPhoneNumber" type="String" />
+		<field name="contactPersonEmail" type="String" />
+		<field name="status" type="int" />
+		<field name="createDate" type="Date" />
+		<field name="createdBy" type="long" />
+		<field name="modifiedDate" type="Date" />
+		<field name="modifiedBy" type="long" />
+	</model>
+	<model name="com.medicus.common.service.model.Employer">
+		<field name="employerId" type="long" />
+		<field name="userId" type="long" />
+		<field name="employerOrgId" type="long" />
+		<field name="address1" type="String" />
+		<field name="address2" type="String" />
+		<field name="city" type="String" />
+		<field name="zipcode" type="String" />
+		<field name="state" type="String" />
+		<field name="country" type="String" />
+		<field name="contactPersonName" type="String" />
+		<field name="contactPersonEmail" type="String" />
+		<field name="contactPersonPhoneNumber" type="String" />
+		<field name="websiteLink" type="String" />
+	</model>
+	<model name="com.medicus.common.service.model.School">
+		<field name="schoolId" type="long" />
+		<field name="name" type="String" />
+		<field name="address1" type="String" />
+		<field name="address2" type="String" />
+		<field name="city" type="String" />
+		<field name="state" type="String" />
+		<field name="country" type="String" />
+		<field name="zipcode" type="String" />
+		<field name="contactNumber" type="String" />
+		<field name="websiteLink" type="String" />
+		<field name="contactPersonName" type="String" />
+		<field name="contactPersonPhoneNumber" type="String" />
+		<field name="contactPersonEmail" type="String" />
+		<field name="status" type="int" />
+		<field name="createDate" type="Date" />
+		<field name="createdBy" type="long" />
+		<field name="modifiedDate" type="Date" />
+		<field name="modifiedBy" type="long" />
+	</model>
+</model-hints>

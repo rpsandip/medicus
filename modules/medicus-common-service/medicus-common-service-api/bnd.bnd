@@ -1,0 +1,8 @@
+Bundle-SymbolicName: medicus.common.service-api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.medicus.common.service.exception,\
+	com.medicus.common.service.model,\
+	com.medicus.common.service.bean,\
+	com.medicus.common.service.service,\
+	com.medicus.common.service.service.persistence

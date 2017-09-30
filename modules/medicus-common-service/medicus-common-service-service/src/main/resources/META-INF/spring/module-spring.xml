@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean class="com.medicus.common.service.service.impl.CampusLocalServiceImpl" id="com.medicus.common.service.service.CampusLocalService" />
+	<bean class="com.medicus.common.service.service.persistence.impl.CampusPersistenceImpl" id="com.medicus.common.service.service.persistence.CampusPersistence" parent="basePersistence" />
+	<bean class="com.medicus.common.service.service.impl.EmployerLocalServiceImpl" id="com.medicus.common.service.service.EmployerLocalService" />
+	<bean class="com.medicus.common.service.service.persistence.impl.EmployerPersistenceImpl" id="com.medicus.common.service.service.persistence.EmployerPersistence" parent="basePersistence" />
+	<bean class="com.medicus.common.service.service.impl.MedicusCommonLocalServiceImpl" id="com.medicus.common.service.service.MedicusCommonLocalService" />
+	<bean class="com.medicus.common.service.service.impl.RegistrationLocalServiceImpl" id="com.medicus.common.service.service.RegistrationLocalService" />
+	<bean class="com.medicus.common.service.service.impl.SchoolLocalServiceImpl" id="com.medicus.common.service.service.SchoolLocalService" />
+	<bean class="com.medicus.common.service.service.persistence.impl.SchoolPersistenceImpl" id="com.medicus.common.service.service.persistence.SchoolPersistence" parent="basePersistence" />
+</beans>

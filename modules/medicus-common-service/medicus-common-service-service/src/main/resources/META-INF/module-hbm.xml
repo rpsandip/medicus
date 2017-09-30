@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="false" default-lazy="false">
+	<import class="com.medicus.common.service.model.Campus" />
+	<import class="com.medicus.common.service.model.Employer" />
+	<import class="com.medicus.common.service.model.MedicusCommon" />
+	<import class="com.medicus.common.service.model.Registration" />
+	<import class="com.medicus.common.service.model.School" />
+	<class name="com.medicus.common.service.model.impl.CampusImpl" table="Medicus_Campus">
+		<id name="campusId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="schoolId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="address1" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="address2" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="city" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property column="state_" name="state" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="country" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="zipcode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="contactNumber" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="websiteLink" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="contactPersonName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="contactPersonPhoneNumber" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="contactPersonEmail" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="createdBy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedBy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.medicus.common.service.model.impl.EmployerImpl" table="Medicus_Employer">
+		<id name="employerId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="employerOrgId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="address1" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="address2" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="city" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="zipcode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property column="state_" name="state" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="country" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="contactPersonName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="contactPersonEmail" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="contactPersonPhoneNumber" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="websiteLink" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.medicus.common.service.model.impl.SchoolImpl" table="Medicus_School">
+		<id name="schoolId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="address1" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="address2" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="city" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property column="state_" name="state" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="country" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="zipcode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="contactNumber" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="websiteLink" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="contactPersonName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="contactPersonPhoneNumber" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="contactPersonEmail" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="createdBy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedBy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+</hibernate-mapping>

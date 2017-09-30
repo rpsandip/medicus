@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_0_0.dtd">
+
+<service-builder package-path="com.medicus.common.service">
+	<namespace>Medicus</namespace>
+	<entity name="School" local-service="true"  remote-service="false">
+
+		<!-- PK fields -->
+		<column name="schoolId" primary="true" type="long" />
+
+		<!-- Other fields -->
+		<column name="name" type="String" />
+		<column name="address1" type="String" />
+		<column name="address2" type="String" />
+		<column name="city" type="String" />
+		<column name="state" type="String" />
+		<column name="country" type="String" />
+		<column name="zipcode" type="String" />
+		<column name="contactNumber" type="String" />
+		<column name="websiteLink" type="String" />
+		<column name="contactPersonName" type="String" />
+		<column name="contactPersonPhoneNumber" type="String"></column>
+		<column name="contactPersonEmail" type="String"></column>
+		<column name="status" type="int"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="createdBy" type="long"></column>
+		<column name="modifiedDate" type="Date"></column>
+		<column name="modifiedBy" type="long"></column>
+		
+		<order by="desc">
+			<order-column name="createDate">
+			</order-column>
+		</order>
+		
+	</entity>
+	
+	<entity name="Campus" local-service="true"  remote-service="false">
+		<!-- PK fields -->
+		<column name="campusId" primary="true" type="long" />
+		<!-- Other fields -->
+		<column name="schoolId" type="long" />
+		<column name="name" type="String" />
+		<column name="address1" type="String" />
+		<column name="address2" type="String" />
+		<column name="city" type="String" />
+		<column name="state" type="String" />
+		<column name="country" type="String" />
+		<column name="zipcode" type="String" />
+		<column name="contactNumber" type="String" />
+		<column name="websiteLink" type="String" />
+		<column name="contactPersonName" type="String" />
+		<column name="contactPersonPhoneNumber" type="String"></column>
+		<column name="contactPersonEmail" type="String"></column>
+		<column name="status" type="int"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="createdBy" type="long"></column>
+		<column name="modifiedDate" type="Date"></column>
+		<column name="modifiedBy" type="long"></column>
+		
+		<order by="desc">
+			<order-column name="createDate">
+			</order-column>
+		</order>
+	</entity>
+	
+	<entity name="MedicusCommon" local-service="true"  remote-service="false"/>
+	
+	<entity name="Registration" local-service="true"  remote-service="false"/>
+	
+	<entity name="Employer" local-service="true"  remote-service="false">
+		<column name="employerId" primary="true" type="long" />
+		<column name="userId"  type="long" />
+		<column name="employerOrgId"  type="long" />
+		<column name="address1" type="String" />
+		<column name="address2"  type="String" />
+		<column name="city"  type="String" />
+		<column name="zipcode"  type="String" />
+		<column name="state"  type="String" />
+		<column name="country"  type="String" />
+		<column name="contactPersonName"  type="String" />
+		<column name="contactPersonEmail"  type="String" />
+		<column name="contactPersonPhoneNumber"  type="String" />
+		<column name="websiteLink" type="String" />
+		
+		<finder return-type="Address" name="userId">
+			<finder-column name="userId"></finder-column>
+		</finder>
+	</entity>
+</service-builder>
