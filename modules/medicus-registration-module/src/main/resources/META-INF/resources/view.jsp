@@ -8,11 +8,8 @@
 <liferay-ui:success key="user-register-success" message="user-register-success"/>
 <liferay-ui:error key="medicus-organization-not-exist" message="medicus-organization-not-exist"/>
 
-<ul class="nav navbar-nav navbar-right">
-    <li class="">
-     	<button class="btn btn-success" type="button" data-toggle="modal" data-target="#registrationform">Sign Up</button>
-    </li>
-  </ul>
+ <button class="btn btn-success" type="button" data-toggle="modal" data-target="#registrationform">Sign Up</button>
+
 
 <div id="registrationform" class="modal fade" role="dialog">
 		  <div class="modal-dialog">

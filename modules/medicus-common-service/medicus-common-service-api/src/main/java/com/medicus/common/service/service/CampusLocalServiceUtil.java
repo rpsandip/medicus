@@ -242,6 +242,11 @@ public class CampusLocalServiceUtil {
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
+	public static java.util.List<com.medicus.common.service.model.Campus> getCampusListBySchooId(
+		long schoolId) {
+		return getService().getCampusListBySchooId(schoolId);
+	}
+
 	/**
 	* Returns a range of all the campuses.
 	*

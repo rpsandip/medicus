@@ -120,7 +120,11 @@ public class CampusModelImpl extends BaseModelImpl<Campus>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.medicus.common.service.service.util.PropsUtil.get(
 				"value.object.finder.cache.enabled.com.medicus.common.service.model.Campus"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.medicus.common.service.service.util.PropsUtil.get(
+				"value.object.column.bitmask.enabled.com.medicus.common.service.model.Campus"),
+			true);
+	public static final long SCHOOLID_COLUMN_BITMASK = 1L;
+	public static final long CREATEDATE_COLUMN_BITMASK = 2L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.medicus.common.service.service.util.PropsUtil.get(
 				"lock.expiration.time.com.medicus.common.service.model.Campus"));
 
@@ -322,7 +326,19 @@ public class CampusModelImpl extends BaseModelImpl<Campus>
 
 	@Override
 	public void setSchoolId(long schoolId) {
+		_columnBitmask |= SCHOOLID_COLUMN_BITMASK;
+
+		if (!_setOriginalSchoolId) {
+			_setOriginalSchoolId = true;
+
+			_originalSchoolId = _schoolId;
+		}
+
 		_schoolId = schoolId;
+	}
+
+	public long getOriginalSchoolId() {
+		return _originalSchoolId;
 	}
 
 	@Override
@@ -522,6 +538,8 @@ public class CampusModelImpl extends BaseModelImpl<Campus>
 
 	@Override
 	public void setCreateDate(Date createDate) {
+		_columnBitmask = -1L;
+
 		_createDate = createDate;
 	}
 
@@ -559,6 +577,10 @@ public class CampusModelImpl extends BaseModelImpl<Campus>
 	@Override
 	public void setModifiedBy(long modifiedBy) {
 		_modifiedBy = modifiedBy;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -669,7 +691,13 @@ public class CampusModelImpl extends BaseModelImpl<Campus>
 	public void resetOriginalValues() {
 		CampusModelImpl campusModelImpl = this;
 
+		campusModelImpl._originalSchoolId = campusModelImpl._schoolId;
+
+		campusModelImpl._setOriginalSchoolId = false;
+
 		campusModelImpl._setModifiedDate = false;
+
+		campusModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -947,6 +975,8 @@ public class CampusModelImpl extends BaseModelImpl<Campus>
 		};
 	private long _campusId;
 	private long _schoolId;
+	private long _originalSchoolId;
+	private boolean _setOriginalSchoolId;
 	private String _name;
 	private String _address1;
 	private String _address2;
@@ -965,5 +995,6 @@ public class CampusModelImpl extends BaseModelImpl<Campus>
 	private Date _modifiedDate;
 	private boolean _setModifiedDate;
 	private long _modifiedBy;
+	private long _columnBitmask;
 	private Campus _escapedModel;
 }

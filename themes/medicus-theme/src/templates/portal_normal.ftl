@@ -42,14 +42,14 @@
 	        <div class="top_nav col-md-12">
 	          <div class="nav_menu">
 	          	<div class="welcome-logo"><a href="welcome.html" class="site_title"><i class="fa fa-paw"></i> <span>Medicus</span></a></div>
-	            <nav>
+	            <nav class="login-signup-btn">
 	              <ul class="nav navbar-nav navbar-right">
-	                <li class="">
-	                 	<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#loginform">LogIn</button>
-	                </li>
 	                <@liferay_portlet["runtime"]
 							portletName="com_example_portlet_MedicusRegistrationModulemvcportletPortlet"
 						/>
+					<div class="portlet-boundary">
+	                 	<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#loginform">LogIn</button>
+	                </div>
 	              </ul>
 	              
 	            </nav>
@@ -97,36 +97,34 @@
 		  </div>
 		</div>
 		
-		<div id="forgotpassform" class="modal fade" role="dialog">
-		  <div class="modal-dialog">
-		    <!-- Modal content-->
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal">&times;</button>
-		        <h4 class="modal-title">Forgot Password</h4>
-		      </div>
-		      <div class="modal-body">
-		        <form id="add-new-school-form" data-parsley-validate class="form-horizontal form-label-left">
-	               <div class="form-group">
-	                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="emailId">Email Id <span class="required">*</span></label>
-	                 <div class="col-md-6 col-sm-6 col-xs-12">
-	                   <input type="text" id="emailId" required="required" class="form-control col-md-7 col-xs-12">
-	                 </div>
-	               </div>
-	               <div class="ln_solid"></div>
-	               <div class="form-group">
-	                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-	                   <button type="submit" class="btn btn-primary">Submit</button>
-	                 </div>
-	               </div>
-	             </form>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-		
 		<@liferay_util["include"] page=body_bottom_include />
 		<@liferay_util["include"] page=bottom_include />
+		
+			<script>
+		    define._amd = define.amd;
+		    define.amd = false;
+			</script>
+		
+			<script src="${javascript_folder}/jquery.min.js"></script>
+			<script src="${javascript_folder}/bootstrap.min.js"></script>
+			<script src="${javascript_folder}/custom.js"></script>
+			<script src="${javascript_folder}/dataTables.bootstrap.min.js"></script>
+			<script src="${javascript_folder}/jquery.dataTables.min.js"></script>
+			<script src="${javascript_folder}/jquery.easing.js"></script>
+			<script src="${javascript_folder}/jquery.flexslider.js"></script>
+		
+		     <script type="text/javascript">
+			    $(window).load(function() {
+			    	  $('.flexslider').flexslider({
+			    	    animation: "slide",
+			    	    directionNav: false
+			    	  });
+			    	});
+		    </script>
+		<script>
+			define.amd = define._amd;
+		</script>
+					
 	  </body>
  <#else>
 	<body class="nav-md">
@@ -248,7 +246,7 @@
 				<!-- inject:js -->
 				<!-- endinject -->
 		
-				 <script>
+				<script>
 					    define._amd = define.amd;
 					    define.amd = false;
 				</script>

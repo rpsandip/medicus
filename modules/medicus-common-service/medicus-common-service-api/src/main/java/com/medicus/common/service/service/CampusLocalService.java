@@ -211,6 +211,9 @@ public interface CampusLocalService extends BaseLocalService,
 	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end, OrderByComparator<T> orderByComparator);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Campus> getCampusListBySchooId(long schoolId);
+
 	/**
 	* Returns a range of all the campuses.
 	*

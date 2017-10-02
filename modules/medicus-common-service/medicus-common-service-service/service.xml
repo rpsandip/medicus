@@ -57,6 +57,10 @@
 		<column name="modifiedDate" type="Date"></column>
 		<column name="modifiedBy" type="long"></column>
 		
+		<finder return-type="Collection" name="schoolId">
+			<finder-column name="schoolId"></finder-column>
+		</finder>
+		
 		<order by="desc">
 			<order-column name="createDate">
 			</order-column>
@@ -82,7 +86,7 @@
 		<column name="contactPersonPhoneNumber"  type="String" />
 		<column name="websiteLink" type="String" />
 		
-		<finder return-type="Address" name="userId">
+		<finder return-type="Employer" name="userId">
 			<finder-column name="userId"></finder-column>
 		</finder>
 	</entity>

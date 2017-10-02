@@ -66,6 +66,12 @@ public class MedicusCommonLocalServiceWrapper
 	}
 
 	@Override
+	public long getUserPhoneTypeId()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _medicusCommonLocalService.getUserPhoneTypeId();
+	}
+
+	@Override
 	public MedicusCommonLocalService getWrappedService() {
 		return _medicusCommonLocalService;
 	}

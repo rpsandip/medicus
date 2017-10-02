@@ -16,12 +16,18 @@ package com.medicus.common.service.service.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
+import java.util.List;
+
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.ListType;
+import com.liferay.portal.kernel.model.ListTypeConstants;
 import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.ListTypeServiceUtil;
 import com.liferay.portal.kernel.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.kernel.service.RoleLocalServiceUtil;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
@@ -85,9 +91,19 @@ public class MedicusCommonLocalServiceImpl
 		try {
 			user = UserLocalServiceUtil.getUserByEmailAddress(PortalUtil.getDefaultCompanyId(), emailAddress);
 		} catch (PortalException e) {
-			_log.error(e);
+			//_log.error(e);
 		}
 		return user;
+	}
+	
+	public long getUserPhoneTypeId() throws SystemException {
+		long userPhoneType=0;	
+		List<ListType> listTypes = ListTypeServiceUtil
+					.getListTypes(ListTypeConstants.CONTACT_PHONE);
+		if(listTypes.size()>0){	
+			userPhoneType = listTypes.get(0).getListTypeId();
+		}
+		return userPhoneType;
 	}
 	
 }

@@ -63,4 +63,7 @@ public interface MedicusCommonLocalService extends BaseLocalService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long getOrganizationGroupIdFromOrgId(long orgId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public long getUserPhoneTypeId() throws SystemException;
 }

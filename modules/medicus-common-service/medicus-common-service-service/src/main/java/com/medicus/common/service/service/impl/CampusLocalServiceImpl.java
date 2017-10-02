@@ -17,6 +17,7 @@ package com.medicus.common.service.service.impl;
 import aQute.bnd.annotation.ProviderType;
 
 import java.util.Date;
+import java.util.List;
 
 import com.liferay.counter.kernel.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -111,6 +112,13 @@ public class CampusLocalServiceImpl extends CampusLocalServiceBaseImpl {
 		
 		return campus;
 		
+	}
+	
+	/*
+	 * Method for get all Campus from schoolId
+	 */
+	public List<Campus> getCampusListBySchooId(long schoolId){
+		return campusPersistence.findByschoolId(schoolId);
 	}
 	
 }

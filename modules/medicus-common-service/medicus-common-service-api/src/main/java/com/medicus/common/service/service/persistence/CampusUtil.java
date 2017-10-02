@@ -109,6 +109,162 @@ public class CampusUtil {
 	}
 
 	/**
+	* Returns all the campuses where schoolId = &#63;.
+	*
+	* @param schoolId the school ID
+	* @return the matching campuses
+	*/
+	public static List<Campus> findByschoolId(long schoolId) {
+		return getPersistence().findByschoolId(schoolId);
+	}
+
+	/**
+	* Returns a range of all the campuses where schoolId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link CampusModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param schoolId the school ID
+	* @param start the lower bound of the range of campuses
+	* @param end the upper bound of the range of campuses (not inclusive)
+	* @return the range of matching campuses
+	*/
+	public static List<Campus> findByschoolId(long schoolId, int start, int end) {
+		return getPersistence().findByschoolId(schoolId, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the campuses where schoolId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link CampusModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param schoolId the school ID
+	* @param start the lower bound of the range of campuses
+	* @param end the upper bound of the range of campuses (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching campuses
+	*/
+	public static List<Campus> findByschoolId(long schoolId, int start,
+		int end, OrderByComparator<Campus> orderByComparator) {
+		return getPersistence()
+				   .findByschoolId(schoolId, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the campuses where schoolId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link CampusModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param schoolId the school ID
+	* @param start the lower bound of the range of campuses
+	* @param end the upper bound of the range of campuses (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching campuses
+	*/
+	public static List<Campus> findByschoolId(long schoolId, int start,
+		int end, OrderByComparator<Campus> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByschoolId(schoolId, start, end, orderByComparator,
+			retrieveFromCache);
+	}
+
+	/**
+	* Returns the first campus in the ordered set where schoolId = &#63;.
+	*
+	* @param schoolId the school ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching campus
+	* @throws NoSuchCampusException if a matching campus could not be found
+	*/
+	public static Campus findByschoolId_First(long schoolId,
+		OrderByComparator<Campus> orderByComparator)
+		throws com.medicus.common.service.exception.NoSuchCampusException {
+		return getPersistence().findByschoolId_First(schoolId, orderByComparator);
+	}
+
+	/**
+	* Returns the first campus in the ordered set where schoolId = &#63;.
+	*
+	* @param schoolId the school ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching campus, or <code>null</code> if a matching campus could not be found
+	*/
+	public static Campus fetchByschoolId_First(long schoolId,
+		OrderByComparator<Campus> orderByComparator) {
+		return getPersistence()
+				   .fetchByschoolId_First(schoolId, orderByComparator);
+	}
+
+	/**
+	* Returns the last campus in the ordered set where schoolId = &#63;.
+	*
+	* @param schoolId the school ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching campus
+	* @throws NoSuchCampusException if a matching campus could not be found
+	*/
+	public static Campus findByschoolId_Last(long schoolId,
+		OrderByComparator<Campus> orderByComparator)
+		throws com.medicus.common.service.exception.NoSuchCampusException {
+		return getPersistence().findByschoolId_Last(schoolId, orderByComparator);
+	}
+
+	/**
+	* Returns the last campus in the ordered set where schoolId = &#63;.
+	*
+	* @param schoolId the school ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching campus, or <code>null</code> if a matching campus could not be found
+	*/
+	public static Campus fetchByschoolId_Last(long schoolId,
+		OrderByComparator<Campus> orderByComparator) {
+		return getPersistence().fetchByschoolId_Last(schoolId, orderByComparator);
+	}
+
+	/**
+	* Returns the campuses before and after the current campus in the ordered set where schoolId = &#63;.
+	*
+	* @param campusId the primary key of the current campus
+	* @param schoolId the school ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next campus
+	* @throws NoSuchCampusException if a campus with the primary key could not be found
+	*/
+	public static Campus[] findByschoolId_PrevAndNext(long campusId,
+		long schoolId, OrderByComparator<Campus> orderByComparator)
+		throws com.medicus.common.service.exception.NoSuchCampusException {
+		return getPersistence()
+				   .findByschoolId_PrevAndNext(campusId, schoolId,
+			orderByComparator);
+	}
+
+	/**
+	* Removes all the campuses where schoolId = &#63; from the database.
+	*
+	* @param schoolId the school ID
+	*/
+	public static void removeByschoolId(long schoolId) {
+		getPersistence().removeByschoolId(schoolId);
+	}
+
+	/**
+	* Returns the number of campuses where schoolId = &#63;.
+	*
+	* @param schoolId the school ID
+	* @return the number of matching campuses
+	*/
+	public static int countByschoolId(long schoolId) {
+		return getPersistence().countByschoolId(schoolId);
+	}
+
+	/**
 	* Caches the campus in the entity cache if it is enabled.
 	*
 	* @param campus the campus

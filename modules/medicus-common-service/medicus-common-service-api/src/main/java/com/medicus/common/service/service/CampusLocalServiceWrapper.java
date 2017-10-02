@@ -247,6 +247,12 @@ public class CampusLocalServiceWrapper implements CampusLocalService,
 			orderByComparator);
 	}
 
+	@Override
+	public java.util.List<com.medicus.common.service.model.Campus> getCampusListBySchooId(
+		long schoolId) {
+		return _campusLocalService.getCampusListBySchooId(schoolId);
+	}
+
 	/**
 	* Returns a range of all the campuses.
 	*

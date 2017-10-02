@@ -67,6 +67,11 @@ public class MedicusCommonLocalServiceUtil {
 		return getService().getOrganizationGroupIdFromOrgId(orgId);
 	}
 
+	public static long getUserPhoneTypeId()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getUserPhoneTypeId();
+	}
+
 	public static MedicusCommonLocalService getService() {
 		return _serviceTracker.getService();
 	}

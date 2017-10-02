@@ -17,7 +17,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_content">
-            <table id="datatable" class="table table-striped table-bordered">
+            <table id="datatable" class="table table-striped">
 					<thead>
 			            <tr>
 			            	<th>School Name</th>
