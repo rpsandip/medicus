@@ -34,13 +34,13 @@ public class RegistrationLocalServiceWrapper implements RegistrationLocalService
 	}
 
 	@Override
-	public com.liferay.portal.kernel.model.User createUser(
+	public com.liferay.portal.kernel.model.User createSchoolUser(
 		java.lang.String firstName, java.lang.String lastName,
 		java.lang.String emailAddress, java.lang.String contactNumber,
 		long schoolId, long campusId, long roleId, long creatorUserId,
 		long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _registrationLocalService.createUser(firstName, lastName,
+		return _registrationLocalService.createSchoolUser(firstName, lastName,
 			emailAddress, contactNumber, schoolId, campusId, roleId,
 			creatorUserId, groupId);
 	}
@@ -61,6 +61,18 @@ public class RegistrationLocalServiceWrapper implements RegistrationLocalService
 			emailAddress, password1, password2, address1, address2, city,
 			zipcode, state, country, contactPersonName, contactPersonEmail,
 			contactPersonPhoneNumber, websiteLink, creatorUserId, groupId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.User updateSchoolUser(long userId,
+		java.lang.String firstName, java.lang.String lastName,
+		java.lang.String emailAddress, java.lang.String contactNumber,
+		long schoolId, long campusId, long roleId, long creatorUserId,
+		long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _registrationLocalService.updateSchoolUser(userId, firstName,
+			lastName, emailAddress, contactNumber, schoolId, campusId, roleId,
+			creatorUserId, groupId);
 	}
 
 	/**

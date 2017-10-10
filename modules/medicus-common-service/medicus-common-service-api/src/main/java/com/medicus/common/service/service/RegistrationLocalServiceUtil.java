@@ -41,14 +41,14 @@ public class RegistrationLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.medicus.common.service.service.impl.RegistrationLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static com.liferay.portal.kernel.model.User createUser(
+	public static com.liferay.portal.kernel.model.User createSchoolUser(
 		java.lang.String firstName, java.lang.String lastName,
 		java.lang.String emailAddress, java.lang.String contactNumber,
 		long schoolId, long campusId, long roleId, long creatorUserId,
 		long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
-				   .createUser(firstName, lastName, emailAddress,
+				   .createSchoolUser(firstName, lastName, emailAddress,
 			contactNumber, schoolId, campusId, roleId, creatorUserId, groupId);
 	}
 
@@ -68,6 +68,17 @@ public class RegistrationLocalServiceUtil {
 			password2, address1, address2, city, zipcode, state, country,
 			contactPersonName, contactPersonEmail, contactPersonPhoneNumber,
 			websiteLink, creatorUserId, groupId);
+	}
+
+	public static com.liferay.portal.kernel.model.User updateSchoolUser(
+		long userId, java.lang.String firstName, java.lang.String lastName,
+		java.lang.String emailAddress, java.lang.String contactNumber,
+		long schoolId, long campusId, long roleId, long creatorUserId,
+		long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .updateSchoolUser(userId, firstName, lastName, emailAddress,
+			contactNumber, schoolId, campusId, roleId, creatorUserId, groupId);
 	}
 
 	/**

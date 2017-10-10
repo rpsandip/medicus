@@ -25,7 +25,7 @@
 				<div class="x_content">
        			<aui:form name="addschoolFm" action="${addSchoolURL}" cssClass="form-horizontal form-label-left">
        				<div class="form-group">
-       					 <div class="col-md-6 col-sm-6 col-xs-12">
+       					 <div class="col-md-10 col-sm-6 col-xs-12">
 	       					 <aui:input name="name" label="name"  cssClass="form-control col-md-7 col-xs-12" value="${school.name }">
 						     	<aui:validator name="required" />
 						     	<aui:validator name="maxLength">70</aui:validator>
@@ -33,7 +33,7 @@
 						 </div>
 					</div>	 
        				<div class="form-group">
-       					 <div class="col-md-6 col-sm-6 col-xs-12">
+       					 <div class="col-md-10 col-sm-6 col-xs-12">
        						 <aui:input name="address1" label="address1" cssClass="form-control col-md-7 col-xs-12" value="${school.address1 }">
 					     		<aui:validator name="required" />
 					     		<aui:validator name="maxLength">70</aui:validator>
@@ -41,7 +41,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-       					 <div class="col-md-6 col-sm-6 col-xs-12">
+       					 <div class="col-md-10 col-sm-6 col-xs-12">
        					 	 	<aui:input name="address2" label="address2" cssClass="form-control col-md-7 col-xs-12" value="${school.address2 }">
 					     		<aui:validator name="required" />
 					     		<aui:validator name="maxLength">70</aui:validator>
@@ -49,7 +49,7 @@
        					</div>
        				</div>
        				<div class="form-group">
-       					 <div class="col-md-6 col-sm-6 col-xs-12">
+       					 <div class="col-md-10 col-sm-6 col-xs-12">
        						 <aui:input name="city" label="city" cssClass="form-control col-md-7 col-xs-12" value="${school.city }">
 					    	 	<aui:validator name="required" />
 					    	 	<aui:validator name="maxLength">20</aui:validator>
@@ -57,23 +57,24 @@
        					</div>
        				</div>	
        				<div class="form-group">
-       					 <div class="col-md-6 col-sm-6 col-xs-12">
-       						 <aui:input name="state" label="state" cssClass="form-control col-md-7 col-xs-12" value="${school.state }">
+       					 <div class="col-md-10 col-sm-6 col-xs-12">
+						 	<aui:select name="state" label="state" cssClass="form-control col-md-7 col-xs-12">
+	               				<c:forEach items="${usStateList }" var="state">
+	               					<aui:option value="${state }" selected='${state eq school.state ? true : false }'>${state }</aui:option>
+	               				</c:forEach>
+	               			</aui:select>
+       					</div>
+       				</div>	
+       				<div class="form-group">
+       					 <div class="col-md-10 col-sm-6 col-xs-12">
+       						 <aui:input name="country" label="country" cssClass="form-control col-md-7 col-xs-12" value="US" readonly="true">
 					    	 	<aui:validator name="required" />
 					    	 	<aui:validator name="maxLength">20</aui:validator>
 						 	</aui:input>
        					</div>
        				</div>	
        				<div class="form-group">
-       					 <div class="col-md-6 col-sm-6 col-xs-12">
-       						 <aui:input name="country" label="country" cssClass="form-control col-md-7 col-xs-12" value="${school.country }">
-					    	 	<aui:validator name="required" />
-					    	 	<aui:validator name="maxLength">20</aui:validator>
-						 	</aui:input>
-       					</div>
-       				</div>	
-       				<div class="form-group">
-       					 <div class="col-md-6 col-sm-6 col-xs-12">
+       					 <div class="col-md-10 col-sm-6 col-xs-12">
        						 <aui:input name="contactNumber" label="school.contact.no" cssClass="form-control col-md-7 col-xs-12" value="${school.contactNumber }" placeholder="xxx-xxx-xxxx">
 					     		<aui:validator name="required" />
 					     		<aui:validator name="number" />
@@ -82,7 +83,7 @@
 						</div>
 					</div>	
 					<div class="form-group">
-       					 <div class="col-md-6 col-sm-6 col-xs-12">	
+       					 <div class="col-md-10 col-sm-6 col-xs-12">	
 						 	<aui:input name="websiteLink" label="websiteLink" cssClass="form-control col-md-7 col-xs-12" value="${school.websiteLink }">
 					     		<aui:validator name="required" />
 					     		<aui:validator name="maxLength">70</aui:validator>
@@ -90,7 +91,7 @@
        					</div>
        				</div>	
        				<div class="form-group">
-       					 <div class="col-md-6 col-sm-6 col-xs-12">
+       					 <div class="col-md-10 col-sm-6 col-xs-12">
        						 <aui:input name="contactPersonName" label="contactPersonName" cssClass="form-control col-md-7 col-xs-12" value="${school.contactPersonName }">
 					    	 	<aui:validator name="required" />
 					    	 	<aui:validator name="maxLength">40</aui:validator>
@@ -98,7 +99,7 @@
        					</div>
        				</div>	
        				<div class="form-group">
-       					 <div class="col-md-6 col-sm-6 col-xs-12">
+       					 <div class="col-md-10 col-sm-6 col-xs-12">
        						 <aui:input name="contactPersonPhoneNumber" label="contactPersonPhoneNumber" cssClass="form-control col-md-7 col-xs-12" value="${school.contactPersonPhoneNumber }" placeholder="xxx-xxx-xxxx">
 					    	 	<aui:validator name="required" />
 					    	 	<aui:validator name="number" />
@@ -107,7 +108,7 @@
        					</div>
        				</div>	
        				<div class="form-group">
-       					 <div class="col-md-6 col-sm-6 col-xs-12">
+       					 <div class="col-md-10 col-sm-6 col-xs-12">
        						 <aui:input name="contactPersonEmail" label="contactPersonEmail" cssClass="form-control col-md-7 col-xs-12" value="${school.contactPersonEmail }">
 					    	 	<aui:validator name="required" />
 					    	 	<aui:validator name="email" />
@@ -117,7 +118,7 @@
        				</div>
        				<div class="ln_solid"></div>	
     				 <div class="form-group">
-				        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+				        <div class="col-md-10 col-sm-6 col-xs-12 col-md-offset-3">
 							<aui:button type="button" value="Submit"  cssClass="addSchoolBtn btn btn-success"/>
 						</div>
 					</div>	

@@ -24,6 +24,8 @@ import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
+import java.util.List;
+
 /**
  * Provides the local service interface for MedicusCommon. Methods of this
  * service will not have security checks based on the propagated JAAS
@@ -54,6 +56,9 @@ public interface MedicusCommonLocalService extends BaseLocalService {
 	* @return the OSGi service identifier
 	*/
 	public java.lang.String getOSGiServiceIdentifier();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<java.lang.String> getUSStateList();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long getEmployerOrgRoleId();

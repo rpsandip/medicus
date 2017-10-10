@@ -55,6 +55,10 @@ public class MedicusCommonLocalServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
+	public static java.util.List<java.lang.String> getUSStateList() {
+		return getService().getUSStateList();
+	}
+
 	public static long getEmployerOrgRoleId() {
 		return getService().getEmployerOrgRoleId();
 	}

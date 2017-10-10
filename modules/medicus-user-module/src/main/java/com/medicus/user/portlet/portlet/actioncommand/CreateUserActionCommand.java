@@ -45,27 +45,49 @@ public class CreateUserActionCommand extends BaseMVCActionCommand{
 		long schoolId = ParamUtil.getLong(actionRequest, "school");
 		long campusId = ParamUtil.getLong(actionRequest, "campus");
 		long roleId = ParamUtil.getLong(actionRequest, "role");
-		
-		User user = MedicusCommonLocalServiceUtil.isUserExist(emailAddress);
-		if(Validator.isNull(user)){
+		long userId = ParamUtil.getLong(actionRequest, "userId");
+
+		if(userId==0){
+			
+			// Create New User
+			User user = MedicusCommonLocalServiceUtil.isUserExist(emailAddress);
+			if(Validator.isNull(user)){
+				try {
+					user = RegistrationLocalServiceUtil.createSchoolUser(firstName, lastName, emailAddress, contactNumber,
+							schoolId, campusId, roleId, themeDisplay.getUserId(), themeDisplay.getScopeGroupId());
+				} catch (PortalException e) {
+					_log.error(e);
+				}
+			
+				if(Validator.isNotNull(user)){
+					SessionMessages.add(actionRequest, "user-create-success");
+				}else{
+					SessionErrors.add(actionRequest, "user-create-error");
+					SessionMessages.add(actionRequest, PortalUtil.getPortletId(actionRequest) + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
+				}
+			}else{
+				SessionErrors.add(actionRequest, "user-exist");
+				SessionMessages.add(actionRequest, PortalUtil.getPortletId(actionRequest) + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
+			}
+		}else{
+			
+			// Update user
+			User user = null;
 			try {
-				user = RegistrationLocalServiceUtil.createUser(firstName, lastName, emailAddress, contactNumber,
+				 user = RegistrationLocalServiceUtil.updateSchoolUser(userId, firstName, lastName, emailAddress, contactNumber,
 						schoolId, campusId, roleId, themeDisplay.getUserId(), themeDisplay.getScopeGroupId());
 			} catch (PortalException e) {
 				_log.error(e);
 			}
-		
-		if(Validator.isNotNull(user)){
-			SessionMessages.add(actionRequest, "user-create-success");
-		}else{
-			SessionErrors.add(actionRequest, "user-create-error");
-			SessionMessages.add(actionRequest, PortalUtil.getPortletId(actionRequest) + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
+			
+			if(Validator.isNotNull(user)){
+				SessionMessages.add(actionRequest, "user-update-success");
+			}else{
+				SessionErrors.add(actionRequest, "user-update-error");
+				SessionMessages.add(actionRequest, PortalUtil.getPortletId(actionRequest) + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
+			}
+			
 		}
-	}else{
-		SessionErrors.add(actionRequest, "user-exist");
-		SessionMessages.add(actionRequest, PortalUtil.getPortletId(actionRequest) + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
-	}
-	
 	}
 
 }

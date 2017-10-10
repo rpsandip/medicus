@@ -7,7 +7,7 @@
 
 <div class="page-title">
   <div class="title_left">
-    		<liferay-ui:message key="add.user"/> 
+    		<liferay-ui:message key="update.user"/> 
   </div>
 </div>
 <div class="clearfix"></div>
@@ -18,7 +18,7 @@
        			<aui:form name="addUserFm" action="${createUserURL}" cssClass="form-horizontal form-label-left">
        			<div class="form-group">
       					 <div class="col-md-10 col-sm-6 col-xs-12">
-       					 <aui:input name="firstName" label="firstName"  cssClass="form-control col-md-7 col-xs-12">
+       					 <aui:input name="firstName" label="firstName"  cssClass="form-control col-md-7 col-xs-12" value="${schoolUserBean.firstName }">
 					     	<aui:validator name="required" />
 					     	<aui:validator name="maxLength">30</aui:validator>
 						 </aui:input>
@@ -26,7 +26,7 @@
 				</div>	
 				<div class="form-group">
       					 <div class="col-md-10 col-sm-6 col-xs-12">
-       					 <aui:input name="lastName" label="lastName"  cssClass="form-control col-md-7 col-xs-12">
+       					 <aui:input name="lastName" label="lastName"  cssClass="form-control col-md-7 col-xs-12" value="${schoolUserBean.lastName }">
 					     	<aui:validator name="required" />
 					     	<aui:validator name="maxLength">30</aui:validator>
 						 </aui:input>
@@ -34,7 +34,7 @@
 				</div>
 				<div class="form-group">
       					 <div class="col-md-10 col-sm-6 col-xs-12">
-       					 <aui:input name="emailAddress" label="emailAddress"  cssClass="form-control col-md-7 col-xs-12">
+       					 <aui:input name="emailAddress" label="emailAddress"  cssClass="form-control col-md-7 col-xs-12" value="${schoolUserBean.emailAddress }" readonly="true">
 					     	<aui:validator name="required" />
 					     	<aui:validator name="maxLength">30</aui:validator>
 						 </aui:input>
@@ -42,7 +42,7 @@
 				</div>	
 				<div class="form-group">
       					 <div class="col-md-10 col-sm-6 col-xs-12">
-       					 <aui:input name="contactNumber" label="contact.number"  cssClass="form-control col-md-7 col-xs-12">
+       					 <aui:input name="contactNumber" label="contact.number"  cssClass="form-control col-md-7 col-xs-12" value="${schoolUserBean.contactNum }">
 					     	<aui:validator name="required" />
 					     	<aui:validator name="maxLength">12</aui:validator>
 						 </aui:input>
@@ -53,7 +53,7 @@
    					 	<aui:select name="school" label="school">
    					 		<aui:option value=""> Please Select School</aui:option>
    					 		<c:forEach items="${schoolList }" var="school">
-   					 			<aui:option value="${school.schoolId }"> ${school.name }</aui:option>
+   					 			<aui:option value="${school.schoolId }" selected='${school.schoolId eq schoolUserBean.schoolId ? true : false }'> ${school.name }</aui:option>
    					 		</c:forEach>
    					 	</aui:select>
    					 </div>
@@ -73,7 +73,8 @@
    					 	</aui:select>
    					 </div>
       			</div>		 
-				 	 
+				<aui:input type="hidden" name="userId" value="${ schoolUserBean.user.userId}"/> 
+					 
        			<div class="ln_solid"></div>	
     				 <div class="form-group">
 				        <div class="col-md-10 col-sm-6 col-xs-12 col-md-offset-3">
@@ -89,8 +90,13 @@
 <aui:script>
 
 var pns =  '<portlet:namespace/>';
-AUI().use('aui-io-request', 'aui-autocomplete' ,'aui-base','aui-form-validator','autocomplete-list','autocomplete-filters','autocomplete-highlighters', function(A) {
+AUI().use('aui-io-request', 'aui-autocomplete' ,'aui-base','aui-form-validator','autocomplete-list','autocomplete-filters','node-event-simulate','autocomplete-highlighters', function(A) {
 	
+	var campusId = '${schoolUserBean.campusId}';
+	var schoolId = '${schoolUserBean.schoolId}';
+	var roleId = '${schoolUserBean.roleId}';
+	var isInitialLoad=false;
+	console.log("campusId->" + campusId + " schoolId->" + schoolId + " roleId->" + roleId);
 	
 	var selectDropDownValidator = new A.FormValidator({
 		boundingBox: document.<portlet:namespace/>addUserFm,
@@ -145,16 +151,22 @@ AUI().use('aui-io-request', 'aui-autocomplete' ,'aui-base','aui-form-validator',
 				console.log("school cusssss");
 				A.one('#'+pns+'campus').append("<option  value='' >Please Select Campus</option> ");
 				for(var i in schoolDetail.campuses){
-					  if(i==0){
-					  	A.one('#'+pns+'campus').append("<option selected='selected' value='"+ schoolDetail.campuses[i].campusId +"' >"+ schoolDetail.campuses[i].name +"</option> ");
+					  if(campusId===schoolDetail.campuses[i].campusId){
+					  	A.one('#'+pns+'campus').append("<option selected='true' value='"+ schoolDetail.campuses[i].campusId +"' >"+ schoolDetail.campuses[i].name +"</option> ");
+					  	A.one("#<portlet:namespace/>campus").val(campusId);
 					  }else{
 						  A.one('#'+pns+'campus').append("<option  value='"+ schoolDetail.campuses[i].campusId +"' >"+ schoolDetail.campuses[i].name +"</option> ");
 					  }
 				}
+				if(campusId>0 && !isInitialLoad){
+					A.one("#<portlet:namespace/>campus").simulate('change');
+					isInitialLoad = true;
+				}
 				A.one('#'+pns+'role').append("<option  value='' >Please Select Role</option> ");
 				for(var i in schoolDetail.roles){
-					if(i==0){  
-						A.one('#'+pns+'role').append("<option selected='selected' value='"+ schoolDetail.roles[i].roleId +"' >"+ schoolDetail.roles[i].name +"</option> ");
+					if(roleId===schoolDetail.roles[i].roleId){  
+						A.one('#'+pns+'role').append("<option selected='true' value='"+ schoolDetail.roles[i].roleId +"' >"+ schoolDetail.roles[i].name +"</option> ");
+						A.one("#<portlet:namespace/>role").val(roleId);
 					}else{
 						A.one('#'+pns+'role').append("<option  value='"+ schoolDetail.roles[i].roleId +"' >"+ schoolDetail.roles[i].name +"</option> ");
 					}
@@ -181,16 +193,21 @@ AUI().use('aui-io-request', 'aui-autocomplete' ,'aui-base','aui-form-validator',
 				console.log("campus cusssss" + campusDetail.roles.length);
 				A.one('#'+pns+'role').append("<option  value='' >Please Select Role</option> ");
 				for(var i in campusDetail.roles){
-					if(i==0){  
-					   A.one('#'+pns+'role').append("<option  selected='selected' value='"+ campusDetail.roles[i].roleId +"' >"+ campusDetail.roles[i].name +"</option> ");
+					if(roleId==campusDetail.roles[i].roleId){  
+					   A.one('#'+pns+'role').append("<option  selected='true' value='"+ campusDetail.roles[i].roleId +"' >"+ campusDetail.roles[i].name +"</option> ");
+					   A.one("#<portlet:namespace/>role").val(roleId);
 					}else{
 						A.one('#'+pns+'role').append("<option  value='"+ campusDetail.roles[i].roleId +"' >"+ campusDetail.roles[i].name +"</option> ");
 					}
 				}
+				
 			}
 		  }
 		
 		});
 	});
+	
+	A.one("#<portlet:namespace/>school").simulate('change');
+	
 });
 </aui:script>  

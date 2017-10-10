@@ -8,12 +8,12 @@
      <c:choose>
 	<c:when test="${ campus.campusId gt 0}">
 		<h2>
-    		<liferay-ui:message key="edit.campus"/> 
+    		Edit Campus
   		</h2>
 	</c:when>
 	<c:otherwise>
 		<h2>
-    		<liferay-ui:message key="add.campus"/> 
+    		Add Campus
   		</h2>
 	</c:otherwise>
 	</c:choose>
@@ -28,7 +28,7 @@
 	   				<br />
        			<aui:form name="addcampusFm" action="${addCampusURL}" cssClass="form-horizontal form-label-left">
 	       			<div class="form-group">	
-	       				 <div class="col-md-6 col-sm-6 col-xs-12">
+	       				 <div class="col-md-10 col-sm-6 col-xs-12">
 	       					 <aui:select name="schoolId" label="Select School" cssClass="form-control">
 						     	<c:forEach items="${schoolList }" var="school">
 						     		<aui:option value="${school.schoolId }" selected='${school.schoolId eq campus.schoolId ? true : false }'> ${school.name }</aui:option>
@@ -37,7 +37,7 @@
 						</div>	 
 					</div>	
        				<div class="form-group">	
-	       				 <div class="col-md-6 col-sm-6 col-xs-12">
+	       				 <div class="col-md-10 col-sm-6 col-xs-12">
 	       					 <aui:input name="name" label="name" cssClass="form-control col-md-7 col-xs-12" value="${campus.name }">
 						     	<aui:validator name="required" />
 						     	<aui:validator name="maxLength">70</aui:validator>
@@ -45,7 +45,7 @@
 						</div>	 
        				</div>
        				<div class="form-group">	
-	       				 <div class="col-md-6 col-sm-6 col-xs-12">
+	       				 <div class="col-md-10 col-sm-6 col-xs-12">
        						 <aui:input name="address1" label="address1" cssClass="form-control col-md-7 col-xs-12" value="${campus.address1 }">
 					     		<aui:validator name="required" />
 					     		<aui:validator name="maxLength">70</aui:validator>
@@ -53,7 +53,7 @@
 						</div>
 					</div>
 					<div class="form-group">	
-	       				 <div class="col-md-6 col-sm-6 col-xs-12">
+	       				 <div class="col-md-10 col-sm-6 col-xs-12">
 	       				 	 <aui:input name="address2" label="address2" cssClass="form-control col-md-7 col-xs-12" value="${campus.address2 }">
 					     		<aui:validator name="required" />
 					     		<aui:validator name="maxLength">70</aui:validator>
@@ -61,7 +61,7 @@
        					</div>
        				</div>
        				<div class="form-group">	
-	       				 <div class="col-md-6 col-sm-6 col-xs-12">
+	       				 <div class="col-md-10 col-sm-6 col-xs-12">
        						 <aui:input name="city" label="city" cssClass="form-control col-md-7 col-xs-12" value="${campus.city }">
 					    	 	<aui:validator name="required" />
 					    	 	<aui:validator name="maxLength">20</aui:validator>
@@ -69,56 +69,57 @@
        					</div>
        				</div>	
        				<div class="form-group">	
-	       				 <div class="col-md-6 col-sm-6 col-xs-12">
-	       				 	<aui:input name="state" label="state" cssClass="form-control col-md-7 col-xs-12" value="${campus.state }">
-					    	 	<aui:validator name="required" />
-					    	 	<aui:validator name="maxLength">20</aui:validator>
-						 	</aui:input>
+	       				 <div class="col-md-10 col-sm-6 col-xs-12">
+						 	<aui:select name="state" label="state" cssClass="form-control col-md-7 col-xs-12">
+	               				<c:forEach items="${usStateList }" var="state">
+	               					<aui:option value="${state }" selected='${state eq campus.state ? true : false }'>${state }</aui:option>
+	               				</c:forEach>
+	               			</aui:select>
        					</div>
        				</div>	
        				<div class="form-group">	
-	       				 <div class="col-md-6 col-sm-6 col-xs-12">
-       						 <aui:input name="country" label="country" cssClass="form-control col-md-7 col-xs-12" value="${campus.country }">
+	       				 <div class="col-md-10 col-sm-6 col-xs-12">
+       						 <aui:input name="country" label="country" cssClass="form-control col-md-7 col-xs-12" value="US" readonly="true">
 					    	 	<aui:validator name="required" />
 					    	 	<aui:validator name="maxLength">20</aui:validator>
 						 	</aui:input>
        					</div>
        				</div>
        				<div class="form-group">	
-	       				 <div class="col-md-6 col-sm-6 col-xs-12">
-       						 <aui:input name="contactNumber" label="campus.contact.no" cssClass="form-control col-md-7 col-xs-12" value="${campus.contactNumber }">
+	       				 <div class="col-md-10 col-sm-6 col-xs-12">
+       						 <aui:input name="contactNumber" label="Campus Contact Number" cssClass="form-control col-md-7 col-xs-12" value="${campus.contactNumber }">
 					     		<aui:validator name="required" />
                                <aui:validator name="maxLength">12</aui:validator>
 						 	</aui:input>
 						</div>
 					</div>	
 					<div class="form-group">	
-	       				 <div class="col-md-6 col-sm-6 col-xs-12">
-						 	<aui:input name="websiteLink" label="websiteLink" cssClass="form-control col-md-7 col-xs-12" value="${campus.websiteLink }">
+	       				 <div class="col-md-10 col-sm-6 col-xs-12">
+						 	<aui:input name="websiteLink" label="Web site Link" cssClass="form-control col-md-7 col-xs-12" value="${campus.websiteLink }">
 					     		<aui:validator name="required" />
 					     		<aui:validator name="maxLength">70</aui:validator>
 						 	</aui:input>
        					</div>
        				</div>
        				<div class="form-group">	
-	       				 <div class="col-md-6 col-sm-6 col-xs-12">
-       						 <aui:input name="contactPersonName" label="contactPersonName" cssClass="form-control col-md-7 col-xs-12" value="${campus.contactPersonName }">
+	       				 <div class="col-md-10 col-sm-6 col-xs-12">
+       						 <aui:input name="contactPersonName" label="Contact Person Name" cssClass="form-control col-md-7 col-xs-12" value="${campus.contactPersonName }">
 					    	 	<aui:validator name="required" />
 					    	 	<aui:validator name="maxLength">40</aui:validator>
 						 	</aui:input>
        					</div>
        				</div>
        				<div class="form-group">	
-	       				 <div class="col-md-6 col-sm-6 col-xs-12">
-       						 <aui:input name="contactPersonPhoneNumber" label="contactPersonPhoneNumber" cssClass="form-control col-md-7 col-xs-12" value="${campus.contactPersonPhoneNumber }" placeholder="xxx-xxx-xxxx">
+	       				 <div class="col-md-10 col-sm-6 col-xs-12">
+       						 <aui:input name="contactPersonPhoneNumber" label="Contact Person Phone Number" cssClass="form-control col-md-7 col-xs-12" value="${campus.contactPersonPhoneNumber }" placeholder="xxx-xxx-xxxx">
 					    	 	<aui:validator name="required" />
 					    	 	<aui:validator name="maxLength">12</aui:validator>
 						 	</aui:input>
        					</div>
        				</div>	
        				<div class="form-group">	
-	       				 <div class="col-md-6 col-sm-6 col-xs-12">
-       						 <aui:input name="contactPersonEmail" label="contactPersonEmail" cssClass="form-control col-md-7 col-xs-12" value="${campus.contactPersonEmail }">
+	       				 <div class="col-md-10 col-sm-6 col-xs-12">
+       						 <aui:input name="contactPersonEmail" label="Contact Person Email" cssClass="form-control col-md-7 col-xs-12" value="${campus.contactPersonEmail }">
 					    	 	<aui:validator name="required" />
 					    	 	<aui:validator name="email" />
 					    	 	<aui:validator name="maxLength">30</aui:validator>
@@ -127,7 +128,7 @@
        				</div>
        				<div class="ln_solid"></div>
 					 <div class="form-group">
-				         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+				         <div class="col-md-10 col-sm-6 col-xs-12 col-md-offset-3">
 							<aui:button type="button" value="Submit"  cssClass="addCampusBtn btn btn-success"/>
 						</div>
 					</div>

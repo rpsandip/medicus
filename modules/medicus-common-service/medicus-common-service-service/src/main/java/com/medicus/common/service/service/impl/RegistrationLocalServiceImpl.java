@@ -15,6 +15,7 @@
 package com.medicus.common.service.service.impl;
 
 import aQute.bnd.annotation.ProviderType;
+import aQute.bnd.properties.IRegion;
 
 import java.util.Date;
 import java.util.List;
@@ -142,7 +143,7 @@ public class RegistrationLocalServiceImpl extends RegistrationLocalServiceBaseIm
 		return OrganizationLocalServiceUtil.addOrganization(creatorUserId, 0l, String.valueOf(userId), true);
 	}
 	
-	public User createUser(String firstName, String lastName, String emailAddress, String contactNumber, long schoolId,
+	public User createSchoolUser(String firstName, String lastName, String emailAddress, String contactNumber, long schoolId,
 			long campusId, long roleId, long creatorUserId, long groupId) throws PortalException{
 		User user = null;
 		Organization campusOrg = null;
@@ -208,6 +209,72 @@ public class RegistrationLocalServiceImpl extends RegistrationLocalServiceBaseIm
 					 user.getContactId(), contactNumber, StringPool.BLANK, phoneTypId, true, new ServiceContext());
 			
 		return user;
+	}
+	
+	public User updateSchoolUser(long userId, String firstName, String lastName, String emailAddress, String contactNumber, long schoolId,
+			long campusId, long roleId, long creatorUserId, long groupId) throws PortalException{
+		
+		User user = null;
+		Organization campusOrg = null;
+		Role role = null;
+		long[] organizationIds=null;
+		user = UserLocalServiceUtil.getUser(userId);
+		 
+		// Get default Medicus Organization
+			long medicusOrganizationId = MedicusCommonLocalServiceUtil.getMedicusOrganizationId();
+					
+			
+			// Get Campus Organization
+			if(schoolId>0 && campusId>0){
+				try{
+					campusOrg = OrganizationLocalServiceUtil.getOrganization(PortalUtil.getDefaultCompanyId(), String.valueOf(campusId));
+					organizationIds = new long[]{campusOrg.getOrganizationId(),medicusOrganizationId};
+				}catch(PortalException e){
+					_log.error(e);
+				}
+			}else if(schoolId>0 && campusId==0){
+				List<Campus> campusList = CampusLocalServiceUtil.getCampusListBySchooId(schoolId);
+				organizationIds = new long[campusList.size()+1];
+				for(int i=0;i<campusList.size();i++){
+					organizationIds[i] = OrganizationLocalServiceUtil.getOrganizationId(PortalUtil.getDefaultCompanyId(), String.valueOf(campusList.get(i).getCampusId()));
+				}
+				organizationIds[campusList.size()]=medicusOrganizationId;
+			}
+			if(roleId>0){
+				 try {
+					role  = RoleLocalServiceUtil.getRole(roleId);
+				} catch (PortalException e) {
+					_log.error(e);
+				}
+			}
+		 
+			user.setFirstName(firstName);
+			user.setLastName(lastName);
+			
+			// User user basic detail
+			UserLocalServiceUtil.updateUser(user);
+			
+			// Update user organizations
+			UserLocalServiceUtil.updateOrganizations(user.getUserId(), organizationIds, new ServiceContext());
+			
+			// Update organization roles
+			UserGroupRoleLocalServiceUtil.deleteUserGroupRolesByUserId(userId);
+			
+			for(long orgId : organizationIds){
+				 long orgGroupId = MedicusCommonLocalServiceUtil.getOrganizationGroupIdFromOrgId(orgId);
+				 if(orgGroupId!=0){
+					 UserGroupRoleLocalServiceUtil.addUserGroupRoles(user.getUserId(), orgGroupId, new long[]{role.getRoleId()});
+				 }
+			 }
+			
+			// Update phone number
+			if(user.getPhones().size()>0){
+				Phone phone = user.getPhones().get(0);
+				phone.setNumber(contactNumber);
+				PhoneLocalServiceUtil.updatePhone(phone);
+			}
+			
+			return user;
 	}
 	
 }

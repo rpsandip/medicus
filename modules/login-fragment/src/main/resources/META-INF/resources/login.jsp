@@ -158,14 +158,14 @@ SessionMessages.add(renderRequest, PortalUtil.getPortletId(renderRequest) + Sess
 				}
 				%>
 				<div class="form-group">
-				 <div class="col-md-6 col-sm-6 col-xs-12">
+				 <div class="col-md-10 col-sm-6 col-xs-12">
 					<aui:input   cssClass="clearable form-control col-md-7 col-xs-12" label="<%= loginLabel %>" name="login" showRequiredLabel="<%= false %>" type="text" value="<%= login %>">
 						<aui:validator name="required" />
 					</aui:input>
 				</div>
 				</div>
 				<div class="form-group">
-					 <div class="col-md-6 col-sm-6 col-xs-12">
+					 <div class="col-md-10 col-sm-6 col-xs-12">
 						<aui:input cssClass="form-control"  name="password" showRequiredLabel="<%= false %>" type="password" value="<%= password %>">
 							<aui:validator name="required" />
 						</aui:input>

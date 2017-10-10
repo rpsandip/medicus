@@ -64,6 +64,7 @@ public class RegisterUserActionCommand extends BaseMVCActionCommand{
 					user = RegistrationLocalServiceUtil.registerEmployer(firstName,lastName, emailAddress, password1, password2,
 							address1, address2, city, zipcode, state, country, contactPersonName, contactPersonEmail,
 							contactPersonPhoneNumber, websiteLink, themeDisplay.getUserId(), themeDisplay.getScopeGroupId());
+					SessionMessages.add(actionRequest, "user-register-success");
 				} catch (PortalException e) {
 					_log.error(e);
 				}

@@ -51,6 +51,11 @@ public class MedicusCommonLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List<java.lang.String> getUSStateList() {
+		return _medicusCommonLocalService.getUSStateList();
+	}
+
+	@Override
 	public long getEmployerOrgRoleId() {
 		return _medicusCommonLocalService.getEmployerOrgRoleId();
 	}

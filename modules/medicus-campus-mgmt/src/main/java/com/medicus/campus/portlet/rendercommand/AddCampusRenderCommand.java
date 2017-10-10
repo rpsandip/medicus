@@ -17,6 +17,7 @@ import com.medicus.campus.portlet.util.CampusPortletConstant;
 import com.medicus.common.service.model.Campus;
 import com.medicus.common.service.model.School;
 import com.medicus.common.service.service.CampusLocalServiceUtil;
+import com.medicus.common.service.service.MedicusCommonLocalServiceUtil;
 import com.medicus.common.service.service.SchoolLocalServiceUtil;
 
 @Component(
@@ -35,6 +36,7 @@ public class AddCampusRenderCommand implements MVCRenderCommand{
 		long campusId = ParamUtil.getLong(renderRequest, "campusId");
 		List<School> schoolList = SchoolLocalServiceUtil.getSchools(-1,-1);
 		renderRequest.setAttribute("schoolList", schoolList);
+		renderRequest.setAttribute("usStateList", MedicusCommonLocalServiceUtil.getUSStateList());
 		if(campusId>0){
 			try {
 				Campus campus = CampusLocalServiceUtil.getCampus(campusId);

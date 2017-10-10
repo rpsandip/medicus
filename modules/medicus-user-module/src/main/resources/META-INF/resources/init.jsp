@@ -10,3 +10,8 @@
 <liferay-theme:defineObjects />
 
 <portlet:defineObjects />
+<style>
+   		.portlet-title-default, .portlet-title-text {
+			display: none;
+		}
+</style>

@@ -44,7 +44,7 @@ public interface RegistrationLocalService extends BaseLocalService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link RegistrationLocalServiceUtil} to access the registration local service. Add custom service methods to {@link com.medicus.common.service.service.impl.RegistrationLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public User createUser(java.lang.String firstName,
+	public User createSchoolUser(java.lang.String firstName,
 		java.lang.String lastName, java.lang.String emailAddress,
 		java.lang.String contactNumber, long schoolId, long campusId,
 		long roleId, long creatorUserId, long groupId)
@@ -60,6 +60,12 @@ public interface RegistrationLocalService extends BaseLocalService {
 		java.lang.String contactPersonEmail,
 		java.lang.String contactPersonPhoneNumber,
 		java.lang.String websiteLink, long creatorUserId, long groupId)
+		throws PortalException;
+
+	public User updateSchoolUser(long userId, java.lang.String firstName,
+		java.lang.String lastName, java.lang.String emailAddress,
+		java.lang.String contactNumber, long schoolId, long campusId,
+		long roleId, long creatorUserId, long groupId)
 		throws PortalException;
 
 	/**

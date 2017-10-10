@@ -27,12 +27,6 @@
   	 <link rel="stylesheet" href="${css_folder}/dataTables.bootstrap.min.css">
   	 <link rel="stylesheet" href="${css_folder}/flexslider.css">
   	 
-  	 <style>
-   	.portlet-title-default, .portlet-title-text {
-		display: none;
-	}
-	</style>
-	
 </head>
  <#if !is_signed_in>
 	 <body class="nav-md">
@@ -41,7 +35,7 @@
 	    	<!-- top navigation -->
 	        <div class="top_nav col-md-12">
 	          <div class="nav_menu">
-	          	<div class="welcome-logo"><a href="welcome.html" class="site_title"><i class="fa fa-paw"></i> <span>Medicus</span></a></div>
+	          	<div class="welcome-logo"><a href="/web/guest" class="site_title"><i class="fa fa-paw"></i> <span>Medicus</span></a></div>
 	            <nav class="login-signup-btn">
 	              <ul class="nav navbar-nav navbar-right">
 	                <@liferay_portlet["runtime"]
@@ -142,7 +136,7 @@
 		  		<div class="col-md-3 left_col">
 		          <div class="left_col scroll-view">
 		            <div class="navbar nav_title" style="border: 0;">
-		              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Medicus</span></a>
+		              <a href="/group/medicus" class="site_title"><i class="fa fa-paw"></i> <span>Medicus</span></a>
 		            </div>
 		
 		            <div class="clearfix"></div>
@@ -154,7 +148,7 @@
 		              </div>
 		              <div class="profile_info">
 		                <span>Welcome</span>
-		                <h2>${user.getFullName()} ${user.getLastName()}</h2>
+		                <h2>${user.getFirstName()} ${user.getLastName()}</h2>
 		              </div>
 		            </div>
 		            <!-- /menu profile quick info -->
@@ -199,14 +193,14 @@
 			              </div>
 			
 			              <ul class="nav navbar-nav navbar-right">
-			                <li class="medicus-profile-menu">
+			                <li class="">
 			                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 			                    <img src="images/img.jpg" alt="">${user.getFirstName()} ${user.getLastName()}
 			                    <span class=" fa fa-angle-down"></span>
 			                  </a>
 			                  <ul class="dropdown-menu dropdown-usermenu pull-right">
 			                    <li><a href="javascript:;"> Profile</a></li>
-			                    <li><a href="/c/portal/logout"><i class="fa fa-sign-out pull-right"></i><> Log Out</a></li>
+			                    <li><a href="/c/portal/logout"><i class="fa fa-sign-out pull-right"></i>Log Out</a></li>
 			                  </ul>
 			                </li>
 			              </ul>

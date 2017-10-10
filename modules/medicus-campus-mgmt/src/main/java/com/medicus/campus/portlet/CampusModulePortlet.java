@@ -4,6 +4,7 @@ import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.medicus.common.service.bean.CampusBean;
 import com.medicus.common.service.model.Campus;
 import com.medicus.common.service.service.CampusLocalServiceUtil;
+import com.medicus.common.service.service.MedicusCommonLocalServiceUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class CampusModulePortlet extends MVCPortlet {
 			campusBeanList.add(campusBean);
 		}
 		renderRequest.setAttribute("campusBeanList", campusBeanList);
+		renderRequest.setAttribute("usStateList", MedicusCommonLocalServiceUtil.getUSStateList());
 		include(viewTemplate, renderRequest, renderResponse);
 	}
 }

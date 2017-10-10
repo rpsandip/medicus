@@ -31,7 +31,10 @@ import com.liferay.portal.kernel.service.ListTypeServiceUtil;
 import com.liferay.portal.kernel.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.kernel.service.RoleLocalServiceUtil;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.medicus.common.service.service.base.MedicusCommonLocalServiceBaseImpl;
 
 /**
@@ -106,4 +109,9 @@ public class MedicusCommonLocalServiceImpl
 		return userPhoneType;
 	}
 	
+	public List<String> getUSStateList(){
+		String[] usStateArray = PropsUtil.get("us.states").split(StringPool.COMMA);
+		List<String> usStateList = ListUtil.fromArray(usStateArray);
+		return usStateList;
+	}
 }

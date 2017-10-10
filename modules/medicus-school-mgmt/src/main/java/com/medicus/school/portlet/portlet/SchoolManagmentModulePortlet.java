@@ -2,6 +2,7 @@ package com.medicus.school.portlet.portlet;
 
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.medicus.common.service.model.School;
+import com.medicus.common.service.service.MedicusCommonLocalServiceUtil;
 import com.medicus.common.service.service.SchoolLocalServiceUtil;
 
 import java.io.IOException;

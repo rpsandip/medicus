@@ -2,6 +2,10 @@ package com.example.portlet;
 
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.servlet.SessionMessages;
+import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.medicus.common.service.service.MedicusCommonLocalServiceUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,6 +37,7 @@ public class MedicusRegistrationModulemvcportletPortlet extends MVCPortlet {
 	@Override
 	public void doView(RenderRequest renderRequest, RenderResponse renderResponse)
 			throws IOException, PortletException {
+		renderRequest.setAttribute("usStateList", MedicusCommonLocalServiceUtil.getUSStateList());
 		include(viewTemplate, renderRequest, renderResponse);
 	}
 }

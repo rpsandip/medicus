@@ -12,6 +12,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.medicus.common.service.model.School;
+import com.medicus.common.service.service.MedicusCommonLocalServiceUtil;
 import com.medicus.common.service.service.SchoolLocalServiceUtil;
 import com.medicus.school.portlet.portlet.util.SchoolPortletConstant;
 
@@ -35,6 +36,7 @@ public class AddSchoolRenderCommand implements MVCRenderCommand{
 		} catch (PortalException e) {
 			_log.error(e);
 		}
+		renderRequest.setAttribute("usStateList", MedicusCommonLocalServiceUtil.getUSStateList());
 		renderRequest.setAttribute("schoolId", schoolId);
 		return "/school/add_school.jsp";
 	}

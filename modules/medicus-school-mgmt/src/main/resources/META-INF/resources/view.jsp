@@ -1,5 +1,4 @@
 <%@ include file="/init.jsp" %>
-
 <portlet:renderURL var="addSchoolURL">
         <portlet:param name="mvcRenderCommandName" value="/add_school" />
 </portlet:renderURL>
