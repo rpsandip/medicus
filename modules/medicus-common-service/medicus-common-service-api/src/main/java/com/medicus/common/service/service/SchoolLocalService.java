@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
+import com.medicus.common.service.exception.NoSuchSchoolException;
 import com.medicus.common.service.model.School;
 
 import java.io.Serializable;
@@ -136,6 +137,10 @@ public interface SchoolLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public School getSchool(long schoolId) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public School getSchoolByName(java.lang.String schoolName)
+		throws NoSuchSchoolException;
 
 	/**
 	* Updates the school in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

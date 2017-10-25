@@ -145,6 +145,13 @@ public class SchoolLocalServiceWrapper implements SchoolLocalService,
 		return _schoolLocalService.getSchool(schoolId);
 	}
 
+	@Override
+	public com.medicus.common.service.model.School getSchoolByName(
+		java.lang.String schoolName)
+		throws com.medicus.common.service.exception.NoSuchSchoolException {
+		return _schoolLocalService.getSchoolByName(schoolName);
+	}
+
 	/**
 	* Updates the school in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*

@@ -9,4 +9,8 @@
 	<bean class="com.medicus.common.service.service.impl.RegistrationLocalServiceImpl" id="com.medicus.common.service.service.RegistrationLocalService" />
 	<bean class="com.medicus.common.service.service.impl.SchoolLocalServiceImpl" id="com.medicus.common.service.service.SchoolLocalService" />
 	<bean class="com.medicus.common.service.service.persistence.impl.SchoolPersistenceImpl" id="com.medicus.common.service.service.persistence.SchoolPersistence" parent="basePersistence" />
+	<bean class="com.medicus.common.service.service.impl.StudentLocalServiceImpl" id="com.medicus.common.service.service.StudentLocalService" />
+	<bean class="com.medicus.common.service.service.persistence.impl.StudentPersistenceImpl" id="com.medicus.common.service.service.persistence.StudentPersistence" parent="basePersistence" />
+	<bean class="com.medicus.common.service.service.impl.Student_ExternshipLocalServiceImpl" id="com.medicus.common.service.service.Student_ExternshipLocalService" />
+	<bean class="com.medicus.common.service.service.persistence.impl.Student_ExternshipPersistenceImpl" id="com.medicus.common.service.service.persistence.Student_ExternshipPersistence" parent="basePersistence" />
 </beans>

@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
+import com.medicus.common.service.exception.NoSuchCampusException;
 import com.medicus.common.service.model.Campus;
 
 import java.io.Serializable;
@@ -137,6 +138,10 @@ public interface CampusLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Campus getCampus(long campusId) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Campus getCampusByName(java.lang.String campusName)
+		throws NoSuchCampusException;
 
 	public Campus upateCampus(long campusId, long schoolId,
 		java.lang.String name, java.lang.String address1,

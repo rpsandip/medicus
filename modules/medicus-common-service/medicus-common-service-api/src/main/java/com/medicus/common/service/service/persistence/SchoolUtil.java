@@ -109,6 +109,61 @@ public class SchoolUtil {
 	}
 
 	/**
+	* Returns the school where name = &#63; or throws a {@link NoSuchSchoolException} if it could not be found.
+	*
+	* @param name the name
+	* @return the matching school
+	* @throws NoSuchSchoolException if a matching school could not be found
+	*/
+	public static School findByname(java.lang.String name)
+		throws com.medicus.common.service.exception.NoSuchSchoolException {
+		return getPersistence().findByname(name);
+	}
+
+	/**
+	* Returns the school where name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param name the name
+	* @return the matching school, or <code>null</code> if a matching school could not be found
+	*/
+	public static School fetchByname(java.lang.String name) {
+		return getPersistence().fetchByname(name);
+	}
+
+	/**
+	* Returns the school where name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param name the name
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the matching school, or <code>null</code> if a matching school could not be found
+	*/
+	public static School fetchByname(java.lang.String name,
+		boolean retrieveFromCache) {
+		return getPersistence().fetchByname(name, retrieveFromCache);
+	}
+
+	/**
+	* Removes the school where name = &#63; from the database.
+	*
+	* @param name the name
+	* @return the school that was removed
+	*/
+	public static School removeByname(java.lang.String name)
+		throws com.medicus.common.service.exception.NoSuchSchoolException {
+		return getPersistence().removeByname(name);
+	}
+
+	/**
+	* Returns the number of schools where name = &#63;.
+	*
+	* @param name the name
+	* @return the number of matching schools
+	*/
+	public static int countByname(java.lang.String name) {
+		return getPersistence().countByname(name);
+	}
+
+	/**
 	* Caches the school in the entity cache if it is enabled.
 	*
 	* @param school the school

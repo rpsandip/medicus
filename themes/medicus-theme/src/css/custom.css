@@ -511,7 +511,7 @@ body {
     padding: 10px 0
 }
 .page-title .title_left {
-    width: 45%;
+    width: 65%;
     float: left;
     display: block
 }
@@ -1116,7 +1116,7 @@ legend {
 }
 .profile_details .profile_view {
     display: inline-block;
-    padding: 10px 0 0;
+    padding: 0;
     background: #fff
 }
 .profile_details .profile_view .divider {
@@ -1132,9 +1132,7 @@ legend {
     padding: 9px 0;
     border-top: 1px solid #E6E9ED
 }
-.profile_details .profile_view .left {
-    margin-top: 20px
-}
+
 .profile_details .profile_view .left p {
     margin-bottom: 3px
 }
@@ -2539,7 +2537,6 @@ span.tag a {
 }
 ul.bar_tabs {
     overflow: visible;
-    background: #F5F7FA;
     height: 25px;
     margin: 21px 0 14px;
     padding-left: 14px;
@@ -3841,7 +3838,8 @@ fieldset {
     margin: 0;
     padding: 0;
     border: 0 solid #CCC;
-    overflow-x: hidden
+    overflow-x: hidden;
+    height:80px!important
 }
 .wizard_horizontal ul.wizard_steps {
     display: table;
@@ -4290,6 +4288,16 @@ width: 100%;
 height:400px!important;
 display: block; }
 
+.top_tiles{margin: 0;}
+.form-group .input-group{
+	padding-right: 10px;
+    padding-left: 10px;
+}
+.gender-select{padding-top:8px}
+.student-btn{padding:0}
+
+/* Liferay CSS : START*/
+
 .login-signup-btn .portlet-boundary {
     display: inline-block;
     float: right;
@@ -4306,7 +4314,7 @@ display: block; }
     margin-right: 3%;
 }
 
-.form-group input.form-control, .form-group select.form-control {
+.form-group input.form-control, .form-group select.form-control, .form-group textarea.form-control  {
 	display: inline-block;
     float: left;
     width: 75%;
@@ -4329,3 +4337,14 @@ display: block; }
     right: 400%;
     width: 500px;
 }
+
+.input-group-addon {
+	position: absolute;
+    width: 40px;
+    height: 34px;
+    right: 10px;
+    z-index: 99999;
+    top: 0;
+}
+
+/* Liferay CSS : END */

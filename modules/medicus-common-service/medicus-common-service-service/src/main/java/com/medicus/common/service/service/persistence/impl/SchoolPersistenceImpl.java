@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.log.Log;
@@ -31,6 +32,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.spring.extender.service.ServiceReference;
 
 import com.medicus.common.service.exception.NoSuchSchoolException;
@@ -48,6 +50,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -84,6 +87,244 @@ public class SchoolPersistenceImpl extends BasePersistenceImpl<School>
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(SchoolModelImpl.ENTITY_CACHE_ENABLED,
 			SchoolModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
+	public static final FinderPath FINDER_PATH_FETCH_BY_NAME = new FinderPath(SchoolModelImpl.ENTITY_CACHE_ENABLED,
+			SchoolModelImpl.FINDER_CACHE_ENABLED, SchoolImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByname",
+			new String[] { String.class.getName() },
+			SchoolModelImpl.NAME_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_NAME = new FinderPath(SchoolModelImpl.ENTITY_CACHE_ENABLED,
+			SchoolModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByname",
+			new String[] { String.class.getName() });
+
+	/**
+	 * Returns the school where name = &#63; or throws a {@link NoSuchSchoolException} if it could not be found.
+	 *
+	 * @param name the name
+	 * @return the matching school
+	 * @throws NoSuchSchoolException if a matching school could not be found
+	 */
+	@Override
+	public School findByname(String name) throws NoSuchSchoolException {
+		School school = fetchByname(name);
+
+		if (school == null) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("name=");
+			msg.append(name);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isDebugEnabled()) {
+				_log.debug(msg.toString());
+			}
+
+			throw new NoSuchSchoolException(msg.toString());
+		}
+
+		return school;
+	}
+
+	/**
+	 * Returns the school where name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param name the name
+	 * @return the matching school, or <code>null</code> if a matching school could not be found
+	 */
+	@Override
+	public School fetchByname(String name) {
+		return fetchByname(name, true);
+	}
+
+	/**
+	 * Returns the school where name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param name the name
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the matching school, or <code>null</code> if a matching school could not be found
+	 */
+	@Override
+	public School fetchByname(String name, boolean retrieveFromCache) {
+		Object[] finderArgs = new Object[] { name };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = finderCache.getResult(FINDER_PATH_FETCH_BY_NAME,
+					finderArgs, this);
+		}
+
+		if (result instanceof School) {
+			School school = (School)result;
+
+			if (!Objects.equals(name, school.getName())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_SELECT_SCHOOL_WHERE);
+
+			boolean bindName = false;
+
+			if (name == null) {
+				query.append(_FINDER_COLUMN_NAME_NAME_1);
+			}
+			else if (name.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_NAME_NAME_3);
+			}
+			else {
+				bindName = true;
+
+				query.append(_FINDER_COLUMN_NAME_NAME_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (bindName) {
+					qPos.add(name);
+				}
+
+				List<School> list = q.list();
+
+				if (list.isEmpty()) {
+					finderCache.putResult(FINDER_PATH_FETCH_BY_NAME,
+						finderArgs, list);
+				}
+				else {
+					if ((list.size() > 1) && _log.isWarnEnabled()) {
+						_log.warn(
+							"SchoolPersistenceImpl.fetchByname(String, boolean) with parameters (" +
+							StringUtil.merge(finderArgs) +
+							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
+					}
+
+					School school = list.get(0);
+
+					result = school;
+
+					cacheResult(school);
+
+					if ((school.getName() == null) ||
+							!school.getName().equals(name)) {
+						finderCache.putResult(FINDER_PATH_FETCH_BY_NAME,
+							finderArgs, school);
+					}
+				}
+			}
+			catch (Exception e) {
+				finderCache.removeResult(FINDER_PATH_FETCH_BY_NAME, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (School)result;
+		}
+	}
+
+	/**
+	 * Removes the school where name = &#63; from the database.
+	 *
+	 * @param name the name
+	 * @return the school that was removed
+	 */
+	@Override
+	public School removeByname(String name) throws NoSuchSchoolException {
+		School school = findByname(name);
+
+		return remove(school);
+	}
+
+	/**
+	 * Returns the number of schools where name = &#63;.
+	 *
+	 * @param name the name
+	 * @return the number of matching schools
+	 */
+	@Override
+	public int countByname(String name) {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_NAME;
+
+		Object[] finderArgs = new Object[] { name };
+
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_SCHOOL_WHERE);
+
+			boolean bindName = false;
+
+			if (name == null) {
+				query.append(_FINDER_COLUMN_NAME_NAME_1);
+			}
+			else if (name.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_NAME_NAME_3);
+			}
+			else {
+				bindName = true;
+
+				query.append(_FINDER_COLUMN_NAME_NAME_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (bindName) {
+					qPos.add(name);
+				}
+
+				count = (Long)q.uniqueResult();
+
+				finderCache.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				finderCache.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_NAME_NAME_1 = "school.name IS NULL";
+	private static final String _FINDER_COLUMN_NAME_NAME_2 = "school.name = ?";
+	private static final String _FINDER_COLUMN_NAME_NAME_3 = "(school.name IS NULL OR school.name = '')";
 
 	public SchoolPersistenceImpl() {
 		setModelClass(School.class);
@@ -98,6 +339,9 @@ public class SchoolPersistenceImpl extends BasePersistenceImpl<School>
 	public void cacheResult(School school) {
 		entityCache.putResult(SchoolModelImpl.ENTITY_CACHE_ENABLED,
 			SchoolImpl.class, school.getPrimaryKey(), school);
+
+		finderCache.putResult(FINDER_PATH_FETCH_BY_NAME,
+			new Object[] { school.getName() }, school);
 
 		school.resetOriginalValues();
 	}
@@ -150,6 +394,8 @@ public class SchoolPersistenceImpl extends BasePersistenceImpl<School>
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		clearUniqueFindersCache((SchoolModelImpl)school);
 	}
 
 	@Override
@@ -160,6 +406,46 @@ public class SchoolPersistenceImpl extends BasePersistenceImpl<School>
 		for (School school : schools) {
 			entityCache.removeResult(SchoolModelImpl.ENTITY_CACHE_ENABLED,
 				SchoolImpl.class, school.getPrimaryKey());
+
+			clearUniqueFindersCache((SchoolModelImpl)school);
+		}
+	}
+
+	protected void cacheUniqueFindersCache(SchoolModelImpl schoolModelImpl,
+		boolean isNew) {
+		if (isNew) {
+			Object[] args = new Object[] { schoolModelImpl.getName() };
+
+			finderCache.putResult(FINDER_PATH_COUNT_BY_NAME, args,
+				Long.valueOf(1));
+			finderCache.putResult(FINDER_PATH_FETCH_BY_NAME, args,
+				schoolModelImpl);
+		}
+		else {
+			if ((schoolModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_NAME.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] { schoolModelImpl.getName() };
+
+				finderCache.putResult(FINDER_PATH_COUNT_BY_NAME, args,
+					Long.valueOf(1));
+				finderCache.putResult(FINDER_PATH_FETCH_BY_NAME, args,
+					schoolModelImpl);
+			}
+		}
+	}
+
+	protected void clearUniqueFindersCache(SchoolModelImpl schoolModelImpl) {
+		Object[] args = new Object[] { schoolModelImpl.getName() };
+
+		finderCache.removeResult(FINDER_PATH_COUNT_BY_NAME, args);
+		finderCache.removeResult(FINDER_PATH_FETCH_BY_NAME, args);
+
+		if ((schoolModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_NAME.getColumnBitmask()) != 0) {
+			args = new Object[] { schoolModelImpl.getOriginalName() };
+
+			finderCache.removeResult(FINDER_PATH_COUNT_BY_NAME, args);
+			finderCache.removeResult(FINDER_PATH_FETCH_BY_NAME, args);
 		}
 	}
 
@@ -314,12 +600,15 @@ public class SchoolPersistenceImpl extends BasePersistenceImpl<School>
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-		if (isNew) {
+		if (isNew || !SchoolModelImpl.COLUMN_BITMASK_ENABLED) {
 			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 
 		entityCache.putResult(SchoolModelImpl.ENTITY_CACHE_ENABLED,
 			SchoolImpl.class, school.getPrimaryKey(), school, false);
+
+		clearUniqueFindersCache(schoolModelImpl);
+		cacheUniqueFindersCache(schoolModelImpl, isNew);
 
 		school.resetOriginalValues();
 
@@ -765,9 +1054,12 @@ public class SchoolPersistenceImpl extends BasePersistenceImpl<School>
 	protected FinderCache finderCache;
 	private static final String _SQL_SELECT_SCHOOL = "SELECT school FROM School school";
 	private static final String _SQL_SELECT_SCHOOL_WHERE_PKS_IN = "SELECT school FROM School school WHERE schoolId IN (";
+	private static final String _SQL_SELECT_SCHOOL_WHERE = "SELECT school FROM School school WHERE ";
 	private static final String _SQL_COUNT_SCHOOL = "SELECT COUNT(school) FROM School school";
+	private static final String _SQL_COUNT_SCHOOL_WHERE = "SELECT COUNT(school) FROM School school WHERE ";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "school.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No School exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No School exists with the key {";
 	private static final Log _log = LogFactoryUtil.getLog(SchoolPersistenceImpl.class);
 	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
 				"state"

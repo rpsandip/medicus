@@ -16,13 +16,21 @@ package com.medicus.common.service.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.document.library.kernel.model.DLFileEntry;
+
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+
+import com.medicus.common.service.model.Employer;
+
+import java.io.File;
 
 import java.util.List;
 
@@ -48,7 +56,25 @@ public interface MedicusCommonLocalService extends BaseLocalService {
 	 * Never modify or reference this interface directly. Always use {@link MedicusCommonLocalServiceUtil} to access the medicus common local service. Add custom service methods to {@link com.medicus.common.service.service.impl.MedicusCommonLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public boolean isFolderExist(long groupId, long parentFolderId,
+		java.lang.String folderName);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public User isUserExist(java.lang.String emailAddress);
+
+	public FileEntry addFileEntry(long groupId, long folderId, File file,
+		java.lang.String fileName) throws PortalException;
+
+	public FileEntry updateFileEntry(long fileEntryId, long groupId,
+		long folderId, File file, java.lang.String fileName)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Folder getFolder(long groupId, long parentFolderId,
+		java.lang.String folderName);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.lang.String getDLFileURL(DLFileEntry file);
 
 	/**
 	* Returns the OSGi service identifier.
@@ -58,10 +84,16 @@ public interface MedicusCommonLocalService extends BaseLocalService {
 	public java.lang.String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Employer> getEmployerList();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<java.lang.String> getUSStateList();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long getEmployerOrgRoleId();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public long getGlobalGroupId();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long getMedicusOrganizationId();

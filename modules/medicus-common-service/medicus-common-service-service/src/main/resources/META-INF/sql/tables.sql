@@ -56,3 +56,56 @@ create table Medicus_School (
 	modifiedDate DATE null,
 	modifiedBy LONG
 );
+
+create table Medicus_Student (
+	studentId LONG not null primary key,
+	stundetCampusId VARCHAR(75) null,
+	campusId LONG,
+	schoolId LONG,
+	firstName VARCHAR(75) null,
+	middleName VARCHAR(75) null,
+	lastName VARCHAR(75) null,
+	profileImageId LONG,
+	dateOfBirth DATE null,
+	gender VARCHAR(75) null,
+	contactNumber VARCHAR(75) null,
+	homePhoneNumber VARCHAR(75) null,
+	emailAddress VARCHAR(75) null,
+	primaryLanguage VARCHAR(75) null,
+	secondaryLanguage VARCHAR(75) null,
+	address VARCHAR(75) null,
+	city VARCHAR(75) null,
+	zipcode VARCHAR(75) null,
+	state_ VARCHAR(75) null,
+	pace VARCHAR(75) null,
+	gpa DOUBLE,
+	resumeFileEntryId LONG,
+	profession VARCHAR(75) null,
+	practices VARCHAR(75) null,
+	agreementFileEntryId LONG,
+	hired BOOLEAN,
+	graduationDate DATE null,
+	activelySeekingEmployment BOOLEAN,
+	haveExternship BOOLEAN,
+	createDate DATE null,
+	createdBy LONG,
+	modifiedDate DATE null,
+	modifiedBy LONG
+);
+
+create table Medicus_Student_Externship (
+	studentExternshipId LONG not null primary key,
+	studentId LONG,
+	employerId LONG,
+	startDate DATE null,
+	endDate DATE null,
+	noOfHoursPerWeek INTEGER,
+	midPointReview DATE null,
+	midPointReviewComment VARCHAR(75) null,
+	finalReview DATE null,
+	finalReviewComment VARCHAR(75) null,
+	createDate DATE null,
+	createdBy LONG,
+	modifiedDate DATE null,
+	modifiedBy LONG
+);

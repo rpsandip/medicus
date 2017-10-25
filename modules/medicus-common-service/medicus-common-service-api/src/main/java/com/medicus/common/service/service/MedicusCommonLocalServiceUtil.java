@@ -41,9 +41,40 @@ public class MedicusCommonLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.medicus.common.service.service.impl.MedicusCommonLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static boolean isFolderExist(long groupId, long parentFolderId,
+		java.lang.String folderName) {
+		return getService().isFolderExist(groupId, parentFolderId, folderName);
+	}
+
 	public static com.liferay.portal.kernel.model.User isUserExist(
 		java.lang.String emailAddress) {
 		return getService().isUserExist(emailAddress);
+	}
+
+	public static com.liferay.portal.kernel.repository.model.FileEntry addFileEntry(
+		long groupId, long folderId, java.io.File file,
+		java.lang.String fileName)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().addFileEntry(groupId, folderId, file, fileName);
+	}
+
+	public static com.liferay.portal.kernel.repository.model.FileEntry updateFileEntry(
+		long fileEntryId, long groupId, long folderId, java.io.File file,
+		java.lang.String fileName)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .updateFileEntry(fileEntryId, groupId, folderId, file,
+			fileName);
+	}
+
+	public static com.liferay.portal.kernel.repository.model.Folder getFolder(
+		long groupId, long parentFolderId, java.lang.String folderName) {
+		return getService().getFolder(groupId, parentFolderId, folderName);
+	}
+
+	public static java.lang.String getDLFileURL(
+		com.liferay.document.library.kernel.model.DLFileEntry file) {
+		return getService().getDLFileURL(file);
 	}
 
 	/**
@@ -55,12 +86,20 @@ public class MedicusCommonLocalServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
+	public static java.util.List<com.medicus.common.service.model.Employer> getEmployerList() {
+		return getService().getEmployerList();
+	}
+
 	public static java.util.List<java.lang.String> getUSStateList() {
 		return getService().getUSStateList();
 	}
 
 	public static long getEmployerOrgRoleId() {
 		return getService().getEmployerOrgRoleId();
+	}
+
+	public static long getGlobalGroupId() {
+		return getService().getGlobalGroupId();
 	}
 
 	public static long getMedicusOrganizationId() {

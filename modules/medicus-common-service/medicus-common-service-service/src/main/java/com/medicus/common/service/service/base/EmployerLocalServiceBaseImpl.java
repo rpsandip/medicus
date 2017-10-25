@@ -46,6 +46,8 @@ import com.medicus.common.service.service.EmployerLocalService;
 import com.medicus.common.service.service.persistence.CampusPersistence;
 import com.medicus.common.service.service.persistence.EmployerPersistence;
 import com.medicus.common.service.service.persistence.SchoolPersistence;
+import com.medicus.common.service.service.persistence.StudentPersistence;
+import com.medicus.common.service.service.persistence.Student_ExternshipPersistence;
 
 import java.io.Serializable;
 
@@ -461,6 +463,81 @@ public abstract class EmployerLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
+	 * Returns the student local service.
+	 *
+	 * @return the student local service
+	 */
+	public com.medicus.common.service.service.StudentLocalService getStudentLocalService() {
+		return studentLocalService;
+	}
+
+	/**
+	 * Sets the student local service.
+	 *
+	 * @param studentLocalService the student local service
+	 */
+	public void setStudentLocalService(
+		com.medicus.common.service.service.StudentLocalService studentLocalService) {
+		this.studentLocalService = studentLocalService;
+	}
+
+	/**
+	 * Returns the student persistence.
+	 *
+	 * @return the student persistence
+	 */
+	public StudentPersistence getStudentPersistence() {
+		return studentPersistence;
+	}
+
+	/**
+	 * Sets the student persistence.
+	 *
+	 * @param studentPersistence the student persistence
+	 */
+	public void setStudentPersistence(StudentPersistence studentPersistence) {
+		this.studentPersistence = studentPersistence;
+	}
+
+	/**
+	 * Returns the student_ externship local service.
+	 *
+	 * @return the student_ externship local service
+	 */
+	public com.medicus.common.service.service.Student_ExternshipLocalService getStudent_ExternshipLocalService() {
+		return student_ExternshipLocalService;
+	}
+
+	/**
+	 * Sets the student_ externship local service.
+	 *
+	 * @param student_ExternshipLocalService the student_ externship local service
+	 */
+	public void setStudent_ExternshipLocalService(
+		com.medicus.common.service.service.Student_ExternshipLocalService student_ExternshipLocalService) {
+		this.student_ExternshipLocalService = student_ExternshipLocalService;
+	}
+
+	/**
+	 * Returns the student_ externship persistence.
+	 *
+	 * @return the student_ externship persistence
+	 */
+	public Student_ExternshipPersistence getStudent_ExternshipPersistence() {
+		return student_ExternshipPersistence;
+	}
+
+	/**
+	 * Sets the student_ externship persistence.
+	 *
+	 * @param student_ExternshipPersistence the student_ externship persistence
+	 */
+	public void setStudent_ExternshipPersistence(
+		Student_ExternshipPersistence student_ExternshipPersistence) {
+		this.student_ExternshipPersistence = student_ExternshipPersistence;
+	}
+
+	/**
 	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
@@ -641,6 +718,14 @@ public abstract class EmployerLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected com.medicus.common.service.service.SchoolLocalService schoolLocalService;
 	@BeanReference(type = SchoolPersistence.class)
 	protected SchoolPersistence schoolPersistence;
+	@BeanReference(type = com.medicus.common.service.service.StudentLocalService.class)
+	protected com.medicus.common.service.service.StudentLocalService studentLocalService;
+	@BeanReference(type = StudentPersistence.class)
+	protected StudentPersistence studentPersistence;
+	@BeanReference(type = com.medicus.common.service.service.Student_ExternshipLocalService.class)
+	protected com.medicus.common.service.service.Student_ExternshipLocalService student_ExternshipLocalService;
+	@BeanReference(type = Student_ExternshipPersistence.class)
+	protected Student_ExternshipPersistence student_ExternshipPersistence;
 	@ServiceReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
 	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
 	@ServiceReference(type = com.liferay.portal.kernel.service.ClassNameLocalService.class)

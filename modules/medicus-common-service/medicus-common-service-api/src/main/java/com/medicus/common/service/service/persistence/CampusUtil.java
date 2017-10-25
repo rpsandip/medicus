@@ -265,6 +265,61 @@ public class CampusUtil {
 	}
 
 	/**
+	* Returns the campus where name = &#63; or throws a {@link NoSuchCampusException} if it could not be found.
+	*
+	* @param name the name
+	* @return the matching campus
+	* @throws NoSuchCampusException if a matching campus could not be found
+	*/
+	public static Campus findByname(java.lang.String name)
+		throws com.medicus.common.service.exception.NoSuchCampusException {
+		return getPersistence().findByname(name);
+	}
+
+	/**
+	* Returns the campus where name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param name the name
+	* @return the matching campus, or <code>null</code> if a matching campus could not be found
+	*/
+	public static Campus fetchByname(java.lang.String name) {
+		return getPersistence().fetchByname(name);
+	}
+
+	/**
+	* Returns the campus where name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param name the name
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the matching campus, or <code>null</code> if a matching campus could not be found
+	*/
+	public static Campus fetchByname(java.lang.String name,
+		boolean retrieveFromCache) {
+		return getPersistence().fetchByname(name, retrieveFromCache);
+	}
+
+	/**
+	* Removes the campus where name = &#63; from the database.
+	*
+	* @param name the name
+	* @return the campus that was removed
+	*/
+	public static Campus removeByname(java.lang.String name)
+		throws com.medicus.common.service.exception.NoSuchCampusException {
+		return getPersistence().removeByname(name);
+	}
+
+	/**
+	* Returns the number of campuses where name = &#63;.
+	*
+	* @param name the name
+	* @return the number of matching campuses
+	*/
+	public static int countByname(java.lang.String name) {
+		return getPersistence().countByname(name);
+	}
+
+	/**
 	* Caches the campus in the entity cache if it is enabled.
 	*
 	* @param campus the campus

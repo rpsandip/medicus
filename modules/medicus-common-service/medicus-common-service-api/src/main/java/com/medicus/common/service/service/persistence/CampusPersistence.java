@@ -173,6 +173,50 @@ public interface CampusPersistence extends BasePersistence<Campus> {
 	public int countByschoolId(long schoolId);
 
 	/**
+	* Returns the campus where name = &#63; or throws a {@link NoSuchCampusException} if it could not be found.
+	*
+	* @param name the name
+	* @return the matching campus
+	* @throws NoSuchCampusException if a matching campus could not be found
+	*/
+	public Campus findByname(java.lang.String name)
+		throws NoSuchCampusException;
+
+	/**
+	* Returns the campus where name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param name the name
+	* @return the matching campus, or <code>null</code> if a matching campus could not be found
+	*/
+	public Campus fetchByname(java.lang.String name);
+
+	/**
+	* Returns the campus where name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param name the name
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the matching campus, or <code>null</code> if a matching campus could not be found
+	*/
+	public Campus fetchByname(java.lang.String name, boolean retrieveFromCache);
+
+	/**
+	* Removes the campus where name = &#63; from the database.
+	*
+	* @param name the name
+	* @return the campus that was removed
+	*/
+	public Campus removeByname(java.lang.String name)
+		throws NoSuchCampusException;
+
+	/**
+	* Returns the number of campuses where name = &#63;.
+	*
+	* @param name the name
+	* @return the number of matching campuses
+	*/
+	public int countByname(java.lang.String name);
+
+	/**
 	* Caches the campus in the entity cache if it is enabled.
 	*
 	* @param campus the campus

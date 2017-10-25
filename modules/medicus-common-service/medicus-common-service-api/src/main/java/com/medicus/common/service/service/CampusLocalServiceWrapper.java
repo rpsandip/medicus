@@ -147,6 +147,13 @@ public class CampusLocalServiceWrapper implements CampusLocalService,
 	}
 
 	@Override
+	public com.medicus.common.service.model.Campus getCampusByName(
+		java.lang.String campusName)
+		throws com.medicus.common.service.exception.NoSuchCampusException {
+		return _campusLocalService.getCampusByName(campusName);
+	}
+
+	@Override
 	public com.medicus.common.service.model.Campus upateCampus(long campusId,
 		long schoolId, java.lang.String name, java.lang.String address1,
 		java.lang.String address2, java.lang.String city,

@@ -7,6 +7,8 @@
 	<import class="com.medicus.common.service.model.MedicusCommon" />
 	<import class="com.medicus.common.service.model.Registration" />
 	<import class="com.medicus.common.service.model.School" />
+	<import class="com.medicus.common.service.model.Student" />
+	<import class="com.medicus.common.service.model.Student_Externship" />
 	<class name="com.medicus.common.service.model.impl.CampusImpl" table="Medicus_Campus">
 		<id name="campusId" type="long">
 			<generator class="assigned" />
@@ -64,6 +66,61 @@
 		<property name="contactPersonPhoneNumber" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="contactPersonEmail" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="createdBy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedBy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.medicus.common.service.model.impl.StudentImpl" table="Medicus_Student">
+		<id name="studentId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="stundetCampusId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="campusId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="schoolId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="firstName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="middleName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="lastName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="profileImageId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="dateOfBirth" type="org.hibernate.type.TimestampType" />
+		<property name="gender" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="contactNumber" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="homePhoneNumber" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="emailAddress" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="primaryLanguage" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="secondaryLanguage" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="address" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="city" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="zipcode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property column="state_" name="state" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="pace" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="gpa" type="com.liferay.portal.dao.orm.hibernate.FloatType" />
+		<property name="resumeFileEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="profession" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="practices" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="agreementFileEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="hired" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="graduationDate" type="org.hibernate.type.TimestampType" />
+		<property name="activelySeekingEmployment" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="haveExternship" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="createdBy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedBy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.medicus.common.service.model.impl.Student_ExternshipImpl" table="Medicus_Student_Externship">
+		<id name="studentExternshipId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="studentId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="employerId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="startDate" type="org.hibernate.type.TimestampType" />
+		<property name="endDate" type="org.hibernate.type.TimestampType" />
+		<property name="noOfHoursPerWeek" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="midPointReview" type="org.hibernate.type.TimestampType" />
+		<property name="midPointReviewComment" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="finalReview" type="org.hibernate.type.TimestampType" />
+		<property name="finalReviewComment" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="createdBy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />

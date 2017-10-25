@@ -20,6 +20,7 @@ import java.util.Date;
 
 import com.liferay.counter.kernel.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.medicus.common.service.exception.NoSuchSchoolException;
 import com.medicus.common.service.model.School;
 import com.medicus.common.service.service.SchoolLocalServiceUtil;
 import com.medicus.common.service.service.base.SchoolLocalServiceBaseImpl;
@@ -103,5 +104,10 @@ public class SchoolLocalServiceImpl extends SchoolLocalServiceBaseImpl {
 		return school;
 		
 	}
+	
+	public School getSchoolByName(String schoolName) throws NoSuchSchoolException{
+		return schoolPersistence.findByname(schoolName);
+	}
+	
 	
 }

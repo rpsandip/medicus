@@ -101,6 +101,7 @@ var setContentHeight = function () {
 
 // toggle small or large menu 
 $MENU_TOGGLE.on('click', function() {
+		console.log('clicked - menu toggle');
 		
 		if ($BODY.hasClass('nav-md')) {
 			$SIDEBAR_MENU.find('li.active ul').hide();
@@ -187,7 +188,7 @@ $(document).ready(function() {
 
 // Progressbar
 if ($(".progress .progress-bar")[0]) {
- 
+    $('.progress .progress-bar').progressbar();
 }
 // /Progressbar
 
@@ -2206,15 +2207,11 @@ if (typeof NProgress != 'undefined') {
 			  var mybarChart = new Chart(ctx, {
 				type: 'bar',
 				data: {
-				  labels: ["January", "February", "March", "April", "May", "June", "July"],
+				  labels: ["January", "February", "March", "April", "May", "June", "July","August", "September", "October", "November", "December"],
 				  datasets: [{
-					label: '# of Votes',
+					label: 'Students',
 					backgroundColor: "#26B99A",
-					data: [51, 30, 40, 28, 92, 50, 45]
-				  }, {
-					label: '# of Votes',
-					backgroundColor: "#03586A",
-					data: [41, 56, 25, 48, 72, 34, 12]
+					data: [51, 30, 40, 28, 50, 92, 45, 30, 40, 28, 75, 60]
 				  }]
 				},
 
@@ -2326,11 +2323,11 @@ if (typeof NProgress != 'undefined') {
 					  label: 'My dataset' // for legend
 					}],
 					labels: [
-					  "Dark Gray",
-					  "Purple",
-					  "Gray",
-					  "Green",
-					  "Blue"
+					  "Software Developer",
+					  "Doctor",
+					  "Marketing Manager",
+					  "Customer Care",
+					  "Sales Manager"
 					]
 				  };
 
@@ -2343,6 +2340,188 @@ if (typeof NProgress != 'undefined') {
 				  });
 				  
 			  }
+			  
+			// Pie chart
+			  if ($('#languageChart').length ){
+				  
+				  var ctx = document.getElementById("languageChart");
+				  var data = {
+					datasets: [{
+					  data: [250, 150, 60, 50, 100],
+					  backgroundColor: [
+						"#455C73",
+						"#9B59B6",
+						"#BDC3C7",
+						"#26B99A",
+						"#3498DB"
+					  ],
+					  label: 'My dataset' // for legend
+					}],
+					labels: [
+					  "English",
+					  "French",
+					  "Hindi",
+					  "Chinese",
+					  "Spanish"
+					]
+				  };
+
+				  var pieChart = new Chart(ctx, {
+					data: data,
+					type: 'pie',
+					otpions: {
+					  legend: false
+					}
+				  });
+				  
+			  }
+			  
+			  if ($('#genderbarChart').length ){ 
+				  
+				  var ctx = document.getElementById("genderbarChart");
+				  var mybarChart = new Chart(ctx, {
+					type: 'bar',
+					data: {
+					  labels: ["2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017"],
+					  datasets: [{
+						label: 'Male ',
+						backgroundColor: "#26B99A",
+						data: [51, 30, 40, 28, 60, 92, 50, 45]
+					  }, {
+						label: 'Female ',
+						backgroundColor: "#03586A",
+						data: [41, 56, 25, 48, 85 ,72, 34, 12]
+					  }]
+					},
+
+					options: {
+					  scales: {
+						yAxes: [{
+						  ticks: {
+							beginAtZero: true
+						  }
+						}]
+					  }
+					}
+				  });
+				  
+				}
+			  
+			  	if ($('#employeebarChart').length ){ 
+				  
+				  var ctx = document.getElementById("employeebarChart");
+				  var mybarChart = new Chart(ctx, {
+					type: 'bar',
+					data: {
+					  labels: ["2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017"],
+					  datasets: [{
+						label: 'Employed ',
+						backgroundColor: "#26B99A",
+						data: [51, 30, 40, 28, 60, 92, 50, 45]
+					  }, {
+						label: 'Not Employed ',
+						backgroundColor: "#03586A",
+						data: [41, 56, 25, 48, 85 ,72, 34, 12]
+					  }]
+					},
+
+					options: {
+					  scales: {
+						yAxes: [{
+						  ticks: {
+							beginAtZero: true
+						  }
+						}]
+					  }
+					}
+				  });
+				  
+				}
+			  	
+			  	if ($('#professionbarChart').length ){ 
+					  
+					  var ctx = document.getElementById("professionbarChart");
+					  var mybarChart = new Chart(ctx, {
+						type: 'bar',
+						data: {
+						  labels: ["Marketing", "Accounting", "IT Dveloper", "Electrical", "Communication", "Sales"],
+						  datasets: [{
+							label: 'Employed ',
+							backgroundColor: "#26B99A",
+							data: [51, 30, 40, 28, 60, 92]
+						  }, {
+							label: 'Not Employed ',
+							backgroundColor: "#03586A",
+							data: [41, 56, 25, 48, 85 ,72]
+						  }]
+						},
+
+						options: {
+						  scales: {
+							yAxes: [{
+							  ticks: {
+								beginAtZero: true
+							  }
+							}]
+						  }
+						}
+					  });
+					  
+					}
+			  	
+			  	if ($('#professionByChart').length ){ 
+					  
+					  var ctx = document.getElementById("professionByChart");
+					  var mybarChart = new Chart(ctx, {
+						type: 'bar',
+						data: {
+						  labels: ["Software Developer", "Doctor", "Marketing Manager", "Customer Care", "Sales Manager"],
+						  datasets: [{
+							label: 'Students',
+							backgroundColor: "#26B99A",
+							data: [51, 30, 40, 28, 92, 50, 45]
+						  }]
+						},
+
+						options: {
+						  scales: {
+							yAxes: [{
+							  ticks: {
+								beginAtZero: true
+							  }
+							}]
+						  }
+						}
+					  });
+					  
+					} 
+			  	
+			  	if ($('#languageByChart').length ){ 
+					  
+					  var ctx = document.getElementById("languageByChart");
+					  var mybarChart = new Chart(ctx, {
+						type: 'bar',
+						data: {
+						  labels: ["English", "French", "Spanish", "Hindi", "Chinese"],
+						  datasets: [{
+							label: 'Students',
+							backgroundColor: "#26B99A",
+							data: [51, 30, 40, 28, 35]
+						  }]
+						},
+
+						options: {
+						  scales: {
+							yAxes: [{
+							  ticks: {
+								beginAtZero: true
+							  }
+							}]
+						  }
+						}
+					  });
+					  
+					} 
 			
 			  
 			  // PolarArea chart

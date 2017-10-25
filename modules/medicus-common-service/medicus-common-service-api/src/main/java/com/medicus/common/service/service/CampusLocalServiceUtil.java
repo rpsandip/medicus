@@ -147,6 +147,12 @@ public class CampusLocalServiceUtil {
 		return getService().getCampus(campusId);
 	}
 
+	public static com.medicus.common.service.model.Campus getCampusByName(
+		java.lang.String campusName)
+		throws com.medicus.common.service.exception.NoSuchCampusException {
+		return getService().getCampusByName(campusName);
+	}
+
 	public static com.medicus.common.service.model.Campus upateCampus(
 		long campusId, long schoolId, java.lang.String name,
 		java.lang.String address1, java.lang.String address2,

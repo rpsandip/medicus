@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.medicus.common.service.exception.NoSuchCampusException;
 import com.medicus.common.service.model.Campus;
 import com.medicus.common.service.service.CampusLocalServiceUtil;
 import com.medicus.common.service.service.base.CampusLocalServiceBaseImpl;
@@ -121,4 +122,7 @@ public class CampusLocalServiceImpl extends CampusLocalServiceBaseImpl {
 		return campusPersistence.findByschoolId(schoolId);
 	}
 	
+	public Campus getCampusByName(String campusName) throws NoSuchCampusException{
+		return campusPersistence.findByname(campusName);
+	}
 }

@@ -22,11 +22,14 @@
      <!-- Bootstrap 3.3.6 -->
   	 <link rel="stylesheet" href="${css_folder}/bootstrap.css">
   	 <link rel="stylesheet" href="${css_folder}/font-awesome.min.css">
-  	 <link rel="stylesheet" href="${css_folder}/custom.css">
   	 <link rel="stylesheet" href="${css_folder}/animate.min.css">
   	 <link rel="stylesheet" href="${css_folder}/dataTables.bootstrap.min.css">
   	 <link rel="stylesheet" href="${css_folder}/flexslider.css">
-  	 
+  	 <link rel="stylesheet" href="${css_folder}/bootstrap-datetimepicker.css">
+  	 <link rel="stylesheet" href="${css_folder}/green.css">
+  	 <link rel="stylesheet" href="${css_folder}/nprogress.css">
+  	 <link rel="stylesheet" href="${css_folder}/custom.css">
+  	
 </head>
  <#if !is_signed_in>
 	 <body class="nav-md">
@@ -68,8 +71,29 @@
 				</div>
 			</div>
 			<!-- footer content -->
-        	   <footer>
-          		<div class="pull-right">
+        	   <!-- footer content -->
+        	<footer>
+        		<div class="col-md-6 col-sm-6 col-xs-12">
+        			<div class="welcome-logo text-center">
+        				<a href="welcome.html" class="site_title"><i class="fa fa-paw"></i> <span>Medicus</span></a>
+        				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+        			</div>
+        		</div>
+        		<div class="col-md-3 col-sm-3 col-xs-12">
+        			<h4>Quick Links</h4><hr />
+        			<p><a href="##">About Us</a></p>
+        			<p><a href="##">Contact Us</a></p>
+        			<p><a href="##">News and Updates</a></p>
+        		</div>
+        		<div class="col-md-3 col-sm-3 col-xs-12">
+        			<h4>Know More</h4><hr />
+        			<p><a href="##">Schools</a></p>
+        			<p><a href="##">Campuses</a></p>
+        			<p><a href="##">Students</a></p>
+        		</div>
+        		<div class="clearfix"></div>
+        		<hr />
+          		<div class="text-center">
             		&copy;2017 All Rights Reserved by Medicus
           		</div>
           		<div class="clearfix"></div>
@@ -95,17 +119,23 @@
 		<@liferay_util["include"] page=bottom_include />
 		
 			<script>
-		    define._amd = define.amd;
-		    define.amd = false;
+		   		 define._amd = define.amd;
+		    	define.amd = false;
 			</script>
 		
-			<script src="${javascript_folder}/jquery.min.js"></script>
-			<script src="${javascript_folder}/bootstrap.min.js"></script>
-			<script src="${javascript_folder}/custom.js"></script>
-			<script src="${javascript_folder}/dataTables.bootstrap.min.js"></script>
-			<script src="${javascript_folder}/jquery.dataTables.min.js"></script>
-			<script src="${javascript_folder}/jquery.easing.js"></script>
-			<script src="${javascript_folder}/jquery.flexslider.js"></script>
+					<script src="${javascript_folder}/jquery.min.js"></script>
+					<script src="${javascript_folder}/bootstrap.min.js"></script>
+					<script src="${javascript_folder}/moment.min.js"></script>
+					<script src="${javascript_folder}/jquery.dataTables.min.js"></script>
+					<script src="${javascript_folder}/jquery.easing.js"></script>
+					<script src="${javascript_folder}/jquery.flexslider.js"></script>
+					<script src="${javascript_folder}/dataTables.bootstrap.min.js"></script>
+					<script src="${javascript_folder}/bootstrap-datetimepicker.min.js"></script>
+					<script src="${javascript_folder}/Chart.min.js"></script>
+					<script src="${javascript_folder}/icheck.min.js"></script>
+					<script src="${javascript_folder}/jquery.smartWizard.js"></script>
+					<script src="${javascript_folder}/nprogress.js"></script>
+					<script src="${javascript_folder}/common.js"></script>
 		
 		     <script type="text/javascript">
 			    $(window).load(function() {
@@ -247,12 +277,18 @@
 					
 					<script src="${javascript_folder}/jquery.min.js"></script>
 					<script src="${javascript_folder}/bootstrap.min.js"></script>
-					<script src="${javascript_folder}/custom.js"></script>
-					<script src="${javascript_folder}/dataTables.bootstrap.min.js"></script>
+					<script src="${javascript_folder}/moment.min.js"></script>
 					<script src="${javascript_folder}/jquery.dataTables.min.js"></script>
 					<script src="${javascript_folder}/jquery.easing.js"></script>
 					<script src="${javascript_folder}/jquery.flexslider.js"></script>
-					
+					<script src="${javascript_folder}/dataTables.bootstrap.min.js"></script>
+					<script src="${javascript_folder}/bootstrap-datetimepicker.min.js"></script>
+					<script src="${javascript_folder}/Chart.min.js"></script>
+					<script src="${javascript_folder}/icheck.min.js"></script>
+					<script src="${javascript_folder}/jquery.smartWizard.js"></script>
+					<script src="${javascript_folder}/nprogress.js"></script>
+					<script src="${javascript_folder}/common.js"></script>
+
 					<script>
 						define.amd = define._amd;
 					</script>

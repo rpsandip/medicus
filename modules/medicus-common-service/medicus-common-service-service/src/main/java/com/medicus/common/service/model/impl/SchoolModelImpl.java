@@ -118,7 +118,11 @@ public class SchoolModelImpl extends BaseModelImpl<School>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.medicus.common.service.service.util.PropsUtil.get(
 				"value.object.finder.cache.enabled.com.medicus.common.service.model.School"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.medicus.common.service.service.util.PropsUtil.get(
+				"value.object.column.bitmask.enabled.com.medicus.common.service.model.School"),
+			true);
+	public static final long NAME_COLUMN_BITMASK = 1L;
+	public static final long CREATEDATE_COLUMN_BITMASK = 2L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.medicus.common.service.service.util.PropsUtil.get(
 				"lock.expiration.time.com.medicus.common.service.model.School"));
 
@@ -318,7 +322,17 @@ public class SchoolModelImpl extends BaseModelImpl<School>
 
 	@Override
 	public void setName(String name) {
+		_columnBitmask |= NAME_COLUMN_BITMASK;
+
+		if (_originalName == null) {
+			_originalName = _name;
+		}
+
 		_name = name;
+	}
+
+	public String getOriginalName() {
+		return GetterUtil.getString(_originalName);
 	}
 
 	@Override
@@ -503,6 +517,8 @@ public class SchoolModelImpl extends BaseModelImpl<School>
 
 	@Override
 	public void setCreateDate(Date createDate) {
+		_columnBitmask = -1L;
+
 		_createDate = createDate;
 	}
 
@@ -540,6 +556,10 @@ public class SchoolModelImpl extends BaseModelImpl<School>
 	@Override
 	public void setModifiedBy(long modifiedBy) {
 		_modifiedBy = modifiedBy;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -649,7 +669,11 @@ public class SchoolModelImpl extends BaseModelImpl<School>
 	public void resetOriginalValues() {
 		SchoolModelImpl schoolModelImpl = this;
 
+		schoolModelImpl._originalName = schoolModelImpl._name;
+
 		schoolModelImpl._setModifiedDate = false;
+
+		schoolModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -919,6 +943,7 @@ public class SchoolModelImpl extends BaseModelImpl<School>
 		};
 	private long _schoolId;
 	private String _name;
+	private String _originalName;
 	private String _address1;
 	private String _address2;
 	private String _city;
@@ -936,5 +961,6 @@ public class SchoolModelImpl extends BaseModelImpl<School>
 	private Date _modifiedDate;
 	private boolean _setModifiedDate;
 	private long _modifiedBy;
+	private long _columnBitmask;
 	private School _escapedModel;
 }

@@ -35,9 +35,47 @@ public class MedicusCommonLocalServiceWrapper
 	}
 
 	@Override
+	public boolean isFolderExist(long groupId, long parentFolderId,
+		java.lang.String folderName) {
+		return _medicusCommonLocalService.isFolderExist(groupId,
+			parentFolderId, folderName);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.model.User isUserExist(
 		java.lang.String emailAddress) {
 		return _medicusCommonLocalService.isUserExist(emailAddress);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.repository.model.FileEntry addFileEntry(
+		long groupId, long folderId, java.io.File file,
+		java.lang.String fileName)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _medicusCommonLocalService.addFileEntry(groupId, folderId, file,
+			fileName);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.repository.model.FileEntry updateFileEntry(
+		long fileEntryId, long groupId, long folderId, java.io.File file,
+		java.lang.String fileName)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _medicusCommonLocalService.updateFileEntry(fileEntryId, groupId,
+			folderId, file, fileName);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.repository.model.Folder getFolder(
+		long groupId, long parentFolderId, java.lang.String folderName) {
+		return _medicusCommonLocalService.getFolder(groupId, parentFolderId,
+			folderName);
+	}
+
+	@Override
+	public java.lang.String getDLFileURL(
+		com.liferay.document.library.kernel.model.DLFileEntry file) {
+		return _medicusCommonLocalService.getDLFileURL(file);
 	}
 
 	/**
@@ -51,6 +89,11 @@ public class MedicusCommonLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List<com.medicus.common.service.model.Employer> getEmployerList() {
+		return _medicusCommonLocalService.getEmployerList();
+	}
+
+	@Override
 	public java.util.List<java.lang.String> getUSStateList() {
 		return _medicusCommonLocalService.getUSStateList();
 	}
@@ -58,6 +101,11 @@ public class MedicusCommonLocalServiceWrapper
 	@Override
 	public long getEmployerOrgRoleId() {
 		return _medicusCommonLocalService.getEmployerOrgRoleId();
+	}
+
+	@Override
+	public long getGlobalGroupId() {
+		return _medicusCommonLocalService.getGlobalGroupId();
 	}
 
 	@Override
