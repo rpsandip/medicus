@@ -96,7 +96,7 @@ public class EmployerModelImpl extends BaseModelImpl<Employer>
 		TABLE_COLUMNS_MAP.put("websiteLink", Types.VARCHAR);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table Medicus_Employer (employerId LONG not null primary key,userId LONG,employerOrgId LONG,address1 VARCHAR(75) null,address2 VARCHAR(75) null,city VARCHAR(75) null,zipcode VARCHAR(75) null,state_ VARCHAR(75) null,country VARCHAR(75) null,contactPersonName VARCHAR(75) null,contactPersonEmail VARCHAR(75) null,contactPersonPhoneNumber VARCHAR(75) null,websiteLink VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table Medicus_Employer (employerId LONG not null primary key,userId LONG,employerOrgId LONG,address1 VARCHAR(100) null,address2 VARCHAR(100) null,city VARCHAR(15) null,zipcode VARCHAR(15) null,state_ VARCHAR(15) null,country VARCHAR(15) null,contactPersonName VARCHAR(50) null,contactPersonEmail VARCHAR(30) null,contactPersonPhoneNumber VARCHAR(15) null,websiteLink VARCHAR(100) null)";
 	public static final String TABLE_SQL_DROP = "drop table Medicus_Employer";
 	public static final String ORDER_BY_JPQL = " ORDER BY employer.employerId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Medicus_Employer.employerId ASC";

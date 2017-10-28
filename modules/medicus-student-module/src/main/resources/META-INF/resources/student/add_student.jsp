@@ -21,32 +21,32 @@
 	            <div id="wizard" class="form_wizard wizard_horizontal">
 	              <ul class="wizard_steps">
 	                <li>
-	                  <a href="#step-1">
-	                    <span class="step_no">1</span>
-	                    <span class="step_descr"> Personal Details</span>
-	                  </a>
-	                </li>
-	                <li>
-	                  <a href="#step-2">
-	                    <span class="step_no">2</span>
-	                    <span class="step_descr"> Academic Info</span>
-	                  </a>
-	                </li>
-	                <li>
-	                  <a href="#step-3">
-	                    <span class="step_no">3</span>
-	                    <span class="step_descr">Externship details</span>
-	                  </a>
-	                </li>
-	                <li>
-	                  <a href="#step-4">
-	                    <span class="step_no">4</span>
-	                    <span class="step_descr">Graduation details</span>
-	                  </a>
-	                </li>
+                         <a href="#step-1" id="step1btn">
+                           <span class="step_no">1</span>
+                           <span class="step_descr"> Personal Details</span>
+                         </a>
+                       </li>
+                       <li>
+                         <a href="#step-2" id="step2btn" >
+                           <span class="step_no">2</span>
+                           <span class="step_descr"> Academic Info</span>
+                         </a>
+                       </li>
+                       <li>
+                         <a href="#step-3" id="step3btn">
+                           <span class="step_no">3</span>
+                           <span class="step_descr">Externship details</span>
+                         </a>
+                       </li>
+                       <li>
+                         <a href="#step-4" id="step4btn">
+                           <span class="step_no">4</span>
+                           <span class="step_descr">Graduation details</span>
+                         </a>
+                       </li>
 	              </ul>
 	              <aui:form name="addStudentFm" action="${addStudentURL}" cssClass="form-horizontal form-label-left" enctype="multipart/form-data">
-	              	<div id="step-1">
+	              	<div id="step-1" class="stepContent">
 	                   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
 	       					 <aui:input name="campusStudentId" label="studentId"  cssClass="form-control col-md-7 col-xs-12">
@@ -237,7 +237,7 @@
 							</div>
 			  			</div>
 	               </div>
-	               <div id="step-2">
+	               <div id="step-2" class="stepContent">
 	                 <h2 class="StepTitle">Academic Info</h2>
 	                    <div class="form-group">
                		   	 	<div class="col-md-10 col-sm-6 col-xs-12">
@@ -351,7 +351,7 @@
                		   	 	</div>
                		   	 </div>	
 	               </div>
-	               <div id="step-3">
+	               <div id="step-3" class="stepContent">
 	                 <h2 class="StepTitle">Externship details</h2>
 	                 <div class="form-group">
 	                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Do you want to add Externship Detail?</label>
@@ -470,7 +470,7 @@
 	                   </div>
 	                   </div>
 	               </div>
-	               <div id="step-4">
+	               <div id="step-4" class="stepContent">
 	                 <h2 class="StepTitle">Graduation details</h2>
 	                 <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12 date ">
@@ -484,10 +484,14 @@
 					   <div class="form-group">
 	                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Actively Seeking Employment</label>
 	                     <div class="col-md-6 col-sm-6 col-xs-12 gender-select">
-	                     	<aui:input id="yes"  type="radio" name="activelySeekingEmployment" value="Yes" label="" />
+	                     	<aui:input id="yes"  type="radio" name="activelySeekingEmployment" value="Yes" label="">
+	                     		 <aui:validator name="required" />
+	                     	</aui:input>
                        		<label for="<portlet:namespace/>yes">Yes</label>
                        		
-                       		<aui:input id="no"  type="radio" name="activelySeekingEmployment" value="No" label="" />
+                       		<aui:input id="no"  type="radio" name="activelySeekingEmployment" value="No" label="">
+                       			<aui:validator name="required" />
+                       		</aui:input>
                        		<label for="<portlet:namespace/>no">No</label>
 	                     </div>
 	                   </div>
@@ -499,6 +503,10 @@
 						</div>	
 	               </div>
 	              </aui:form>
+	              <div class="actionBar">
+                   	<a class="buttonPrevious btn btn-primary">Previous</a>
+                   	<a  class="buttonNext btn btn-success">Next</a>
+                   </div>
 	            </div>
 	            <!-- End SmartWizard Content -->
         	</div>
@@ -514,7 +522,201 @@ jQuery.noConflict();
     $(function() {
     	 jQuery('.myDatepicker').datetimepicker({
 		        format: 'MM/DD/YYYY'
-		    });
+		 });
+    	 
+     AUI().use('aui-io-request','aui-base','aui-form-validator', function(A) { 
+    	
+    	 var step1Validator = new A.FormValidator({
+				boundingBox: document.<portlet:namespace/>addStudentFm,
+				rules: {
+					<portlet:namespace/>campusStudentId: {
+						required: true
+					},
+					<portlet:namespace/>firstName: {
+						required: true
+					},
+					<portlet:namespace/>lastName: {
+						required: true
+					},
+					<portlet:namespace/>middleName: {
+						required: true
+					},
+					<portlet:namespace/>emailAddress: {
+						required: true
+					},
+					<portlet:namespace/>dob: {
+						required: true
+					},
+					<portlet:namespace/>gender: {
+						required: true
+					},
+					<portlet:namespace/>contactNo: {
+						required: true
+					},
+					<portlet:namespace/>homePhoneNumber: {
+						required: true
+					},
+					<portlet:namespace/>primaryLanguage: {
+						required: true
+					},
+					<portlet:namespace/>secondaryLanguage: {
+						required: true
+					},
+					<portlet:namespace/>address: {
+						required: true
+					},
+					<portlet:namespace/>city: {
+						required: true
+					},
+					<portlet:namespace/>zipcode: {
+						required: true
+					},
+					<portlet:namespace/>state: {
+						required: true
+					}
+				}
+			});
+			
+			var step2Validator = new A.FormValidator({
+				boundingBox: document.<portlet:namespace/>addStudentFm,
+				rules: {
+					<portlet:namespace/>pace: {
+						required: true
+					},
+					<portlet:namespace/>gpa: {
+						required: true
+					},
+					<portlet:namespace/>school: {
+						required: true
+					},
+					<portlet:namespace/>campus: {
+						required: true
+					},
+					<portlet:namespace/>profession: {
+						required: true
+					},
+					<portlet:namespace/>practices: {
+						required: true
+					}
+				}
+			});
+			
+			var step3Validator = new A.FormValidator({
+				boundingBox: document.<portlet:namespace/>addStudentFm,
+				rules: {
+					<portlet:namespace/>employerName: {
+						required: true
+					},
+					<portlet:namespace/>externshipStartDate: {
+						required: true
+					},
+					<portlet:namespace/>externshipEndDate: {
+						required: true
+					},
+					<portlet:namespace/>noOfHoursPerWeek: {
+						required: true
+					},
+					<portlet:namespace/>midPointReviewDate: {
+						required: true
+					},
+					<portlet:namespace/>finalReviewDate: {
+						required: true
+					}
+				}
+			});
+			
+    	jQuery("#step1btn").addClass("selected");
+ 		jQuery("#step2btn, #step3btn, #step4btn").addClass("disabled");
+ 		jQuery("#step-2, #step-3, #step-4").addClass("deActive");
+ 		jQuery(".buttonPrevious").addClass("buttonDisabled");
+    	 
+ 		$(".buttonNext").on('click',function(){
+ 			console.log("next clicked");
+ 			
+ 			/* On Step 1 Completed Go To Step 2 */
+     		if(jQuery("#step1btn").hasClass("selected")){
+     			
+     			step1Validator.validate();
+     			if(step1Validator.hasErrors()){
+     				return false;
+     			}
+     			
+     			jQuery("#step1btn").addClass("done").removeClass("selected");
+     			jQuery("#step2btn").addClass("selected").removeClass("disabled");
+     			jQuery("#step3btn, #step4btn").addClass("disabled");
+     			jQuery(".buttonPrevious").removeClass("buttonDisabled")
+     			jQuery(".stepContent").removeClass("Active").addClass("deActive");
+     			jQuery("#step-2").addClass("Active").removeClass("deActive")
+     		}
+     		/* On Step 2 Completed Go To Step 3 */
+     		else if(jQuery("#step2btn").hasClass("selected")){
+     			
+     			step2Validator.validate();
+     			if(step2Validator.hasErrors()){
+     				return false;
+     			}
+     			
+     			
+     			jQuery("#step2btn").addClass("done").removeClass("selected");
+     			jQuery("#step3btn").addClass("selected").removeClass("disabled");
+     			jQuery("#step4btn").addClass("disabled");
+     			jQuery(".buttonPrevious").removeClass("buttonDisabled")
+     			jQuery(".stepContent").removeClass("Active").addClass("deActive");
+     			jQuery("#step-3").addClass("Active").removeClass("deActive")
+     		}
+     		/* On Step 3 Completed Go To Step 4 */
+     		else if(jQuery("#step3btn").hasClass("selected")){
+     			
+     			// Check haveExternship radio is checked or not
+     			var haveExternship = $("#<portlet:namespace />yes").is(":checked");
+     			if(haveExternship){
+     				step3Validator.validate();
+         			if(step3Validator.hasErrors()){
+         				return false;
+         			}
+     			}
+     			
+     			jQuery("#step3btn").addClass("done").removeClass("selected");
+     			jQuery("#step4btn").addClass("selected").removeClass("disabled");
+     			jQuery(".buttonPrevious").removeClass("buttonDisabled")
+     			jQuery(".stepContent").removeClass("Active").addClass("deActive");
+     			jQuery("#step-4").addClass("Active").removeClass("deActive")
+     		}
+ 		});
+     	
+    	 $(".buttonPrevious").on('click',function(){
+    		 console.log("previous clicked");
+    		 
+    		 
+    		 /* From Step 2 TO Step 1 Transmit */
+      		if(jQuery("#step2btn").hasClass("selected")){
+      			jQuery("#step1btn").addClass("selected").removeClass("done");
+      			jQuery("#step2btn").removeClass("selected")
+      			jQuery("#step2btn, #step3btn, #step4btn").addClass("disabled");
+      			jQuery(".buttonPrevious").addClass("buttonDisabled")
+      			jQuery(".stepContent").removeClass("Active").addClass("deActive");
+      			jQuery("#step-1").addClass("Active").removeClass("deActive")
+      		}
+      		/* From Step 3 TO Step 2 Transmit */
+      		 else if(jQuery("#step3btn").hasClass("selected")){
+      			jQuery("#step2btn").addClass("selected").removeClass("done");
+       			jQuery("#step3btn").removeClass("selected")
+       			jQuery("#step3btn, #step4btn").addClass("disabled");
+       			jQuery(".buttonPrevious").removeClass("buttonDisabled")
+       			jQuery(".stepContent").removeClass("Active").addClass("deActive");
+       			jQuery("#step-2").addClass("Active").removeClass("deActive")
+      		} 
+      		/* From Step 4 TO Step 3 Transmit */
+      		 else if(jQuery("#step4btn").hasClass("selected")){
+      			jQuery("#step3btn").addClass("selected").removeClass("done");
+        			jQuery("#step4btn").removeClass("selected")
+        			jQuery("#step4btn").addClass("disabled");
+        			jQuery(".buttonPrevious").removeClass("buttonDisabled")
+        			jQuery(".stepContent").removeClass("Active").addClass("deActive");
+        			jQuery("#step-3").addClass("Active").removeClass("deActive")
+      		} 
+    	 });
+       }); 
     });
 })(jQuery);
 </script>      		

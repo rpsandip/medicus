@@ -2,6 +2,8 @@
 <portlet:actionURL var="importStudentURL" name="/import_student">
 </portlet:actionURL>
 <liferay-ui:success key="student-import-success" message="student-import-success"/>
+<liferay-ui:error key="file-format-err" message="file-format-err"/>
+
 <div class="page-title">
   <div class="title_left">
    	<h2><liferay-ui:message key="import.student"/> </h2>

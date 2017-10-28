@@ -3,7 +3,10 @@ package com.medicus.student.portlet.portlet.actioncommand;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -76,14 +79,14 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 	private void uploadStudents(ActionRequest request, ActionResponse response, File file) throws IOException{
 		 ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		 FileInputStream inputStream = new FileInputStream(file);
-		 
+		 SimpleDateFormat df = new SimpleDateFormat("MM/DD/YYYY");
 		 XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
 	     Sheet firstSheet = workbook.getSheetAt(0);
 	     Iterator<Row> iterator = firstSheet.iterator();
 	     // Validate .xslx file have valid order of columns
 	     if(iterator.hasNext()){
 	    	  	Row row = iterator.next();// 0th row
-	    	  	row = iterator.next();//1st row
+	    	    //	row = iterator.next();//1st row
 	        	boolean isValidFile = validateFile(row);
 	        	if(!isValidFile){
 	        		SessionErrors.add(request, "file-format-err");
@@ -98,8 +101,15 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 	     while (iterator.hasNext()) {
 	    	 Row nextRow = iterator.next();
 	    	 
-	    	 long schoolId = getSchoolId(nextRow.getCell(16).toString());
-	    	 long campusId = getCampusId(nextRow.getCell(17).toString());
+	    	 long schoolId = getSchoolId(nextRow.getCell(17).toString());
+	    	 long campusId = getCampusId(nextRow.getCell(18).toString());
+	    	 
+	    	 Date dob = null;
+	    	 try {
+				dob = df.parse( nextRow.getCell(5).toString());
+			} catch (ParseException e) {
+				_log.error(e.getMessage());
+			}
 	    	 
 	    	 if(nextRow.getRowNum()!=0 && Validator.isNotNull(nextRow.getCell(0).toString()) && schoolId!=0 && campusId !=0){
 	    		 totalStudentCount++;
@@ -107,21 +117,23 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 	    				 nextRow.getCell(0).toString() /*First Name*/, 
 	    				 nextRow.getCell(1).toString() /*Middle Name*/, 
 	    				 nextRow.getCell(2).toString() /*Last Name*/, 
-	    				 nextRow.getCell(3).toString() /*Email Address*/,
-	    				 nextRow.getCell(4).toString() /*Student Id*/,
-	    				 nextRow.getCell(5).toString() /*Address*/, 
-	    				 nextRow.getCell(6).toString() /*City*/, 
-	    				 nextRow.getCell(7).toString() /*Zipcode*/,
-	    				 nextRow.getCell(8).toString() /*State*/, 
-	    				 nextRow.getCell(9).toString() /*Mobile Phone*/, 
-	    				 nextRow.getCell(10).toString() /*Home Phone*/,
-	    				 nextRow.getCell(11).toString() /*Gender*/,
-	    				 nextRow.getCell(12).toString() /*primaryLangs*/,
-	    				 nextRow.getCell(13).toString() /*Secondary Languages*/, 
-	    				 Float.parseFloat(nextRow.getCell(14).toString()) /*GPA*/,
-	    				 nextRow.getCell(15).toString() /* Pace*/,
+	    				 nextRow.getCell(4).toString() /*Email Address*/,
+	    				 dob/*DOB*/,
+	    				 nextRow.getCell(3).toString() /*Student Id*/,
+	    				 nextRow.getCell(6).toString() /*Address*/, 
+	    				 nextRow.getCell(7).toString() /*City*/, 
+	    				 nextRow.getCell(8).toString() /*Zipcode*/,
+	    				 nextRow.getCell(9).toString() /*State*/, 
+	    				 nextRow.getCell(10).toString() /*Mobile Phone*/, 
+	    				 nextRow.getCell(11).toString() /*Home Phone*/,
+	    				 nextRow.getCell(12).toString() /*Gender*/,
+	    				 nextRow.getCell(13).toString() /*primaryLangs*/,
+	    				 nextRow.getCell(14).toString() /*Secondary Languages*/, 
+	    				 Float.parseFloat(nextRow.getCell(15).toString()) /*GPA*/,
+	    				 nextRow.getCell(16).toString() /* Pace*/,
 	    				 schoolId,
 	    				 campusId,
+	    				 nextRow.getCell(19).toString() /*Profession*/, 
 	    				 themeDisplay.getUserId());
 	    		 
 	    		 if(Validator.isNotNull(student)){
@@ -142,41 +154,45 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 	}
 	
 	public boolean validateFile(Row firstRow){
-		 if(!firstRow.getCell(0).toString().trim().equals("First Name")){
+		 if(!firstRow.getCell(0).toString().trim().equalsIgnoreCase("First Name")){
 			 return false;
-		 }else if(!firstRow.getCell(1).toString().trim().equals("Middle Name")){
+		 }else if(!firstRow.getCell(1).toString().trim().equalsIgnoreCase("Middle Name")){
 			 return false;
-		 }else if(!firstRow.getCell(2).toString().trim().equals("Last Name")){
+		 }else if(!firstRow.getCell(2).toString().trim().equalsIgnoreCase("Last Name")){
 			 return false;
-		 }else if(!firstRow.getCell(3).toString().trim().equals("Student ID")){
+		 }else if(!firstRow.getCell(3).toString().trim().equalsIgnoreCase("Student ID")){
 			 return false;
-		 }else if(!firstRow.getCell(4).toString().trim().equals("Email Address")){
+		 }else if(!firstRow.getCell(4).toString().trim().equalsIgnoreCase("Email Address")){
 			 return false;
-		 }else if(!firstRow.getCell(5).toString().trim().equals("Address")){
+		 }else if(!firstRow.getCell(5).toString().trim().equalsIgnoreCase("DOB")){
 			 return false;
-		 }else if(!firstRow.getCell(6).toString().trim().equals("City")){
+		 }else if(!firstRow.getCell(6).toString().trim().equalsIgnoreCase("Address")){
 			 return false;
-		 }else if(!firstRow.getCell(7).toString().trim().equals("Zip Code")){
+		 }else if(!firstRow.getCell(7).toString().trim().equalsIgnoreCase("City")){
 			 return false;
-		 }else if(!firstRow.getCell(8).toString().trim().equals("State")){
+		 }else if(!firstRow.getCell(8).toString().trim().equalsIgnoreCase("Zip Code")){
 			 return false;
-		 }else if(!firstRow.getCell(9).toString().trim().equals("Mobile Phone")){
+		 }else if(!firstRow.getCell(9).toString().trim().equalsIgnoreCase("State")){
 			 return false;
-		 }else if(!firstRow.getCell(10).toString().trim().equals("Home Phone")){
+		 }else if(!firstRow.getCell(10).toString().trim().equalsIgnoreCase("Mobile Phone")){
 			 return false;
-		 }else if(!firstRow.getCell(11).toString().trim().equals("Gender (Male / Female / LGBT)")){
+		 }else if(!firstRow.getCell(11).toString().trim().equalsIgnoreCase("Home Phone")){
 			 return false;
-		 }else if(!firstRow.getCell(12).toString().trim().equals("Primary Language")){
+		 }else if(!firstRow.getCell(12).toString().trim().equalsIgnoreCase("Gender (Male / Female / LGBT)")){
 			 return false;
-		 }else if(!firstRow.getCell(13).toString().trim().equals("Secondary Language")){
+		 }else if(!firstRow.getCell(13).toString().trim().equalsIgnoreCase("Primary Language")){
 			 return false;
-		 }else if(!firstRow.getCell(14).toString().trim().equals("GPA")){
+		 }else if(!firstRow.getCell(14).toString().trim().equalsIgnoreCase("Secondary Language")){
 			 return false;
-		 }else if(!firstRow.getCell(15).toString().trim().equals("Pace")){
+		 }else if(!firstRow.getCell(15).toString().trim().equalsIgnoreCase("GPA")){
 			 return false;
-		 }else if(!firstRow.getCell(16).toString().trim().equals("School")){
+		 }else if(!firstRow.getCell(16).toString().trim().equalsIgnoreCase("Pace")){
 			 return false;
-		 }else if(!firstRow.getCell(17).toString().trim().equals("Campus")){
+		 }else if(!firstRow.getCell(17).toString().trim().equalsIgnoreCase("School")){
+			 return false;
+		 }else if(!firstRow.getCell(18).toString().trim().equalsIgnoreCase("Campus")){
+			 return false;
+		 }else if(!firstRow.getCell(19).toString().trim().equalsIgnoreCase("Profession")){
 			 return false;
 		 }else{
 			 return true;

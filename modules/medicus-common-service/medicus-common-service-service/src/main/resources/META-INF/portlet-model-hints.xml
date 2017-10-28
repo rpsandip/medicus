@@ -105,7 +105,7 @@
 			<hint name="max-length">6</hint>
 		</field>
 		<field name="contactNumber" type="String">
-			<hint name="max-length">15</hint>	
+			<hint name="max-length">15</hint>
 		</field>
 		<field name="websiteLink" type="String">
 			<hint name="max-length">100</hint>
@@ -113,7 +113,7 @@
 		<field name="contactPersonName" type="String">
 			<hint name="max-length">50</hint>
 		</field>
-		<field name="contactPersonPhoneNumber" type="String" >
+		<field name="contactPersonPhoneNumber" type="String">
 			<hint name="max-length">15</hint>
 		</field>
 		<field name="contactPersonEmail" type="String">

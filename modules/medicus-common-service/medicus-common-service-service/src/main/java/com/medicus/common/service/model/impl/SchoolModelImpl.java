@@ -105,7 +105,7 @@ public class SchoolModelImpl extends BaseModelImpl<School>
 		TABLE_COLUMNS_MAP.put("modifiedBy", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table Medicus_School (schoolId LONG not null primary key,name VARCHAR(75) null,address1 VARCHAR(75) null,address2 VARCHAR(75) null,city VARCHAR(75) null,state_ VARCHAR(75) null,country VARCHAR(75) null,zipcode VARCHAR(75) null,contactNumber VARCHAR(75) null,websiteLink VARCHAR(75) null,contactPersonName VARCHAR(75) null,contactPersonPhoneNumber VARCHAR(75) null,contactPersonEmail VARCHAR(75) null,status INTEGER,createDate DATE null,createdBy LONG,modifiedDate DATE null,modifiedBy LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Medicus_School (schoolId LONG not null primary key,name VARCHAR(100) null,address1 VARCHAR(100) null,address2 VARCHAR(100) null,city VARCHAR(15) null,state_ VARCHAR(15) null,country VARCHAR(15) null,zipcode VARCHAR(6) null,contactNumber VARCHAR(15) null,websiteLink VARCHAR(100) null,contactPersonName VARCHAR(50) null,contactPersonPhoneNumber VARCHAR(15) null,contactPersonEmail VARCHAR(30) null,status INTEGER,createDate DATE null,createdBy LONG,modifiedDate DATE null,modifiedBy LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Medicus_School";
 	public static final String ORDER_BY_JPQL = " ORDER BY school.createDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY Medicus_School.createDate DESC";

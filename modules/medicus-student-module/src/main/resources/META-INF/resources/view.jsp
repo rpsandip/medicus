@@ -8,6 +8,8 @@
 </portlet:renderURL>
 
 <liferay-ui:success key="student-add-success" message="student-add-success"/>
+<liferay-ui:error key="student-detail-err" message="student-detail-err"/>
+
 
 <div class="page-title">
   <div class="title_left">

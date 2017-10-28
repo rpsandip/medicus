@@ -4296,6 +4296,9 @@ display: block; }
 .gender-select{padding-top:8px}
 .student-btn{padding:0}
 
+.deActive{display:none}
+.Active{display:block}
+
 /* Liferay CSS : START*/
 
 .login-signup-btn .portlet-boundary {

@@ -5,9 +5,7 @@ import java.util.List;
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
-import javax.swing.plaf.ListUI;
 
-import org.apache.xmlbeans.impl.tool.Extension.Param;
 import org.osgi.service.component.annotations.Component;
 
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
