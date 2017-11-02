@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.log.Log;
@@ -30,6 +31,7 @@ import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.spring.extender.service.ServiceReference;
 
 import com.medicus.common.service.exception.NoSuchStudent_ExternshipException;
@@ -85,6 +87,217 @@ public class Student_ExternshipPersistenceImpl extends BasePersistenceImpl<Stude
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(Student_ExternshipModelImpl.ENTITY_CACHE_ENABLED,
 			Student_ExternshipModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
+	public static final FinderPath FINDER_PATH_FETCH_BY_STUDENTID = new FinderPath(Student_ExternshipModelImpl.ENTITY_CACHE_ENABLED,
+			Student_ExternshipModelImpl.FINDER_CACHE_ENABLED,
+			Student_ExternshipImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchBystudentId", new String[] { Long.class.getName() },
+			Student_ExternshipModelImpl.STUDENTID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_STUDENTID = new FinderPath(Student_ExternshipModelImpl.ENTITY_CACHE_ENABLED,
+			Student_ExternshipModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countBystudentId",
+			new String[] { Long.class.getName() });
+
+	/**
+	 * Returns the student_ externship where studentId = &#63; or throws a {@link NoSuchStudent_ExternshipException} if it could not be found.
+	 *
+	 * @param studentId the student ID
+	 * @return the matching student_ externship
+	 * @throws NoSuchStudent_ExternshipException if a matching student_ externship could not be found
+	 */
+	@Override
+	public Student_Externship findBystudentId(long studentId)
+		throws NoSuchStudent_ExternshipException {
+		Student_Externship student_Externship = fetchBystudentId(studentId);
+
+		if (student_Externship == null) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("studentId=");
+			msg.append(studentId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isDebugEnabled()) {
+				_log.debug(msg.toString());
+			}
+
+			throw new NoSuchStudent_ExternshipException(msg.toString());
+		}
+
+		return student_Externship;
+	}
+
+	/**
+	 * Returns the student_ externship where studentId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param studentId the student ID
+	 * @return the matching student_ externship, or <code>null</code> if a matching student_ externship could not be found
+	 */
+	@Override
+	public Student_Externship fetchBystudentId(long studentId) {
+		return fetchBystudentId(studentId, true);
+	}
+
+	/**
+	 * Returns the student_ externship where studentId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param studentId the student ID
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the matching student_ externship, or <code>null</code> if a matching student_ externship could not be found
+	 */
+	@Override
+	public Student_Externship fetchBystudentId(long studentId,
+		boolean retrieveFromCache) {
+		Object[] finderArgs = new Object[] { studentId };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = finderCache.getResult(FINDER_PATH_FETCH_BY_STUDENTID,
+					finderArgs, this);
+		}
+
+		if (result instanceof Student_Externship) {
+			Student_Externship student_Externship = (Student_Externship)result;
+
+			if ((studentId != student_Externship.getStudentId())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_SELECT_STUDENT_EXTERNSHIP_WHERE);
+
+			query.append(_FINDER_COLUMN_STUDENTID_STUDENTID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(studentId);
+
+				List<Student_Externship> list = q.list();
+
+				if (list.isEmpty()) {
+					finderCache.putResult(FINDER_PATH_FETCH_BY_STUDENTID,
+						finderArgs, list);
+				}
+				else {
+					if ((list.size() > 1) && _log.isWarnEnabled()) {
+						_log.warn(
+							"Student_ExternshipPersistenceImpl.fetchBystudentId(long, boolean) with parameters (" +
+							StringUtil.merge(finderArgs) +
+							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
+					}
+
+					Student_Externship student_Externship = list.get(0);
+
+					result = student_Externship;
+
+					cacheResult(student_Externship);
+
+					if ((student_Externship.getStudentId() != studentId)) {
+						finderCache.putResult(FINDER_PATH_FETCH_BY_STUDENTID,
+							finderArgs, student_Externship);
+					}
+				}
+			}
+			catch (Exception e) {
+				finderCache.removeResult(FINDER_PATH_FETCH_BY_STUDENTID,
+					finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (Student_Externship)result;
+		}
+	}
+
+	/**
+	 * Removes the student_ externship where studentId = &#63; from the database.
+	 *
+	 * @param studentId the student ID
+	 * @return the student_ externship that was removed
+	 */
+	@Override
+	public Student_Externship removeBystudentId(long studentId)
+		throws NoSuchStudent_ExternshipException {
+		Student_Externship student_Externship = findBystudentId(studentId);
+
+		return remove(student_Externship);
+	}
+
+	/**
+	 * Returns the number of student_ externships where studentId = &#63;.
+	 *
+	 * @param studentId the student ID
+	 * @return the number of matching student_ externships
+	 */
+	@Override
+	public int countBystudentId(long studentId) {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_STUDENTID;
+
+		Object[] finderArgs = new Object[] { studentId };
+
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_STUDENT_EXTERNSHIP_WHERE);
+
+			query.append(_FINDER_COLUMN_STUDENTID_STUDENTID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(studentId);
+
+				count = (Long)q.uniqueResult();
+
+				finderCache.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				finderCache.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_STUDENTID_STUDENTID_2 = "student_Externship.studentId = ?";
 
 	public Student_ExternshipPersistenceImpl() {
 		setModelClass(Student_Externship.class);
@@ -99,6 +312,10 @@ public class Student_ExternshipPersistenceImpl extends BasePersistenceImpl<Stude
 	public void cacheResult(Student_Externship student_Externship) {
 		entityCache.putResult(Student_ExternshipModelImpl.ENTITY_CACHE_ENABLED,
 			Student_ExternshipImpl.class, student_Externship.getPrimaryKey(),
+			student_Externship);
+
+		finderCache.putResult(FINDER_PATH_FETCH_BY_STUDENTID,
+			new Object[] { student_Externship.getStudentId() },
 			student_Externship);
 
 		student_Externship.resetOriginalValues();
@@ -154,6 +371,8 @@ public class Student_ExternshipPersistenceImpl extends BasePersistenceImpl<Stude
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		clearUniqueFindersCache((Student_ExternshipModelImpl)student_Externship);
 	}
 
 	@Override
@@ -164,6 +383,53 @@ public class Student_ExternshipPersistenceImpl extends BasePersistenceImpl<Stude
 		for (Student_Externship student_Externship : student_Externships) {
 			entityCache.removeResult(Student_ExternshipModelImpl.ENTITY_CACHE_ENABLED,
 				Student_ExternshipImpl.class, student_Externship.getPrimaryKey());
+
+			clearUniqueFindersCache((Student_ExternshipModelImpl)student_Externship);
+		}
+	}
+
+	protected void cacheUniqueFindersCache(
+		Student_ExternshipModelImpl student_ExternshipModelImpl, boolean isNew) {
+		if (isNew) {
+			Object[] args = new Object[] {
+					student_ExternshipModelImpl.getStudentId()
+				};
+
+			finderCache.putResult(FINDER_PATH_COUNT_BY_STUDENTID, args,
+				Long.valueOf(1));
+			finderCache.putResult(FINDER_PATH_FETCH_BY_STUDENTID, args,
+				student_ExternshipModelImpl);
+		}
+		else {
+			if ((student_ExternshipModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_STUDENTID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						student_ExternshipModelImpl.getStudentId()
+					};
+
+				finderCache.putResult(FINDER_PATH_COUNT_BY_STUDENTID, args,
+					Long.valueOf(1));
+				finderCache.putResult(FINDER_PATH_FETCH_BY_STUDENTID, args,
+					student_ExternshipModelImpl);
+			}
+		}
+	}
+
+	protected void clearUniqueFindersCache(
+		Student_ExternshipModelImpl student_ExternshipModelImpl) {
+		Object[] args = new Object[] { student_ExternshipModelImpl.getStudentId() };
+
+		finderCache.removeResult(FINDER_PATH_COUNT_BY_STUDENTID, args);
+		finderCache.removeResult(FINDER_PATH_FETCH_BY_STUDENTID, args);
+
+		if ((student_ExternshipModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_STUDENTID.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					student_ExternshipModelImpl.getOriginalStudentId()
+				};
+
+			finderCache.removeResult(FINDER_PATH_COUNT_BY_STUDENTID, args);
+			finderCache.removeResult(FINDER_PATH_FETCH_BY_STUDENTID, args);
 		}
 	}
 
@@ -324,13 +590,16 @@ public class Student_ExternshipPersistenceImpl extends BasePersistenceImpl<Stude
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-		if (isNew) {
+		if (isNew || !Student_ExternshipModelImpl.COLUMN_BITMASK_ENABLED) {
 			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 
 		entityCache.putResult(Student_ExternshipModelImpl.ENTITY_CACHE_ENABLED,
 			Student_ExternshipImpl.class, student_Externship.getPrimaryKey(),
 			student_Externship, false);
+
+		clearUniqueFindersCache(student_ExternshipModelImpl);
+		cacheUniqueFindersCache(student_ExternshipModelImpl, isNew);
 
 		student_Externship.resetOriginalValues();
 
@@ -772,8 +1041,11 @@ public class Student_ExternshipPersistenceImpl extends BasePersistenceImpl<Stude
 	protected FinderCache finderCache;
 	private static final String _SQL_SELECT_STUDENT_EXTERNSHIP = "SELECT student_Externship FROM Student_Externship student_Externship";
 	private static final String _SQL_SELECT_STUDENT_EXTERNSHIP_WHERE_PKS_IN = "SELECT student_Externship FROM Student_Externship student_Externship WHERE studentExternshipId IN (";
+	private static final String _SQL_SELECT_STUDENT_EXTERNSHIP_WHERE = "SELECT student_Externship FROM Student_Externship student_Externship WHERE ";
 	private static final String _SQL_COUNT_STUDENT_EXTERNSHIP = "SELECT COUNT(student_Externship) FROM Student_Externship student_Externship";
+	private static final String _SQL_COUNT_STUDENT_EXTERNSHIP_WHERE = "SELECT COUNT(student_Externship) FROM Student_Externship student_Externship WHERE ";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "student_Externship.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Student_Externship exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Student_Externship exists with the key {";
 	private static final Log _log = LogFactoryUtil.getLog(Student_ExternshipPersistenceImpl.class);
 }

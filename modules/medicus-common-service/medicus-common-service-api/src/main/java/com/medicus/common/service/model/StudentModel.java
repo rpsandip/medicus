@@ -416,20 +416,6 @@ public interface StudentModel extends BaseModel<Student> {
 	public void setPractices(String practices);
 
 	/**
-	 * Returns the agreement file entry ID of this student.
-	 *
-	 * @return the agreement file entry ID of this student
-	 */
-	public long getAgreementFileEntryId();
-
-	/**
-	 * Sets the agreement file entry ID of this student.
-	 *
-	 * @param agreementFileEntryId the agreement file entry ID of this student
-	 */
-	public void setAgreementFileEntryId(long agreementFileEntryId);
-
-	/**
 	 * Returns the hired of this student.
 	 *
 	 * @return the hired of this student

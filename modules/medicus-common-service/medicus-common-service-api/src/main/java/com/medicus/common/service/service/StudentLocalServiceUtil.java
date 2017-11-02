@@ -41,6 +41,11 @@ public class StudentLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.medicus.common.service.service.impl.StudentLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static boolean deleteStudentDetail(long studentId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deleteStudentDetail(studentId);
+	}
+
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return getService().getActionableDynamicQuery();
 	}
@@ -98,8 +103,8 @@ public class StudentLocalServiceUtil {
 		java.lang.String midPointReviewComment, java.util.Date finalReviewDate,
 		java.lang.String finalPointReviewComment, java.io.File profileImage,
 		java.lang.String profileImageFileName, java.io.File resume,
-		java.lang.String resumeFileName, java.io.File agreement,
-		java.lang.String agreementFileName,
+		java.lang.String resumeFileName,
+		java.util.Map<java.lang.String, java.io.File> agreementFileMap,
 		java.util.Map<java.lang.String, java.io.File> othersFileMap,
 		long createdBy) {
 		return getService()
@@ -112,8 +117,7 @@ public class StudentLocalServiceUtil {
 			externshipStartDate, externshipEndDate, noOfHoursPerWeek,
 			midPointReviewDate, midPointReviewComment, finalReviewDate,
 			finalPointReviewComment, profileImage, profileImageFileName,
-			resume, resumeFileName, agreement, agreementFileName,
-			othersFileMap, createdBy);
+			resume, resumeFileName, agreementFileMap, othersFileMap, createdBy);
 	}
 
 	/**
@@ -169,6 +173,11 @@ public class StudentLocalServiceUtil {
 		return getService().getStudent(studentId);
 	}
 
+	public static com.medicus.common.service.model.Student getStudentByStudentCampusId(
+		java.lang.String studentCampusId) {
+		return getService().getStudentByStudentCampusId(studentCampusId);
+	}
+
 	public static com.medicus.common.service.model.Student importStudent(
 		java.lang.String firstName, java.lang.String middleName,
 		java.lang.String lastName, java.lang.String emailAddress,
@@ -196,6 +205,44 @@ public class StudentLocalServiceUtil {
 	public static com.medicus.common.service.model.Student updateStudent(
 		com.medicus.common.service.model.Student student) {
 		return getService().updateStudent(student);
+	}
+
+	public static com.medicus.common.service.model.Student updateStudent(
+		long studentId, long schoolId, long campusId,
+		java.lang.String studentCampusId, java.lang.String firstName,
+		java.lang.String middleName, java.lang.String lastName,
+		java.lang.String emailAddress, java.util.Date dob,
+		java.lang.String gender, java.lang.String contactNumber,
+		java.lang.String homePhoneNumber, java.lang.String primaryLang,
+		java.lang.String secondaryLangs, java.lang.String address,
+		java.lang.String city, java.lang.String zipcode,
+		java.lang.String state, java.lang.String pace, float gpa,
+		java.lang.String profession, java.lang.String practices, boolean hired,
+		java.util.Date graduationDate, boolean activelySeekingEmployment,
+		boolean haveExternship, long employerId,
+		java.lang.String employerZipCode, java.lang.String employerWebSiteLink,
+		java.util.Date externshipStartDate, java.util.Date externshipEndDate,
+		int noOfHoursPerWeek, java.util.Date midPointReviewDate,
+		java.lang.String midPointReviewComment, java.util.Date finalReviewDate,
+		java.lang.String finalPointReviewComment, java.io.File profileImage,
+		java.lang.String profileImageFileName, java.io.File resume,
+		java.lang.String resumeFileName,
+		java.util.Map<java.lang.String, java.io.File> agreementFileMap,
+		java.util.Map<java.lang.String, java.io.File> othersFileMap,
+		long modifiedBy)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .updateStudent(studentId, schoolId, campusId,
+			studentCampusId, firstName, middleName, lastName, emailAddress,
+			dob, gender, contactNumber, homePhoneNumber, primaryLang,
+			secondaryLangs, address, city, zipcode, state, pace, gpa,
+			profession, practices, hired, graduationDate,
+			activelySeekingEmployment, haveExternship, employerId,
+			employerZipCode, employerWebSiteLink, externshipStartDate,
+			externshipEndDate, noOfHoursPerWeek, midPointReviewDate,
+			midPointReviewComment, finalReviewDate, finalPointReviewComment,
+			profileImage, profileImageFileName, resume, resumeFileName,
+			agreementFileMap, othersFileMap, modifiedBy);
 	}
 
 	/**

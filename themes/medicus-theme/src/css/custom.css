@@ -511,7 +511,7 @@ body {
     padding: 10px 0
 }
 .page-title .title_left {
-    width: 65%;
+    width: 60%;
     float: left;
     display: block
 }
@@ -1112,7 +1112,7 @@ legend {
     height: 280px
 }
 .profile_details:nth-child(3n) {
-    clear: both
+    /*clear: both*/
 }
 .profile_details .profile_view {
     display: inline-block;
@@ -1138,7 +1138,7 @@ legend {
 }
 .profile_details .profile_view .right {
     margin-top: 0px;
-    padding: 10px
+    padding: 0px
 }
 .profile_details .profile_view .img-circle {
     border: 1px solid #E6E9ED;
@@ -4294,10 +4294,13 @@ display: block; }
     padding-left: 10px;
 }
 .gender-select{padding-top:8px}
-.student-btn{padding:0}
-
+.student-btn{padding:0;padding-top: 25px;}
+.student-btn .btn{display:block;margin-bottom:10px} 
 .deActive{display:none}
 .Active{display:block}
+.input-group{float:left!important}
+.profile-pic{padding:10px 0 0 0}
+
 
 /* Liferay CSS : START*/
 
@@ -4323,6 +4326,12 @@ display: block; }
     width: 75%;
 }
 
+.add-student-fm .form-group input.form-control, .add-student-fm .form-group select.form-control, .add-student-fm .form-group textarea.form-control  {
+	display: inline-block;
+    float: left;
+    width: 50%;
+}
+
 .form-group .form-validator-stack{
 	margin: 0 0 0 25%;
     clear: both;
@@ -4345,7 +4354,7 @@ display: block; }
 	position: absolute;
     width: 40px;
     height: 34px;
-    right: 10px;
+    right: 21%;
     z-index: 99999;
     top: 0;
 }

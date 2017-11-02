@@ -34,9 +34,11 @@
 						<c:if test="${UnsuccessImportedStudentCount gt 0}">
 							<b>UnSuccessfull Import Students :</b> <br/><br/>
 							<ul>
-								<c:forEach items="${unsuccessfullStudentEmailList }" var ="studentEmail">
+								<b>StudentID  &nbsp; &nbsp; &nbsp; &nbsp; Email Address</b>
+								<c:forEach items="${unsuccessfullStudentList }" var ="unsuccessfullStudent">
+								<c:set var="detail" value="${fn:split(unsuccessfullStudent, ',')}" />
 									<li>
-										${studentEmail }
+										${detail[0]} &nbsp; &nbsp; &nbsp; &nbsp;${detail[1]}
 									</li>
 								</c:forEach>
 							</ul>

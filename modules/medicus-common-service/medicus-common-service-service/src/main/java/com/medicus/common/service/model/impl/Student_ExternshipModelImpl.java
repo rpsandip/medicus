@@ -109,7 +109,11 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.medicus.common.service.service.util.PropsUtil.get(
 				"value.object.finder.cache.enabled.com.medicus.common.service.model.Student_Externship"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.medicus.common.service.service.util.PropsUtil.get(
+				"value.object.column.bitmask.enabled.com.medicus.common.service.model.Student_Externship"),
+			true);
+	public static final long STUDENTID_COLUMN_BITMASK = 1L;
+	public static final long STUDENTEXTERNSHIPID_COLUMN_BITMASK = 2L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.medicus.common.service.service.util.PropsUtil.get(
 				"lock.expiration.time.com.medicus.common.service.model.Student_Externship"));
 
@@ -276,7 +280,19 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 
 	@Override
 	public void setStudentId(long studentId) {
+		_columnBitmask |= STUDENTID_COLUMN_BITMASK;
+
+		if (!_setOriginalStudentId) {
+			_setOriginalStudentId = true;
+
+			_originalStudentId = _studentId;
+		}
+
 		_studentId = studentId;
+	}
+
+	public long getOriginalStudentId() {
+		return _originalStudentId;
 	}
 
 	@Override
@@ -415,6 +431,10 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 		_modifiedBy = modifiedBy;
 	}
 
+	public long getColumnBitmask() {
+		return _columnBitmask;
+	}
+
 	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
@@ -518,7 +538,13 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 	public void resetOriginalValues() {
 		Student_ExternshipModelImpl student_ExternshipModelImpl = this;
 
+		student_ExternshipModelImpl._originalStudentId = student_ExternshipModelImpl._studentId;
+
+		student_ExternshipModelImpl._setOriginalStudentId = false;
+
 		student_ExternshipModelImpl._setModifiedDate = false;
+
+		student_ExternshipModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -724,6 +750,8 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 		};
 	private long _studentExternshipId;
 	private long _studentId;
+	private long _originalStudentId;
+	private boolean _setOriginalStudentId;
 	private long _employerId;
 	private Date _startDate;
 	private Date _endDate;
@@ -737,5 +765,6 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 	private Date _modifiedDate;
 	private boolean _setModifiedDate;
 	private long _modifiedBy;
+	private long _columnBitmask;
 	private Student_Externship _escapedModel;
 }

@@ -135,6 +135,7 @@
 					<script src="${javascript_folder}/icheck.min.js"></script>
 					<script src="${javascript_folder}/jquery.smartWizard.js"></script>
 					<script src="${javascript_folder}/nprogress.js"></script>
+					<script src="${javascript_folder}/jquery.formatter.js"></script>
 					<script src="${javascript_folder}/common.js"></script>
 		
 		     <script type="text/javascript">
@@ -287,6 +288,7 @@
 					<script src="${javascript_folder}/icheck.min.js"></script>
 					<script src="${javascript_folder}/jquery.smartWizard.js"></script>
 					<script src="${javascript_folder}/nprogress.js"></script>
+					<script src="${javascript_folder}/jquery.formatter.js"></script>
 					<script src="${javascript_folder}/common.js"></script>
 
 					<script>

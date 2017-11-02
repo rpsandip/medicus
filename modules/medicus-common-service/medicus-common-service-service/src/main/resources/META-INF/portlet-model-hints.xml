@@ -182,7 +182,6 @@
 		<field name="practices" type="String">
 			<hint name="max-length">30</hint>
 		</field>
-		<field name="agreementFileEntryId" type="long" />
 		<field name="hired" type="boolean" />
 		<field name="graduationDate" type="Date" />
 		<field name="activelySeekingEmployment" type="boolean" />

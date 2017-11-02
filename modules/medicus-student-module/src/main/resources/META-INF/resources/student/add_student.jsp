@@ -6,13 +6,20 @@
 <portlet:resourceURL id="/getEmployerDetail" var="getEmployerDetailURL"></portlet:resourceURL>
 <div class="page-title">
 	<div class="title_left">
-     	 <h2>Add New Student</h2>
+     	 <c:choose>
+     	 	<c:when test="${studentId eq 0 }">
+     	 		<h2>Add New Student</h2>
+     	 	</c:when>
+     	 	<c:otherwise>
+     	 		<h2>Edit Student</h2>
+     	 	</c:otherwise>	
+     	 </c:choose>
     </div>
 </div>
 
 <div class="clearfix"></div>
 		
-<div class="row">
+<div class="row add-student-fm">
 	<div class="col-md-12 col-sm-12 col-xs-12">
    		<div class="x_panel">
     		<div class="x_content">
@@ -49,7 +56,7 @@
 	              	<div id="step-1" class="stepContent">
 	                   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
-	       					 <aui:input name="campusStudentId" label="studentId"  cssClass="form-control col-md-7 col-xs-12">
+	       					 <aui:input name="campusStudentId" label="studentId"  cssClass="form-control col-md-7 col-xs-12" value="${studentBean.stundetCampusId }">
 						     	<aui:validator name="required" />
 						     	<aui:validator name="maxLength">20</aui:validator>
 							 </aui:input>
@@ -57,7 +64,7 @@
 					   </div>
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
-	       					 <aui:input name="firstName" label="firstName"  cssClass="form-control col-md-7 col-xs-12">
+	       					 <aui:input name="firstName" label="firstName"  cssClass="form-control col-md-7 col-xs-12" value="${studentBean.firstName}">
 						     	<aui:validator name="required" />
 						     	<aui:validator name="maxLength">30</aui:validator>
 							 </aui:input>
@@ -65,7 +72,7 @@
 					   </div>
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
-	       					 <aui:input name="middleName" label="middleName"  cssClass="form-control col-md-7 col-xs-12">
+	       					 <aui:input name="middleName" label="middleName"  cssClass="form-control col-md-7 col-xs-12" value="${studentBean.middleName }">
 						     	<aui:validator name="required" />
 						     	<aui:validator name="maxLength">30</aui:validator>
 							 </aui:input>
@@ -73,7 +80,7 @@
 					   </div>
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
-	       					 <aui:input name="lastName" label="lastName"  cssClass="form-control col-md-7 col-xs-12">
+	       					 <aui:input name="lastName" label="lastName"  cssClass="form-control col-md-7 col-xs-12" value="${studentBean.lastName }">
 						     	<aui:validator name="required" />
 						     	<aui:validator name="maxLength">30</aui:validator>
 							 </aui:input>
@@ -81,7 +88,7 @@
 					   </div>	
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
-	       					 <aui:input name="emailAddress" label="emailAddress"  cssClass="form-control col-md-7 col-xs-12">
+	       					 <aui:input name="emailAddress" label="emailAddress"  cssClass="form-control col-md-7 col-xs-12" value="${studentBean.emailAddress }">
 						     	<aui:validator name="required" />
 						     	<aui:validator name="email" />
 						     	<aui:validator name="maxLength">30</aui:validator>
@@ -96,7 +103,8 @@
 	                   </div>
 	                   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12 date ">
-	       					 <aui:input name="dob" label="dob"  cssClass="form-control col-md-7 col-xs-12 myDatepicker">
+	                   	  	 <fmt:formatDate pattern = "MM/dd/yyyy" value = "${studentBean.dateOfBirth}" var="dob" />
+	       					 <aui:input name="dob" label="dob"  cssClass="form-control col-md-7 col-xs-12 myDatepicker" value="${ dob}">
 						     	<aui:validator name="required" />
 							 </aui:input>
 							 <span class="input-group-addon">
@@ -107,17 +115,17 @@
 	                   <div class="form-group">
 	                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
 	                     <div class="col-md-6 col-sm-6 col-xs-12 gender-select">
-	                     	<aui:input id="male"  type="radio" name="gender" value="Male" label="">
+	                     	<aui:input id="male"  type="radio" name="gender" value="Male" label=""  checked='${studentBean.gender eq "Male"}'>
 	                     		 <aui:validator name="required" />
 	                     	</aui:input>
                        		<label for="<portlet:namespace/>male">Male</label>
                        		
-                       		<aui:input id="female"  type="radio" name="gender" value="Female" label="">
+                       		<aui:input id="female"  type="radio" name="gender" value="Female" label="" checked='${studentBean.gender eq "Female"}'>
                        			<aui:validator name="required" />
                        		</aui:input>
                        		<label for="<portlet:namespace/>male">Female</label>
                        		
-                       		<aui:input id="LGBT"  type="radio" name="gender" value="LGBT" label="">
+                       		<aui:input id="LGBT"  type="radio" name="gender" value="LGBT" label="" checked='${studentBean.gender eq "LGBT"}'>
                        			<aui:validator name="required" />
                        		</aui:input>
                        		<label for="<portlet:namespace/>LGBT">LGBT</label>
@@ -125,87 +133,97 @@
 	                   </div>
 	                   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
-	       					 <aui:input name="contactNo" label="contactNo"  cssClass="form-control col-md-7 col-xs-12">
+	       					 <aui:input name="contactNo" label="contactNo"  cssClass="form-control col-md-7 col-xs-12" value="${studentBean.contactNumber }" placeholder="xxx-xxx-xxxx">
 						     	<aui:validator name="required" />
-						     	<aui:validator name="maxLength">12</aui:validator>
+						     	<aui:validator name="maxLength">14</aui:validator>
 							 </aui:input>
+							 <aui:script>
+								new Formatter(document.getElementById('<portlet:namespace/>'+'contactNo'), {
+									'pattern': '({{999}})-{{999}}-{{9999}}',
+									'persistent': false
+								});
+							</aui:script>
 					   	  </div>
 					   </div>
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
-	       					 <aui:input name="homePhoneNumber" label="homePhoneNumber"  cssClass="form-control col-md-7 col-xs-12">
+	       					 <aui:input name="homePhoneNumber" label="homePhoneNumber"  cssClass="form-control col-md-7 col-xs-12" value="${studentBean.homeNumber }" placeholder="xxx-xxx-xxxx">
 						     	<aui:validator name="required" />
-						     	<aui:validator name="maxLength">12</aui:validator>
+						     	<aui:validator name="maxLength">14</aui:validator>
 							 </aui:input>
+							 <aui:script>
+								new Formatter(document.getElementById('<portlet:namespace/>'+'homePhoneNumber'), {
+									'pattern': '({{999}})-{{999}}-{{9999}}',
+									'persistent': false
+								});
+							</aui:script>
 					   	  </div>
 					   </div>
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
 	       					 <aui:select name="primaryLanguage" label="primaryLanguage"  cssClass="form-control col-md-7 col-xs-12" multiple="true">
-								<aui:option value="English">English</aui:option>
-								<aui:option value="French">French</aui:option>
-								<aui:option value="Spanish">Spanish</aui:option>
-								<aui:option value="Chinese - Mandarin">Chinese - Mandarin</aui:option>
-								<aui:option value="Chinese -Cantonese">Chinese -Cantonese</aui:option>
-								<aui:option value="Tagalog">Tagalog</aui:option>
-								<aui:option value="Vietnamese">Vietnamese</aui:option>
-								<aui:option value="Korean">Korean</aui:option>
-								<aui:option value="German">German</aui:option>
-								<aui:option value="Arabic">Arabic</aui:option>
-								<aui:option value="Russian">Russian</aui:option>
-								<aui:option value="Italian">Italian</aui:option>
-								<aui:option value="Portuguese">Portuguese</aui:option>
-								<aui:option value="Hindi">Hindi</aui:option>
-								<aui:option value="Polish">Polish</aui:option>
-								<aui:option value="Japanese">Japanese</aui:option>
-								<aui:option value="Urdu">Urdu</aui:option>
-								<aui:option value="Persian">Persian</aui:option>
-								<aui:option value="Gujarati">Gujarati</aui:option>
-								<aui:option value="Greek">Greek</aui:option>
-								<aui:option value="Bengali">Bengali</aui:option>
-								<aui:option value="Panjabi">Panjabi</aui:option>
-								<aui:option value="Telugu">Telugu</aui:option>
-								<aui:option value="Armenian">Armenian</aui:option>
-								<aui:option value="Hmong">Hmong</aui:option>
-								<aui:option value="Hebrew">Hebrew</aui:option>
+								<aui:option value="English" selected='${fn:indexOf(studentBean.primaryLanguages, "English") ge 0}'>English</aui:option>
+								<aui:option value="French" selected='${fn:indexOf(studentBean.primaryLanguages, "French") ge 0}'>French</aui:option>
+								<aui:option value="Spanish" selected='${fn:indexOf(studentBean.primaryLanguages, "Spanish") ge 0}'>Spanish</aui:option>
+								<aui:option value="Chinese - Mandarin" selected='${fn:indexOf(studentBean.primaryLanguages, "Chinese - Mandarin") ge 0}'>Chinese - Mandarin</aui:option>
+								<aui:option value="Chinese -Cantonese" selected='${fn:indexOf(studentBean.primaryLanguages, "Chinese -Cantonese") ge 0}'>Chinese -Cantonese</aui:option>
+								<aui:option value="Tagalog" selected='${fn:indexOf(studentBean.primaryLanguages, "Tagalog") ge 0}'>Tagalog</aui:option>
+								<aui:option value="Vietnamese" selected='${fn:indexOf(studentBean.primaryLanguages, "Vietnamese") ge 0}'>Vietnamese</aui:option>
+								<aui:option value="Korean" selected='${fn:indexOf(studentBean.primaryLanguages, "Korean") ge 0}'>Korean</aui:option>
+								<aui:option value="German" selected='${fn:indexOf(studentBean.primaryLanguages, "German") ge 0}'>German</aui:option>
+								<aui:option value="Arabic" selected='${fn:indexOf(studentBean.primaryLanguages, "Arabic") ge 0}'>Arabic</aui:option>
+								<aui:option value="Russian" selected='${fn:indexOf(studentBean.primaryLanguages, "Russian") ge 0}'>Russian</aui:option>
+								<aui:option value="Italian" selected='${fn:indexOf(studentBean.primaryLanguages, "Italian") ge 0}'>Italian</aui:option>
+								<aui:option value="Portuguese" selected='${fn:indexOf(studentBean.primaryLanguages, "Portuguese") ge 0}'>Portuguese</aui:option>
+								<aui:option value="Hindi" selected='${fn:indexOf(studentBean.primaryLanguages, "Hindi") ge 0}'>Hindi</aui:option>
+								<aui:option value="Polish" selected='${fn:indexOf(studentBean.primaryLanguages, "Polish") ge 0}'>Polish</aui:option>
+								<aui:option value="Japanese" selected='${fn:indexOf(studentBean.primaryLanguages, "Japanese") ge 0}'>Japanese</aui:option>
+								<aui:option value="Urdu" selected='${fn:indexOf(studentBean.primaryLanguages, "Urdu") ge 0}'>Urdu</aui:option>
+								<aui:option value="Persian" selected='${fn:indexOf(studentBean.primaryLanguages, "Persian") ge 0}'>Persian</aui:option>
+								<aui:option value="Gujarati" selected='${fn:indexOf(studentBean.primaryLanguages, "Gujarati") ge 0}'>Gujarati</aui:option>
+								<aui:option value="Greek" selected='${fn:indexOf(studentBean.primaryLanguages, "Greek") ge 0}'>Greek</aui:option>
+								<aui:option value="Bengali" selected='${fn:indexOf(studentBean.primaryLanguages, "Bengali") ge 0}'>Bengali</aui:option>
+								<aui:option value="Panjabi" selected='${fn:indexOf(studentBean.primaryLanguages, "Panjabi") ge 0}'>Panjabi</aui:option>
+								<aui:option value="Telugu" selected='${fn:indexOf(studentBean.primaryLanguages, "Telugu") ge 0}'>Telugu</aui:option>
+								<aui:option value="Armenian" selected='${fn:indexOf(studentBean.primaryLanguages, "Armenian") ge 0}'>Armenian</aui:option>
+								<aui:option value="Hmong" selected='${fn:indexOf(studentBean.primaryLanguages, "Hmong") ge 0}'>Hmong</aui:option>
 							 </aui:select>
 					   	  </div>
 					   </div>
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
 	       					 <aui:select name="secondaryLanguage" label="secondaryLanguage"  cssClass="form-control col-md-7 col-xs-12" multiple="true">
-								<aui:option value="English">English</aui:option>
-								<aui:option value="French">French</aui:option>
-								<aui:option value="Spanish">Spanish</aui:option>
-								<aui:option value="Chinese - Mandarin">Chinese - Mandarin</aui:option>
-								<aui:option value="Chinese -Cantonese">Chinese -Cantonese</aui:option>
-								<aui:option value="Tagalog">Tagalog</aui:option>
-								<aui:option value="Vietnamese">Vietnamese</aui:option>
-								<aui:option value="Korean">Korean</aui:option>
-								<aui:option value="German">German</aui:option>
-								<aui:option value="Arabic">Arabic</aui:option>
-								<aui:option value="Russian">Russian</aui:option>
-								<aui:option value="Italian">Italian</aui:option>
-								<aui:option value="Portuguese">Portuguese</aui:option>
-								<aui:option value="Hindi">Hindi</aui:option>
-								<aui:option value="Polish">Polish</aui:option>
-								<aui:option value="Japanese">Japanese</aui:option>
-								<aui:option value="Urdu">Urdu</aui:option>
-								<aui:option value="Persian">Persian</aui:option>
-								<aui:option value="Gujarati">Gujarati</aui:option>
-								<aui:option value="Greek">Greek</aui:option>
-								<aui:option value="Bengali">Bengali</aui:option>
-								<aui:option value="Panjabi">Panjabi</aui:option>
-								<aui:option value="Telugu">Telugu</aui:option>
-								<aui:option value="Armenian">Armenian</aui:option>
-								<aui:option value="Hmong">Hmong</aui:option>
-								<aui:option value="Hebrew">Hebrew</aui:option>
+								<aui:option value="English" selected='${fn:indexOf(studentBean.secondaryLanguage, "English") ge 0}'>English</aui:option>
+								<aui:option value="French" selected='${fn:indexOf(studentBean.secondaryLanguage, "French") ge 0}'>French</aui:option>
+								<aui:option value="Spanish" selected='${fn:indexOf(studentBean.secondaryLanguage, "Spanish") ge 0}'>Spanish</aui:option>
+								<aui:option value="Chinese - Mandarin" selected='${fn:indexOf(studentBean.secondaryLanguage, "Chinese - Mandarin") ge 0}'>Chinese - Mandarin</aui:option>
+								<aui:option value="Chinese -Cantonese" selected='${fn:indexOf(studentBean.secondaryLanguage, "Chinese -Cantonese") ge 0}'>Chinese -Cantonese</aui:option>
+								<aui:option value="Tagalog" selected='${fn:indexOf(studentBean.secondaryLanguage, "Tagalog") ge 0}'>Tagalog</aui:option>
+								<aui:option value="Vietnamese" selected='${fn:indexOf(studentBean.secondaryLanguage, "Vietnamese") ge 0}'>Vietnamese</aui:option>
+								<aui:option value="Korean" selected='${fn:indexOf(studentBean.secondaryLanguage, "Korean") ge 0}'>Korean</aui:option>
+								<aui:option value="German" selected='${fn:indexOf(studentBean.secondaryLanguage, "German") ge 0}'>German</aui:option>
+								<aui:option value="Arabic" selected='${fn:indexOf(studentBean.secondaryLanguage, "Arabic") ge 0}'>Arabic</aui:option>
+								<aui:option value="Russian" selected='${fn:indexOf(studentBean.secondaryLanguage, "Russian") ge 0}'>Russian</aui:option>
+								<aui:option value="Italian" selected='${fn:indexOf(studentBean.secondaryLanguage, "Italian") ge 0}'>Italian</aui:option>
+								<aui:option value="Portuguese" selected='${fn:indexOf(studentBean.secondaryLanguage, "Portuguese") ge 0}'>Portuguese</aui:option>
+								<aui:option value="Hindi" selected='${fn:indexOf(studentBean.secondaryLanguage, "Hindi") ge 0}'>Hindi</aui:option>
+								<aui:option value="Polish" selected='${fn:indexOf(studentBean.secondaryLanguage, "Polish") ge 0}'>Polish</aui:option>
+								<aui:option value="Japanese" selected='${fn:indexOf(studentBean.secondaryLanguage, "Japanese") ge 0}'>Japanese</aui:option>
+								<aui:option value="Urdu" selected='${fn:indexOf(studentBean.secondaryLanguage, "Urdu") ge 0}'>Urdu</aui:option>
+								<aui:option value="Persian" selected='${fn:indexOf(studentBean.secondaryLanguage, "Persian") ge 0}'>Persian</aui:option>
+								<aui:option value="Gujarati" selected='${fn:indexOf(studentBean.secondaryLanguage, "Gujarati") ge 0}'>Gujarati</aui:option>
+								<aui:option value="Greek" selected='${fn:indexOf(studentBean.secondaryLanguage, "Greek") ge 0}'>Greek</aui:option>
+								<aui:option value="Bengali" selected='${fn:indexOf(studentBean.secondaryLanguage, "Bengali") ge 0}'>Bengali</aui:option>
+								<aui:option value="Panjabi" selected='${fn:indexOf(studentBean.secondaryLanguage, "Panjabi") ge 0}'>Panjabi</aui:option>
+								<aui:option value="Telugu" selected='${fn:indexOf(studentBean.secondaryLanguage, "Telugu") ge 0}'>Telugu</aui:option>
+								<aui:option value="Armenian" selected='${fn:indexOf(studentBean.secondaryLanguage, "Armenian") ge 0}'>Armenian</aui:option>
+								<aui:option value="Hmong" selected='${fn:indexOf(studentBean.primaryLanguages, "Hmong") ge 0}'>Hmong</aui:option>
 							 </aui:select>
 					   	  </div>
 					   </div>
 	                    <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
-	       					 <aui:input name="address" label="address"  cssClass="form-control col-md-7 col-xs-12">
+	       					 <aui:input name="address" label="address"  cssClass="form-control col-md-7 col-xs-12" value="${studentBean.address }">
 						     	<aui:validator name="required" />
 						     	<aui:validator name="maxLength">100</aui:validator>
 							 </aui:input>
@@ -213,7 +231,7 @@
 					   </div>
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
-	       					 <aui:input name="city" label="city"  cssClass="form-control col-md-7 col-xs-12">
+	       					 <aui:input name="city" label="city"  cssClass="form-control col-md-7 col-xs-12" value="${studentBean.city }">
 						     	<aui:validator name="required" />
 						     	<aui:validator name="maxLength">50</aui:validator>
 							 </aui:input>
@@ -221,7 +239,7 @@
 					   </div>
 	                   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
-	       					 <aui:input name="zipcode" label="zipcode"  cssClass="form-control col-md-7 col-xs-12">
+	       					 <aui:input name="zipcode" label="zipcode"  cssClass="form-control col-md-7 col-xs-12" value="${studentBean.zipcode }">
 						     	<aui:validator name="required" />
 						     	<aui:validator name="maxLength">6</aui:validator>
 							 </aui:input>
@@ -229,7 +247,7 @@
 					   </div>
 	                   <div class="form-group">
                		   	 	<div class="col-md-10 col-sm-6 col-xs-12">
-	               				<aui:select name="state" label="state" cssClass="form-control col-md-7 col-xs-12">
+	               				<aui:select name="state" label="state" cssClass="form-control col-md-7 col-xs-12" value="${studentBean.state }">
 	               					<c:forEach items="${usStateList }" var="state">
 	               						<aui:option value="${state }">${state }</aui:option>
 	               					</c:forEach>
@@ -242,22 +260,22 @@
 	                    <div class="form-group">
                		   	 	<div class="col-md-10 col-sm-6 col-xs-12">
                		   	 		<aui:select name="pace" label="pace">
-               		   	 			<aui:option value="Slow">Slow</aui:option>
-               		   	 			<aui:option value="Mid">Mid</aui:option>
-               		   	 			<aui:option value="Quick">Quick</aui:option>
+               		   	 			<aui:option value="Slow" selected='${studentBean.pace eq "Slow"? true : false }'>Slow</aui:option>
+               		   	 			<aui:option value="Mid" selected='${studentBean.pace eq "Mid"? true : false }'>Mid</aui:option>
+               		   	 			<aui:option value="Quick" selected='${studentBean.pace eq "Quick"? true : false }'>Quick</aui:option>
                		   	 		</aui:select>
                		   	 	</div>
                		   	 </div>
                		   	 <div class="col-md-10 col-sm-6 col-xs-12">
-	       					 <aui:input name="gpa" label="gpa"  cssClass="form-control col-md-7 col-xs-12">
+	       					 <aui:input name="gpa" label="gpa"  cssClass="form-control col-md-7 col-xs-12" value="${studentBean.gpa }">
 						     	<aui:validator name="required" />
 						     	<aui:validator name="custom" errorMessage="err-valid-task-price">
 									function(val, fieldNode, ruleValue) {
-				             			var filterValue=val.substring(1,val.length);
-				             			if(isNaN(filterValue) || filterValue.length==0){
+				             			if(isNaN(val) || val.length==0){
 				             				return false;
 				             			}
-				             			if(parseFloat(filterValue)>4.0 || parseFloat(filterValue) < 0.0){
+				             			console.log(parseFloat(val));
+				             			if(parseFloat(val)>4.0 || parseFloat(val) < 0.0){
 				            				return false;
 				            			}else{
 				            				return true;
@@ -271,7 +289,7 @@
    					 			<aui:select name="school" label="school">
    					 				<aui:option value=""> Please Select School</aui:option>
    					 				<c:forEach items="${schoolList }" var="school">
-   					 					<aui:option value="${school.schoolId }"> ${school.name }</aui:option>
+   					 					<aui:option value="${school.schoolId }" selected="${studentBean.schoolId eq  school.schoolId ? true : false}"> ${school.name }</aui:option>
    					 				</c:forEach>
    					 			</aui:select>
    					 		</div>
@@ -293,14 +311,14 @@
                		   	 	<div class="col-md-10 col-sm-6 col-xs-12">
                		   	 		<aui:select name="profession" label="profession">
                		   	 			<aui:option value="">Select Profession</aui:option>
-               		   	 			<aui:option value="Dental Assistant">Dental Assistant</aui:option>
-               		   	 			<aui:option value="Medical Assistant">Medical Assistant</aui:option>
-               		   	 			<aui:option value="Medical Administrative Assistance">Medical Administrative Assistance</aui:option>
-               		   	 			<aui:option value="Phlebotomy">Phlebotomy</aui:option>
-               		   	 			<aui:option value="Pharmacy Technician">Pharmacy Technician</aui:option>
-               		   	 			<aui:option value="Patient Care Technician">Patient Care Technician</aui:option>
-               		   	 			<aui:option value="Veterinary Assistant">Veterinary Assistant</aui:option>
-               		   	 			<aui:option value="Sonography">Sonography</aui:option>
+               		   	 			<aui:option value="Dental Assistant" selected='${studentBean.profession eq "Dental Assistant" ? true : false }'>Dental Assistant</aui:option>
+               		   	 			<aui:option value="Medical Assistant" selected='${studentBean.profession eq "Medical Assistant" ? true : false }'>Medical Assistant</aui:option>
+               		   	 			<aui:option value="Medical Administrative Assistance" selected='${studentBean.profession eq "Medical Administrative Assistance" ? true : false }'>Medical Administrative Assistance</aui:option>
+               		   	 			<aui:option value="Phlebotomy" selected='${studentBean.profession eq "Phlebotomy" ? true : false }'>Phlebotomy</aui:option>
+               		   	 			<aui:option value="Pharmacy Technician" selected='${studentBean.profession eq "Pharmacy Technician" ? true : false }'>Pharmacy Technician</aui:option>
+               		   	 			<aui:option value="Patient Care Technician" selected='${studentBean.profession eq "Patient Care Technician" ? true : false }'>Patient Care Technician</aui:option>
+               		   	 			<aui:option value="Veterinary Assistant" selected='${studentBean.profession eq "Veterinary Assistant" ? true : false }'>Veterinary Assistant</aui:option>
+               		   	 			<aui:option value="Sonography" selected='${studentBean.profession eq "Sonography" ? true : false }'>Sonography</aui:option>
                		   	 		</aui:select>
                		   	 	</div>
                		   	 </div>	
@@ -356,10 +374,10 @@
 	                 <div class="form-group">
 	                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Do you want to add Externship Detail?</label>
 	                     <div class="col-md-6 col-sm-6 col-xs-12 gender-select">
-	                     	<aui:input id="yes"  type="radio" name="haveExternship" value="true" label="" />
+	                     	<aui:input id="yes"  type="radio" name="haveExternship" value="true" label="" checked="${studentBean.haveExternship}"/>
                        		<label for="<portlet:namespace/>yes">Yes</label>
                        		
-                       		<aui:input id="no"  type="radio" name="haveExternship" value="false" label="" checked="true"/>
+                       		<aui:input id="no"  type="radio" name="haveExternship" value="false" label="" checked="${!studentBean.haveExternship }"/>
                        		<label for="<portlet:namespace/>no">No</label>
 	                     </div>
 	                   </div>
@@ -369,28 +387,29 @@
 							 <aui:select name="employerName" label="employer.name">
 							 <aui:option value="">Please Select Partner</aui:option>
 							 	<c:forEach items="${employerBeanList }" var="employerBean">
-							 		<aui:option value="${employerBean.employerId }">${employerBean.firstName } ${employerBean.lastName }</aui:option>
+							 		<aui:option value="${employerBean.employerId }" selected="${studentExternShipBean.employerId eq employerBean.employerId ? true : false }">${employerBean.firstName } ${employerBean.lastName }</aui:option>
 							 	</c:forEach>
 							 </aui:select>
 					   	  </div>
 					   </div>
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
-	       					 <aui:input name="employerZipCode" label="employer.zipcode"  cssClass="form-control col-md-7 col-xs-12" readonly="true">
+	       					 <aui:input name="employerZipCode" label="employer.zipcode"  cssClass="form-control col-md-7 col-xs-12" readonly="true" value="${studentExternShipBean.employerBean.zipcode }">
 						     	<aui:validator name="maxLength">6</aui:validator>
 							 </aui:input>
 					   	  </div>
 					   </div>
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
-	       					 <aui:input name="employerWebSiteLink" label="employer.websitelink"  cssClass="form-control col-md-7 col-xs-12" readonly="true">
+	       					 <aui:input name="employerWebSiteLink" label="employer.websitelink"  cssClass="form-control col-md-7 col-xs-12" readonly="true" value="${studentExternShipBean.employerBean.websiteLink }">
 						     	<aui:validator name="maxLength">50</aui:validator>
 							 </aui:input>
 					   	  </div>
 					   </div>
 	                   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12 date ">
-	       					 <aui:input name="externshipStartDate" label="externship.start.date"  cssClass="form-control col-md-7 col-xs-12 myDatepicker">
+	                   	  	 <fmt:formatDate pattern = "MM/dd/yyyy" value = "${studentExternShipBean.startDate}" var="extershipStartDate" />
+	       					 <aui:input name="externshipStartDate" label="externship.start.date"  cssClass="form-control col-md-7 col-xs-12" value="${extershipStartDate }">
 							 </aui:input>
 							  <span class="input-group-addon">
                                <span class="glyphicon glyphicon-calendar"></span>
@@ -399,7 +418,8 @@
 					   </div>
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12 date">
-	       					 <aui:input name="externshipEndDate" label="externship.end.date"  cssClass="form-control col-md-7 col-xs-12 myDatepicker">
+	                   	  	<fmt:formatDate pattern = "MM/dd/yyyy" value = "${studentExternShipBean.endDate}" var="extershipEndDate" />
+	       					 <aui:input name="externshipEndDate" label="externship.end.date"  cssClass="form-control col-md-7 col-xs-12" value="${extershipEndDate }">
 							 </aui:input>
 							  <span class="input-group-addon">
                                <span class="glyphicon glyphicon-calendar"></span>
@@ -408,7 +428,7 @@
 					   </div>
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
-	       					 <aui:input name="noOfHoursPerWeek" label="no.of.hours"  cssClass="form-control col-md-7 col-xs-12">
+	       					 <aui:input name="noOfHoursPerWeek" label="no.of.hours"  cssClass="form-control col-md-7 col-xs-12" value="${studentExternShipBean.noOfHoursPerWeek }">
 						     	<aui:validator name="number" />
 						     	<aui:validator name="maxLength">2</aui:validator>
 							 </aui:input>
@@ -416,7 +436,8 @@
 					   </div>
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12 date">
-	       					 <aui:input name="midPointReviewDate" label="mid.point.review.date"  cssClass="form-control col-md-7 col-xs-12 myDatepicker">
+	                   	  	<fmt:formatDate pattern = "MM/dd/yyyy" value = "${studentExternShipBean.midPointReview}" var="midPointReviewDate" />
+	       					 <aui:input name="midPointReviewDate" label="mid.point.review.date"  cssClass="form-control col-md-7 col-xs-12" value="${midPointReviewDate }">
 							 </aui:input>
 							  <span class="input-group-addon">
                                <span class="glyphicon glyphicon-calendar"></span>
@@ -425,13 +446,14 @@
 					   </div>
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
-	       					 <aui:input name="midPointReviewComment" type="textarea" label="mid.point.review.comment"  cssClass="form-control col-md-7 col-xs-12">
+	       					 <aui:input name="midPointReviewComment" type="textarea" label="mid.point.review.comment"  cssClass="form-control col-md-7 col-xs-12" value="${studentExternShipBean.midPointReviewComment }">
 							 </aui:input>
 					   	  </div>
 					   </div>
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12 date">
-	       					 <aui:input name="finalReviewDate" label="final.point.review.date"  cssClass="form-control col-md-7 col-xs-12 myDatepicker">
+	       					 <fmt:formatDate pattern = "MM/dd/yyyy" value = "${studentExternShipBean.finalReview}" var="finalReviewDate" />
+	       					 <aui:input name="finalReviewDate" label="final.point.review.date"  cssClass="form-control col-md-7 col-xs-12 myDatepicker" value="${finalReviewDate }">
 							 </aui:input>
 							  <span class="input-group-addon">
                                <span class="glyphicon glyphicon-calendar"></span>
@@ -440,7 +462,7 @@
 					   </div>
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
-	       					 <aui:input name="finalPointReviewComment" type="textarea" label="final.point.review.comment"  cssClass="form-control col-md-7 col-xs-12">
+	       					 <aui:input name="finalPointReviewComment" type="textarea" label="final.point.review.comment"  cssClass="form-control col-md-7 col-xs-12" value="${ studentExternShipBean.finalReviewComment}">
 							 </aui:input>
 					   	  </div>
 					   </div>
@@ -461,10 +483,10 @@
 	                   <div class="form-group">
 	                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Hire</label>
 	                     <div class="col-md-6 col-sm-6 col-xs-12 gender-select">
-	                     	<aui:input id="yes"  type="radio" name="hired" value="true" label="" />
+	                     	<aui:input id="yes"  type="radio" name="hired" value="true" label="" checked="${studentBean.hired}"/>
                        		<label for="<portlet:namespace/>yes">Yes</label>
                        		
-                       		<aui:input id="no"  type="radio" name="hired" value="false" label="" />
+                       		<aui:input id="no"  type="radio" name="hired" value="false" label=""  checked="${!studentBean.hired}"/>
                        		<label for="<portlet:namespace/>no">No</label>
 	                     </div>
 	                   </div>
@@ -474,7 +496,8 @@
 	                 <h2 class="StepTitle">Graduation details</h2>
 	                 <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12 date ">
-	       					 <aui:input name="graduationDate" label="graduationDate"  cssClass="form-control col-md-7 col-xs-12 myDatepicker">
+	       					 <fmt:formatDate pattern = "MM/dd/yyyy" value = "${studentBean.graduationDate}" var="graduationDate" />
+	       					 <aui:input name="graduationDate" label="graduationDate"  cssClass="form-control col-md-7 col-xs-12 myDatepicker" value="${graduationDate }">
 							 </aui:input>
 							  <span class="input-group-addon">
                                <span class="glyphicon glyphicon-calendar"></span>
@@ -484,17 +507,18 @@
 					   <div class="form-group">
 	                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Actively Seeking Employment</label>
 	                     <div class="col-md-6 col-sm-6 col-xs-12 gender-select">
-	                     	<aui:input id="yes"  type="radio" name="activelySeekingEmployment" value="Yes" label="">
+	                     	<aui:input id="yes"  type="radio" name="activelySeekingEmployment" value="true" label=""  checked="${studentBean.activelySeekingEmployment }">
 	                     		 <aui:validator name="required" />
 	                     	</aui:input>
                        		<label for="<portlet:namespace/>yes">Yes</label>
                        		
-                       		<aui:input id="no"  type="radio" name="activelySeekingEmployment" value="No" label="">
+                       		<aui:input id="no"  type="radio" name="activelySeekingEmployment" value="false" label="" checked="${!studentBean.activelySeekingEmployment }">
                        			<aui:validator name="required" />
                        		</aui:input>
                        		<label for="<portlet:namespace/>no">No</label>
 	                     </div>
 	                   </div>
+	                   <aui:input type="hidden" value="${studentId }" name="studentId"/>
 	                   <div class="ln_solid"></div>	
     				 	<div class="form-group">
 				        	<div class="col-md-10 col-sm-6 col-xs-12 col-md-offset-3">
@@ -517,12 +541,35 @@
 
             
 <script>
+var studentId='${studentId}';
 jQuery.noConflict();
 (function($) {
     $(function() {
     	 jQuery('.myDatepicker').datetimepicker({
 		        format: 'MM/DD/YYYY'
 		 });
+    	 
+    	    $('#<portlet:namespace/>externshipStartDate').datetimepicker({
+		        format: 'MM/DD/YYYY'
+   		    });
+	        $('#<portlet:namespace/>externshipEndDate').datetimepicker({
+	            useCurrent: false,
+	            format: 'MM/DD/YYYY' 
+	        });
+	        $('#<portlet:namespace/>midPointReviewDate').datetimepicker({
+	            useCurrent: false,
+	            format: 'MM/DD/YYYY'
+	        });
+	        $("#<portlet:namespace/>externshipStartDate").on("dp.change", function (e) {
+	            $('#<portlet:namespace/>externshipEndDate').data("DateTimePicker").minDate(e.date);
+	            $("#<portlet:namespace/>midPointReviewDate").data("DateTimePicker").minDate(e.date);
+	            $("#<portlet:namespace/>finalReviewDate").data("DateTimePicker").minDate(e.date);
+	        });
+	        $("#<portlet:namespace/>externshipEndDate").on("dp.change", function (e) {
+	            $('#<portlet:namespace/>externshipStartDate').data("DateTimePicker").maxDate(e.date);
+	            $("#<portlet:namespace/>midPointReviewDate").data("DateTimePicker").maxDate(e.date);
+	            $("#<portlet:namespace/>finalReviewDate").data("DateTimePicker").maxDate(e.date);
+	        });
     	 
      AUI().use('aui-io-request','aui-base','aui-form-validator', function(A) { 
     	
@@ -594,9 +641,6 @@ jQuery.noConflict();
 					},
 					<portlet:namespace/>profession: {
 						required: true
-					},
-					<portlet:namespace/>practices: {
-						required: true
 					}
 				}
 			});
@@ -646,7 +690,7 @@ jQuery.noConflict();
      			jQuery("#step3btn, #step4btn").addClass("disabled");
      			jQuery(".buttonPrevious").removeClass("buttonDisabled")
      			jQuery(".stepContent").removeClass("Active").addClass("deActive");
-     			jQuery("#step-2").addClass("Active").removeClass("deActive")
+     			jQuery("#step-2").addClass("Active").removeClass("deActive");
      		}
      		/* On Step 2 Completed Go To Step 3 */
      		else if(jQuery("#step2btn").hasClass("selected")){
@@ -662,7 +706,7 @@ jQuery.noConflict();
      			jQuery("#step4btn").addClass("disabled");
      			jQuery(".buttonPrevious").removeClass("buttonDisabled")
      			jQuery(".stepContent").removeClass("Active").addClass("deActive");
-     			jQuery("#step-3").addClass("Active").removeClass("deActive")
+     			jQuery("#step-3").addClass("Active").removeClass("deActive");
      		}
      		/* On Step 3 Completed Go To Step 4 */
      		else if(jQuery("#step3btn").hasClass("selected")){
@@ -680,7 +724,7 @@ jQuery.noConflict();
      			jQuery("#step4btn").addClass("selected").removeClass("disabled");
      			jQuery(".buttonPrevious").removeClass("buttonDisabled")
      			jQuery(".stepContent").removeClass("Active").addClass("deActive");
-     			jQuery("#step-4").addClass("Active").removeClass("deActive")
+     			jQuery("#step-4").addClass("Active").removeClass("deActive");
      		}
  		});
      	
@@ -695,7 +739,7 @@ jQuery.noConflict();
       			jQuery("#step2btn, #step3btn, #step4btn").addClass("disabled");
       			jQuery(".buttonPrevious").addClass("buttonDisabled")
       			jQuery(".stepContent").removeClass("Active").addClass("deActive");
-      			jQuery("#step-1").addClass("Active").removeClass("deActive")
+      			jQuery("#step-1").addClass("Active").removeClass("deActive");
       		}
       		/* From Step 3 TO Step 2 Transmit */
       		 else if(jQuery("#step3btn").hasClass("selected")){
@@ -704,7 +748,7 @@ jQuery.noConflict();
        			jQuery("#step3btn, #step4btn").addClass("disabled");
        			jQuery(".buttonPrevious").removeClass("buttonDisabled")
        			jQuery(".stepContent").removeClass("Active").addClass("deActive");
-       			jQuery("#step-2").addClass("Active").removeClass("deActive")
+       			jQuery("#step-2").addClass("Active").removeClass("deActive");
       		} 
       		/* From Step 4 TO Step 3 Transmit */
       		 else if(jQuery("#step4btn").hasClass("selected")){
@@ -713,9 +757,28 @@ jQuery.noConflict();
         			jQuery("#step4btn").addClass("disabled");
         			jQuery(".buttonPrevious").removeClass("buttonDisabled")
         			jQuery(".stepContent").removeClass("Active").addClass("deActive");
-        			jQuery("#step-3").addClass("Active").removeClass("deActive")
+        			jQuery("#step-3").addClass("Active").removeClass("deActive");
       		} 
     	 });
+    	 
+    	 // EDIT Student : Start
+    	 if(parseInt(studentId)>0){
+    		 var addingExternship = '${addExternship}';
+    		 console.log("addingExternship->" + addingExternship);
+    	        if(addingExternship=='true'){
+    	        	console.log("in if addingExternship");
+    	        	jQuery("#step1btn").addClass("done").removeClass("selected");;
+    	        	jQuery("#step2btn").addClass("done");
+         			jQuery("#step3btn").addClass("selected").removeClass("disabled");
+         			jQuery("#step4btn").addClass("disabled");
+         			jQuery(".buttonPrevious").removeClass("buttonDisabled")
+         			jQuery(".stepContent").removeClass("Active").addClass("deActive");
+         			jQuery("#step-3").addClass("Active").removeClass("deActive")	
+    	     	}
+    	 }
+    	 // EDIT Student : End
+    	 
+    	 
        }); 
     });
 })(jQuery);
@@ -723,7 +786,7 @@ jQuery.noConflict();
             
 <aui:script>
 
-AUI().use('aui-io-request', 'aui-autocomplete' ,'aui-base','aui-form-validator','autocomplete-list','autocomplete-filters','autocomplete-highlighters', function(A) {
+AUI().use('aui-io-request', 'aui-autocomplete' ,'aui-base','aui-form-validator','autocomplete-list','autocomplete-filters','autocomplete-highlighters','node-event-simulate', function(A) {
 	
 	var pns='<portlet:namespace/>';
 	var addUserBtn= A.one(".addUserBtn");
@@ -759,6 +822,9 @@ AUI().use('aui-io-request', 'aui-autocomplete' ,'aui-base','aui-form-validator',
 					  }else{
 						  A.one('#'+pns+'campus').append("<option  value='"+ schoolDetail.campuses[i].campusId +"' >"+ schoolDetail.campuses[i].name +"</option> ");
 					  }
+				}
+				if(studentId>0){
+					A.one("#<portlet:namespace/>campus").val('${studentBean.campusId}');
 				}
 			}
 		  }
@@ -808,5 +874,17 @@ AUI().use('aui-io-request', 'aui-autocomplete' ,'aui-base','aui-form-validator',
 	   }
 	});
 	
+	// EDIT : Start
+	if(parseInt(studentId)>0){
+		//Simulate school
+		A.one("#<portlet:namespace/>school").simulate('change');
+		A.one("#<portlet:namespace/>employerName").simulate('change');
+        var haveExternship = '${studentBean.haveExternship}';
+		console.log("haveExternship->" + haveExternship);
+        if(haveExternship=='true' || haveExternship==true){
+			A.one(".externship-data").show();
+		}
+	}
+	// EDIT : End
 });
 </aui:script>              

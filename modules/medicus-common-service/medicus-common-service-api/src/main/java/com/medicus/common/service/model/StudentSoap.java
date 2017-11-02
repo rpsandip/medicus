@@ -57,7 +57,6 @@ public class StudentSoap implements Serializable {
 		soapModel.setResumeFileEntryId(model.getResumeFileEntryId());
 		soapModel.setProfession(model.getProfession());
 		soapModel.setPractices(model.getPractices());
-		soapModel.setAgreementFileEntryId(model.getAgreementFileEntryId());
 		soapModel.setHired(model.getHired());
 		soapModel.setGraduationDate(model.getGraduationDate());
 		soapModel.setActivelySeekingEmployment(model.getActivelySeekingEmployment());
@@ -310,14 +309,6 @@ public class StudentSoap implements Serializable {
 		_practices = practices;
 	}
 
-	public long getAgreementFileEntryId() {
-		return _agreementFileEntryId;
-	}
-
-	public void setAgreementFileEntryId(long agreementFileEntryId) {
-		_agreementFileEntryId = agreementFileEntryId;
-	}
-
 	public boolean getHired() {
 		return _hired;
 	}
@@ -418,7 +409,6 @@ public class StudentSoap implements Serializable {
 	private long _resumeFileEntryId;
 	private String _profession;
 	private String _practices;
-	private long _agreementFileEntryId;
 	private boolean _hired;
 	private Date _graduationDate;
 	private boolean _activelySeekingEmployment;

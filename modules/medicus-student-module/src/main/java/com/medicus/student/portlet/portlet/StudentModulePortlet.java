@@ -7,6 +7,8 @@ import com.medicus.common.service.service.StudentLocalServiceUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.portlet.Portlet;
@@ -24,7 +26,6 @@ import org.osgi.service.component.annotations.Component;
 		"javax.portlet.display-name=medicus-student-module Portlet",
 		"javax.portlet.init-param.template-path=/",
 		"javax.portlet.init-param.view-template=/view.jsp",
-		"com.liferay.portlet.action-url-redirect=true",
 		"javax.portlet.resource-bundle=content.Language",
 		"javax.portlet.security-role-ref=power-user,user"
 	},
@@ -42,6 +43,19 @@ public class StudentModulePortlet extends MVCPortlet {
 			StudentBean studentBean = new StudentBean(student);
 			studentBeanList.add(studentBean);
 		}
+		
+		Collections.sort(studentBeanList, new Comparator<StudentBean>() {
+			
+			@Override
+			public int compare(StudentBean o1, StudentBean o2) {
+				int comp = o1.getLastName().compareTo(o2.getLastName());
+				if(comp==0){
+					comp  = o1.getFirstName().compareTo(o2.getFirstName());
+				}
+				return comp;
+			}
+		});
+		
 		renderRequest.setAttribute("studentBeanList", studentBeanList);
 		include(viewTemplate, renderRequest, renderResponse);
 	}

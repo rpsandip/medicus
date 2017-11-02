@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.log.Log;
@@ -31,6 +32,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.spring.extender.service.ServiceReference;
 
 import com.medicus.common.service.exception.NoSuchStudentException;
@@ -48,6 +50,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -84,6 +87,251 @@ public class StudentPersistenceImpl extends BasePersistenceImpl<Student>
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(StudentModelImpl.ENTITY_CACHE_ENABLED,
 			StudentModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
+	public static final FinderPath FINDER_PATH_FETCH_BY_STUDENTCAMPUSID = new FinderPath(StudentModelImpl.ENTITY_CACHE_ENABLED,
+			StudentModelImpl.FINDER_CACHE_ENABLED, StudentImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchBystudentCampusId",
+			new String[] { String.class.getName() },
+			StudentModelImpl.STUNDETCAMPUSID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_STUDENTCAMPUSID = new FinderPath(StudentModelImpl.ENTITY_CACHE_ENABLED,
+			StudentModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"countBystudentCampusId", new String[] { String.class.getName() });
+
+	/**
+	 * Returns the student where stundetCampusId = &#63; or throws a {@link NoSuchStudentException} if it could not be found.
+	 *
+	 * @param stundetCampusId the stundet campus ID
+	 * @return the matching student
+	 * @throws NoSuchStudentException if a matching student could not be found
+	 */
+	@Override
+	public Student findBystudentCampusId(String stundetCampusId)
+		throws NoSuchStudentException {
+		Student student = fetchBystudentCampusId(stundetCampusId);
+
+		if (student == null) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("stundetCampusId=");
+			msg.append(stundetCampusId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isDebugEnabled()) {
+				_log.debug(msg.toString());
+			}
+
+			throw new NoSuchStudentException(msg.toString());
+		}
+
+		return student;
+	}
+
+	/**
+	 * Returns the student where stundetCampusId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param stundetCampusId the stundet campus ID
+	 * @return the matching student, or <code>null</code> if a matching student could not be found
+	 */
+	@Override
+	public Student fetchBystudentCampusId(String stundetCampusId) {
+		return fetchBystudentCampusId(stundetCampusId, true);
+	}
+
+	/**
+	 * Returns the student where stundetCampusId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param stundetCampusId the stundet campus ID
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the matching student, or <code>null</code> if a matching student could not be found
+	 */
+	@Override
+	public Student fetchBystudentCampusId(String stundetCampusId,
+		boolean retrieveFromCache) {
+		Object[] finderArgs = new Object[] { stundetCampusId };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = finderCache.getResult(FINDER_PATH_FETCH_BY_STUDENTCAMPUSID,
+					finderArgs, this);
+		}
+
+		if (result instanceof Student) {
+			Student student = (Student)result;
+
+			if (!Objects.equals(stundetCampusId, student.getStundetCampusId())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_SELECT_STUDENT_WHERE);
+
+			boolean bindStundetCampusId = false;
+
+			if (stundetCampusId == null) {
+				query.append(_FINDER_COLUMN_STUDENTCAMPUSID_STUNDETCAMPUSID_1);
+			}
+			else if (stundetCampusId.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_STUDENTCAMPUSID_STUNDETCAMPUSID_3);
+			}
+			else {
+				bindStundetCampusId = true;
+
+				query.append(_FINDER_COLUMN_STUDENTCAMPUSID_STUNDETCAMPUSID_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (bindStundetCampusId) {
+					qPos.add(stundetCampusId);
+				}
+
+				List<Student> list = q.list();
+
+				if (list.isEmpty()) {
+					finderCache.putResult(FINDER_PATH_FETCH_BY_STUDENTCAMPUSID,
+						finderArgs, list);
+				}
+				else {
+					if ((list.size() > 1) && _log.isWarnEnabled()) {
+						_log.warn(
+							"StudentPersistenceImpl.fetchBystudentCampusId(String, boolean) with parameters (" +
+							StringUtil.merge(finderArgs) +
+							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
+					}
+
+					Student student = list.get(0);
+
+					result = student;
+
+					cacheResult(student);
+
+					if ((student.getStundetCampusId() == null) ||
+							!student.getStundetCampusId().equals(stundetCampusId)) {
+						finderCache.putResult(FINDER_PATH_FETCH_BY_STUDENTCAMPUSID,
+							finderArgs, student);
+					}
+				}
+			}
+			catch (Exception e) {
+				finderCache.removeResult(FINDER_PATH_FETCH_BY_STUDENTCAMPUSID,
+					finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (Student)result;
+		}
+	}
+
+	/**
+	 * Removes the student where stundetCampusId = &#63; from the database.
+	 *
+	 * @param stundetCampusId the stundet campus ID
+	 * @return the student that was removed
+	 */
+	@Override
+	public Student removeBystudentCampusId(String stundetCampusId)
+		throws NoSuchStudentException {
+		Student student = findBystudentCampusId(stundetCampusId);
+
+		return remove(student);
+	}
+
+	/**
+	 * Returns the number of students where stundetCampusId = &#63;.
+	 *
+	 * @param stundetCampusId the stundet campus ID
+	 * @return the number of matching students
+	 */
+	@Override
+	public int countBystudentCampusId(String stundetCampusId) {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_STUDENTCAMPUSID;
+
+		Object[] finderArgs = new Object[] { stundetCampusId };
+
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_STUDENT_WHERE);
+
+			boolean bindStundetCampusId = false;
+
+			if (stundetCampusId == null) {
+				query.append(_FINDER_COLUMN_STUDENTCAMPUSID_STUNDETCAMPUSID_1);
+			}
+			else if (stundetCampusId.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_STUDENTCAMPUSID_STUNDETCAMPUSID_3);
+			}
+			else {
+				bindStundetCampusId = true;
+
+				query.append(_FINDER_COLUMN_STUDENTCAMPUSID_STUNDETCAMPUSID_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (bindStundetCampusId) {
+					qPos.add(stundetCampusId);
+				}
+
+				count = (Long)q.uniqueResult();
+
+				finderCache.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				finderCache.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_STUDENTCAMPUSID_STUNDETCAMPUSID_1 =
+		"student.stundetCampusId IS NULL";
+	private static final String _FINDER_COLUMN_STUDENTCAMPUSID_STUNDETCAMPUSID_2 =
+		"student.stundetCampusId = ?";
+	private static final String _FINDER_COLUMN_STUDENTCAMPUSID_STUNDETCAMPUSID_3 =
+		"(student.stundetCampusId IS NULL OR student.stundetCampusId = '')";
 
 	public StudentPersistenceImpl() {
 		setModelClass(Student.class);
@@ -98,6 +346,9 @@ public class StudentPersistenceImpl extends BasePersistenceImpl<Student>
 	public void cacheResult(Student student) {
 		entityCache.putResult(StudentModelImpl.ENTITY_CACHE_ENABLED,
 			StudentImpl.class, student.getPrimaryKey(), student);
+
+		finderCache.putResult(FINDER_PATH_FETCH_BY_STUDENTCAMPUSID,
+			new Object[] { student.getStundetCampusId() }, student);
 
 		student.resetOriginalValues();
 	}
@@ -150,6 +401,8 @@ public class StudentPersistenceImpl extends BasePersistenceImpl<Student>
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		clearUniqueFindersCache((StudentModelImpl)student);
 	}
 
 	@Override
@@ -160,6 +413,48 @@ public class StudentPersistenceImpl extends BasePersistenceImpl<Student>
 		for (Student student : students) {
 			entityCache.removeResult(StudentModelImpl.ENTITY_CACHE_ENABLED,
 				StudentImpl.class, student.getPrimaryKey());
+
+			clearUniqueFindersCache((StudentModelImpl)student);
+		}
+	}
+
+	protected void cacheUniqueFindersCache(StudentModelImpl studentModelImpl,
+		boolean isNew) {
+		if (isNew) {
+			Object[] args = new Object[] { studentModelImpl.getStundetCampusId() };
+
+			finderCache.putResult(FINDER_PATH_COUNT_BY_STUDENTCAMPUSID, args,
+				Long.valueOf(1));
+			finderCache.putResult(FINDER_PATH_FETCH_BY_STUDENTCAMPUSID, args,
+				studentModelImpl);
+		}
+		else {
+			if ((studentModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_STUDENTCAMPUSID.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						studentModelImpl.getStundetCampusId()
+					};
+
+				finderCache.putResult(FINDER_PATH_COUNT_BY_STUDENTCAMPUSID,
+					args, Long.valueOf(1));
+				finderCache.putResult(FINDER_PATH_FETCH_BY_STUDENTCAMPUSID,
+					args, studentModelImpl);
+			}
+		}
+	}
+
+	protected void clearUniqueFindersCache(StudentModelImpl studentModelImpl) {
+		Object[] args = new Object[] { studentModelImpl.getStundetCampusId() };
+
+		finderCache.removeResult(FINDER_PATH_COUNT_BY_STUDENTCAMPUSID, args);
+		finderCache.removeResult(FINDER_PATH_FETCH_BY_STUDENTCAMPUSID, args);
+
+		if ((studentModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_STUDENTCAMPUSID.getColumnBitmask()) != 0) {
+			args = new Object[] { studentModelImpl.getOriginalStundetCampusId() };
+
+			finderCache.removeResult(FINDER_PATH_COUNT_BY_STUDENTCAMPUSID, args);
+			finderCache.removeResult(FINDER_PATH_FETCH_BY_STUDENTCAMPUSID, args);
 		}
 	}
 
@@ -315,12 +610,15 @@ public class StudentPersistenceImpl extends BasePersistenceImpl<Student>
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-		if (isNew) {
+		if (isNew || !StudentModelImpl.COLUMN_BITMASK_ENABLED) {
 			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 
 		entityCache.putResult(StudentModelImpl.ENTITY_CACHE_ENABLED,
 			StudentImpl.class, student.getPrimaryKey(), student, false);
+
+		clearUniqueFindersCache(studentModelImpl);
+		cacheUniqueFindersCache(studentModelImpl, isNew);
 
 		student.resetOriginalValues();
 
@@ -361,7 +659,6 @@ public class StudentPersistenceImpl extends BasePersistenceImpl<Student>
 		studentImpl.setResumeFileEntryId(student.getResumeFileEntryId());
 		studentImpl.setProfession(student.getProfession());
 		studentImpl.setPractices(student.getPractices());
-		studentImpl.setAgreementFileEntryId(student.getAgreementFileEntryId());
 		studentImpl.setHired(student.isHired());
 		studentImpl.setGraduationDate(student.getGraduationDate());
 		studentImpl.setActivelySeekingEmployment(student.isActivelySeekingEmployment());
@@ -782,9 +1079,12 @@ public class StudentPersistenceImpl extends BasePersistenceImpl<Student>
 	protected FinderCache finderCache;
 	private static final String _SQL_SELECT_STUDENT = "SELECT student FROM Student student";
 	private static final String _SQL_SELECT_STUDENT_WHERE_PKS_IN = "SELECT student FROM Student student WHERE studentId IN (";
+	private static final String _SQL_SELECT_STUDENT_WHERE = "SELECT student FROM Student student WHERE ";
 	private static final String _SQL_COUNT_STUDENT = "SELECT COUNT(student) FROM Student student";
+	private static final String _SQL_COUNT_STUDENT_WHERE = "SELECT COUNT(student) FROM Student student WHERE ";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "student.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Student exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Student exists with the key {";
 	private static final Log _log = LogFactoryUtil.getLog(StudentPersistenceImpl.class);
 	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
 				"state"

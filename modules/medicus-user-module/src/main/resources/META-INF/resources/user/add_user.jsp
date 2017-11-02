@@ -42,9 +42,15 @@
 				</div>	
 				<div class="form-group">
       					 <div class="col-md-10 col-sm-6 col-xs-12">
-       					 <aui:input name="contactNumber" label="contact.number"  cssClass="form-control col-md-7 col-xs-12">
+       					 <aui:input name="contactNumber" label="contact.number"  cssClass="form-control col-md-7 col-xs-12" placeholder="xxx-xxx-xxxx">
 					     	<aui:validator name="required" />
-					     	<aui:validator name="maxLength">12</aui:validator>
+					     	<aui:validator name="maxLength">14</aui:validator>
+					     	<aui:script>
+								new Formatter(document.getElementById('<portlet:namespace/>'+'contactNumber'), {
+									'pattern': '({{999}})-{{999}}-{{9999}}',
+									'persistent': false
+								});
+							</aui:script>
 						 </aui:input>
 					 </div>
 				</div>

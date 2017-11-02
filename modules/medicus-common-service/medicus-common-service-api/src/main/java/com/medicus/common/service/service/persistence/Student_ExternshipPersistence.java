@@ -42,6 +42,51 @@ public interface Student_ExternshipPersistence extends BasePersistence<Student_E
 	 */
 
 	/**
+	* Returns the student_ externship where studentId = &#63; or throws a {@link NoSuchStudent_ExternshipException} if it could not be found.
+	*
+	* @param studentId the student ID
+	* @return the matching student_ externship
+	* @throws NoSuchStudent_ExternshipException if a matching student_ externship could not be found
+	*/
+	public Student_Externship findBystudentId(long studentId)
+		throws NoSuchStudent_ExternshipException;
+
+	/**
+	* Returns the student_ externship where studentId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param studentId the student ID
+	* @return the matching student_ externship, or <code>null</code> if a matching student_ externship could not be found
+	*/
+	public Student_Externship fetchBystudentId(long studentId);
+
+	/**
+	* Returns the student_ externship where studentId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param studentId the student ID
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the matching student_ externship, or <code>null</code> if a matching student_ externship could not be found
+	*/
+	public Student_Externship fetchBystudentId(long studentId,
+		boolean retrieveFromCache);
+
+	/**
+	* Removes the student_ externship where studentId = &#63; from the database.
+	*
+	* @param studentId the student ID
+	* @return the student_ externship that was removed
+	*/
+	public Student_Externship removeBystudentId(long studentId)
+		throws NoSuchStudent_ExternshipException;
+
+	/**
+	* Returns the number of student_ externships where studentId = &#63;.
+	*
+	* @param studentId the student ID
+	* @return the number of matching student_ externships
+	*/
+	public int countBystudentId(long studentId);
+
+	/**
 	* Caches the student_ externship in the entity cache if it is enabled.
 	*
 	* @param student_Externship the student_ externship

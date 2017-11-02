@@ -86,7 +86,6 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 			{ "resumeFileEntryId", Types.BIGINT },
 			{ "profession", Types.VARCHAR },
 			{ "practices", Types.VARCHAR },
-			{ "agreementFileEntryId", Types.BIGINT },
 			{ "hired", Types.BOOLEAN },
 			{ "graduationDate", Types.TIMESTAMP },
 			{ "activelySeekingEmployment", Types.BOOLEAN },
@@ -123,7 +122,6 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 		TABLE_COLUMNS_MAP.put("resumeFileEntryId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("profession", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("practices", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("agreementFileEntryId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("hired", Types.BOOLEAN);
 		TABLE_COLUMNS_MAP.put("graduationDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("activelySeekingEmployment", Types.BOOLEAN);
@@ -134,7 +132,7 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 		TABLE_COLUMNS_MAP.put("modifiedBy", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table Medicus_Student (studentId LONG not null primary key,stundetCampusId VARCHAR(75) null,campusId LONG,schoolId LONG,firstName VARCHAR(20) null,middleName VARCHAR(20) null,lastName VARCHAR(20) null,profileImageId LONG,dateOfBirth DATE null,gender VARCHAR(10) null,contactNumber VARCHAR(15) null,homePhoneNumber VARCHAR(15) null,emailAddress VARCHAR(30) null,primaryLanguage VARCHAR(200) null,secondaryLanguage VARCHAR(200) null,address VARCHAR(100) null,city VARCHAR(15) null,zipcode VARCHAR(6) null,state_ VARCHAR(15) null,pace VARCHAR(15) null,gpa DOUBLE,resumeFileEntryId LONG,profession VARCHAR(30) null,practices VARCHAR(30) null,agreementFileEntryId LONG,hired BOOLEAN,graduationDate DATE null,activelySeekingEmployment BOOLEAN,haveExternship BOOLEAN,createDate DATE null,createdBy LONG,modifiedDate DATE null,modifiedBy LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Medicus_Student (studentId LONG not null primary key,stundetCampusId VARCHAR(75) null,campusId LONG,schoolId LONG,firstName VARCHAR(20) null,middleName VARCHAR(20) null,lastName VARCHAR(20) null,profileImageId LONG,dateOfBirth DATE null,gender VARCHAR(10) null,contactNumber VARCHAR(15) null,homePhoneNumber VARCHAR(15) null,emailAddress VARCHAR(30) null,primaryLanguage VARCHAR(200) null,secondaryLanguage VARCHAR(200) null,address VARCHAR(100) null,city VARCHAR(15) null,zipcode VARCHAR(6) null,state_ VARCHAR(15) null,pace VARCHAR(15) null,gpa DOUBLE,resumeFileEntryId LONG,profession VARCHAR(30) null,practices VARCHAR(30) null,hired BOOLEAN,graduationDate DATE null,activelySeekingEmployment BOOLEAN,haveExternship BOOLEAN,createDate DATE null,createdBy LONG,modifiedDate DATE null,modifiedBy LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Medicus_Student";
 	public static final String ORDER_BY_JPQL = " ORDER BY student.studentId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Medicus_Student.studentId ASC";
@@ -147,7 +145,11 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.medicus.common.service.service.util.PropsUtil.get(
 				"value.object.finder.cache.enabled.com.medicus.common.service.model.Student"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.medicus.common.service.service.util.PropsUtil.get(
+				"value.object.column.bitmask.enabled.com.medicus.common.service.model.Student"),
+			true);
+	public static final long STUNDETCAMPUSID_COLUMN_BITMASK = 1L;
+	public static final long STUDENTID_COLUMN_BITMASK = 2L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.medicus.common.service.service.util.PropsUtil.get(
 				"lock.expiration.time.com.medicus.common.service.model.Student"));
 
@@ -212,7 +214,6 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 		attributes.put("resumeFileEntryId", getResumeFileEntryId());
 		attributes.put("profession", getProfession());
 		attributes.put("practices", getPractices());
-		attributes.put("agreementFileEntryId", getAgreementFileEntryId());
 		attributes.put("hired", getHired());
 		attributes.put("graduationDate", getGraduationDate());
 		attributes.put("activelySeekingEmployment",
@@ -375,12 +376,6 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 			setPractices(practices);
 		}
 
-		Long agreementFileEntryId = (Long)attributes.get("agreementFileEntryId");
-
-		if (agreementFileEntryId != null) {
-			setAgreementFileEntryId(agreementFileEntryId);
-		}
-
 		Boolean hired = (Boolean)attributes.get("hired");
 
 		if (hired != null) {
@@ -453,7 +448,17 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 
 	@Override
 	public void setStundetCampusId(String stundetCampusId) {
+		_columnBitmask |= STUNDETCAMPUSID_COLUMN_BITMASK;
+
+		if (_originalStundetCampusId == null) {
+			_originalStundetCampusId = _stundetCampusId;
+		}
+
 		_stundetCampusId = stundetCampusId;
+	}
+
+	public String getOriginalStundetCampusId() {
+		return GetterUtil.getString(_originalStundetCampusId);
 	}
 
 	@Override
@@ -757,16 +762,6 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 	}
 
 	@Override
-	public long getAgreementFileEntryId() {
-		return _agreementFileEntryId;
-	}
-
-	@Override
-	public void setAgreementFileEntryId(long agreementFileEntryId) {
-		_agreementFileEntryId = agreementFileEntryId;
-	}
-
-	@Override
 	public boolean getHired() {
 		return _hired;
 	}
@@ -867,6 +862,10 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 		_modifiedBy = modifiedBy;
 	}
 
+	public long getColumnBitmask() {
+		return _columnBitmask;
+	}
+
 	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
@@ -918,7 +917,6 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 		studentImpl.setResumeFileEntryId(getResumeFileEntryId());
 		studentImpl.setProfession(getProfession());
 		studentImpl.setPractices(getPractices());
-		studentImpl.setAgreementFileEntryId(getAgreementFileEntryId());
 		studentImpl.setHired(getHired());
 		studentImpl.setGraduationDate(getGraduationDate());
 		studentImpl.setActivelySeekingEmployment(getActivelySeekingEmployment());
@@ -989,7 +987,11 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 	public void resetOriginalValues() {
 		StudentModelImpl studentModelImpl = this;
 
+		studentModelImpl._originalStundetCampusId = studentModelImpl._stundetCampusId;
+
 		studentModelImpl._setModifiedDate = false;
+
+		studentModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -1153,8 +1155,6 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 			studentCacheModel.practices = null;
 		}
 
-		studentCacheModel.agreementFileEntryId = getAgreementFileEntryId();
-
 		studentCacheModel.hired = getHired();
 
 		Date graduationDate = getGraduationDate();
@@ -1197,7 +1197,7 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(67);
+		StringBundler sb = new StringBundler(65);
 
 		sb.append("{studentId=");
 		sb.append(getStudentId());
@@ -1247,8 +1247,6 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 		sb.append(getProfession());
 		sb.append(", practices=");
 		sb.append(getPractices());
-		sb.append(", agreementFileEntryId=");
-		sb.append(getAgreementFileEntryId());
 		sb.append(", hired=");
 		sb.append(getHired());
 		sb.append(", graduationDate=");
@@ -1272,7 +1270,7 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(103);
+		StringBundler sb = new StringBundler(100);
 
 		sb.append("<model><model-name>");
 		sb.append("com.medicus.common.service.model.Student");
@@ -1375,10 +1373,6 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 		sb.append(getPractices());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>agreementFileEntryId</column-name><column-value><![CDATA[");
-		sb.append(getAgreementFileEntryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>hired</column-name><column-value><![CDATA[");
 		sb.append(getHired());
 		sb.append("]]></column-value></column>");
@@ -1422,6 +1416,7 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 		};
 	private long _studentId;
 	private String _stundetCampusId;
+	private String _originalStundetCampusId;
 	private long _campusId;
 	private long _schoolId;
 	private String _firstName;
@@ -1444,7 +1439,6 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 	private long _resumeFileEntryId;
 	private String _profession;
 	private String _practices;
-	private long _agreementFileEntryId;
 	private boolean _hired;
 	private Date _graduationDate;
 	private boolean _activelySeekingEmployment;
@@ -1454,5 +1448,6 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 	private Date _modifiedDate;
 	private boolean _setModifiedDate;
 	private long _modifiedBy;
+	private long _columnBitmask;
 	private Student _escapedModel;
 }

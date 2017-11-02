@@ -63,6 +63,9 @@ public interface StudentLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link StudentLocalServiceUtil} to access the student local service. Add custom service methods to {@link com.medicus.common.service.service.impl.StudentLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public boolean deleteStudentDetail(long studentId)
+		throws PortalException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
 
@@ -109,8 +112,8 @@ public interface StudentLocalService extends BaseLocalService,
 		java.lang.String midPointReviewComment, Date finalReviewDate,
 		java.lang.String finalPointReviewComment, File profileImage,
 		java.lang.String profileImageFileName, File resume,
-		java.lang.String resumeFileName, File agreement,
-		java.lang.String agreementFileName,
+		java.lang.String resumeFileName,
+		Map<java.lang.String, File> agreementFileMap,
 		Map<java.lang.String, File> othersFileMap, long createdBy);
 
 	/**
@@ -153,6 +156,9 @@ public interface StudentLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Student getStudent(long studentId) throws PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Student getStudentByStudentCampusId(java.lang.String studentCampusId);
+
 	public Student importStudent(java.lang.String firstName,
 		java.lang.String middleName, java.lang.String lastName,
 		java.lang.String emailAddress, Date dob,
@@ -172,6 +178,28 @@ public interface StudentLocalService extends BaseLocalService,
 	*/
 	@Indexable(type = IndexableType.REINDEX)
 	public Student updateStudent(Student student);
+
+	public Student updateStudent(long studentId, long schoolId, long campusId,
+		java.lang.String studentCampusId, java.lang.String firstName,
+		java.lang.String middleName, java.lang.String lastName,
+		java.lang.String emailAddress, Date dob, java.lang.String gender,
+		java.lang.String contactNumber, java.lang.String homePhoneNumber,
+		java.lang.String primaryLang, java.lang.String secondaryLangs,
+		java.lang.String address, java.lang.String city,
+		java.lang.String zipcode, java.lang.String state,
+		java.lang.String pace, float gpa, java.lang.String profession,
+		java.lang.String practices, boolean hired, Date graduationDate,
+		boolean activelySeekingEmployment, boolean haveExternship,
+		long employerId, java.lang.String employerZipCode,
+		java.lang.String employerWebSiteLink, Date externshipStartDate,
+		Date externshipEndDate, int noOfHoursPerWeek, Date midPointReviewDate,
+		java.lang.String midPointReviewComment, Date finalReviewDate,
+		java.lang.String finalPointReviewComment, File profileImage,
+		java.lang.String profileImageFileName, File resume,
+		java.lang.String resumeFileName,
+		Map<java.lang.String, File> agreementFileMap,
+		Map<java.lang.String, File> othersFileMap, long modifiedBy)
+		throws PortalException;
 
 	/**
 	* Returns the number of students.

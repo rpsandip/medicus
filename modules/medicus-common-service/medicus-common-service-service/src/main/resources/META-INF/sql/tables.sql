@@ -82,7 +82,6 @@ create table Medicus_Student (
 	resumeFileEntryId LONG,
 	profession VARCHAR(30) null,
 	practices VARCHAR(30) null,
-	agreementFileEntryId LONG,
 	hired BOOLEAN,
 	graduationDate DATE null,
 	activelySeekingEmployment BOOLEAN,

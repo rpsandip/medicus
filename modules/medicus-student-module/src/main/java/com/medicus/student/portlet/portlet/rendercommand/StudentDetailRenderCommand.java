@@ -12,8 +12,13 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.medicus.common.service.bean.StudentBean;
+import com.medicus.common.service.bean.Student_ExternshipBean;
 import com.medicus.common.service.model.Student;
+import com.medicus.common.service.model.Student_Externship;
 import com.medicus.common.service.service.StudentLocalServiceUtil;
+import com.medicus.common.service.service.Student_ExternshipLocalService;
+import com.medicus.common.service.service.Student_ExternshipLocalServiceUtil;
 import com.medicus.student.portlet.portlet.StudentPortletConstant;
 
 @Component(
@@ -32,16 +37,31 @@ public class StudentDetailRenderCommand implements MVCRenderCommand{
 		long studentId = ParamUtil.getLong(renderRequest, "studentId");
 		if(studentId>0){
 			try {
+				// Get Student 
 				Student student = StudentLocalServiceUtil.getStudent(studentId);
+				StudentBean studentBean = new StudentBean(student);
+				renderRequest.setAttribute("studentBean", studentBean);
+			
 			} catch (PortalException e) {
 				_log.error(e);
-			}
+			}	
+			
+			try {
+				// Get StudentExtership
+				Student_Externship studentExternship = Student_ExternshipLocalServiceUtil.getStudentExternship(studentId);
+				Student_ExternshipBean studentExternshipBean = new Student_ExternshipBean(studentExternship);
+				renderRequest.setAttribute("studentExternshipBean", studentExternshipBean);
+			} catch (PortalException e) {
+				_log.error(e.getMessage());
+			}	
+				
+			
 		}else{
 			SessionErrors.add(renderRequest, "student-detail-err");
 			return "/view.jsp";
 		}
 			
-		return "/student/import_student.jsp";
+		return "/student/student_detail.jsp";
 	}
 
 }

@@ -113,6 +113,61 @@ public class Student_ExternshipUtil {
 	}
 
 	/**
+	* Returns the student_ externship where studentId = &#63; or throws a {@link NoSuchStudent_ExternshipException} if it could not be found.
+	*
+	* @param studentId the student ID
+	* @return the matching student_ externship
+	* @throws NoSuchStudent_ExternshipException if a matching student_ externship could not be found
+	*/
+	public static Student_Externship findBystudentId(long studentId)
+		throws com.medicus.common.service.exception.NoSuchStudent_ExternshipException {
+		return getPersistence().findBystudentId(studentId);
+	}
+
+	/**
+	* Returns the student_ externship where studentId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param studentId the student ID
+	* @return the matching student_ externship, or <code>null</code> if a matching student_ externship could not be found
+	*/
+	public static Student_Externship fetchBystudentId(long studentId) {
+		return getPersistence().fetchBystudentId(studentId);
+	}
+
+	/**
+	* Returns the student_ externship where studentId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param studentId the student ID
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the matching student_ externship, or <code>null</code> if a matching student_ externship could not be found
+	*/
+	public static Student_Externship fetchBystudentId(long studentId,
+		boolean retrieveFromCache) {
+		return getPersistence().fetchBystudentId(studentId, retrieveFromCache);
+	}
+
+	/**
+	* Removes the student_ externship where studentId = &#63; from the database.
+	*
+	* @param studentId the student ID
+	* @return the student_ externship that was removed
+	*/
+	public static Student_Externship removeBystudentId(long studentId)
+		throws com.medicus.common.service.exception.NoSuchStudent_ExternshipException {
+		return getPersistence().removeBystudentId(studentId);
+	}
+
+	/**
+	* Returns the number of student_ externships where studentId = &#63;.
+	*
+	* @param studentId the student ID
+	* @return the number of matching student_ externships
+	*/
+	public static int countBystudentId(long studentId) {
+		return getPersistence().countBystudentId(studentId);
+	}
+
+	/**
 	* Caches the student_ externship in the entity cache if it is enabled.
 	*
 	* @param student_Externship the student_ externship

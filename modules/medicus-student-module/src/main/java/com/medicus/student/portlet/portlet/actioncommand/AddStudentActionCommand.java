@@ -14,6 +14,7 @@ import javax.portlet.ActionResponse;
 
 import org.osgi.service.component.annotations.Component;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
@@ -51,12 +52,13 @@ public class AddStudentActionCommand extends BaseMVCActionCommand{
 			ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
 			UploadPortletRequest uploadPortletRequest = PortalUtil.getUploadPortletRequest(actionRequest);
 		
+			long studentId = ParamUtil.getLong(actionRequest, "studentId");
 			String studentCampusId = ParamUtil.getString(actionRequest, "campusStudentId");
 			String firstName = ParamUtil.getString(actionRequest, "firstName");
 			String middleName = ParamUtil.getString(actionRequest, "middleName");
 			String lastName = ParamUtil.getString(actionRequest, "lastName");
 			String emailAddress = ParamUtil.getString(actionRequest, "emailAddress");
-			DateFormat df = new SimpleDateFormat("MM/DD/YYYY");
+			DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 			Date dob = ParamUtil.getDate(actionRequest, "dob", df);
 			String gender = ParamUtil.getString(actionRequest, "gender");
 			String contactNo= ParamUtil.getString(actionRequest, "contactNo");
@@ -74,7 +76,7 @@ public class AddStudentActionCommand extends BaseMVCActionCommand{
 			String profession = ParamUtil.getString(actionRequest, "profession");
 			String practices = ParamUtil.getString(actionRequest, "practices");
 			boolean haveExternship = ParamUtil.getBoolean(actionRequest, "haveExternship");
-			long employerId = ParamUtil.getLong(actionRequest, "employer");
+			long employerId = ParamUtil.getLong(actionRequest, "employerName");
 			String employerZipCode = ParamUtil.getString(actionRequest, "employerZipCode");
 			String employerWebSiteLink = ParamUtil.getString(actionRequest, "employerWebSiteLink");
 			Date externshipStartDate = null;
@@ -119,21 +121,27 @@ public class AddStudentActionCommand extends BaseMVCActionCommand{
 			// Files
 			File profilePic = uploadPortletRequest.getFile("profilePic");
 			File resume = uploadPortletRequest.getFile("resume");
-			File agreements = uploadPortletRequest.getFile("agreements");
 			String profilePicFileName = uploadPortletRequest.getFileName("profilePic");
 			String resumeFileName = uploadPortletRequest.getFileName("resume");
-			String agreementsFileName = uploadPortletRequest.getFileName("agreements");
 			Map<String, FileItem[]> files= uploadPortletRequest.getMultipartParameterMap();
+			Map<String, File> agreementsFileMap = new HashMap<String, File>();
 			Map<String, File> othersFileMap = new HashMap<String, File>();
 			for (Entry<String, FileItem[]> file2 : files.entrySet()) {
 				FileItem item[] =file2.getValue();
 				String name  = file2.getKey();
 				if(name.startsWith("other")){
-				for (FileItem fileItem : item) {
-					String fileName = fileItem.getFileName();
-					File file = fileItem.getStoreLocation();
-					othersFileMap.put(fileName, file);
+					for (FileItem fileItem : item) {
+						String fileName = fileItem.getFileName();
+						File file = fileItem.getStoreLocation();
+						othersFileMap.put(fileName, file);
+					}
 				}
+				if(name.startsWith("agreements")){
+					for (FileItem fileItem : item) {
+						String fileName = fileItem.getFileName();
+						File file = fileItem.getStoreLocation();
+						agreementsFileMap.put(fileName, file);
+					}
 				}
 			}
 			
@@ -152,20 +160,48 @@ public class AddStudentActionCommand extends BaseMVCActionCommand{
 				secondaryLanugage = secondaryLanugage.substring(0, secondaryLanugage.lastIndexOf(StringPool.COMMA));
 			}
 			
-			Student student = StudentLocalServiceUtil.addStudent(schoolId, campusId, studentCampusId, firstName, middleName,lastName,
-					emailAddress, dob, gender, contactNo, homePhoneNumber,primaryLanguage, secondaryLanugage, address, city,zipcode, state, pace, gpa,profession,
-					practices, isHired, graduationDate, activelySeekingEmployment, haveExternship, employerId,
-					employerZipCode, employerWebSiteLink, externshipStartDate, externshipEndDate, 
-					noOfHoursPerWeek, midPointReviewDate, midPointReviewComment, finalReviewDate,
-					finalPointReviewComment, profilePic, profilePicFileName,resume, resumeFileName,agreements, agreementsFileName,
-					othersFileMap, themeDisplay.getUserId());
-			
-			if(Validator.isNotNull(student)){
-				SessionMessages.add(actionRequest, "student-add-success");
+			if(studentId==0){
+				
+				Student student = StudentLocalServiceUtil.getStudentByStudentCampusId(studentCampusId);
+				
+				if(Validator.isNull(student) && Validator.isNotNull(studentCampusId)){
+					 student = StudentLocalServiceUtil.addStudent(schoolId, campusId, studentCampusId, firstName, middleName,lastName,
+							emailAddress, dob, gender, contactNo, homePhoneNumber,primaryLanguage, secondaryLanugage, address, city,zipcode, state, pace, gpa,profession,
+							practices, isHired, graduationDate, activelySeekingEmployment, haveExternship, employerId,
+							employerZipCode, employerWebSiteLink, externshipStartDate, externshipEndDate, 
+							noOfHoursPerWeek, midPointReviewDate, midPointReviewComment, finalReviewDate,
+							finalPointReviewComment, profilePic, profilePicFileName,resume, resumeFileName,agreementsFileMap,
+							othersFileMap, themeDisplay.getUserId());
+					
+					if(Validator.isNotNull(student)){
+						SessionMessages.add(actionRequest, "student-add-success");
+					}else{
+						SessionErrors.add(actionRequest, "student-add-error");
+					}
+				}else{
+					SessionErrors.add(actionRequest, "student-exist");
+				}
 			}else{
-				SessionErrors.add(actionRequest, "student-add-error");
+				
+				Student student = StudentLocalServiceUtil.getStudentByStudentCampusId(studentCampusId);
+				
+				if(Validator.isNotNull(student) && Validator.isNotNull(studentCampusId)){
+					try {
+						 student = StudentLocalServiceUtil.updateStudent(studentId, schoolId, campusId, studentCampusId, firstName, middleName,lastName,
+								emailAddress, dob, gender, contactNo, homePhoneNumber,primaryLanguage, secondaryLanugage, address, city,zipcode, state, pace, gpa,profession,
+								practices, isHired, graduationDate, activelySeekingEmployment, haveExternship, employerId,
+								employerZipCode, employerWebSiteLink, externshipStartDate, externshipEndDate, 
+								noOfHoursPerWeek, midPointReviewDate, midPointReviewComment, finalReviewDate,
+								finalPointReviewComment, profilePic, profilePicFileName,resume, resumeFileName,agreementsFileMap,
+								othersFileMap, themeDisplay.getUserId());
+						SessionMessages.add(actionRequest, "student-update-success");
+					} catch (PortalException e) {
+						SessionErrors.add(actionRequest, "student-update-error");
+					}
+				}else{
+					SessionErrors.add(actionRequest, "student-update-exist");
+				}
 			}
-			
 	}	
 	
 

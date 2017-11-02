@@ -15,12 +15,11 @@ import java.util.Map;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-//import org.apache.poi.ss.usermodel.Row;
-//import org.apache.poi.ss.usermodel.Sheet;
-//import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.osgi.service.component.annotations.Component;
 
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -83,10 +82,9 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 		 XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
 	     Sheet firstSheet = workbook.getSheetAt(0);
 	     Iterator<Row> iterator = firstSheet.iterator();
-	     // Validate .xslx file have valid order of columns
+	     List<String> unsuccessfullStudentList = new ArrayList<String>();
 	     if(iterator.hasNext()){
-	    	  	Row row = iterator.next();// 0th row
-	    	    //	row = iterator.next();//1st row
+	    	  	Row row = iterator.next(); 
 	        	boolean isValidFile = validateFile(row);
 	        	if(!isValidFile){
 	        		SessionErrors.add(request, "file-format-err");
@@ -94,10 +92,8 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 	        		return;
 	        	}
 	      }
-	     
 	     int totalStudentCount = 0;
 	     int successImportedStudentCount = 0;
-	     String unsuccesfulltStudentEmail = StringPool.BLANK;
 	     while (iterator.hasNext()) {
 	    	 Row nextRow = iterator.next();
 	    	 
@@ -113,33 +109,45 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 	    	 
 	    	 if(nextRow.getRowNum()!=0 && Validator.isNotNull(nextRow.getCell(0).toString()) && schoolId!=0 && campusId !=0){
 	    		 totalStudentCount++;
-	    		 Student student = StudentLocalServiceUtil.importStudent(
-	    				 nextRow.getCell(0).toString() /*First Name*/, 
-	    				 nextRow.getCell(1).toString() /*Middle Name*/, 
-	    				 nextRow.getCell(2).toString() /*Last Name*/, 
-	    				 nextRow.getCell(4).toString() /*Email Address*/,
-	    				 dob/*DOB*/,
-	    				 nextRow.getCell(3).toString() /*Student Id*/,
-	    				 nextRow.getCell(6).toString() /*Address*/, 
-	    				 nextRow.getCell(7).toString() /*City*/, 
-	    				 nextRow.getCell(8).toString() /*Zipcode*/,
-	    				 nextRow.getCell(9).toString() /*State*/, 
-	    				 nextRow.getCell(10).toString() /*Mobile Phone*/, 
-	    				 nextRow.getCell(11).toString() /*Home Phone*/,
-	    				 nextRow.getCell(12).toString() /*Gender*/,
-	    				 nextRow.getCell(13).toString() /*primaryLangs*/,
-	    				 nextRow.getCell(14).toString() /*Secondary Languages*/, 
-	    				 Float.parseFloat(nextRow.getCell(15).toString()) /*GPA*/,
-	    				 nextRow.getCell(16).toString() /* Pace*/,
-	    				 schoolId,
-	    				 campusId,
-	    				 nextRow.getCell(19).toString() /*Profession*/, 
-	    				 themeDisplay.getUserId());
-	    		 
-	    		 if(Validator.isNotNull(student)){
-	    			 successImportedStudentCount++;
+	    		 boolean validRow = validateRow(nextRow);
+	    		 if(validRow){
+	    			 
+	    			 Student student = StudentLocalServiceUtil.getStudentByStudentCampusId(nextRow.getCell(3).toString());
+	    			 
+	    			 if(Validator.isNull(student)){
+		    		 student = StudentLocalServiceUtil.importStudent(
+		    				 nextRow.getCell(0).toString() /*First Name*/, 
+		    				 nextRow.getCell(1).toString() /*Middle Name*/, 
+		    				 nextRow.getCell(2).toString() /*Last Name*/, 
+		    				 nextRow.getCell(4).toString() /*Email Address*/,
+		    				 dob/*DOB*/,
+		    				 nextRow.getCell(3).toString() /*Student Id*/,
+		    				 nextRow.getCell(6).toString() /*Address*/, 
+		    				 nextRow.getCell(7).toString() /*City*/, 
+		    				 nextRow.getCell(8).toString() /*Zipcode*/,
+		    				 nextRow.getCell(9).toString() /*State*/, 
+		    				 nextRow.getCell(10).toString() /*Mobile Phone*/, 
+		    				 nextRow.getCell(11).toString() /*Home Phone*/,
+		    				 nextRow.getCell(12).toString() /*Gender*/,
+		    				 nextRow.getCell(13).toString() /*primaryLangs*/,
+		    				 nextRow.getCell(14).toString() /*Secondary Languages*/, 
+		    				 Float.parseFloat(nextRow.getCell(15).toString()) /*GPA*/,
+		    				 nextRow.getCell(16).toString() /* Pace*/,
+		    				 schoolId,
+		    				 campusId,
+		    				 nextRow.getCell(19).toString() /*Profession*/, 
+		    				 themeDisplay.getUserId());
+		    		 
+			    		 if(Validator.isNotNull(student)){
+			    			 successImportedStudentCount++;
+			    		 }else{
+			    			 unsuccessfullStudentList.add(nextRow.getCell(3).toString()+StringPool.COMMA+nextRow.getCell(4).toString());
+			    		 }
+	    			 }else{
+	    				 unsuccessfullStudentList.add(nextRow.getCell(3).toString()+StringPool.COMMA+nextRow.getCell(4).toString());
+	    			 }
 	    		 }else{
-	    			 unsuccesfulltStudentEmail += nextRow.getCell(3).toString();
+	    			 unsuccessfullStudentList.add(nextRow.getCell(3).toString()+StringPool.COMMA+nextRow.getCell(4).toString());
 	    		 }
 	    	 }
 	     }
@@ -147,9 +155,9 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 	     response.setRenderParameter("totalStudentCount", String.valueOf(totalStudentCount));
 	     response.setRenderParameter("successImportedStudentCount", String.valueOf(successImportedStudentCount));
 	     response.setRenderParameter("UnsuccessImportedStudentCount", String.valueOf(totalStudentCount-successImportedStudentCount));
-	     response.setRenderParameter("unsuccesfulltStudentEmail", unsuccesfulltStudentEmail);
 	     response.setRenderParameter("isImported",String.valueOf(true));
 	     SessionMessages.add(request, "student-import-success");
+	     request.setAttribute("unsuccessfullStudentList", unsuccessfullStudentList);
 	     response.setRenderParameter("mvcRenderCommandName", "/import_student");
 	}
 	
@@ -198,6 +206,52 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 			 return true;
 		 }
 	 }
+	
+	private boolean validateRow(Row row){
+		if(Validator.isNull(row.getCell(0).toString().trim())){
+			 return false;
+		 }else if(Validator.isNull(row.getCell(1).toString().trim())){
+			 return false;
+		 }else if(Validator.isNull(row.getCell(2).toString().trim())){
+			 return false;
+		 }else if(Validator.isNull(row.getCell(3).toString().trim())){
+			 return false;
+		 }else if(Validator.isNull(row.getCell(4).toString().trim())){
+			 return false;
+		 }else if(Validator.isNull(row.getCell(5).toString().trim())){
+			 return false;
+		 }else if(Validator.isNull(row.getCell(6).toString().trim())){
+			 return false;
+		 }else if(Validator.isNull(row.getCell(7).toString().trim())){
+			 return false;
+		 }else if(Validator.isNull(row.getCell(8).toString().trim())){
+			 return false;
+		 }else if(Validator.isNull(row.getCell(9).toString().trim())){
+			 return false;
+		 }else if(Validator.isNull(row.getCell(10).toString().trim())){
+			 return false;
+		 }else if(Validator.isNull(row.getCell(11).toString().trim())){
+			 return false;
+		 }else if(Validator.isNull(row.getCell(12).toString().trim())){
+			 return false;
+		 }else if(Validator.isNull(row.getCell(13).toString().trim())){
+			 return false;
+		 }else if(Validator.isNull(row.getCell(14).toString().trim())){
+			 return false;
+		 }else if(Validator.isNull(row.getCell(15).toString().trim())){
+			 return false;
+		 }else if(Validator.isNull(row.getCell(16).toString().trim())){
+			 return false;
+		 }else if(Validator.isNull(row.getCell(17).toString().trim())){
+			 return false;
+		 }else if(Validator.isNull(row.getCell(18).toString().trim())){
+			 return false;
+		 }else if(Validator.isNull(row.getCell(19).toString().trim())){
+			 return false;
+		 }else{
+			 return true;
+		 }
+	}
 	
 	 private long getSchoolId(String schoolName){
 		 long schoolId=0;

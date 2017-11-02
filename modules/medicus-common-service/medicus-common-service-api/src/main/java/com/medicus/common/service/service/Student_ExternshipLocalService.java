@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
+import com.medicus.common.service.exception.NoSuchStudent_ExternshipException;
 import com.medicus.common.service.model.Student_Externship;
 
 import java.io.Serializable;
@@ -128,6 +129,10 @@ public interface Student_ExternshipLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Student_Externship fetchStudent_Externship(long studentExternshipId);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Student_Externship getStudentExternship(long studentId)
+		throws NoSuchStudent_ExternshipException;
+
 	/**
 	* Returns the student_ externship with the primary key.
 	*
@@ -138,6 +143,12 @@ public interface Student_ExternshipLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Student_Externship getStudent_Externship(long studentExternshipId)
 		throws PortalException;
+
+	public Student_Externship updateStudentExternship(
+		Student_Externship studentExternship, long studentId, long employerId,
+		Date startDate, Date endDate, int noOfHoursPerWeek,
+		Date midPointReview, java.lang.String midPointReviewComment,
+		Date finalReview, java.lang.String finalReviewComment, long modifiedBy);
 
 	/**
 	* Updates the student_ externship in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

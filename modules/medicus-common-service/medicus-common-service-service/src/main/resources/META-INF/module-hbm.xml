@@ -98,7 +98,6 @@
 		<property name="resumeFileEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="profession" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="practices" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="agreementFileEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="hired" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="graduationDate" type="org.hibernate.type.TimestampType" />
 		<property name="activelySeekingEmployment" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />

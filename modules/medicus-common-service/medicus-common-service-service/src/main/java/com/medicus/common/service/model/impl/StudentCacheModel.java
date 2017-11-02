@@ -65,7 +65,7 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(67);
+		StringBundler sb = new StringBundler(65);
 
 		sb.append("{studentId=");
 		sb.append(studentId);
@@ -115,8 +115,6 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
 		sb.append(profession);
 		sb.append(", practices=");
 		sb.append(practices);
-		sb.append(", agreementFileEntryId=");
-		sb.append(agreementFileEntryId);
 		sb.append(", hired=");
 		sb.append(hired);
 		sb.append(", graduationDate=");
@@ -278,7 +276,6 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
 			studentImpl.setPractices(practices);
 		}
 
-		studentImpl.setAgreementFileEntryId(agreementFileEntryId);
 		studentImpl.setHired(hired);
 
 		if (graduationDate == Long.MIN_VALUE) {
@@ -345,8 +342,6 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
 		resumeFileEntryId = objectInput.readLong();
 		profession = objectInput.readUTF();
 		practices = objectInput.readUTF();
-
-		agreementFileEntryId = objectInput.readLong();
 
 		hired = objectInput.readBoolean();
 		graduationDate = objectInput.readLong();
@@ -497,8 +492,6 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
 			objectOutput.writeUTF(practices);
 		}
 
-		objectOutput.writeLong(agreementFileEntryId);
-
 		objectOutput.writeBoolean(hired);
 		objectOutput.writeLong(graduationDate);
 
@@ -537,7 +530,6 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
 	public long resumeFileEntryId;
 	public String profession;
 	public String practices;
-	public long agreementFileEntryId;
 	public boolean hired;
 	public long graduationDate;
 	public boolean activelySeekingEmployment;

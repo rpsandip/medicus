@@ -77,6 +77,11 @@ public class MedicusCommonLocalServiceUtil {
 		return getService().getDLFileURL(file);
 	}
 
+	public static java.lang.String getDLFileURL(
+		com.liferay.portal.kernel.repository.model.FileEntry file) {
+		return getService().getDLFileURL(file);
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*

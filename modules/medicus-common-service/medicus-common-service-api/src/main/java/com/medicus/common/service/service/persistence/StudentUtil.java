@@ -110,6 +110,65 @@ public class StudentUtil {
 	}
 
 	/**
+	* Returns the student where stundetCampusId = &#63; or throws a {@link NoSuchStudentException} if it could not be found.
+	*
+	* @param stundetCampusId the stundet campus ID
+	* @return the matching student
+	* @throws NoSuchStudentException if a matching student could not be found
+	*/
+	public static Student findBystudentCampusId(
+		java.lang.String stundetCampusId)
+		throws com.medicus.common.service.exception.NoSuchStudentException {
+		return getPersistence().findBystudentCampusId(stundetCampusId);
+	}
+
+	/**
+	* Returns the student where stundetCampusId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param stundetCampusId the stundet campus ID
+	* @return the matching student, or <code>null</code> if a matching student could not be found
+	*/
+	public static Student fetchBystudentCampusId(
+		java.lang.String stundetCampusId) {
+		return getPersistence().fetchBystudentCampusId(stundetCampusId);
+	}
+
+	/**
+	* Returns the student where stundetCampusId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param stundetCampusId the stundet campus ID
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the matching student, or <code>null</code> if a matching student could not be found
+	*/
+	public static Student fetchBystudentCampusId(
+		java.lang.String stundetCampusId, boolean retrieveFromCache) {
+		return getPersistence()
+				   .fetchBystudentCampusId(stundetCampusId, retrieveFromCache);
+	}
+
+	/**
+	* Removes the student where stundetCampusId = &#63; from the database.
+	*
+	* @param stundetCampusId the stundet campus ID
+	* @return the student that was removed
+	*/
+	public static Student removeBystudentCampusId(
+		java.lang.String stundetCampusId)
+		throws com.medicus.common.service.exception.NoSuchStudentException {
+		return getPersistence().removeBystudentCampusId(stundetCampusId);
+	}
+
+	/**
+	* Returns the number of students where stundetCampusId = &#63;.
+	*
+	* @param stundetCampusId the stundet campus ID
+	* @return the number of matching students
+	*/
+	public static int countBystudentCampusId(java.lang.String stundetCampusId) {
+		return getPersistence().countBystudentCampusId(stundetCampusId);
+	}
+
+	/**
 	* Caches the student in the entity cache if it is enabled.
 	*
 	* @param student the student

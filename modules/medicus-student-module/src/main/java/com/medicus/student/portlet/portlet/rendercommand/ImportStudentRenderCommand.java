@@ -35,8 +35,10 @@ public class ImportStudentRenderCommand implements MVCRenderCommand{
 			List<String> unsuccessfullStudentEmailList =  ListUtil.fromArray(unsuccessfullStudentEmail);
 			renderRequest.setAttribute("unsuccessfullStudentEmailList", unsuccessfullStudentEmailList);
 			renderRequest.setAttribute("isImported", isImported);
+			
+			List<String> unsuccessfullStudentList = (List<String>)renderRequest.getAttribute("unsuccessfullStudentList");
+			renderRequest.setAttribute("unsuccessfullStudentList", unsuccessfullStudentList);
 		}
 		return "/student/import_student.jsp";
 	}
-
 }

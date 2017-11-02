@@ -20,6 +20,7 @@ public class EmployerBean {
 	private String address1;
 	private String  address2;
 	private String city;
+	private String zipcode;
 	private String state;
 	private String country;
 	private String contactPersonName;
@@ -34,6 +35,7 @@ public class EmployerBean {
 		this.address1 = employer.getAddress1();
 		this.address2 = employer.getAddress2();
 		this.city = employer.getCity();
+		this.zipcode = employer.getZipcode();
 		this.state = employer.getState();
 		this.country = employer.getCountry();
 		this.contactPersonName = employer.getContactPersonName();
@@ -171,6 +173,14 @@ public class EmployerBean {
 
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
+	}
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
 	}
 	
 	

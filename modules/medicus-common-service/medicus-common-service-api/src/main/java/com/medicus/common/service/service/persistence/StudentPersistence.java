@@ -42,6 +42,51 @@ public interface StudentPersistence extends BasePersistence<Student> {
 	 */
 
 	/**
+	* Returns the student where stundetCampusId = &#63; or throws a {@link NoSuchStudentException} if it could not be found.
+	*
+	* @param stundetCampusId the stundet campus ID
+	* @return the matching student
+	* @throws NoSuchStudentException if a matching student could not be found
+	*/
+	public Student findBystudentCampusId(java.lang.String stundetCampusId)
+		throws NoSuchStudentException;
+
+	/**
+	* Returns the student where stundetCampusId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param stundetCampusId the stundet campus ID
+	* @return the matching student, or <code>null</code> if a matching student could not be found
+	*/
+	public Student fetchBystudentCampusId(java.lang.String stundetCampusId);
+
+	/**
+	* Returns the student where stundetCampusId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param stundetCampusId the stundet campus ID
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the matching student, or <code>null</code> if a matching student could not be found
+	*/
+	public Student fetchBystudentCampusId(java.lang.String stundetCampusId,
+		boolean retrieveFromCache);
+
+	/**
+	* Removes the student where stundetCampusId = &#63; from the database.
+	*
+	* @param stundetCampusId the stundet campus ID
+	* @return the student that was removed
+	*/
+	public Student removeBystudentCampusId(java.lang.String stundetCampusId)
+		throws NoSuchStudentException;
+
+	/**
+	* Returns the number of students where stundetCampusId = &#63;.
+	*
+	* @param stundetCampusId the stundet campus ID
+	* @return the number of matching students
+	*/
+	public int countBystudentCampusId(java.lang.String stundetCampusId);
+
+	/**
 	* Caches the student in the entity cache if it is enabled.
 	*
 	* @param student the student

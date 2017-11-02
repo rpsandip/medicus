@@ -81,7 +81,6 @@ public class StudentWrapper implements Student, ModelWrapper<Student> {
 		attributes.put("resumeFileEntryId", getResumeFileEntryId());
 		attributes.put("profession", getProfession());
 		attributes.put("practices", getPractices());
-		attributes.put("agreementFileEntryId", getAgreementFileEntryId());
 		attributes.put("hired", getHired());
 		attributes.put("graduationDate", getGraduationDate());
 		attributes.put("activelySeekingEmployment",
@@ -239,12 +238,6 @@ public class StudentWrapper implements Student, ModelWrapper<Student> {
 
 		if (practices != null) {
 			setPractices(practices);
-		}
-
-		Long agreementFileEntryId = (Long)attributes.get("agreementFileEntryId");
-
-		if (agreementFileEntryId != null) {
-			setAgreementFileEntryId(agreementFileEntryId);
 		}
 
 		Boolean hired = (Boolean)attributes.get("hired");
@@ -643,16 +636,6 @@ public class StudentWrapper implements Student, ModelWrapper<Student> {
 	}
 
 	/**
-	* Returns the agreement file entry ID of this student.
-	*
-	* @return the agreement file entry ID of this student
-	*/
-	@Override
-	public long getAgreementFileEntryId() {
-		return _student.getAgreementFileEntryId();
-	}
-
-	/**
 	* Returns the campus ID of this student.
 	*
 	* @return the campus ID of this student
@@ -755,16 +738,6 @@ public class StudentWrapper implements Student, ModelWrapper<Student> {
 	@Override
 	public void setAddress(java.lang.String address) {
 		_student.setAddress(address);
-	}
-
-	/**
-	* Sets the agreement file entry ID of this student.
-	*
-	* @param agreementFileEntryId the agreement file entry ID of this student
-	*/
-	@Override
-	public void setAgreementFileEntryId(long agreementFileEntryId) {
-		_student.setAgreementFileEntryId(agreementFileEntryId);
 	}
 
 	@Override

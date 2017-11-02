@@ -104,7 +104,6 @@
 		<column name="resumeFileEntryId" type="long" />
 		<column name="profession" type="String" />
 		<column name="practices" type="String" />
-		<column name="agreementFileEntryId" type="long" />
 		<column name="hired" type="boolean" />
 		<column name="graduationDate" type="Date" />
 		<column name="activelySeekingEmployment" type="boolean" />
@@ -114,6 +113,10 @@
 		<column name="createdBy" type="long"></column>
 		<column name="modifiedDate" type="Date"></column>
 		<column name="modifiedBy" type="long"></column>
+		
+		<finder return-type="Student" name="studentCampusId">
+			<finder-column name="stundetCampusId"></finder-column>
+		</finder>
 		
 	</entity>
 	
@@ -133,6 +136,9 @@
 		<column name="modifiedDate" type="Date"></column>
 		<column name="modifiedBy" type="long"></column>
 		
+		<finder return-type="Student_Externship" name="studentId">
+			<finder-column name="studentId"></finder-column>
+		</finder>
 	</entity>
 	
 	<entity name="Employer" local-service="true"  remote-service="false">

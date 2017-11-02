@@ -78,6 +78,12 @@ public class MedicusCommonLocalServiceWrapper
 		return _medicusCommonLocalService.getDLFileURL(file);
 	}
 
+	@Override
+	public java.lang.String getDLFileURL(
+		com.liferay.portal.kernel.repository.model.FileEntry file) {
+		return _medicusCommonLocalService.getDLFileURL(file);
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*

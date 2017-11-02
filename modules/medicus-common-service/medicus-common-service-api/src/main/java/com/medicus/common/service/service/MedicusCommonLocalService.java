@@ -76,6 +76,9 @@ public interface MedicusCommonLocalService extends BaseLocalService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getDLFileURL(DLFileEntry file);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.lang.String getDLFileURL(FileEntry file);
+
 	/**
 	* Returns the OSGi service identifier.
 	*

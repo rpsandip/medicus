@@ -187,5 +187,10 @@ public class MedicusCommonLocalServiceImpl
 	            + file.getTitle() + StringPool.FORWARD_SLASH + file.getUuid();
 	}
 	
+	public String getDLFileURL(FileEntry file) {
+	       return "/documents/" + file.getGroupId() + StringPool.FORWARD_SLASH + file.getFolderId() + StringPool.FORWARD_SLASH
+	            + file.getTitle() + StringPool.FORWARD_SLASH + file.getUuid();
+	}
+	
 
 }

@@ -19,6 +19,9 @@ import aQute.bnd.annotation.ProviderType;
 import java.util.Date;
 
 import com.liferay.counter.kernel.service.CounterLocalServiceUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.medicus.common.service.exception.NoSuchStudent_ExternshipException;
 import com.medicus.common.service.model.Student_Externship;
 import com.medicus.common.service.service.Student_ExternshipLocalServiceUtil;
 import com.medicus.common.service.service.base.Student_ExternshipLocalServiceBaseImpl;
@@ -40,6 +43,8 @@ import com.medicus.common.service.service.base.Student_ExternshipLocalServiceBas
 @ProviderType
 public class Student_ExternshipLocalServiceImpl
 	extends Student_ExternshipLocalServiceBaseImpl {
+	
+	Log _log = LogFactoryUtil.getLog(Student_ExternshipLocalServiceImpl.class.getName());
 	
 	/*
 	 * Add Student Externship detail
@@ -66,5 +71,30 @@ public class Student_ExternshipLocalServiceImpl
 		return studentExternship;
 	}
 	
+	public Student_Externship updateStudentExternship(Student_Externship studentExternship, long studentId, long employerId, Date startDate, Date endDate, int noOfHoursPerWeek,
+			Date midPointReview, String midPointReviewComment, Date finalReview, String finalReviewComment, long modifiedBy){
+			
+		    studentExternship.setEmployerId(employerId);
+			studentExternship.setStartDate(startDate);
+			studentExternship.setEndDate(endDate);
+			studentExternship.setNoOfHoursPerWeek(noOfHoursPerWeek);
+			studentExternship.setMidPointReview(midPointReview);
+			studentExternship.setMidPointReviewComment(midPointReviewComment);
+			studentExternship.setFinalReview(finalReview);
+			studentExternship.setFinalReviewComment(finalReviewComment);
+			studentExternship.setModifiedBy(modifiedBy); 
+			studentExternship.setModifiedDate(new Date());
+			 
+			 studentExternship = Student_ExternshipLocalServiceUtil.updateStudent_Externship(studentExternship);
+
+			 return studentExternship;
+	}
 	
+	/*
+	 * Get Student Externship detail
+	 * 
+	 */
+	public Student_Externship getStudentExternship(long studentId) throws NoSuchStudent_ExternshipException{
+		return student_ExternshipPersistence.findBystudentId(studentId);
+	}
 }

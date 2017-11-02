@@ -134,6 +134,13 @@ public class Student_ExternshipLocalServiceWrapper
 		return _student_ExternshipLocalService.fetchStudent_Externship(studentExternshipId);
 	}
 
+	@Override
+	public com.medicus.common.service.model.Student_Externship getStudentExternship(
+		long studentId)
+		throws com.medicus.common.service.exception.NoSuchStudent_ExternshipException {
+		return _student_ExternshipLocalService.getStudentExternship(studentId);
+	}
+
 	/**
 	* Returns the student_ externship with the primary key.
 	*
@@ -146,6 +153,20 @@ public class Student_ExternshipLocalServiceWrapper
 		long studentExternshipId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _student_ExternshipLocalService.getStudent_Externship(studentExternshipId);
+	}
+
+	@Override
+	public com.medicus.common.service.model.Student_Externship updateStudentExternship(
+		com.medicus.common.service.model.Student_Externship studentExternship,
+		long studentId, long employerId, java.util.Date startDate,
+		java.util.Date endDate, int noOfHoursPerWeek,
+		java.util.Date midPointReview, java.lang.String midPointReviewComment,
+		java.util.Date finalReview, java.lang.String finalReviewComment,
+		long modifiedBy) {
+		return _student_ExternshipLocalService.updateStudentExternship(studentExternship,
+			studentId, employerId, startDate, endDate, noOfHoursPerWeek,
+			midPointReview, midPointReviewComment, finalReview,
+			finalReviewComment, modifiedBy);
 	}
 
 	/**
