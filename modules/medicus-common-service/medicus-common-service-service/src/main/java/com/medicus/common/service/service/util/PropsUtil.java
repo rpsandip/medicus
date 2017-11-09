@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.configuration.Filter;
 import java.util.Properties;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @generated
  */
 @ProviderType

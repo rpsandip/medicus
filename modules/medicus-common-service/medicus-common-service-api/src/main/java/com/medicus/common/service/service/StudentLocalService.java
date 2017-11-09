@@ -16,15 +16,20 @@ package com.medicus.common.service.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.exportimport.kernel.lar.PortletDataContext;
+
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.model.PersistedModel;
 import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
+import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.service.PersistedModelLocalService;
 import com.liferay.portal.kernel.transaction.Isolation;
@@ -47,7 +52,7 @@ import java.util.Map;
  * credentials because this service can only be accessed from within the same
  * VM.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see StudentLocalServiceUtil
  * @see com.medicus.common.service.service.base.StudentLocalServiceBaseImpl
  * @see com.medicus.common.service.service.impl.StudentLocalServiceImpl
@@ -72,7 +77,18 @@ public interface StudentLocalService extends BaseLocalService,
 	public DynamicQuery dynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		PortletDataContext portletDataContext);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public JSONObject searchStudents(java.lang.String keyword,
+		java.lang.String zipcode, java.lang.String gender,
+		java.lang.String profession, List<java.lang.String> languages,
+		long schoolId, long campusId, int start, int end,
+		SearchContext searchContext);
 
 	/**
 	* @throws PortalException
@@ -106,8 +122,8 @@ public interface StudentLocalService extends BaseLocalService,
 		java.lang.String pace, float gpa, java.lang.String profession,
 		java.lang.String practices, boolean hired, Date graduationDate,
 		boolean activelySeekingEmployment, boolean haveExternship,
-		long employerId, java.lang.String employerZipCode,
-		java.lang.String employerWebSiteLink, Date externshipStartDate,
+		long employerId, long partnerId, java.lang.String partnerZipCode,
+		java.lang.String partnerWebSiteLink, Date externshipStartDate,
 		Date externshipEndDate, int noOfHoursPerWeek, Date midPointReviewDate,
 		java.lang.String midPointReviewComment, Date finalReviewDate,
 		java.lang.String finalPointReviewComment, File profileImage,
@@ -147,6 +163,17 @@ public interface StudentLocalService extends BaseLocalService,
 	public Student fetchStudent(long studentId);
 
 	/**
+	* Returns the student with the matching UUID and company.
+	*
+	* @param uuid the student's UUID
+	* @param companyId the primary key of the company
+	* @return the matching student, or <code>null</code> if a matching student could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Student fetchStudentByUuidAndCompanyId(java.lang.String uuid,
+		long companyId);
+
+	/**
 	* Returns the student with the primary key.
 	*
 	* @param studentId the primary key of the student
@@ -159,12 +186,24 @@ public interface StudentLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Student getStudentByStudentCampusId(java.lang.String studentCampusId);
 
+	/**
+	* Returns the student with the matching UUID and company.
+	*
+	* @param uuid the student's UUID
+	* @param companyId the primary key of the company
+	* @return the matching student
+	* @throws PortalException if a matching student could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Student getStudentByUuidAndCompanyId(java.lang.String uuid,
+		long companyId) throws PortalException;
+
 	public Student importStudent(java.lang.String firstName,
 		java.lang.String middleName, java.lang.String lastName,
 		java.lang.String emailAddress, Date dob,
 		java.lang.String studentCampusId, java.lang.String address,
-		java.lang.String city, java.lang.String state,
-		java.lang.String zipcode, java.lang.String mobilePhone,
+		java.lang.String city, java.lang.String zipcode,
+		java.lang.String state, java.lang.String mobilePhone,
 		java.lang.String homePhone, java.lang.String gender,
 		java.lang.String primaryLangs, java.lang.String secondaryLangs,
 		float gpa, java.lang.String pace, long schoolId, long campusId,
@@ -190,8 +229,8 @@ public interface StudentLocalService extends BaseLocalService,
 		java.lang.String pace, float gpa, java.lang.String profession,
 		java.lang.String practices, boolean hired, Date graduationDate,
 		boolean activelySeekingEmployment, boolean haveExternship,
-		long employerId, java.lang.String employerZipCode,
-		java.lang.String employerWebSiteLink, Date externshipStartDate,
+		long employerId, long partnerId, java.lang.String partnerZipCode,
+		java.lang.String partnerWebSiteLink, Date externshipStartDate,
 		Date externshipEndDate, int noOfHoursPerWeek, Date midPointReviewDate,
 		java.lang.String midPointReviewComment, Date finalReviewDate,
 		java.lang.String finalPointReviewComment, File profileImage,
@@ -268,6 +307,12 @@ public interface StudentLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Student> getStudents(int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Student> searchStudents(java.lang.String keyword,
+		java.lang.String zipcode, java.lang.String gender,
+		java.lang.String profession, List<java.lang.String> languages,
+		long schoolId, long campusId, int start, int end);
 
 	/**
 	* Returns the number of rows matching the dynamic query.

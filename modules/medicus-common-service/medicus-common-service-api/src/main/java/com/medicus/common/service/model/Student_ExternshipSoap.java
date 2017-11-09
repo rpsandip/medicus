@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * This class is used by SOAP remote services.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @generated
  */
 @ProviderType
@@ -35,6 +35,7 @@ public class Student_ExternshipSoap implements Serializable {
 
 		soapModel.setStudentExternshipId(model.getStudentExternshipId());
 		soapModel.setStudentId(model.getStudentId());
+		soapModel.setPartnerId(model.getPartnerId());
 		soapModel.setEmployerId(model.getEmployerId());
 		soapModel.setStartDate(model.getStartDate());
 		soapModel.setEndDate(model.getEndDate());
@@ -116,6 +117,14 @@ public class Student_ExternshipSoap implements Serializable {
 
 	public void setStudentId(long studentId) {
 		_studentId = studentId;
+	}
+
+	public long getPartnerId() {
+		return _partnerId;
+	}
+
+	public void setPartnerId(long partnerId) {
+		_partnerId = partnerId;
 	}
 
 	public long getEmployerId() {
@@ -216,6 +225,7 @@ public class Student_ExternshipSoap implements Serializable {
 
 	private long _studentExternshipId;
 	private long _studentId;
+	private long _partnerId;
 	private long _employerId;
 	private Date _startDate;
 	private Date _endDate;

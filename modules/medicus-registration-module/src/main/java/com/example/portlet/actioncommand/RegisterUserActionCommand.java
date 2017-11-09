@@ -61,7 +61,7 @@ public class RegisterUserActionCommand extends BaseMVCActionCommand{
 			User user = MedicusCommonLocalServiceUtil.isUserExist(emailAddress);
 			if(Validator.isNull(user)){
 				try {
-					user = RegistrationLocalServiceUtil.registerEmployer(firstName,lastName, emailAddress, password1, password2,
+					user = RegistrationLocalServiceUtil.registerPartner(firstName,lastName, emailAddress, password1, password2,
 							address1, address2, city, zipcode, state, country, contactPersonName, contactPersonEmail,
 							contactPersonPhoneNumber, websiteLink, themeDisplay.getUserId(), themeDisplay.getScopeGroupId());
 					SessionMessages.add(actionRequest, "user-register-success");

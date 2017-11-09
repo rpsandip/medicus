@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link MedicusCommonLocalService}.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see MedicusCommonLocalService
  * @generated
  */
@@ -73,6 +73,12 @@ public class MedicusCommonLocalServiceWrapper
 	}
 
 	@Override
+	public java.io.File getStudentResumeContent(
+		com.medicus.common.service.model.Student student) {
+		return _medicusCommonLocalService.getStudentResumeContent(student);
+	}
+
+	@Override
 	public java.lang.String getDLFileURL(
 		com.liferay.document.library.kernel.model.DLFileEntry file) {
 		return _medicusCommonLocalService.getDLFileURL(file);
@@ -95,18 +101,13 @@ public class MedicusCommonLocalServiceWrapper
 	}
 
 	@Override
-	public java.util.List<com.medicus.common.service.model.Employer> getEmployerList() {
-		return _medicusCommonLocalService.getEmployerList();
+	public java.util.List<com.medicus.common.service.model.Partner> getPartnerList() {
+		return _medicusCommonLocalService.getPartnerList();
 	}
 
 	@Override
 	public java.util.List<java.lang.String> getUSStateList() {
 		return _medicusCommonLocalService.getUSStateList();
-	}
-
-	@Override
-	public long getEmployerOrgRoleId() {
-		return _medicusCommonLocalService.getEmployerOrgRoleId();
 	}
 
 	@Override
@@ -122,6 +123,11 @@ public class MedicusCommonLocalServiceWrapper
 	@Override
 	public long getOrganizationGroupIdFromOrgId(long orgId) {
 		return _medicusCommonLocalService.getOrganizationGroupIdFromOrgId(orgId);
+	}
+
+	@Override
+	public long getPartnerOrgRoleId() {
+		return _medicusCommonLocalService.getPartnerOrgRoleId();
 	}
 
 	@Override

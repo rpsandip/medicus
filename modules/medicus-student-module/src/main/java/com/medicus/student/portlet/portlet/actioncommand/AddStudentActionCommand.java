@@ -76,9 +76,9 @@ public class AddStudentActionCommand extends BaseMVCActionCommand{
 			String profession = ParamUtil.getString(actionRequest, "profession");
 			String practices = ParamUtil.getString(actionRequest, "practices");
 			boolean haveExternship = ParamUtil.getBoolean(actionRequest, "haveExternship");
-			long employerId = ParamUtil.getLong(actionRequest, "employerName");
-			String employerZipCode = ParamUtil.getString(actionRequest, "employerZipCode");
-			String employerWebSiteLink = ParamUtil.getString(actionRequest, "employerWebSiteLink");
+			long partnerId = ParamUtil.getLong(actionRequest, "partnerName");
+			String partnerZipCode = ParamUtil.getString(actionRequest, "partnerZipCode");
+			String partnerWebSiteLink = ParamUtil.getString(actionRequest, "partnerWebSiteLink");
 			Date externshipStartDate = null;
 			Date externshipEndDate = null;
 			int noOfHoursPerWeek = ParamUtil.getInteger(actionRequest, "noOfHoursPerWeek");
@@ -89,31 +89,32 @@ public class AddStudentActionCommand extends BaseMVCActionCommand{
 			boolean isHired = ParamUtil.getBoolean(actionRequest, "hired");
 			Date graduationDate = null;
 			boolean activelySeekingEmployment = ParamUtil.getBoolean(actionRequest, "activelySeekingEmployment");
-					
+			long employerId = ParamUtil.getLong(actionRequest, "employer");		
+			
 			try {
 				externshipStartDate = df.parse(ParamUtil.getString(actionRequest, "externshipStartDate"));
 			} catch (ParseException e) {
-				_log.error(e);
+				_log.error(e.getMessage());
 			}
 			try {
 				externshipEndDate = df.parse(ParamUtil.getString(actionRequest, "externshipEndDate"));
 			} catch (ParseException e) {
-				_log.error(e);
+				_log.error(e.getMessage());
 			}	
 			try {
 				midPointReviewDate = df.parse(ParamUtil.getString(actionRequest, "midPointReviewDate"));
 			} catch (ParseException e) {
-				_log.error(e);
+				_log.error(e.getMessage());
 			}	
 			try {
 				finalReviewDate = df.parse(ParamUtil.getString(actionRequest, "finalReviewDate"));
 			} catch (ParseException e) {
-				_log.error(e);
+				_log.error(e.getMessage());
 			}	
 			try {
 				graduationDate = df.parse(ParamUtil.getString(actionRequest, "graduationDate"));
 			} catch (ParseException e) {
-				_log.error(e);
+				_log.error(e.getMessage());
 			}	
 					
 			
@@ -167,8 +168,8 @@ public class AddStudentActionCommand extends BaseMVCActionCommand{
 				if(Validator.isNull(student) && Validator.isNotNull(studentCampusId)){
 					 student = StudentLocalServiceUtil.addStudent(schoolId, campusId, studentCampusId, firstName, middleName,lastName,
 							emailAddress, dob, gender, contactNo, homePhoneNumber,primaryLanguage, secondaryLanugage, address, city,zipcode, state, pace, gpa,profession,
-							practices, isHired, graduationDate, activelySeekingEmployment, haveExternship, employerId,
-							employerZipCode, employerWebSiteLink, externshipStartDate, externshipEndDate, 
+							practices, isHired, graduationDate, activelySeekingEmployment, haveExternship, employerId,partnerId,
+							partnerZipCode, partnerWebSiteLink, externshipStartDate, externshipEndDate, 
 							noOfHoursPerWeek, midPointReviewDate, midPointReviewComment, finalReviewDate,
 							finalPointReviewComment, profilePic, profilePicFileName,resume, resumeFileName,agreementsFileMap,
 							othersFileMap, themeDisplay.getUserId());
@@ -189,8 +190,8 @@ public class AddStudentActionCommand extends BaseMVCActionCommand{
 					try {
 						 student = StudentLocalServiceUtil.updateStudent(studentId, schoolId, campusId, studentCampusId, firstName, middleName,lastName,
 								emailAddress, dob, gender, contactNo, homePhoneNumber,primaryLanguage, secondaryLanugage, address, city,zipcode, state, pace, gpa,profession,
-								practices, isHired, graduationDate, activelySeekingEmployment, haveExternship, employerId,
-								employerZipCode, employerWebSiteLink, externshipStartDate, externshipEndDate, 
+								practices, isHired, graduationDate, activelySeekingEmployment, haveExternship, employerId,partnerId,
+								partnerZipCode, partnerWebSiteLink, externshipStartDate, externshipEndDate, 
 								noOfHoursPerWeek, midPointReviewDate, midPointReviewComment, finalReviewDate,
 								finalPointReviewComment, profilePic, profilePicFileName,resume, resumeFileName,agreementsFileMap,
 								othersFileMap, themeDisplay.getUserId());

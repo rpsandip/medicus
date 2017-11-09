@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link RegistrationLocalService}.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see RegistrationLocalService
  * @generated
  */
@@ -46,7 +46,7 @@ public class RegistrationLocalServiceWrapper implements RegistrationLocalService
 	}
 
 	@Override
-	public com.liferay.portal.kernel.model.User registerEmployer(
+	public com.liferay.portal.kernel.model.User registerPartner(
 		java.lang.String fName, java.lang.String lastName,
 		java.lang.String emailAddress, java.lang.String password1,
 		java.lang.String password2, java.lang.String address1,
@@ -57,7 +57,7 @@ public class RegistrationLocalServiceWrapper implements RegistrationLocalService
 		java.lang.String contactPersonPhoneNumber,
 		java.lang.String websiteLink, long creatorUserId, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _registrationLocalService.registerEmployer(fName, lastName,
+		return _registrationLocalService.registerPartner(fName, lastName,
 			emailAddress, password1, password2, address1, address2, city,
 			zipcode, state, country, contactPersonName, contactPersonEmail,
 			contactPersonPhoneNumber, websiteLink, creatorUserId, groupId);

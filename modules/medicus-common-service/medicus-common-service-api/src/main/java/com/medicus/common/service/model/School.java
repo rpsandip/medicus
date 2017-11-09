@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.util.Accessor;
 /**
  * The extended model interface for the School service. Represents a row in the &quot;Medicus_School&quot; database table, with each column mapped to a property of this class.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see SchoolModel
  * @see com.medicus.common.service.model.impl.SchoolImpl
  * @see com.medicus.common.service.model.impl.SchoolModelImpl

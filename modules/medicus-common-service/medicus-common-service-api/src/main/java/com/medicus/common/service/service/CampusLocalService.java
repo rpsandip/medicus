@@ -45,7 +45,7 @@ import java.util.List;
  * credentials because this service can only be accessed from within the same
  * VM.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see CampusLocalServiceUtil
  * @see com.medicus.common.service.service.base.CampusLocalServiceBaseImpl
  * @see com.medicus.common.service.service.impl.CampusLocalServiceImpl

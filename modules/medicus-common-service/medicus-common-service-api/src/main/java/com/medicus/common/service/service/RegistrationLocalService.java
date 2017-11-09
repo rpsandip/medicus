@@ -29,7 +29,7 @@ import com.liferay.portal.kernel.transaction.Transactional;
  * credentials because this service can only be accessed from within the same
  * VM.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see RegistrationLocalServiceUtil
  * @see com.medicus.common.service.service.base.RegistrationLocalServiceBaseImpl
  * @see com.medicus.common.service.service.impl.RegistrationLocalServiceImpl
@@ -50,7 +50,7 @@ public interface RegistrationLocalService extends BaseLocalService {
 		long roleId, long creatorUserId, long groupId)
 		throws PortalException;
 
-	public User registerEmployer(java.lang.String fName,
+	public User registerPartner(java.lang.String fName,
 		java.lang.String lastName, java.lang.String emailAddress,
 		java.lang.String password1, java.lang.String password2,
 		java.lang.String address1, java.lang.String address2,

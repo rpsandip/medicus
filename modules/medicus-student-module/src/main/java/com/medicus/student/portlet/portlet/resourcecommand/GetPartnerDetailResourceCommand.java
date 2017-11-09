@@ -15,31 +15,31 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCResourceCommand;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.medicus.common.service.model.Employer;
-import com.medicus.common.service.service.EmployerLocalServiceUtil;
+import com.medicus.common.service.model.Partner;
+import com.medicus.common.service.service.PartnerLocalServiceUtil;
 import com.medicus.student.portlet.portlet.StudentPortletConstant;
 
 @Component(
 	    property = {
 	    	"javax.portlet.name=" + StudentPortletConstant.PORTLET_ID,
-	        "mvc.command.name=/getEmployerDetail"
+	        "mvc.command.name=/getPartnerDetail"
 	    },
 	    service = MVCResourceCommand.class
 	)
-public class GetEmployerDetailResourceCommand implements MVCResourceCommand{
+public class GetPartnerDetailResourceCommand implements MVCResourceCommand{
 
-	Log _log = LogFactoryUtil.getLog(GetEmployerDetailResourceCommand.class.getName());
+	Log _log = LogFactoryUtil.getLog(GetPartnerDetailResourceCommand.class.getName());
 	
 	@Override
 	public boolean serveResource(ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 			throws PortletException {
-		long employerId = ParamUtil.getLong(resourceRequest, "employerId");
+		long partnerId = ParamUtil.getLong(resourceRequest, "partnerId");
 		JSONObject responseObj = JSONFactoryUtil.createJSONObject();
-		if(employerId>0){
+		if(partnerId>0){
 		try {
-			Employer employer = EmployerLocalServiceUtil.getEmployer(employerId);
-			responseObj.put("zipcode", employer.getZipcode());
-			responseObj.put("websitelink", employer.getWebsiteLink());
+			Partner partner = PartnerLocalServiceUtil.getPartner(partnerId);
+			responseObj.put("zipcode", partner.getZipcode());
+			responseObj.put("websitelink", partner.getWebsiteLink());
 		} catch (PortalException e) {
 			
 		}

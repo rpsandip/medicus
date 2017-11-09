@@ -16,6 +16,12 @@ package com.medicus.common.service.service.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
+import java.util.Date;
+
+import com.liferay.counter.kernel.service.CounterLocalServiceUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.medicus.common.service.model.Employer;
+import com.medicus.common.service.service.EmployerLocalServiceUtil;
 import com.medicus.common.service.service.base.EmployerLocalServiceBaseImpl;
 
 /**
@@ -35,8 +41,66 @@ import com.medicus.common.service.service.base.EmployerLocalServiceBaseImpl;
 @ProviderType
 public class EmployerLocalServiceImpl extends EmployerLocalServiceBaseImpl {
 	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Always use {@link com.medicus.common.service.service.EmployerLocalServiceUtil} to access the employer local service.
+	 * Add Employer Detail
 	 */
+	public Employer addEmployer(String firstName, String lastName, String emailAddress,String address1, String address2, 
+			String city, String zipcode, String state, String country, String contactPersonName,
+			String contactPersonEmail, String contactPersonPhoneNumber, String websiteLink,long creatorUserId){
+		
+		Employer employer = EmployerLocalServiceUtil.createEmployer(CounterLocalServiceUtil.increment());
+		employer.setFirstName(firstName);
+		employer.setLastName(lastName);
+		employer.setEmailAddress(emailAddress);
+		employer.setAddress1(address1);
+		employer.setAddress2(address2);
+		employer.setCity(city);
+		employer.setZipcode(zipcode);
+		employer.setState(state);
+		employer.setCountry(country);
+		employer.setContactPersonEmail(contactPersonEmail);
+		employer.setContactPersonName(contactPersonName);
+		employer.setContactPersonPhoneNumber(contactPersonPhoneNumber);
+		employer.setWebsiteLink(websiteLink);
+		
+		employer.setCreatedBy(creatorUserId);
+		employer.setCreateDate(new Date());
+		employer.setModifiedBy(creatorUserId);
+		employer.setModifiedDate(new Date());
+		
+		employer = EmployerLocalServiceUtil.addEmployer(employer);
+		
+		return employer;
+	}
+	
+	/*
+	 * Update Employer Detail
+	 */
+	public Employer editEmployer(long employerId, String firstName, String lastName, String emailAddress,String address1, String address2, 
+			String city, String zipcode, String state, String country, String contactPersonName,
+			String contactPersonEmail, String contactPersonPhoneNumber, String websiteLink,long modifiedBy) throws PortalException{
+		
+		Employer employer = EmployerLocalServiceUtil.getEmployer(employerId);
+		
+		employer.setFirstName(firstName);
+		employer.setLastName(lastName);
+		employer.setEmailAddress(emailAddress);
+		employer.setAddress1(address1);
+		employer.setAddress2(address2);
+		employer.setCity(city);
+		employer.setZipcode(zipcode);
+		employer.setState(state);
+		employer.setCountry(country);
+		employer.setContactPersonEmail(contactPersonEmail);
+		employer.setContactPersonName(contactPersonName);
+		employer.setContactPersonPhoneNumber(contactPersonPhoneNumber);
+		employer.setWebsiteLink(websiteLink);
+		
+		employer.setModifiedBy(modifiedBy);
+		employer.setModifiedDate(new Date());
+	
+		employer = EmployerLocalServiceUtil.updateEmployer(employer);
+		
+		return employer;
+	}
+	
 }

@@ -33,7 +33,7 @@ import java.util.Date;
 /**
  * The cache model class for representing Student_Externship in entity cache.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see Student_Externship
  * @generated
  */
@@ -66,12 +66,14 @@ public class Student_ExternshipCacheModel implements CacheModel<Student_Externsh
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("{studentExternshipId=");
 		sb.append(studentExternshipId);
 		sb.append(", studentId=");
 		sb.append(studentId);
+		sb.append(", partnerId=");
+		sb.append(partnerId);
 		sb.append(", employerId=");
 		sb.append(employerId);
 		sb.append(", startDate=");
@@ -107,6 +109,7 @@ public class Student_ExternshipCacheModel implements CacheModel<Student_Externsh
 
 		student_ExternshipImpl.setStudentExternshipId(studentExternshipId);
 		student_ExternshipImpl.setStudentId(studentId);
+		student_ExternshipImpl.setPartnerId(partnerId);
 		student_ExternshipImpl.setEmployerId(employerId);
 
 		if (startDate == Long.MIN_VALUE) {
@@ -182,6 +185,8 @@ public class Student_ExternshipCacheModel implements CacheModel<Student_Externsh
 
 		studentId = objectInput.readLong();
 
+		partnerId = objectInput.readLong();
+
 		employerId = objectInput.readLong();
 		startDate = objectInput.readLong();
 		endDate = objectInput.readLong();
@@ -205,6 +210,8 @@ public class Student_ExternshipCacheModel implements CacheModel<Student_Externsh
 		objectOutput.writeLong(studentExternshipId);
 
 		objectOutput.writeLong(studentId);
+
+		objectOutput.writeLong(partnerId);
 
 		objectOutput.writeLong(employerId);
 		objectOutput.writeLong(startDate);
@@ -239,6 +246,7 @@ public class Student_ExternshipCacheModel implements CacheModel<Student_Externsh
 
 	public long studentExternshipId;
 	public long studentId;
+	public long partnerId;
 	public long employerId;
 	public long startDate;
 	public long endDate;

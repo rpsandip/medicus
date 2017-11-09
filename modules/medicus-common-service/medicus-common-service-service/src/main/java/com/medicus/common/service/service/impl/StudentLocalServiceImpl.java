@@ -17,24 +17,48 @@ package com.medicus.common.service.service.impl;
 import aQute.bnd.annotation.ProviderType;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
+import java.util.Map.Entry;import javax.sound.sampled.Port;
 
 import com.liferay.document.library.kernel.exception.DuplicateFileEntryException;
 import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.service.DLAppServiceUtil;
 import com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil;
+import com.liferay.portal.kernel.dao.orm.Criterion;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Order;
+import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
+import com.liferay.portal.kernel.search.BooleanClauseOccur;
+import com.liferay.portal.kernel.search.BooleanQuery;
+import com.liferay.portal.kernel.search.BooleanQueryFactoryUtil;
+import com.liferay.portal.kernel.search.Document;
+import com.liferay.portal.kernel.search.Field;
+import com.liferay.portal.kernel.search.Hits;
+import com.liferay.portal.kernel.search.IndexSearcherHelperUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchContext;
+import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.search.SortFactoryUtil;
+import com.liferay.portal.kernel.search.generic.BooleanQueryImpl;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.upload.FileItem;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
+import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.medicus.common.service.exception.NoSuchStudentException;
@@ -44,6 +68,7 @@ import com.medicus.common.service.service.MedicusCommonLocalServiceUtil;
 import com.medicus.common.service.service.StudentLocalServiceUtil;
 import com.medicus.common.service.service.Student_ExternshipLocalServiceUtil;
 import com.medicus.common.service.service.base.StudentLocalServiceBaseImpl;
+import com.medicus.common.service.util.MedicusConstant;
 
 /**
  * The implementation of the student local service.
@@ -70,7 +95,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 	public Student addStudent(long schoolId, long campusId, String studentCampusId, String firstName, String middleName,String lastName, String emailAddress,
 			Date dob, String gender, String contactNumber, String homePhoneNumber,String primaryLang, String secondaryLangs, String address, String city, String zipcode, String state, String pace,
 			float gpa, String profession, String practices, boolean hired, Date graduationDate, boolean activelySeekingEmployment, boolean haveExternship,
-			long employerId, String employerZipCode, String employerWebSiteLink,Date externshipStartDate, Date externshipEndDate, int noOfHoursPerWeek,
+			long employerId, long partnerId, String partnerZipCode, String partnerWebSiteLink,Date externshipStartDate, Date externshipEndDate, int noOfHoursPerWeek,
 			Date midPointReviewDate,String midPointReviewComment,Date finalReviewDate, String finalPointReviewComment,
 			File profileImage, String profileImageFileName,File resume, String resumeFileName, Map<String, File> agreementFileMap, Map<String, File> othersFileMap,long createdBy ){
 		
@@ -105,7 +130,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 		student.setGraduationDate(graduationDate);
 		student.setActivelySeekingEmployment(activelySeekingEmployment);
 		student.setHaveExternship(haveExternship);
-		
+		student.setCompanyId(PortalUtil.getDefaultCompanyId());
 		student.setCreatedBy(createdBy);
 		student.setModifiedBy(createdBy);
 		student.setCreateDate(new Date());
@@ -115,7 +140,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 		
 		if(haveExternship){
 			// Add Externship Detail
-			Student_ExternshipLocalServiceUtil.addStudentExternship(student.getStudentId(), employerId, externshipStartDate, externshipEndDate,
+			Student_ExternshipLocalServiceUtil.addStudentExternship(student.getStudentId(), partnerId, employerId,externshipStartDate, externshipEndDate,
 				noOfHoursPerWeek, midPointReviewDate, midPointReviewComment, finalReviewDate, finalPointReviewComment, createdBy);
 		}
 		// Get Global groupId and Student Id folder
@@ -142,7 +167,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 					FileEntry fileEntry = DLAppServiceUtil.addFileEntry(globalGroupId, studentIdFolder.getFolderId(),  resumeFileName, MimeTypesUtil.getContentType(resume),  resumeFileName, StringPool.BLANK , StringPool.BLANK, resume, serviceContext);
 					student.setResumeFileEntryId(fileEntry.getFileEntryId());
 				  }catch(PortalException e){
-				 	 _log.error(e);
+				 	 _log.error(e.getMessage());
 				  } 
 			}
 			
@@ -153,7 +178,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 					try{
 						FileEntry fileEntry = DLAppServiceUtil.addFileEntry(globalGroupId, agreementsFolder.getFolderId(),  fileDetail.getKey(), MimeTypesUtil.getContentType(fileDetail.getValue()),  fileDetail.getKey(), StringPool.BLANK , StringPool.BLANK, fileDetail.getValue(), serviceContext);
 					  }catch(PortalException e){
-					 	 _log.error(e);
+					 	 _log.error(e.getMessage());
 					  }
 				}
 			} 
@@ -166,7 +191,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 					try{
 						FileEntry fileEntry = DLAppServiceUtil.addFileEntry(globalGroupId, otherDocumentsFolder.getFolderId(),  fileDetail.getKey(), MimeTypesUtil.getContentType(fileDetail.getValue()),  fileDetail.getKey(), StringPool.BLANK , StringPool.BLANK, fileDetail.getValue(), serviceContext);
 					  }catch(PortalException e){
-					 	 _log.error(e);
+					 	 _log.error(e.getMessage());
 					  }
 				}
 			}
@@ -174,6 +199,16 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 			// Update student records
 			student = StudentLocalServiceUtil.updateStudent(student);
 		}
+		
+		// Index Student detail
+		Indexer<Student> studentIndexer = IndexerRegistryUtil.getIndexer(Student.class);
+		try {
+			studentIndexer.reindex(student);
+			_log.info("Student Index created ->" + student.getStudentId());
+		} catch (SearchException e) {
+			_log.error("Erro while index student -> "+ student.getStudentId() + " MSG:: " + e.getMessage());
+		}
+
 	
 	  }
 		
@@ -186,7 +221,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 	public Student updateStudent(long studentId, long schoolId, long campusId, String studentCampusId, String firstName, String middleName,String lastName, String emailAddress,
 			Date dob, String gender, String contactNumber, String homePhoneNumber,String primaryLang, String secondaryLangs, String address, String city, String zipcode, String state, String pace,
 			float gpa, String profession, String practices, boolean hired, Date graduationDate, boolean activelySeekingEmployment, boolean haveExternship,
-			long employerId, String employerZipCode, String employerWebSiteLink,Date externshipStartDate, Date externshipEndDate, int noOfHoursPerWeek,
+			long employerId,long partnerId, String partnerZipCode, String partnerWebSiteLink,Date externshipStartDate, Date externshipEndDate, int noOfHoursPerWeek,
 			Date midPointReviewDate,String midPointReviewComment,Date finalReviewDate, String finalPointReviewComment,
 			File profileImage, String profileImageFileName,File resume, String resumeFileName,Map<String, File> agreementFileMap, Map<String, File> othersFileMap,long modifiedBy) throws PortalException{
 		
@@ -236,7 +271,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 			
 			if(haveExternship && Validator.isNotNull(studentExternship)){
 				// Update Existing Student Externship
-				Student_ExternshipLocalServiceUtil.updateStudentExternship(studentExternship,student.getStudentId(), employerId, externshipStartDate, externshipEndDate,
+				Student_ExternshipLocalServiceUtil.updateStudentExternship(studentExternship,student.getStudentId(), partnerId, externshipStartDate, externshipEndDate,
 					noOfHoursPerWeek, midPointReviewDate, midPointReviewComment, finalReviewDate, finalPointReviewComment, modifiedBy);
 			}else if(!haveExternship && Validator.isNotNull(studentExternship)) {
 				// Delete Expternship
@@ -271,7 +306,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 				}
 			}else if(haveExternship && Validator.isNull(studentExternship)){
 				// Add new Externship Detail
-				Student_ExternshipLocalServiceUtil.addStudentExternship(student.getStudentId(), employerId, externshipStartDate, externshipEndDate,
+				Student_ExternshipLocalServiceUtil.addStudentExternship(student.getStudentId(), partnerId, employerId,externshipStartDate, externshipEndDate,
 					noOfHoursPerWeek, midPointReviewDate, midPointReviewComment, finalReviewDate, finalPointReviewComment, modifiedBy);
 			}
 			
@@ -357,6 +392,17 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 			
 			// Update student records
 			student = StudentLocalServiceUtil.updateStudent(student);
+			
+			// Update reindex
+			
+			// Index Student detail
+			Indexer<Student> studentIndexer = IndexerRegistryUtil.getIndexer(Student.class);
+			try {
+				studentIndexer.reindex(student);
+				_log.info("Student Index updated ->" + student.getStudentId());
+			} catch (SearchException e) {
+				_log.error("Erro while update index student -> "+ student.getStudentId() + " MSG:: " + e.getMessage());
+			}
 	   }
 		return student;
 	}
@@ -365,7 +411,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 	 * Create student while import it. While import we have limited information compare to UI
 	 */
 	public Student importStudent(String firstName, String middleName, String lastName, String emailAddress, Date dob,
-			String studentCampusId, String address, String city, String state, String zipcode, String mobilePhone,
+			String studentCampusId, String address, String city, String zipcode, String state,String mobilePhone,
 			String homePhone, String gender, String primaryLangs, String secondaryLangs, float gpa, String pace, long schoolId, long campusId, String profession,long createdBy){
 		
 		// Add student record
@@ -398,14 +444,24 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 		
 		student = StudentLocalServiceUtil.addStudent(student);
 		
+		// Index Student detail
+		Indexer<Student> studentIndexer = IndexerRegistryUtil.getIndexer(Student.class);
+		try {
+			studentIndexer.reindex(student);
+			_log.info("Student Index deleted ->" + student.getStudentId());
+		} catch (SearchException e) {
+			_log.error("Erro while index student -> "+ student.getStudentId() + " MSG:: " + e.getMessage());
+		}
+		
 		return student;
 	}
 	
 	
 	public boolean deleteStudentDetail(long studentId) throws PortalException{
 		boolean isDeleted = false;
+		Student student = null;
 		if(studentId>0){
-			Student student = StudentLocalServiceUtil.getStudent(studentId);
+			student = StudentLocalServiceUtil.getStudent(studentId);
 			
 			// Delete student documents
 			long globalGroupId = MedicusCommonLocalServiceUtil.getGlobalGroupId();
@@ -429,6 +485,15 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 			 
 			isDeleted = true;
 		 }	
+		 if(Validator.isNotNull(student) && isDeleted){
+			// Index Student detail
+				Indexer<Student> studentIndexer = IndexerRegistryUtil.getIndexer(Student.class);
+				try {
+					studentIndexer.delete(PortalUtil.getDefaultCompanyId(), student.getUuid());
+				} catch (SearchException e) {
+					_log.error("Erro while delte index student -> "+ student.getStudentId() + " MSG:: " + e.getMessage());
+				}
+		 }
 		return isDeleted;
 	}
 	
@@ -441,4 +506,158 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 		}
 		return student;
 	}
+	
+	public List<Student> searchStudents(String keyword, String zipcode, String gender, String profession, List<String> languages,
+			long schoolId, long campusId, int start, int end){
+		List<Student> studentList = new ArrayList<Student>();
+		
+		DynamicQuery dynamicQuery = StudentLocalServiceUtil.dynamicQuery();
+		
+		Criterion criterion = null;
+		
+		criterion  = RestrictionsFactoryUtil.or(RestrictionsFactoryUtil.like("firstName", StringPool.PERCENT +keyword+StringPool.PERCENT),
+					RestrictionsFactoryUtil.like("lastName", StringPool.PERCENT +keyword+StringPool.PERCENT));
+			
+		criterion = RestrictionsFactoryUtil.or(criterion, 
+					RestrictionsFactoryUtil.like("emailAddress", StringPool.PERCENT +keyword+StringPool.PERCENT));
+		
+		if(Validator.isNotNull(zipcode)){
+			criterion = RestrictionsFactoryUtil.and(criterion, RestrictionsFactoryUtil.eq("zipcode", zipcode));
+		}
+		
+		if(languages.size()>0){
+			Criterion langCriteria = RestrictionsFactoryUtil.or(RestrictionsFactoryUtil.in("primaryLanguage", languages), RestrictionsFactoryUtil.in("secondaryLanguage", languages));
+			criterion = RestrictionsFactoryUtil.and(criterion, langCriteria);
+		}
+		
+		if(Validator.isNotNull(gender)){
+			criterion = RestrictionsFactoryUtil.and(criterion, RestrictionsFactoryUtil.eq("gender", gender));
+		}
+		
+		if(Validator.isNotNull(profession)){
+			criterion = RestrictionsFactoryUtil.and(criterion, RestrictionsFactoryUtil.eq("profession", profession));
+		}
+		
+		if(schoolId>0){
+			criterion = RestrictionsFactoryUtil.and(criterion, RestrictionsFactoryUtil.eq("schoolId", schoolId));
+		}
+		
+		if(campusId>0){
+			criterion = RestrictionsFactoryUtil.and(criterion, RestrictionsFactoryUtil.eq("campusId", campusId));
+		}
+		
+		if(Validator.isNotNull(criterion)){
+			dynamicQuery.add(criterion);
+		}
+		
+		
+		dynamicQuery.setLimit(start, end);
+		
+		Order lastNameOrder = OrderFactoryUtil.asc("lastName");
+		Order firstNameOrder = OrderFactoryUtil.asc("firstName");
+		
+		dynamicQuery.addOrder(lastNameOrder);
+		dynamicQuery.addOrder(firstNameOrder);
+		
+		studentList = StudentLocalServiceUtil.dynamicQuery(dynamicQuery);
+		
+		return studentList;
+	}
+	
+	public JSONObject searchStudents(String keyword, String zipcode, String gender, String profession, List<String> languages,
+			long schoolId, long campusId, int start, int end,  SearchContext searchContext){
+		List<Student> studentList = new ArrayList<Student>();
+		SearchContext countSearchContenct = searchContext;
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+		
+		try{
+		BooleanQuery searchQuery = BooleanQueryFactoryUtil.create(searchContext);
+	    
+		// Add Student Class Name Criteria
+	    searchQuery.addRequiredTerm(Field.ENTRY_CLASS_NAME, Student.class.getName());
+	    
+	    if(Validator.isNotNull(keyword)){
+	    	 BooleanQuery lastNameQuery = new BooleanQueryImpl();
+  	 	     lastNameQuery.addTerm(MedicusConstant.STUDENT_IDNEX_LASTNAME, keyword);
+
+	         BooleanQuery firsNameQuery = new BooleanQueryImpl();
+	         firsNameQuery.addTerm(MedicusConstant.STUDENT_IDNEX_FIRSTNAME, keyword);
+	         
+	         firsNameQuery.add(lastNameQuery, BooleanClauseOccur.SHOULD);
+	         
+	         BooleanQuery emailAddressQuery = new BooleanQueryImpl();
+	         emailAddressQuery.addTerm(MedicusConstant.STUDENT_IDNEX_EMAIL_ADDRESS, keyword);
+	         
+	         emailAddressQuery.add(firsNameQuery, BooleanClauseOccur.SHOULD);
+	         
+	         BooleanQuery resumeQuery = new BooleanQueryImpl();
+	         resumeQuery.addTerm(Field.CONTENT, keyword);
+	         
+	         resumeQuery.add(emailAddressQuery, BooleanClauseOccur.SHOULD);
+	         
+	 	    searchQuery.add(resumeQuery, BooleanClauseOccur.MUST);
+	    }
+	    
+	    if(Validator.isNotNull(zipcode)){
+	    	searchQuery.addTerm(MedicusConstant.STUDENT_IDNEX_LASTNAME, zipcode);
+	    }
+	    
+	    if(Validator.isNotNull(gender)){
+	    	searchQuery.addRequiredTerm(MedicusConstant.STUDENT_IDNEX_GENDER, gender);
+	    }
+	    
+	    if(Validator.isNotNull(profession)){
+	    	BooleanQuery professionQuery = new BooleanQueryImpl();
+	    	professionQuery.addRequiredTerm(MedicusConstant.STUDENT_IDNEX_PROFESSION, profession);
+	    	searchQuery.add(professionQuery, BooleanClauseOccur.MUST);
+	    }
+	    
+	    if(schoolId>0){
+	    	searchQuery.addRequiredTerm(MedicusConstant.STUDENT_IDNEX_SCHOOLID, schoolId);
+	    }
+	    
+	    if(campusId>0){
+	    	searchQuery.addRequiredTerm(MedicusConstant.STUDENT_IDNEX_CAMPUSID, campusId);
+	    }
+	    
+	    if(languages.size()>0){
+	    	BooleanQuery langQuery = new BooleanQueryImpl();
+	    	for(String lang : languages){
+	    		BooleanQuery langQuery2 = new BooleanQueryImpl();
+	    		langQuery2.addTerm(MedicusConstant.STUDENT_IDNEX_LANGUAGE, lang);
+	    		langQuery.add(langQuery2, BooleanClauseOccur.SHOULD);
+	    	}
+	    	searchQuery.add(langQuery, BooleanClauseOccur.MUST);
+	    }
+	    
+	    Sort sortLastName = SortFactoryUtil.create(MedicusConstant.STUDENT_IDNEX_LASTNAME, Sort.STRING_TYPE, false);
+	    Sort sortFirstName = SortFactoryUtil.create(MedicusConstant.STUDENT_IDNEX_FIRSTNAME, Sort.STRING_TYPE, false);
+	    searchContext.setSorts(sortLastName,sortFirstName);
+	    searchContext.setStart(start);
+	    searchContext.setEnd(end);
+	    
+	    Hits hits = IndexSearcherHelperUtil.search(searchContext, searchQuery);
+		
+	    Document[] documents = hits.getDocs();
+	    
+	    for(Document document : documents){
+	    	try{
+	    		Student student = StudentLocalServiceUtil.getStudent(Long.parseLong(document.get(Field.ENTRY_CLASS_PK)));
+	    		studentList.add(student);
+	    	}catch(Exception e){
+	    		_log.debug(e.getMessage());
+	    	}
+	    }
+	    	
+	    jsonObject.put("totalHits", hits.getLength());
+	    
+		}catch(Exception e){
+			_log.error(e);
+		}
+		
+		jsonObject.put("studentList", studentList);
+		
+		return jsonObject;
+	}
+	
 }

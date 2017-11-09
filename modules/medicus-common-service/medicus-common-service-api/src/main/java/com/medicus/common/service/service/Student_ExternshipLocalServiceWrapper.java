@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link Student_ExternshipLocalService}.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see Student_ExternshipLocalService
  * @generated
  */
@@ -68,14 +68,15 @@ public class Student_ExternshipLocalServiceWrapper
 
 	@Override
 	public com.medicus.common.service.model.Student_Externship addStudentExternship(
-		long studentId, long employerId, java.util.Date startDate,
-		java.util.Date endDate, int noOfHoursPerWeek,
+		long studentId, long partnerId, long employerId,
+		java.util.Date startDate, java.util.Date endDate, int noOfHoursPerWeek,
 		java.util.Date midPointReview, java.lang.String midPointReviewComment,
 		java.util.Date finalReview, java.lang.String finalReviewComment,
 		long createdBy) {
 		return _student_ExternshipLocalService.addStudentExternship(studentId,
-			employerId, startDate, endDate, noOfHoursPerWeek, midPointReview,
-			midPointReviewComment, finalReview, finalReviewComment, createdBy);
+			partnerId, employerId, startDate, endDate, noOfHoursPerWeek,
+			midPointReview, midPointReviewComment, finalReview,
+			finalReviewComment, createdBy);
 	}
 
 	/**
@@ -158,13 +159,13 @@ public class Student_ExternshipLocalServiceWrapper
 	@Override
 	public com.medicus.common.service.model.Student_Externship updateStudentExternship(
 		com.medicus.common.service.model.Student_Externship studentExternship,
-		long studentId, long employerId, java.util.Date startDate,
+		long studentId, long partnerId, java.util.Date startDate,
 		java.util.Date endDate, int noOfHoursPerWeek,
 		java.util.Date midPointReview, java.lang.String midPointReviewComment,
 		java.util.Date finalReview, java.lang.String finalReviewComment,
 		long modifiedBy) {
 		return _student_ExternshipLocalService.updateStudentExternship(studentExternship,
-			studentId, employerId, startDate, endDate, noOfHoursPerWeek,
+			studentId, partnerId, startDate, endDate, noOfHoursPerWeek,
 			midPointReview, midPointReviewComment, finalReview,
 			finalReviewComment, modifiedBy);
 	}

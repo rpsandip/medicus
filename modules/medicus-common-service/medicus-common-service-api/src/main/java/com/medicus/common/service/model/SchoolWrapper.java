@@ -33,7 +33,7 @@ import java.util.Objects;
  * This class is a wrapper for {@link School}.
  * </p>
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see School
  * @generated
  */

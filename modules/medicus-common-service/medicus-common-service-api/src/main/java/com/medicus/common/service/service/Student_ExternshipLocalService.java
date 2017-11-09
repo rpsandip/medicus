@@ -46,7 +46,7 @@ import java.util.List;
  * credentials because this service can only be accessed from within the same
  * VM.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see Student_ExternshipLocalServiceUtil
  * @see com.medicus.common.service.service.base.Student_ExternshipLocalServiceBaseImpl
  * @see com.medicus.common.service.service.impl.Student_ExternshipLocalServiceImpl
@@ -83,9 +83,10 @@ public interface Student_ExternshipLocalService extends BaseLocalService,
 		throws PortalException;
 
 	public Student_Externship addStudentExternship(long studentId,
-		long employerId, Date startDate, Date endDate, int noOfHoursPerWeek,
-		Date midPointReview, java.lang.String midPointReviewComment,
-		Date finalReview, java.lang.String finalReviewComment, long createdBy);
+		long partnerId, long employerId, Date startDate, Date endDate,
+		int noOfHoursPerWeek, Date midPointReview,
+		java.lang.String midPointReviewComment, Date finalReview,
+		java.lang.String finalReviewComment, long createdBy);
 
 	/**
 	* Adds the student_ externship to the database. Also notifies the appropriate model listeners.
@@ -145,7 +146,7 @@ public interface Student_ExternshipLocalService extends BaseLocalService,
 		throws PortalException;
 
 	public Student_Externship updateStudentExternship(
-		Student_Externship studentExternship, long studentId, long employerId,
+		Student_Externship studentExternship, long studentId, long partnerId,
 		Date startDate, Date endDate, int noOfHoursPerWeek,
 		Date midPointReview, java.lang.String midPointReviewComment,
 		Date finalReview, java.lang.String finalReviewComment, long modifiedBy);

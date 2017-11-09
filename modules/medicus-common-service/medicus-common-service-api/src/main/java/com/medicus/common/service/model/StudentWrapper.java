@@ -18,6 +18,8 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 
+import com.liferay.exportimport.kernel.lar.StagedModelType;
+
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.service.ServiceContext;
 
@@ -33,7 +35,7 @@ import java.util.Objects;
  * This class is a wrapper for {@link Student}.
  * </p>
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see Student
  * @generated
  */
@@ -57,7 +59,9 @@ public class StudentWrapper implements Student, ModelWrapper<Student> {
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
+		attributes.put("uuid", getUuid());
 		attributes.put("studentId", getStudentId());
+		attributes.put("companyId", getCompanyId());
 		attributes.put("stundetCampusId", getStundetCampusId());
 		attributes.put("campusId", getCampusId());
 		attributes.put("schoolId", getSchoolId());
@@ -96,10 +100,22 @@ public class StudentWrapper implements Student, ModelWrapper<Student> {
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
+		String uuid = (String)attributes.get("uuid");
+
+		if (uuid != null) {
+			setUuid(uuid);
+		}
+
 		Long studentId = (Long)attributes.get("studentId");
 
 		if (studentId != null) {
 			setStudentId(studentId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
 		}
 
 		String stundetCampusId = (String)attributes.get("stundetCampusId");
@@ -576,6 +592,16 @@ public class StudentWrapper implements Student, ModelWrapper<Student> {
 	}
 
 	/**
+	* Returns the uuid of this student.
+	*
+	* @return the uuid of this student
+	*/
+	@Override
+	public java.lang.String getUuid() {
+		return _student.getUuid();
+	}
+
+	/**
 	* Returns the zipcode of this student.
 	*
 	* @return the zipcode of this student
@@ -643,6 +669,16 @@ public class StudentWrapper implements Student, ModelWrapper<Student> {
 	@Override
 	public long getCampusId() {
 		return _student.getCampusId();
+	}
+
+	/**
+	* Returns the company ID of this student.
+	*
+	* @return the company ID of this student
+	*/
+	@Override
+	public long getCompanyId() {
+		return _student.getCompanyId();
 	}
 
 	/**
@@ -763,6 +799,16 @@ public class StudentWrapper implements Student, ModelWrapper<Student> {
 	@Override
 	public void setCity(java.lang.String city) {
 		_student.setCity(city);
+	}
+
+	/**
+	* Sets the company ID of this student.
+	*
+	* @param companyId the company ID of this student
+	*/
+	@Override
+	public void setCompanyId(long companyId) {
+		_student.setCompanyId(companyId);
 	}
 
 	/**
@@ -1072,6 +1118,16 @@ public class StudentWrapper implements Student, ModelWrapper<Student> {
 	}
 
 	/**
+	* Sets the uuid of this student.
+	*
+	* @param uuid the uuid of this student
+	*/
+	@Override
+	public void setUuid(java.lang.String uuid) {
+		_student.setUuid(uuid);
+	}
+
+	/**
 	* Sets the zipcode of this student.
 	*
 	* @param zipcode the zipcode of this student
@@ -1098,6 +1154,11 @@ public class StudentWrapper implements Student, ModelWrapper<Student> {
 		}
 
 		return false;
+	}
+
+	@Override
+	public StagedModelType getStagedModelType() {
+		return _student.getStagedModelType();
 	}
 
 	@Override

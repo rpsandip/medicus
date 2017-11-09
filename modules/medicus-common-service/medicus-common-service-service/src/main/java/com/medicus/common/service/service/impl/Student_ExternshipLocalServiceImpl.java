@@ -49,10 +49,11 @@ public class Student_ExternshipLocalServiceImpl
 	/*
 	 * Add Student Externship detail
 	 */
-	public Student_Externship addStudentExternship(long studentId, long employerId, Date startDate, Date endDate, int noOfHoursPerWeek,
+	public Student_Externship addStudentExternship(long studentId, long partnerId, long employerId,Date startDate, Date endDate, int noOfHoursPerWeek,
 			Date midPointReview, String midPointReviewComment, Date finalReview, String finalReviewComment, long createdBy){
 		Student_Externship studentExternship = Student_ExternshipLocalServiceUtil.createStudent_Externship(CounterLocalServiceUtil.increment());
 		studentExternship.setStudentId(studentId);
+		studentExternship.setPartnerId(partnerId);
 		studentExternship.setEmployerId(employerId);
 		studentExternship.setStartDate(startDate);
 		studentExternship.setEndDate(endDate);
@@ -71,10 +72,10 @@ public class Student_ExternshipLocalServiceImpl
 		return studentExternship;
 	}
 	
-	public Student_Externship updateStudentExternship(Student_Externship studentExternship, long studentId, long employerId, Date startDate, Date endDate, int noOfHoursPerWeek,
+	public Student_Externship updateStudentExternship(Student_Externship studentExternship, long studentId, long partnerId, Date startDate, Date endDate, int noOfHoursPerWeek,
 			Date midPointReview, String midPointReviewComment, Date finalReview, String finalReviewComment, long modifiedBy){
 			
-		    studentExternship.setEmployerId(employerId);
+		    studentExternship.setPartnerId(partnerId);
 			studentExternship.setStartDate(startDate);
 			studentExternship.setEndDate(endDate);
 			studentExternship.setNoOfHoursPerWeek(noOfHoursPerWeek);

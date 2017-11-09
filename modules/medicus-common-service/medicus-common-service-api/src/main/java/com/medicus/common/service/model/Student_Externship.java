@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.util.Accessor;
 /**
  * The extended model interface for the Student_Externship service. Represents a row in the &quot;Medicus_Student_Externship&quot; database table, with each column mapped to a property of this class.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see Student_ExternshipModel
  * @see com.medicus.common.service.model.impl.Student_ExternshipImpl
  * @see com.medicus.common.service.model.impl.Student_ExternshipModelImpl

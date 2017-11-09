@@ -107,7 +107,7 @@ public class StudentBean {
 				Campus campus = CampusLocalServiceUtil.getCampus(this.campusId);
 				this.campusName = campus.getName();
 			} catch (PortalException e) {
-				_log.error(e);
+				_log.debug(e);
 			}
 		}
 		
@@ -116,7 +116,7 @@ public class StudentBean {
 				School school = SchoolLocalServiceUtil.getSchool(this.schoolId);
 				this.schoolName = school.getName();
 			} catch (PortalException e) {
-				_log.error(e);
+				_log.debug(e);
 			}
 		}
 		
@@ -128,7 +128,7 @@ public class StudentBean {
 				this.profileDoc = profileDoc;
 				
 			} catch (PortalException e) {
-				_log.error(e);
+				_log.debug(e);
 			}
 		}
 		
@@ -139,7 +139,7 @@ public class StudentBean {
 				DocumentBean resumeDoc = new DocumentBean(fileEntry);
 				this.resumeDoc = resumeDoc;
 			} catch (PortalException e) {
-				_log.error(e);
+				_log.debug(e);
 			}
 		}
 		
@@ -161,7 +161,7 @@ public class StudentBean {
 				}
 			}
 		}catch(PortalException e){
-			_log.error(e.getMessage());
+			_log.debug(e.getMessage());
 		}
 		
 		try{
@@ -179,7 +179,7 @@ public class StudentBean {
 				}
 			}
 		}catch(PortalException e){
-			_log.error(e.getMessage());
+			_log.debug(e.getMessage());
 		}
 	  }	
 	}

@@ -1,0 +1,241 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.medicus.common.service.model.Campus">
+		<field name="campusId" type="long" />
+		<field name="schoolId" type="long" />
+		<field name="name" type="String">
+			<hint name="max-length">100</hint>
+		</field>
+		<field name="address1" type="String">
+			<hint name="max-length">75</hint>
+		</field>
+		<field name="address2" type="String">
+			<hint name="max-length">75</hint>
+		</field>
+		<field name="city" type="String">
+			<hint name="max-length">15</hint>
+		</field>
+		<field name="state" type="String">
+			<hint name="max-length">15</hint>
+		</field>
+		<field name="country" type="String">
+			<hint name="max-length">15</hint>
+		</field>
+		<field name="zipcode" type="String">
+			<hint name="max-length">6</hint>
+		</field>
+		<field name="contactNumber" type="String">
+			<hint name="max-length">15</hint>
+		</field>
+		<field name="websiteLink" type="String">
+			<hint name="max-length">100</hint>
+		</field>
+		<field name="contactPersonName" type="String">
+			<hint name="max-length">50</hint>
+		</field>
+		<field name="contactPersonPhoneNumber" type="String">
+			<hint name="max-length">15</hint>
+		</field>
+		<field name="contactPersonEmail" type="String">
+			<hint name="max-length">30</hint>
+		</field>
+		<field name="status" type="int" />
+		<field name="createDate" type="Date" />
+		<field name="createdBy" type="long" />
+		<field name="modifiedDate" type="Date" />
+		<field name="modifiedBy" type="long" />
+	</model>
+	<model name="com.medicus.common.service.model.Employer">
+		<field name="employerId" type="long" />
+		<field name="firstName" type="String" />
+		<field name="lastName" type="String" />
+		<field name="emailAddress" type="String" />
+		<field name="address1" type="String">
+			<hint name="max-length">100</hint>
+		</field>
+		<field name="address2" type="String">
+			<hint name="max-length">100</hint>
+		</field>
+		<field name="city" type="String">
+			<hint name="max-length">15</hint>
+		</field>
+		<field name="zipcode" type="String">
+			<hint name="max-length">15</hint>
+		</field>
+		<field name="state" type="String">
+			<hint name="max-length">15</hint>
+		</field>
+		<field name="country" type="String">
+			<hint name="max-length">15</hint>
+		</field>
+		<field name="contactPersonName" type="String">
+			<hint name="max-length">50</hint>
+		</field>
+		<field name="contactPersonEmail" type="String">
+			<hint name="max-length">30</hint>
+		</field>
+		<field name="contactPersonPhoneNumber" type="String">
+			<hint name="max-length">15</hint>
+		</field>
+		<field name="websiteLink" type="String">
+			<hint name="max-length">100</hint>
+		</field>
+		<field name="createDate" type="Date" />
+		<field name="createdBy" type="long" />
+		<field name="modifiedDate" type="Date" />
+		<field name="modifiedBy" type="long" />
+	</model>
+	<model name="com.medicus.common.service.model.Partner">
+		<field name="partnerId" type="long" />
+		<field name="userId" type="long" />
+		<field name="partnerOrgId" type="long" />
+		<field name="address1" type="String" />
+		<field name="address2" type="String" />
+		<field name="city" type="String" />
+		<field name="zipcode" type="String" />
+		<field name="state" type="String" />
+		<field name="country" type="String" />
+		<field name="contactPersonName" type="String" />
+		<field name="contactPersonEmail" type="String" />
+		<field name="contactPersonPhoneNumber" type="String" />
+		<field name="websiteLink" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="createdBy" type="long" />
+		<field name="modifiedDate" type="Date" />
+		<field name="modifiedBy" type="long" />
+	</model>
+	<model name="com.medicus.common.service.model.School">
+		<field name="schoolId" type="long" />
+		<field name="name" type="String">
+			<hint name="max-length">100</hint>
+		</field>
+		<field name="address1" type="String">
+			<hint name="max-length">100</hint>
+		</field>
+		<field name="address2" type="String">
+			<hint name="max-length">100</hint>
+		</field>
+		<field name="city" type="String">
+			<hint name="max-length">15</hint>
+		</field>
+		<field name="state" type="String">
+			<hint name="max-length">15</hint>
+		</field>
+		<field name="country" type="String">
+			<hint name="max-length">15</hint>
+		</field>
+		<field name="zipcode" type="String">
+			<hint name="max-length">6</hint>
+		</field>
+		<field name="contactNumber" type="String">
+			<hint name="max-length">15</hint>
+		</field>
+		<field name="websiteLink" type="String">
+			<hint name="max-length">100</hint>
+		</field>
+		<field name="contactPersonName" type="String">
+			<hint name="max-length">50</hint>
+		</field>
+		<field name="contactPersonPhoneNumber" type="String">
+			<hint name="max-length">15</hint>
+		</field>
+		<field name="contactPersonEmail" type="String">
+			<hint name="max-length">30</hint>
+		</field>
+		<field name="status" type="int" />
+		<field name="createDate" type="Date" />
+		<field name="createdBy" type="long" />
+		<field name="modifiedDate" type="Date" />
+		<field name="modifiedBy" type="long" />
+	</model>
+	<model name="com.medicus.common.service.model.Student">
+		<field name="uuid" type="String" />
+		<field name="studentId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="stundetCampusId" type="String" />
+		<field name="campusId" type="long" />
+		<field name="schoolId" type="long" />
+		<field name="firstName" type="String">
+			<hint name="max-length">20</hint>
+		</field>
+		<field name="middleName" type="String">
+			<hint name="max-length">20</hint>
+		</field>
+		<field name="lastName" type="String">
+			<hint name="max-length">20</hint>
+		</field>
+		<field name="profileImageId" type="long" />
+		<field name="dateOfBirth" type="Date" />
+		<field name="gender" type="String">
+			<hint name="max-length">10</hint>
+		</field>
+		<field name="contactNumber" type="String">
+			<hint name="max-length">15</hint>
+		</field>
+		<field name="homePhoneNumber" type="String">
+			<hint name="max-length">15</hint>
+		</field>
+		<field name="emailAddress" type="String">
+			<hint name="max-length">30</hint>
+		</field>
+		<field name="primaryLanguage" type="String">
+			<hint name="max-length">200</hint>
+		</field>
+		<field name="secondaryLanguage" type="String">
+			<hint name="max-length">200</hint>
+		</field>
+		<field name="address" type="String">
+			<hint name="max-length">100</hint>
+		</field>
+		<field name="city" type="String">
+			<hint name="max-length">15</hint>
+		</field>
+		<field name="zipcode" type="String">
+			<hint name="max-length">6</hint>
+		</field>
+		<field name="state" type="String">
+			<hint name="max-length">15</hint>
+		</field>
+		<field name="pace" type="String">
+			<hint name="max-length">15</hint>
+		</field>
+		<field name="gpa" type="float" />
+		<field name="resumeFileEntryId" type="long" />
+		<field name="profession" type="String">
+			<hint name="max-length">30</hint>
+		</field>
+		<field name="practices" type="String">
+			<hint name="max-length">30</hint>
+		</field>
+		<field name="hired" type="boolean" />
+		<field name="graduationDate" type="Date" />
+		<field name="activelySeekingEmployment" type="boolean" />
+		<field name="haveExternship" type="boolean" />
+		<field name="createDate" type="Date" />
+		<field name="createdBy" type="long" />
+		<field name="modifiedDate" type="Date" />
+		<field name="modifiedBy" type="long" />
+	</model>
+	<model name="com.medicus.common.service.model.Student_Externship">
+		<field name="studentExternshipId" type="long" />
+		<field name="studentId" type="long" />
+		<field name="partnerId" type="long" />
+		<field name="employerId" type="long" />
+		<field name="startDate" type="Date" />
+		<field name="endDate" type="Date" />
+		<field name="noOfHoursPerWeek" type="int" />
+		<field name="midPointReview" type="Date" />
+		<field name="midPointReviewComment" type="String">
+			<hint name="max-length">200</hint>
+		</field>
+		<field name="finalReview" type="Date" />
+		<field name="finalReviewComment" type="String">
+			<hint name="max-length">200</hint>
+		</field>
+		<field name="createDate" type="Date" />
+		<field name="createdBy" type="long" />
+		<field name="modifiedDate" type="Date" />
+		<field name="modifiedBy" type="long" />
+	</model>
+</model-hints>

@@ -33,7 +33,7 @@ import java.util.Date;
 /**
  * The cache model class for representing Campus in entity cache.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see Campus
  * @generated
  */

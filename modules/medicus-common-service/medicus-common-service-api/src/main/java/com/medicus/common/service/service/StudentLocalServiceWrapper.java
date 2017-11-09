@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link StudentLocalService}.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see StudentLocalService
  * @generated
  */
@@ -49,8 +49,25 @@ public class StudentLocalServiceWrapper implements StudentLocalService,
 	}
 
 	@Override
+	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		com.liferay.exportimport.kernel.lar.PortletDataContext portletDataContext) {
+		return _studentLocalService.getExportActionableDynamicQuery(portletDataContext);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		return _studentLocalService.getIndexableActionableDynamicQuery();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.json.JSONObject searchStudents(
+		java.lang.String keyword, java.lang.String zipcode,
+		java.lang.String gender, java.lang.String profession,
+		java.util.List<java.lang.String> languages, long schoolId,
+		long campusId, int start, int end,
+		com.liferay.portal.kernel.search.SearchContext searchContext) {
+		return _studentLocalService.searchStudents(keyword, zipcode, gender,
+			profession, languages, schoolId, campusId, start, end, searchContext);
 	}
 
 	/**
@@ -95,8 +112,8 @@ public class StudentLocalServiceWrapper implements StudentLocalService,
 		java.lang.String pace, float gpa, java.lang.String profession,
 		java.lang.String practices, boolean hired,
 		java.util.Date graduationDate, boolean activelySeekingEmployment,
-		boolean haveExternship, long employerId,
-		java.lang.String employerZipCode, java.lang.String employerWebSiteLink,
+		boolean haveExternship, long employerId, long partnerId,
+		java.lang.String partnerZipCode, java.lang.String partnerWebSiteLink,
 		java.util.Date externshipStartDate, java.util.Date externshipEndDate,
 		int noOfHoursPerWeek, java.util.Date midPointReviewDate,
 		java.lang.String midPointReviewComment, java.util.Date finalReviewDate,
@@ -111,8 +128,8 @@ public class StudentLocalServiceWrapper implements StudentLocalService,
 			dob, gender, contactNumber, homePhoneNumber, primaryLang,
 			secondaryLangs, address, city, zipcode, state, pace, gpa,
 			profession, practices, hired, graduationDate,
-			activelySeekingEmployment, haveExternship, employerId,
-			employerZipCode, employerWebSiteLink, externshipStartDate,
+			activelySeekingEmployment, haveExternship, employerId, partnerId,
+			partnerZipCode, partnerWebSiteLink, externshipStartDate,
 			externshipEndDate, noOfHoursPerWeek, midPointReviewDate,
 			midPointReviewComment, finalReviewDate, finalPointReviewComment,
 			profileImage, profileImageFileName, resume, resumeFileName,
@@ -163,6 +180,20 @@ public class StudentLocalServiceWrapper implements StudentLocalService,
 	}
 
 	/**
+	* Returns the student with the matching UUID and company.
+	*
+	* @param uuid the student's UUID
+	* @param companyId the primary key of the company
+	* @return the matching student, or <code>null</code> if a matching student could not be found
+	*/
+	@Override
+	public com.medicus.common.service.model.Student fetchStudentByUuidAndCompanyId(
+		java.lang.String uuid, long companyId) {
+		return _studentLocalService.fetchStudentByUuidAndCompanyId(uuid,
+			companyId);
+	}
+
+	/**
 	* Returns the student with the primary key.
 	*
 	* @param studentId the primary key of the student
@@ -181,21 +212,36 @@ public class StudentLocalServiceWrapper implements StudentLocalService,
 		return _studentLocalService.getStudentByStudentCampusId(studentCampusId);
 	}
 
+	/**
+	* Returns the student with the matching UUID and company.
+	*
+	* @param uuid the student's UUID
+	* @param companyId the primary key of the company
+	* @return the matching student
+	* @throws PortalException if a matching student could not be found
+	*/
+	@Override
+	public com.medicus.common.service.model.Student getStudentByUuidAndCompanyId(
+		java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _studentLocalService.getStudentByUuidAndCompanyId(uuid, companyId);
+	}
+
 	@Override
 	public com.medicus.common.service.model.Student importStudent(
 		java.lang.String firstName, java.lang.String middleName,
 		java.lang.String lastName, java.lang.String emailAddress,
 		java.util.Date dob, java.lang.String studentCampusId,
 		java.lang.String address, java.lang.String city,
-		java.lang.String state, java.lang.String zipcode,
+		java.lang.String zipcode, java.lang.String state,
 		java.lang.String mobilePhone, java.lang.String homePhone,
 		java.lang.String gender, java.lang.String primaryLangs,
 		java.lang.String secondaryLangs, float gpa, java.lang.String pace,
 		long schoolId, long campusId, java.lang.String profession,
 		long createdBy) {
 		return _studentLocalService.importStudent(firstName, middleName,
-			lastName, emailAddress, dob, studentCampusId, address, city, state,
-			zipcode, mobilePhone, homePhone, gender, primaryLangs,
+			lastName, emailAddress, dob, studentCampusId, address, city,
+			zipcode, state, mobilePhone, homePhone, gender, primaryLangs,
 			secondaryLangs, gpa, pace, schoolId, campusId, profession, createdBy);
 	}
 
@@ -224,8 +270,8 @@ public class StudentLocalServiceWrapper implements StudentLocalService,
 		java.lang.String state, java.lang.String pace, float gpa,
 		java.lang.String profession, java.lang.String practices, boolean hired,
 		java.util.Date graduationDate, boolean activelySeekingEmployment,
-		boolean haveExternship, long employerId,
-		java.lang.String employerZipCode, java.lang.String employerWebSiteLink,
+		boolean haveExternship, long employerId, long partnerId,
+		java.lang.String partnerZipCode, java.lang.String partnerWebSiteLink,
 		java.util.Date externshipStartDate, java.util.Date externshipEndDate,
 		int noOfHoursPerWeek, java.util.Date midPointReviewDate,
 		java.lang.String midPointReviewComment, java.util.Date finalReviewDate,
@@ -241,8 +287,8 @@ public class StudentLocalServiceWrapper implements StudentLocalService,
 			emailAddress, dob, gender, contactNumber, homePhoneNumber,
 			primaryLang, secondaryLangs, address, city, zipcode, state, pace,
 			gpa, profession, practices, hired, graduationDate,
-			activelySeekingEmployment, haveExternship, employerId,
-			employerZipCode, employerWebSiteLink, externshipStartDate,
+			activelySeekingEmployment, haveExternship, employerId, partnerId,
+			partnerZipCode, partnerWebSiteLink, externshipStartDate,
 			externshipEndDate, noOfHoursPerWeek, midPointReviewDate,
 			midPointReviewComment, finalReviewDate, finalPointReviewComment,
 			profileImage, profileImageFileName, resume, resumeFileName,
@@ -337,6 +383,16 @@ public class StudentLocalServiceWrapper implements StudentLocalService,
 	public java.util.List<com.medicus.common.service.model.Student> getStudents(
 		int start, int end) {
 		return _studentLocalService.getStudents(start, end);
+	}
+
+	@Override
+	public java.util.List<com.medicus.common.service.model.Student> searchStudents(
+		java.lang.String keyword, java.lang.String zipcode,
+		java.lang.String gender, java.lang.String profession,
+		java.util.List<java.lang.String> languages, long schoolId,
+		long campusId, int start, int end) {
+		return _studentLocalService.searchStudents(keyword, zipcode, gender,
+			profession, languages, schoolId, campusId, start, end);
 	}
 
 	/**

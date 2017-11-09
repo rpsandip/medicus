@@ -22,8 +22,9 @@ create table Medicus_Campus (
 
 create table Medicus_Employer (
 	employerId LONG not null primary key,
-	userId LONG,
-	employerOrgId LONG,
+	firstName VARCHAR(75) null,
+	lastName VARCHAR(75) null,
+	emailAddress VARCHAR(75) null,
 	address1 VARCHAR(100) null,
 	address2 VARCHAR(100) null,
 	city VARCHAR(15) null,
@@ -33,7 +34,31 @@ create table Medicus_Employer (
 	contactPersonName VARCHAR(50) null,
 	contactPersonEmail VARCHAR(30) null,
 	contactPersonPhoneNumber VARCHAR(15) null,
-	websiteLink VARCHAR(100) null
+	websiteLink VARCHAR(100) null,
+	createDate DATE null,
+	createdBy LONG,
+	modifiedDate DATE null,
+	modifiedBy LONG
+);
+
+create table Medicus_Partner (
+	partnerId LONG not null primary key,
+	userId LONG,
+	partnerOrgId LONG,
+	address1 VARCHAR(75) null,
+	address2 VARCHAR(75) null,
+	city VARCHAR(75) null,
+	zipcode VARCHAR(75) null,
+	state_ VARCHAR(75) null,
+	country VARCHAR(75) null,
+	contactPersonName VARCHAR(75) null,
+	contactPersonEmail VARCHAR(75) null,
+	contactPersonPhoneNumber VARCHAR(75) null,
+	websiteLink VARCHAR(75) null,
+	createDate DATE null,
+	createdBy LONG,
+	modifiedDate DATE null,
+	modifiedBy LONG
 );
 
 create table Medicus_School (
@@ -58,30 +83,32 @@ create table Medicus_School (
 );
 
 create table Medicus_Student (
+	uuid_ VARCHAR(75) null,
 	studentId LONG not null primary key,
+	companyId LONG,
 	stundetCampusId VARCHAR(75) null,
 	campusId LONG,
 	schoolId LONG,
-	firstName VARCHAR(20) null,
+	firstName VARCHAR(30) null,
 	middleName VARCHAR(20) null,
-	lastName VARCHAR(20) null,
+	lastName VARCHAR(30) null,
 	profileImageId LONG,
 	dateOfBirth DATE null,
 	gender VARCHAR(10) null,
 	contactNumber VARCHAR(15) null,
 	homePhoneNumber VARCHAR(15) null,
 	emailAddress VARCHAR(30) null,
-	primaryLanguage VARCHAR(200) null,
-	secondaryLanguage VARCHAR(200) null,
-	address VARCHAR(100) null,
-	city VARCHAR(15) null,
-	zipcode VARCHAR(6) null,
+	primaryLanguage VARCHAR(500) null,
+	secondaryLanguage VARCHAR(500) null,
+	address VARCHAR(200) null,
+	city VARCHAR(30) null,
+	zipcode VARCHAR(10) null,
 	state_ VARCHAR(15) null,
 	pace VARCHAR(15) null,
 	gpa DOUBLE,
 	resumeFileEntryId LONG,
-	profession VARCHAR(30) null,
-	practices VARCHAR(30) null,
+	profession VARCHAR(100) null,
+	practices VARCHAR(100) null,
 	hired BOOLEAN,
 	graduationDate DATE null,
 	activelySeekingEmployment BOOLEAN,
@@ -95,6 +122,7 @@ create table Medicus_Student (
 create table Medicus_Student_Externship (
 	studentExternshipId LONG not null primary key,
 	studentId LONG,
+	partnerId LONG,
 	employerId LONG,
 	startDate DATE null,
 	endDate DATE null,

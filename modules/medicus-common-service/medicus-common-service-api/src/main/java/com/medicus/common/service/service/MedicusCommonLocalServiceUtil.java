@@ -28,7 +28,7 @@ import org.osgi.util.tracker.ServiceTracker;
  * based on the propagated JAAS credentials because this service can only be
  * accessed from within the same VM.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see MedicusCommonLocalService
  * @see com.medicus.common.service.service.base.MedicusCommonLocalServiceBaseImpl
  * @see com.medicus.common.service.service.impl.MedicusCommonLocalServiceImpl
@@ -72,6 +72,11 @@ public class MedicusCommonLocalServiceUtil {
 		return getService().getFolder(groupId, parentFolderId, folderName);
 	}
 
+	public static java.io.File getStudentResumeContent(
+		com.medicus.common.service.model.Student student) {
+		return getService().getStudentResumeContent(student);
+	}
+
 	public static java.lang.String getDLFileURL(
 		com.liferay.document.library.kernel.model.DLFileEntry file) {
 		return getService().getDLFileURL(file);
@@ -91,16 +96,12 @@ public class MedicusCommonLocalServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
-	public static java.util.List<com.medicus.common.service.model.Employer> getEmployerList() {
-		return getService().getEmployerList();
+	public static java.util.List<com.medicus.common.service.model.Partner> getPartnerList() {
+		return getService().getPartnerList();
 	}
 
 	public static java.util.List<java.lang.String> getUSStateList() {
 		return getService().getUSStateList();
-	}
-
-	public static long getEmployerOrgRoleId() {
-		return getService().getEmployerOrgRoleId();
 	}
 
 	public static long getGlobalGroupId() {
@@ -113,6 +114,10 @@ public class MedicusCommonLocalServiceUtil {
 
 	public static long getOrganizationGroupIdFromOrgId(long orgId) {
 		return getService().getOrganizationGroupIdFromOrgId(orgId);
+	}
+
+	public static long getPartnerOrgRoleId() {
+		return getService().getPartnerOrgRoleId();
 	}
 
 	public static long getUserPhoneTypeId()

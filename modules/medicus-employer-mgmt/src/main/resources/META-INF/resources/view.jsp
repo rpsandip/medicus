@@ -1,8 +1,15 @@
 <%@ include file="/init.jsp" %>
 
+<portlet:renderURL var="addEmployerURL">
+        <portlet:param name="mvcRenderCommandName" value="/add_employer" />
+</portlet:renderURL>
+
+<liferay-ui:success key="employer-add-success" message="employer-add-success"/>
+<liferay-ui:success key="employer-update-success" message="employer-update-success"/>
+
 <div class="page-title">
   <div class="title_left">
-    <h2>Partners</h2>
+    <h2>Employers</h2> <a href="${addEmployerURL}" class="btn btn-primary">Add Employer</a>
   </div>
 </div>
 <div class="clearfix"></div>
@@ -22,7 +29,8 @@
 			                <th>Contact Person Name</th>
 			                <th>Contact Person Email</th>
 			                <th>Contact Person Phone No.</th>
-			                 <th>Website Link</th>
+			                <th>Website Link</th>
+			                <th>Action</th>
 			            </tr>
      			   </thead>
         		   <tbody>
@@ -44,6 +52,13 @@
 			               		<td><a href="${employerBean.websiteLink }" target="_blank"> ${employerBean.websiteLink }</a></td>
 			               	</c:otherwise> 
 			               	</c:choose>
+			               	<td>
+			               		<portlet:renderURL var="editEmployerURL">
+       								 <portlet:param name="mvcRenderCommandName" value="/add_employer" />
+       								 <portlet:param name="employerId" value="${employerBean.employerId }" />
+								</portlet:renderURL>
+			               		<a href="${editEmployerURL }" class="btn btn-block btn-primary">Edit</a>
+			               	</td>
         			    </tr>
            			</c:forEach>
            			</tbody>

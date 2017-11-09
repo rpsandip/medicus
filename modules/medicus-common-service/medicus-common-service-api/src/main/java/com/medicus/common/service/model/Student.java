@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.util.Accessor;
 /**
  * The extended model interface for the Student service. Represents a row in the &quot;Medicus_Student&quot; database table, with each column mapped to a property of this class.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see StudentModel
  * @see com.medicus.common.service.model.impl.StudentImpl
  * @see com.medicus.common.service.model.impl.StudentModelImpl

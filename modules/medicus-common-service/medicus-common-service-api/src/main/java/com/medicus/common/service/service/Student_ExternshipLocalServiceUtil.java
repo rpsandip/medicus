@@ -28,7 +28,7 @@ import org.osgi.util.tracker.ServiceTracker;
  * based on the propagated JAAS credentials because this service can only be
  * accessed from within the same VM.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see Student_ExternshipLocalService
  * @see com.medicus.common.service.service.base.Student_ExternshipLocalServiceBaseImpl
  * @see com.medicus.common.service.service.impl.Student_ExternshipLocalServiceImpl
@@ -69,15 +69,15 @@ public class Student_ExternshipLocalServiceUtil {
 	}
 
 	public static com.medicus.common.service.model.Student_Externship addStudentExternship(
-		long studentId, long employerId, java.util.Date startDate,
-		java.util.Date endDate, int noOfHoursPerWeek,
+		long studentId, long partnerId, long employerId,
+		java.util.Date startDate, java.util.Date endDate, int noOfHoursPerWeek,
 		java.util.Date midPointReview, java.lang.String midPointReviewComment,
 		java.util.Date finalReview, java.lang.String finalReviewComment,
 		long createdBy) {
 		return getService()
-				   .addStudentExternship(studentId, employerId, startDate,
-			endDate, noOfHoursPerWeek, midPointReview, midPointReviewComment,
-			finalReview, finalReviewComment, createdBy);
+				   .addStudentExternship(studentId, partnerId, employerId,
+			startDate, endDate, noOfHoursPerWeek, midPointReview,
+			midPointReviewComment, finalReview, finalReviewComment, createdBy);
 	}
 
 	/**
@@ -152,14 +152,14 @@ public class Student_ExternshipLocalServiceUtil {
 
 	public static com.medicus.common.service.model.Student_Externship updateStudentExternship(
 		com.medicus.common.service.model.Student_Externship studentExternship,
-		long studentId, long employerId, java.util.Date startDate,
+		long studentId, long partnerId, java.util.Date startDate,
 		java.util.Date endDate, int noOfHoursPerWeek,
 		java.util.Date midPointReview, java.lang.String midPointReviewComment,
 		java.util.Date finalReview, java.lang.String finalReviewComment,
 		long modifiedBy) {
 		return getService()
 				   .updateStudentExternship(studentExternship, studentId,
-			employerId, startDate, endDate, noOfHoursPerWeek, midPointReview,
+			partnerId, startDate, endDate, noOfHoursPerWeek, midPointReview,
 			midPointReviewComment, finalReview, finalReviewComment, modifiedBy);
 	}
 

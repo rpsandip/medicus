@@ -17,6 +17,8 @@ import javax.portlet.ActionResponse;
 
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -102,10 +104,11 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 	    	 
 	    	 Date dob = null;
 	    	 try {
-				dob = df.parse( nextRow.getCell(5).toString());
-			} catch (ParseException e) {
+	    		 Date cellDate  =  nextRow.getCell(5).getDateCellValue();
+	    		 dob = cellDate;
+			 } catch (Exception e) {
 				_log.error(e.getMessage());
-			}
+			 }
 	    	 
 	    	 if(nextRow.getRowNum()!=0 && Validator.isNotNull(nextRow.getCell(0).toString()) && schoolId!=0 && campusId !=0){
 	    		 totalStudentCount++;
@@ -113,6 +116,15 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 	    		 if(validRow){
 	    			 
 	    			 Student student = StudentLocalServiceUtil.getStudentByStudentCampusId(nextRow.getCell(3).toString());
+	    			 
+	    			 Cell zipCodeCell = nextRow.getCell(8);
+	    			 zipCodeCell.setCellType(Cell.CELL_TYPE_STRING);
+	    			 
+	    			 Cell mobileCell = nextRow.getCell(10);
+	    			 mobileCell.setCellType(Cell.CELL_TYPE_STRING);
+	    			 
+	    			 Cell homeCell = nextRow.getCell(11);
+	    			 homeCell.setCellType(Cell.CELL_TYPE_STRING);
 	    			 
 	    			 if(Validator.isNull(student)){
 		    		 student = StudentLocalServiceUtil.importStudent(
@@ -124,10 +136,10 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 		    				 nextRow.getCell(3).toString() /*Student Id*/,
 		    				 nextRow.getCell(6).toString() /*Address*/, 
 		    				 nextRow.getCell(7).toString() /*City*/, 
-		    				 nextRow.getCell(8).toString() /*Zipcode*/,
+		    				 zipCodeCell.toString() /*Zipcode*/,
 		    				 nextRow.getCell(9).toString() /*State*/, 
-		    				 nextRow.getCell(10).toString() /*Mobile Phone*/, 
-		    				 nextRow.getCell(11).toString() /*Home Phone*/,
+		    				 mobileCell.toString() /*Mobile Phone*/, 
+		    				 homeCell.toString() /*Home Phone*/,
 		    				 nextRow.getCell(12).toString() /*Gender*/,
 		    				 nextRow.getCell(13).toString() /*primaryLangs*/,
 		    				 nextRow.getCell(14).toString() /*Secondary Languages*/, 

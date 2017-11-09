@@ -28,7 +28,8 @@ import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
-import com.medicus.common.service.model.Employer;
+import com.medicus.common.service.model.Partner;
+import com.medicus.common.service.model.Student;
 
 import java.io.File;
 
@@ -40,7 +41,7 @@ import java.util.List;
  * credentials because this service can only be accessed from within the same
  * VM.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see MedicusCommonLocalServiceUtil
  * @see com.medicus.common.service.service.base.MedicusCommonLocalServiceBaseImpl
  * @see com.medicus.common.service.service.impl.MedicusCommonLocalServiceImpl
@@ -74,6 +75,9 @@ public interface MedicusCommonLocalService extends BaseLocalService {
 		java.lang.String folderName);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public File getStudentResumeContent(Student student);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getDLFileURL(DLFileEntry file);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -87,13 +91,10 @@ public interface MedicusCommonLocalService extends BaseLocalService {
 	public java.lang.String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Employer> getEmployerList();
+	public List<Partner> getPartnerList();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<java.lang.String> getUSStateList();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long getEmployerOrgRoleId();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long getGlobalGroupId();
@@ -103,6 +104,9 @@ public interface MedicusCommonLocalService extends BaseLocalService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long getOrganizationGroupIdFromOrgId(long orgId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public long getPartnerOrgRoleId();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long getUserPhoneTypeId() throws SystemException;

@@ -35,7 +35,7 @@ import java.util.List;
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see EmployerPersistence
  * @see com.medicus.common.service.service.persistence.impl.EmployerPersistenceImpl
  * @generated
@@ -108,60 +108,6 @@ public class EmployerUtil {
 	public static Employer update(Employer employer,
 		ServiceContext serviceContext) {
 		return getPersistence().update(employer, serviceContext);
-	}
-
-	/**
-	* Returns the employer where userId = &#63; or throws a {@link NoSuchEmployerException} if it could not be found.
-	*
-	* @param userId the user ID
-	* @return the matching employer
-	* @throws NoSuchEmployerException if a matching employer could not be found
-	*/
-	public static Employer findByuserId(long userId)
-		throws com.medicus.common.service.exception.NoSuchEmployerException {
-		return getPersistence().findByuserId(userId);
-	}
-
-	/**
-	* Returns the employer where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	*
-	* @param userId the user ID
-	* @return the matching employer, or <code>null</code> if a matching employer could not be found
-	*/
-	public static Employer fetchByuserId(long userId) {
-		return getPersistence().fetchByuserId(userId);
-	}
-
-	/**
-	* Returns the employer where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	*
-	* @param userId the user ID
-	* @param retrieveFromCache whether to retrieve from the finder cache
-	* @return the matching employer, or <code>null</code> if a matching employer could not be found
-	*/
-	public static Employer fetchByuserId(long userId, boolean retrieveFromCache) {
-		return getPersistence().fetchByuserId(userId, retrieveFromCache);
-	}
-
-	/**
-	* Removes the employer where userId = &#63; from the database.
-	*
-	* @param userId the user ID
-	* @return the employer that was removed
-	*/
-	public static Employer removeByuserId(long userId)
-		throws com.medicus.common.service.exception.NoSuchEmployerException {
-		return getPersistence().removeByuserId(userId);
-	}
-
-	/**
-	* Returns the number of employers where userId = &#63;.
-	*
-	* @param userId the user ID
-	* @return the number of matching employers
-	*/
-	public static int countByuserId(long userId) {
-		return getPersistence().countByuserId(userId);
 	}
 
 	/**

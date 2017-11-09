@@ -20,17 +20,17 @@ import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
-import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.spring.extender.service.ServiceReference;
 
 import com.medicus.common.service.exception.NoSuchEmployerException;
@@ -42,6 +42,7 @@ import com.medicus.common.service.service.persistence.EmployerPersistence;
 import java.io.Serializable;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -56,7 +57,7 @@ import java.util.Set;
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see EmployerPersistence
  * @see com.medicus.common.service.service.persistence.EmployerUtil
  * @generated
@@ -83,213 +84,6 @@ public class EmployerPersistenceImpl extends BasePersistenceImpl<Employer>
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(EmployerModelImpl.ENTITY_CACHE_ENABLED,
 			EmployerModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	public static final FinderPath FINDER_PATH_FETCH_BY_USERID = new FinderPath(EmployerModelImpl.ENTITY_CACHE_ENABLED,
-			EmployerModelImpl.FINDER_CACHE_ENABLED, EmployerImpl.class,
-			FINDER_CLASS_NAME_ENTITY, "fetchByuserId",
-			new String[] { Long.class.getName() },
-			EmployerModelImpl.USERID_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(EmployerModelImpl.ENTITY_CACHE_ENABLED,
-			EmployerModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByuserId",
-			new String[] { Long.class.getName() });
-
-	/**
-	 * Returns the employer where userId = &#63; or throws a {@link NoSuchEmployerException} if it could not be found.
-	 *
-	 * @param userId the user ID
-	 * @return the matching employer
-	 * @throws NoSuchEmployerException if a matching employer could not be found
-	 */
-	@Override
-	public Employer findByuserId(long userId) throws NoSuchEmployerException {
-		Employer employer = fetchByuserId(userId);
-
-		if (employer == null) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("userId=");
-			msg.append(userId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			if (_log.isDebugEnabled()) {
-				_log.debug(msg.toString());
-			}
-
-			throw new NoSuchEmployerException(msg.toString());
-		}
-
-		return employer;
-	}
-
-	/**
-	 * Returns the employer where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	 *
-	 * @param userId the user ID
-	 * @return the matching employer, or <code>null</code> if a matching employer could not be found
-	 */
-	@Override
-	public Employer fetchByuserId(long userId) {
-		return fetchByuserId(userId, true);
-	}
-
-	/**
-	 * Returns the employer where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	 *
-	 * @param userId the user ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
-	 * @return the matching employer, or <code>null</code> if a matching employer could not be found
-	 */
-	@Override
-	public Employer fetchByuserId(long userId, boolean retrieveFromCache) {
-		Object[] finderArgs = new Object[] { userId };
-
-		Object result = null;
-
-		if (retrieveFromCache) {
-			result = finderCache.getResult(FINDER_PATH_FETCH_BY_USERID,
-					finderArgs, this);
-		}
-
-		if (result instanceof Employer) {
-			Employer employer = (Employer)result;
-
-			if ((userId != employer.getUserId())) {
-				result = null;
-			}
-		}
-
-		if (result == null) {
-			StringBundler query = new StringBundler(3);
-
-			query.append(_SQL_SELECT_EMPLOYER_WHERE);
-
-			query.append(_FINDER_COLUMN_USERID_USERID_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(userId);
-
-				List<Employer> list = q.list();
-
-				if (list.isEmpty()) {
-					finderCache.putResult(FINDER_PATH_FETCH_BY_USERID,
-						finderArgs, list);
-				}
-				else {
-					if ((list.size() > 1) && _log.isWarnEnabled()) {
-						_log.warn(
-							"EmployerPersistenceImpl.fetchByuserId(long, boolean) with parameters (" +
-							StringUtil.merge(finderArgs) +
-							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
-					}
-
-					Employer employer = list.get(0);
-
-					result = employer;
-
-					cacheResult(employer);
-
-					if ((employer.getUserId() != userId)) {
-						finderCache.putResult(FINDER_PATH_FETCH_BY_USERID,
-							finderArgs, employer);
-					}
-				}
-			}
-			catch (Exception e) {
-				finderCache.removeResult(FINDER_PATH_FETCH_BY_USERID, finderArgs);
-
-				throw processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-
-		if (result instanceof List<?>) {
-			return null;
-		}
-		else {
-			return (Employer)result;
-		}
-	}
-
-	/**
-	 * Removes the employer where userId = &#63; from the database.
-	 *
-	 * @param userId the user ID
-	 * @return the employer that was removed
-	 */
-	@Override
-	public Employer removeByuserId(long userId) throws NoSuchEmployerException {
-		Employer employer = findByuserId(userId);
-
-		return remove(employer);
-	}
-
-	/**
-	 * Returns the number of employers where userId = &#63;.
-	 *
-	 * @param userId the user ID
-	 * @return the number of matching employers
-	 */
-	@Override
-	public int countByuserId(long userId) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_USERID;
-
-		Object[] finderArgs = new Object[] { userId };
-
-		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(2);
-
-			query.append(_SQL_COUNT_EMPLOYER_WHERE);
-
-			query.append(_FINDER_COLUMN_USERID_USERID_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(userId);
-
-				count = (Long)q.uniqueResult();
-
-				finderCache.putResult(finderPath, finderArgs, count);
-			}
-			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
-
-				throw processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	private static final String _FINDER_COLUMN_USERID_USERID_2 = "employer.userId = ?";
 
 	public EmployerPersistenceImpl() {
 		setModelClass(Employer.class);
@@ -304,9 +98,6 @@ public class EmployerPersistenceImpl extends BasePersistenceImpl<Employer>
 	public void cacheResult(Employer employer) {
 		entityCache.putResult(EmployerModelImpl.ENTITY_CACHE_ENABLED,
 			EmployerImpl.class, employer.getPrimaryKey(), employer);
-
-		finderCache.putResult(FINDER_PATH_FETCH_BY_USERID,
-			new Object[] { employer.getUserId() }, employer);
 
 		employer.resetOriginalValues();
 	}
@@ -359,8 +150,6 @@ public class EmployerPersistenceImpl extends BasePersistenceImpl<Employer>
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		clearUniqueFindersCache((EmployerModelImpl)employer);
 	}
 
 	@Override
@@ -371,46 +160,6 @@ public class EmployerPersistenceImpl extends BasePersistenceImpl<Employer>
 		for (Employer employer : employers) {
 			entityCache.removeResult(EmployerModelImpl.ENTITY_CACHE_ENABLED,
 				EmployerImpl.class, employer.getPrimaryKey());
-
-			clearUniqueFindersCache((EmployerModelImpl)employer);
-		}
-	}
-
-	protected void cacheUniqueFindersCache(
-		EmployerModelImpl employerModelImpl, boolean isNew) {
-		if (isNew) {
-			Object[] args = new Object[] { employerModelImpl.getUserId() };
-
-			finderCache.putResult(FINDER_PATH_COUNT_BY_USERID, args,
-				Long.valueOf(1));
-			finderCache.putResult(FINDER_PATH_FETCH_BY_USERID, args,
-				employerModelImpl);
-		}
-		else {
-			if ((employerModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_USERID.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] { employerModelImpl.getUserId() };
-
-				finderCache.putResult(FINDER_PATH_COUNT_BY_USERID, args,
-					Long.valueOf(1));
-				finderCache.putResult(FINDER_PATH_FETCH_BY_USERID, args,
-					employerModelImpl);
-			}
-		}
-	}
-
-	protected void clearUniqueFindersCache(EmployerModelImpl employerModelImpl) {
-		Object[] args = new Object[] { employerModelImpl.getUserId() };
-
-		finderCache.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
-		finderCache.removeResult(FINDER_PATH_FETCH_BY_USERID, args);
-
-		if ((employerModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_USERID.getColumnBitmask()) != 0) {
-			args = new Object[] { employerModelImpl.getOriginalUserId() };
-
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
-			finderCache.removeResult(FINDER_PATH_FETCH_BY_USERID, args);
 		}
 	}
 
@@ -522,6 +271,28 @@ public class EmployerPersistenceImpl extends BasePersistenceImpl<Employer>
 
 		EmployerModelImpl employerModelImpl = (EmployerModelImpl)employer;
 
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+		Date now = new Date();
+
+		if (isNew && (employer.getCreateDate() == null)) {
+			if (serviceContext == null) {
+				employer.setCreateDate(now);
+			}
+			else {
+				employer.setCreateDate(serviceContext.getCreateDate(now));
+			}
+		}
+
+		if (!employerModelImpl.hasSetModifiedDate()) {
+			if (serviceContext == null) {
+				employer.setModifiedDate(now);
+			}
+			else {
+				employer.setModifiedDate(serviceContext.getModifiedDate(now));
+			}
+		}
+
 		Session session = null;
 
 		try {
@@ -545,15 +316,12 @@ public class EmployerPersistenceImpl extends BasePersistenceImpl<Employer>
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-		if (isNew || !EmployerModelImpl.COLUMN_BITMASK_ENABLED) {
+		if (isNew) {
 			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 
 		entityCache.putResult(EmployerModelImpl.ENTITY_CACHE_ENABLED,
 			EmployerImpl.class, employer.getPrimaryKey(), employer, false);
-
-		clearUniqueFindersCache(employerModelImpl);
-		cacheUniqueFindersCache(employerModelImpl, isNew);
 
 		employer.resetOriginalValues();
 
@@ -571,8 +339,9 @@ public class EmployerPersistenceImpl extends BasePersistenceImpl<Employer>
 		employerImpl.setPrimaryKey(employer.getPrimaryKey());
 
 		employerImpl.setEmployerId(employer.getEmployerId());
-		employerImpl.setUserId(employer.getUserId());
-		employerImpl.setEmployerOrgId(employer.getEmployerOrgId());
+		employerImpl.setFirstName(employer.getFirstName());
+		employerImpl.setLastName(employer.getLastName());
+		employerImpl.setEmailAddress(employer.getEmailAddress());
 		employerImpl.setAddress1(employer.getAddress1());
 		employerImpl.setAddress2(employer.getAddress2());
 		employerImpl.setCity(employer.getCity());
@@ -583,6 +352,10 @@ public class EmployerPersistenceImpl extends BasePersistenceImpl<Employer>
 		employerImpl.setContactPersonEmail(employer.getContactPersonEmail());
 		employerImpl.setContactPersonPhoneNumber(employer.getContactPersonPhoneNumber());
 		employerImpl.setWebsiteLink(employer.getWebsiteLink());
+		employerImpl.setCreateDate(employer.getCreateDate());
+		employerImpl.setCreatedBy(employer.getCreatedBy());
+		employerImpl.setModifiedDate(employer.getModifiedDate());
+		employerImpl.setModifiedBy(employer.getModifiedBy());
 
 		return employerImpl;
 	}
@@ -995,12 +768,9 @@ public class EmployerPersistenceImpl extends BasePersistenceImpl<Employer>
 	protected FinderCache finderCache;
 	private static final String _SQL_SELECT_EMPLOYER = "SELECT employer FROM Employer employer";
 	private static final String _SQL_SELECT_EMPLOYER_WHERE_PKS_IN = "SELECT employer FROM Employer employer WHERE employerId IN (";
-	private static final String _SQL_SELECT_EMPLOYER_WHERE = "SELECT employer FROM Employer employer WHERE ";
 	private static final String _SQL_COUNT_EMPLOYER = "SELECT COUNT(employer) FROM Employer employer";
-	private static final String _SQL_COUNT_EMPLOYER_WHERE = "SELECT COUNT(employer) FROM Employer employer WHERE ";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "employer.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Employer exists with the primary key ";
-	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Employer exists with the key {";
 	private static final Log _log = LogFactoryUtil.getLog(EmployerPersistenceImpl.class);
 	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
 				"state"

@@ -33,7 +33,7 @@ import java.util.Date;
 /**
  * The cache model class for representing Student in entity cache.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see Student
  * @generated
  */
@@ -65,10 +65,14 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(65);
+		StringBundler sb = new StringBundler(69);
 
-		sb.append("{studentId=");
+		sb.append("{uuid=");
+		sb.append(uuid);
+		sb.append(", studentId=");
 		sb.append(studentId);
+		sb.append(", companyId=");
+		sb.append(companyId);
 		sb.append(", stundetCampusId=");
 		sb.append(stundetCampusId);
 		sb.append(", campusId=");
@@ -140,7 +144,15 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
 	public Student toEntityModel() {
 		StudentImpl studentImpl = new StudentImpl();
 
+		if (uuid == null) {
+			studentImpl.setUuid(StringPool.BLANK);
+		}
+		else {
+			studentImpl.setUuid(uuid);
+		}
+
 		studentImpl.setStudentId(studentId);
+		studentImpl.setCompanyId(companyId);
 
 		if (stundetCampusId == null) {
 			studentImpl.setStundetCampusId(StringPool.BLANK);
@@ -313,7 +325,11 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
+		uuid = objectInput.readUTF();
+
 		studentId = objectInput.readLong();
+
+		companyId = objectInput.readLong();
 		stundetCampusId = objectInput.readUTF();
 
 		campusId = objectInput.readLong();
@@ -360,7 +376,16 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
 	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
+		if (uuid == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(uuid);
+		}
+
 		objectOutput.writeLong(studentId);
+
+		objectOutput.writeLong(companyId);
 
 		if (stundetCampusId == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -506,7 +531,9 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
 		objectOutput.writeLong(modifiedBy);
 	}
 
+	public String uuid;
 	public long studentId;
+	public long companyId;
 	public String stundetCampusId;
 	public long campusId;
 	public long schoolId;

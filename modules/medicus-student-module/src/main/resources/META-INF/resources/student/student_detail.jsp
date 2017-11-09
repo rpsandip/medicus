@@ -129,31 +129,31 @@
 					<div role="tabpanel" class="tab-pane fade" id="externship_details_content" aria-labelledby="externship-details-tab">
 						<div class="form-group">
 							<c:choose>
-							<c:when test="${not empty studentExternshipBean.employerBean.firstName }">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Employer Name:</label>${studentExternshipBean.employerBean.firstName} ${studentExternshipBean.employerBean.lastName}
+							<c:when test="${not empty studentExternshipBean.partnerBean.firstName }">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Partner Name:</label>${studentExternshipBean.partnerBean.firstName} ${studentExternshipBean.partnerBean.lastName}
 							</c:when>
 							<c:otherwise>
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Employer Name:</label> - 
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Partner Name:</label> - 
 							</c:otherwise>
 							</c:choose>
 						</div>
 						<div class="form-group">
 							<c:choose>
-								<c:when test="${not empty studentExternshipBean.employerBean.zipcode }">
-									<label class="control-label col-md-3 col-sm-3 col-xs-12">Employer Zipcode:</label>${studentExternshipBean.employerBean.zipcode}
+								<c:when test="${not empty studentExternshipBean.partnerBean.zipcode }">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12">Partner Zipcode:</label>${studentExternshipBean.partnerBean.zipcode}
 								</c:when>
 								<c:otherwise>
-									<label class="control-label col-md-3 col-sm-3 col-xs-12">Employer Zipcode:</label> - 
+									<label class="control-label col-md-3 col-sm-3 col-xs-12">Partner Zipcode:</label> - 
 								</c:otherwise>
 							</c:choose>
 						</div>
 						<div class="form-group">
 							<c:choose>
-								<c:when test="${not empty studentExternshipBean.employerBean.websiteLink}">
-									<label class="control-label col-md-3 col-sm-3 col-xs-12">Employer Website Link:</label>${studentExternshipBean.employerBean.websiteLink}
+								<c:when test="${not empty studentExternshipBean.partnerBean.websiteLink}">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12">Partner Website Link:</label>${studentExternshipBean.partnerBean.websiteLink}
 								</c:when>
 								<c:otherwise>
-									<label class="control-label col-md-3 col-sm-3 col-xs-12">Employer Website Link:</label> - 
+									<label class="control-label col-md-3 col-sm-3 col-xs-12">Partner Website Link:</label> - 
 								</c:otherwise>
 							</c:choose>
 						</div>
@@ -223,7 +223,7 @@
 							<c:when test="${fn:length(studentBean.othetAttachments) > 0}">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12">Attachments:</label>
 									<c:forEach items="${studentBean.othetAttachments}" var="document">
-										<a href="${document.documentURL }"><i class="fa fa-file-word-o"></i> ${document.fileName }</a>
+										<a href="${document.documentURL }"><i class="fa fa-file-word-o"></i> ${document.fileName }</a><br/>
 									</c:forEach>
 							</c:when>
 							<c:otherwise>
@@ -236,7 +236,7 @@
 							<c:when test="${fn:length(studentBean.agreementDocs) > 0}">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12">Agreement Details:</label>
 									<c:forEach items="${studentBean.agreementDocs}" var="document">
-										<a href="${document.documentURL }"><i class="fa fa-file-word-o"></i> ${document.fileName }</a>
+										<a href="${document.documentURL }"><i class="fa fa-file-word-o"></i> ${document.fileName }</a><br/>
 									</c:forEach>
 							</c:when>
 							<c:otherwise>
@@ -257,6 +257,15 @@
 								</c:when>
 								<c:otherwise>
 									<label class="control-label col-md-3 col-sm-3 col-xs-12">Graduation Date:</label>-
+								</c:otherwise>
+							</c:choose>
+						</div>
+						<div class="form-group">
+							<c:choose>
+								<c:when test="${not empty studentExternshipBean.employerBean }">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12">Employer :</label>${studentExternshipBean.employerBean.firstName } ${studentExternshipBean.employerBean.lastName }
+								</c:when>
+								<c:otherwise>
 								</c:otherwise>
 							</c:choose>
 						</div>

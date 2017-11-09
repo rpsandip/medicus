@@ -16,11 +16,16 @@ package com.medicus.common.service.service.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 
 import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.document.library.kernel.service.DLAppServiceUtil;
+import com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -43,9 +48,12 @@ import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.medicus.common.service.model.Employer;
-import com.medicus.common.service.service.EmployerLocalServiceUtil;
+import com.liferay.portal.kernel.util.Validator;
+import com.medicus.common.service.model.Partner;
+import com.medicus.common.service.model.Student;
+import com.medicus.common.service.service.PartnerLocalServiceUtil;
 import com.medicus.common.service.service.base.MedicusCommonLocalServiceBaseImpl;
+
 
 /**
  * The implementation of the medicus common local service.
@@ -88,15 +96,15 @@ public class MedicusCommonLocalServiceImpl
 		return medicusOrgId;
 	}
 	
-	public long getEmployerOrgRoleId(){
-		long employerRoleId = 0l;
+	public long getPartnerOrgRoleId(){
+		long partnetRoleId = 0l;
 		try {
-			Role role = RoleLocalServiceUtil.getRole(PortalUtil.getDefaultCompanyId(), "Employer");
-			employerRoleId = role.getRoleId();
+			Role role = RoleLocalServiceUtil.getRole(PortalUtil.getDefaultCompanyId(), "Partner");
+			partnetRoleId = role.getRoleId();
 		} catch (PortalException e) {
 			_log.error(e);
 		}
-		return employerRoleId;
+		return partnetRoleId;
 	}
 	
 	public User isUserExist(String emailAddress){
@@ -160,8 +168,8 @@ public class MedicusCommonLocalServiceImpl
 	}
 	
 	
-	public List<Employer> getEmployerList(){
-		return EmployerLocalServiceUtil.getEmployers(-1,-1);
+	public List<Partner> getPartnerList(){
+		return PartnerLocalServiceUtil.getPartners(-1, -1);
 	}
 	
 	public FileEntry addFileEntry(long groupId, long folderId, File file, String fileName) throws PortalException{
@@ -193,4 +201,17 @@ public class MedicusCommonLocalServiceImpl
 	}
 	
 
+	public File getStudentResumeContent(Student student){
+		File file = null;
+		if(Validator.isNotNull(student) && student.getResumeFileEntryId()>0){
+			try {
+				DLFileEntry dlFileEntry  = DLFileEntryLocalServiceUtil.getDLFileEntry(student.getResumeFileEntryId());
+				FileEntry fileEntry = DLAppServiceUtil.getFileEntry(dlFileEntry.getFileEntryId());
+				 file = DLFileEntryLocalServiceUtil.getFile(fileEntry.getFileEntryId(), dlFileEntry.getClassName(), false);
+			} catch (Exception e) {
+				_log.error(e.getMessage());
+			}
+		}
+		return file;
+	}
 }

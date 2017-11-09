@@ -58,7 +58,7 @@ import java.util.Set;
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see Student_ExternshipPersistence
  * @see com.medicus.common.service.service.persistence.Student_ExternshipUtil
  * @generated
@@ -619,6 +619,7 @@ public class Student_ExternshipPersistenceImpl extends BasePersistenceImpl<Stude
 
 		student_ExternshipImpl.setStudentExternshipId(student_Externship.getStudentExternshipId());
 		student_ExternshipImpl.setStudentId(student_Externship.getStudentId());
+		student_ExternshipImpl.setPartnerId(student_Externship.getPartnerId());
 		student_ExternshipImpl.setEmployerId(student_Externship.getEmployerId());
 		student_ExternshipImpl.setStartDate(student_Externship.getStartDate());
 		student_ExternshipImpl.setEndDate(student_Externship.getEndDate());

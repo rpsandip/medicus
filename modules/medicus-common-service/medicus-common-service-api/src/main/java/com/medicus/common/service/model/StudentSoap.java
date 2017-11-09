@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * This class is used by SOAP remote services.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @generated
  */
 @ProviderType
@@ -33,7 +33,9 @@ public class StudentSoap implements Serializable {
 	public static StudentSoap toSoapModel(Student model) {
 		StudentSoap soapModel = new StudentSoap();
 
+		soapModel.setUuid(model.getUuid());
 		soapModel.setStudentId(model.getStudentId());
+		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setStundetCampusId(model.getStundetCampusId());
 		soapModel.setCampusId(model.getCampusId());
 		soapModel.setSchoolId(model.getSchoolId());
@@ -117,12 +119,28 @@ public class StudentSoap implements Serializable {
 		setStudentId(pk);
 	}
 
+	public String getUuid() {
+		return _uuid;
+	}
+
+	public void setUuid(String uuid) {
+		_uuid = uuid;
+	}
+
 	public long getStudentId() {
 		return _studentId;
 	}
 
 	public void setStudentId(long studentId) {
 		_studentId = studentId;
+	}
+
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
 	}
 
 	public String getStundetCampusId() {
@@ -385,7 +403,9 @@ public class StudentSoap implements Serializable {
 		_modifiedBy = modifiedBy;
 	}
 
+	private String _uuid;
 	private long _studentId;
+	private long _companyId;
 	private String _stundetCampusId;
 	private long _campusId;
 	private long _schoolId;

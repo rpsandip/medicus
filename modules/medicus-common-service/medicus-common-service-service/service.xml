@@ -2,6 +2,7 @@
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_0_0.dtd">
 
 <service-builder package-path="com.medicus.common.service">
+	<author>sandip.patel</author>
 	<namespace>Medicus</namespace>
 	<entity name="School" local-service="true"  remote-service="false">
 
@@ -79,8 +80,9 @@
 	
 	<entity name="Registration" local-service="true"  remote-service="false"/>
 	
-	<entity name="Student" local-service="true"  remote-service="false">
+	<entity name="Student" local-service="true"  remote-service="false" uuid="true">
 		<column name="studentId" primary="true" type="long" />
+		<column name="companyId" type="long"></column>
 		<column name="stundetCampusId" type="String" />
 		<column name="campusId" type="long" />
 		<column name="schoolId" type="long" />
@@ -123,6 +125,7 @@
 	<entity name="Student_Externship" local-service="true"  remote-service="false">
 		<column name="studentExternshipId" primary="true" type="long" />
 		<column name="studentId" type="long" />
+		<column name="partnerId" type="long"/>
 		<column name="employerId" type="long"/>
 		<column name="startDate" type="Date"/>
 		<column name="endDate" type="Date"/>
@@ -143,8 +146,9 @@
 	
 	<entity name="Employer" local-service="true"  remote-service="false">
 		<column name="employerId" primary="true" type="long" />
-		<column name="userId"  type="long" />
-		<column name="employerOrgId"  type="long" />
+		<column name="firstName"  type="String" />
+		<column name="lastName"  type="String" />
+		<column name="emailAddress"  type="String" />
 		<column name="address1" type="String" />
 		<column name="address2"  type="String" />
 		<column name="city"  type="String" />
@@ -156,7 +160,34 @@
 		<column name="contactPersonPhoneNumber"  type="String" />
 		<column name="websiteLink" type="String" />
 		
-		<finder return-type="Employer" name="userId">
+		<column name="createDate" type="Date"></column>
+		<column name="createdBy" type="long"></column>
+		<column name="modifiedDate" type="Date"></column>
+		<column name="modifiedBy" type="long"></column>
+		
+	</entity>
+	
+	<entity name="Partner" local-service="true"  remote-service="false">
+		<column name="partnerId" primary="true" type="long" />
+		<column name="userId"  type="long" />
+		<column name="partnerOrgId"  type="long" />
+		<column name="address1" type="String" />
+		<column name="address2"  type="String" />
+		<column name="city"  type="String" />
+		<column name="zipcode"  type="String" />
+		<column name="state"  type="String" />
+		<column name="country"  type="String" />
+		<column name="contactPersonName"  type="String" />
+		<column name="contactPersonEmail"  type="String" />
+		<column name="contactPersonPhoneNumber"  type="String" />
+		<column name="websiteLink" type="String" />
+		
+		<column name="createDate" type="Date"></column>
+		<column name="createdBy" type="long"></column>
+		<column name="modifiedDate" type="Date"></column>
+		<column name="modifiedBy" type="long"></column>
+		
+		<finder return-type="Partner" name="userId">
 			<finder-column name="userId"></finder-column>
 		</finder>
 	</entity>

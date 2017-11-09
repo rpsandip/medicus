@@ -28,7 +28,7 @@ import org.osgi.util.tracker.ServiceTracker;
  * based on the propagated JAAS credentials because this service can only be
  * accessed from within the same VM.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see RegistrationLocalService
  * @see com.medicus.common.service.service.base.RegistrationLocalServiceBaseImpl
  * @see com.medicus.common.service.service.impl.RegistrationLocalServiceImpl
@@ -52,7 +52,7 @@ public class RegistrationLocalServiceUtil {
 			contactNumber, schoolId, campusId, roleId, creatorUserId, groupId);
 	}
 
-	public static com.liferay.portal.kernel.model.User registerEmployer(
+	public static com.liferay.portal.kernel.model.User registerPartner(
 		java.lang.String fName, java.lang.String lastName,
 		java.lang.String emailAddress, java.lang.String password1,
 		java.lang.String password2, java.lang.String address1,
@@ -64,7 +64,7 @@ public class RegistrationLocalServiceUtil {
 		java.lang.String websiteLink, long creatorUserId, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
-				   .registerEmployer(fName, lastName, emailAddress, password1,
+				   .registerPartner(fName, lastName, emailAddress, password1,
 			password2, address1, address2, city, zipcode, state, country,
 			contactPersonName, contactPersonEmail, contactPersonPhoneNumber,
 			websiteLink, creatorUserId, groupId);

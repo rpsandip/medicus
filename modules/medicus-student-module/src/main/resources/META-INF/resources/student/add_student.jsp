@@ -3,7 +3,7 @@
 <portlet:actionURL var="addStudentURL" name="/add_student">
 </portlet:actionURL>
 <portlet:resourceURL id="/getSchoolDetail" var="getSchoolDetailURL"></portlet:resourceURL>
-<portlet:resourceURL id="/getEmployerDetail" var="getEmployerDetailURL"></portlet:resourceURL>
+<portlet:resourceURL id="/getPartnerDetail" var="getPartnerDetailURL"></portlet:resourceURL>
 <div class="page-title">
 	<div class="title_left">
      	 <c:choose>
@@ -96,9 +96,10 @@
 					   	  </div>
 					   </div>	  
 	                   <div class="form-group">
-	                     <label for="profilePic" class="control-label col-md-3 col-sm-3 col-xs-12">Profile Picture</label>
-	                     <div class="col-md-6 col-sm-6 col-xs-12">
-	                       <input id="middle-name" class="form-control col-md-7 col-xs-12" type="file" name="profilePic">
+	                     <div class="col-md-10 col-sm-6 col-xs-12">
+	                       <aui:input name="profilePic" type="file" label="Profile Picture" cssClass="form-control col-md-7 col-xs-12">
+	                       		<aui:validator name="acceptFiles">'jpg,png,jpeg'</aui:validator>
+	                       </aui:input>
 	                     </div>
 	                   </div>
 	                   <div class="form-group">
@@ -249,7 +250,7 @@
                		   	 	<div class="col-md-10 col-sm-6 col-xs-12">
 	               				<aui:select name="state" label="state" cssClass="form-control col-md-7 col-xs-12" value="${studentBean.state }">
 	               					<c:forEach items="${usStateList }" var="state">
-	               						<aui:option value="${state }">${state }</aui:option>
+	               						<aui:option value="${state }" selected="${studentBean.state eq state? true:false }">${state }</aui:option>
 	               					</c:forEach>
 	               				</aui:select>
 							</div>
@@ -384,24 +385,24 @@
 	                   <div class="externship-data">
 	                   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
-							 <aui:select name="employerName" label="employer.name">
+							 <aui:select name="partnerName" label="partner.name">
 							 <aui:option value="">Please Select Partner</aui:option>
-							 	<c:forEach items="${employerBeanList }" var="employerBean">
-							 		<aui:option value="${employerBean.employerId }" selected="${studentExternShipBean.employerId eq employerBean.employerId ? true : false }">${employerBean.firstName } ${employerBean.lastName }</aui:option>
+							 	<c:forEach items="${partnerBeanList }" var="partnerBean">
+							 		<aui:option value="${partnerBean.partnerId }" selected="${studentExternShipBean.partnerId eq partnerBean.partnerId ? true : false }">${partnerBean.firstName } ${partnerBean.lastName }</aui:option>
 							 	</c:forEach>
 							 </aui:select>
 					   	  </div>
 					   </div>
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
-	       					 <aui:input name="employerZipCode" label="employer.zipcode"  cssClass="form-control col-md-7 col-xs-12" readonly="true" value="${studentExternShipBean.employerBean.zipcode }">
+	       					 <aui:input name="partnerZipCode" label="partner.zipcode"  cssClass="form-control col-md-7 col-xs-12" readonly="true" value="${studentExternShipBean.partnerBean.zipcode }">
 						     	<aui:validator name="maxLength">6</aui:validator>
 							 </aui:input>
 					   	  </div>
 					   </div>
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
-	       					 <aui:input name="employerWebSiteLink" label="employer.websitelink"  cssClass="form-control col-md-7 col-xs-12" readonly="true" value="${studentExternShipBean.employerBean.websiteLink }">
+	       					 <aui:input name="partnerWebSiteLink" label="partner.websitelink"  cssClass="form-control col-md-7 col-xs-12" readonly="true" value="${studentExternShipBean.partnerBean.websiteLink }">
 						     	<aui:validator name="maxLength">50</aui:validator>
 							 </aui:input>
 					   	  </div>
@@ -477,7 +478,7 @@
 	                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Agreement Details <span class="required">*</span>
 	                     </label>
 	                     <div class="col-md-6 col-sm-6 col-xs-12">
-	                       <input type="file" id="agreeements" name="agreements" required="required" class="form-control col-md-7 col-xs-12">
+	                       <input type="file" id="agreeements" name="agreements" required="required" class="form-control col-md-7 col-xs-12" multiple="multiple">
 	                     </div>
 	                   </div>
 	                   <div class="form-group">
@@ -503,8 +504,18 @@
                                <span class="glyphicon glyphicon-calendar"></span>
                              </span>
 					   	  </div>
-					   </div>
-					   <div class="form-group">
+					  </div>
+					  <div class="form-group">
+	                   	  <div class="col-md-10 col-sm-6 col-xs-12 date ">
+	                   	  		<aui:select name="employer" label="employer">
+	                   	  			<aui:option value="">Please select Employer</aui:option>
+	                   	  			<c:forEach items="${ employerList}" var="employer">
+	                   	  				<aui:option value="${employer.employerId }" selected="${employer.employerId eq  studentExternShipBean.employerId? true : false}">${employer.firstName } ${employer.lastName }</aui:option>
+	                   	  			</c:forEach>
+	                   	  		</aui:select>
+	                   	  </div>
+	                  </div> 	  
+					  <div class="form-group">
 	                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Actively Seeking Employment</label>
 	                     <div class="col-md-6 col-sm-6 col-xs-12 gender-select">
 	                     	<aui:input id="yes"  type="radio" name="activelySeekingEmployment" value="true" label=""  checked="${studentBean.activelySeekingEmployment }">
@@ -560,6 +571,12 @@ jQuery.noConflict();
 	            useCurrent: false,
 	            format: 'MM/DD/YYYY'
 	        });
+	        
+	        $('#<portlet:namespace/>finalReviewDate').datetimepicker({
+		        format: 'MM/DD/YYYY',
+		        useCurrent: false
+   		    });
+	        
 	        $("#<portlet:namespace/>externshipStartDate").on("dp.change", function (e) {
 	            $('#<portlet:namespace/>externshipEndDate').data("DateTimePicker").minDate(e.date);
 	            $("#<portlet:namespace/>midPointReviewDate").data("DateTimePicker").minDate(e.date);
@@ -648,7 +665,7 @@ jQuery.noConflict();
 			var step3Validator = new A.FormValidator({
 				boundingBox: document.<portlet:namespace/>addStudentFm,
 				rules: {
-					<portlet:namespace/>employerName: {
+					<portlet:namespace/>partnerName: {
 						required: true
 					},
 					<portlet:namespace/>externshipStartDate: {
@@ -847,30 +864,30 @@ AUI().use('aui-io-request', 'aui-autocomplete' ,'aui-base','aui-form-validator',
 	
 	A.one(".externship-data").hide();
 	
-	var employerName = A.one("#<portlet:namespace/>employerName");
-	console.log("employerName->" + employerName);
-	var getEmployerDetailURL = '${getEmployerDetailURL}';
-	employerName.on('change', function(e) {
-		var employerId = this.get('value');
-		if(employerId.trim() !==''){
+	var partnerName = A.one("#<portlet:namespace/>partnerName");
+	console.log("partnerName->" + partnerName);
+	var getPartnerDetailURL = '${getPartnerDetailURL}';
+	partnerName.on('change', function(e) {
+		var partnerId = this.get('value');
+		if(partnerId.trim() !==''){
 
-			A.io.request(getEmployerDetailURL.toString(),{
+			A.io.request(getPartnerDetailURL.toString(),{
 			dataType: 'json',
 			method: 'GET',
 			data :{
-				'<portlet:namespace/>employerId' : this.get('value')
+				'<portlet:namespace/>partnerId' : this.get('value')
 			},
 			on: {
 			success: function() {
-				var employerDetail=this.get('responseData');
-				A.one("#<portlet:namespace/>employerZipCode").val(employerDetail.zipcode);
-				A.one("#<portlet:namespace/>employerWebSiteLink").val(employerDetail.websitelink);
+				var partnerDetail=this.get('responseData');
+				A.one("#<portlet:namespace/>partnerZipCode").val(partnerDetail.zipcode);
+				A.one("#<portlet:namespace/>partnerWebSiteLink").val(partnerDetail.websitelink);
 			}
 		  }
 		});
 	   }else{
-		   A.one("#<portlet:namespace/>employerZipCode").val('');
-		   A.one("#<portlet:namespace/>employerWebSiteLink").val('');
+		   A.one("#<portlet:namespace/>partnerZipCode").val('');
+		   A.one("#<portlet:namespace/>partnerWebSiteLink").val('');
 	   }
 	});
 	
@@ -878,7 +895,7 @@ AUI().use('aui-io-request', 'aui-autocomplete' ,'aui-base','aui-form-validator',
 	if(parseInt(studentId)>0){
 		//Simulate school
 		A.one("#<portlet:namespace/>school").simulate('change');
-		A.one("#<portlet:namespace/>employerName").simulate('change');
+		A.one("#<portlet:namespace/>partnerName").simulate('change');
         var haveExternship = '${studentBean.haveExternship}';
 		console.log("haveExternship->" + haveExternship);
         if(haveExternship=='true' || haveExternship==true){

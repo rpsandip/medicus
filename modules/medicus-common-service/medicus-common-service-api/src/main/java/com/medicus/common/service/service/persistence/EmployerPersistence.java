@@ -28,7 +28,7 @@ import com.medicus.common.service.model.Employer;
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see com.medicus.common.service.service.persistence.impl.EmployerPersistenceImpl
  * @see EmployerUtil
  * @generated
@@ -40,48 +40,6 @@ public interface EmployerPersistence extends BasePersistence<Employer> {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link EmployerUtil} to access the employer persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
 	 */
-
-	/**
-	* Returns the employer where userId = &#63; or throws a {@link NoSuchEmployerException} if it could not be found.
-	*
-	* @param userId the user ID
-	* @return the matching employer
-	* @throws NoSuchEmployerException if a matching employer could not be found
-	*/
-	public Employer findByuserId(long userId) throws NoSuchEmployerException;
-
-	/**
-	* Returns the employer where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	*
-	* @param userId the user ID
-	* @return the matching employer, or <code>null</code> if a matching employer could not be found
-	*/
-	public Employer fetchByuserId(long userId);
-
-	/**
-	* Returns the employer where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	*
-	* @param userId the user ID
-	* @param retrieveFromCache whether to retrieve from the finder cache
-	* @return the matching employer, or <code>null</code> if a matching employer could not be found
-	*/
-	public Employer fetchByuserId(long userId, boolean retrieveFromCache);
-
-	/**
-	* Removes the employer where userId = &#63; from the database.
-	*
-	* @param userId the user ID
-	* @return the employer that was removed
-	*/
-	public Employer removeByuserId(long userId) throws NoSuchEmployerException;
-
-	/**
-	* Returns the number of employers where userId = &#63;.
-	*
-	* @param userId the user ID
-	* @return the number of matching employers
-	*/
-	public int countByuserId(long userId);
 
 	/**
 	* Caches the employer in the entity cache if it is enabled.

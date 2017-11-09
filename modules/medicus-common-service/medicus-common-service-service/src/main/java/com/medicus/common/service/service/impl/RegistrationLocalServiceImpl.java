@@ -14,14 +14,9 @@
 
 package com.medicus.common.service.service.impl;
 
-import aQute.bnd.annotation.ProviderType;
-import aQute.bnd.properties.IRegion;
-
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
-
-import javax.crypto.CipherInputStream;
 
 import com.liferay.counter.kernel.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -38,17 +33,17 @@ import com.liferay.portal.kernel.service.RoleLocalServiceUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
-import com.liferay.portal.kernel.servlet.SessionErrors;
-import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.medicus.common.service.model.Campus;
-import com.medicus.common.service.model.Employer;
+import com.medicus.common.service.model.Partner;
 import com.medicus.common.service.service.CampusLocalServiceUtil;
-import com.medicus.common.service.service.EmployerLocalServiceUtil;
 import com.medicus.common.service.service.MedicusCommonLocalServiceUtil;
+import com.medicus.common.service.service.PartnerLocalServiceUtil;
 import com.medicus.common.service.service.base.RegistrationLocalServiceBaseImpl;
+
+import aQute.bnd.annotation.ProviderType;
 
 /**
  * The implementation of the registration local service.
@@ -60,7 +55,7 @@ import com.medicus.common.service.service.base.RegistrationLocalServiceBaseImpl;
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see RegistrationLocalServiceBaseImpl
  * @see com.medicus.common.service.service.RegistrationLocalServiceUtil
  */
@@ -69,7 +64,7 @@ public class RegistrationLocalServiceImpl extends RegistrationLocalServiceBaseIm
 	
 	Log  _log = LogFactoryUtil.getLog(RegistrationLocalServiceImpl.class.getName());
 	
-	public User registerEmployer(String fName, String lastName, String emailAddress, String password1, String password2,
+	public User registerPartner(String fName, String lastName, String emailAddress, String password1, String password2,
 			String address1, String address2, String city, String zipcode, String state, String country, String contactPersonName,
 			String contactPersonEmail, String contactPersonPhoneNumber, String websiteLink,long creatorUserId, long groupId) throws PortalException{
 		
@@ -79,10 +74,10 @@ public class RegistrationLocalServiceImpl extends RegistrationLocalServiceBaseIm
 		long medicusOrganizationId = MedicusCommonLocalServiceUtil.getMedicusOrganizationId();
 		long medicusOrganizationGroupId = MedicusCommonLocalServiceUtil.getOrganizationGroupIdFromOrgId(medicusOrganizationId);			
 		
-		// Get Employer Organization  role 
-		long employerOrgRoleId = MedicusCommonLocalServiceUtil.getEmployerOrgRoleId();
+		// Get Partner Organization  role 
+		long partnerRoleId = MedicusCommonLocalServiceUtil.getPartnerOrgRoleId();
 		
-		if(medicusOrganizationId>0 && employerOrgRoleId>0){
+		if(medicusOrganizationId>0 && partnerRoleId>0){
 			ServiceContext serviceContext = new ServiceContext();
 			serviceContext.setUuid(UUID.randomUUID().toString());
 			serviceContext.setCreateDate(new Date());
@@ -98,13 +93,13 @@ public class RegistrationLocalServiceImpl extends RegistrationLocalServiceBaseIm
 			
 			_log.info("User crearted ->" + user.getUserId());
 			
-			// Add Employer Organization level role to user
+			// Add Partner Organization level role to user
 			 if(Validator.isNotNull(user)){
-				 UserGroupRoleLocalServiceUtil.addUserGroupRoles(user.getUserId(), medicusOrganizationGroupId, new long[]{employerOrgRoleId});
+				 UserGroupRoleLocalServiceUtil.addUserGroupRoles(user.getUserId(), medicusOrganizationGroupId, new long[]{partnerRoleId});
 				
-			 // Add Employer detail
-			 addEmployerDetail(creatorUserId, user.getUserId(),password1, password2, address1, address2, city, zipcode, state, country,
-					 contactPersonName, contactPersonEmail, contactPersonPhoneNumber, websiteLink);
+			 // Add Partner detail
+				 addPartnerDetail(creatorUserId, user.getUserId(),password1, password2, address1, address2, city, zipcode, state, country,
+					 contactPersonName, contactPersonEmail, contactPersonPhoneNumber, websiteLink,  creatorUserId);
 		
 			 }
 
@@ -112,34 +107,39 @@ public class RegistrationLocalServiceImpl extends RegistrationLocalServiceBaseIm
 		return user;
 	}
 	
-	private void addEmployerDetail(long creatorUserId, long userId, String password1, String password2,
+	private void addPartnerDetail(long creatorUserId, long userId, String password1, String password2,
 			String address1, String address2, String city, String zipcode, String state, String country, String contactPersonName,
-			String contactPersonEmail, String contactPersonPhoneNumber, String websiteLink) throws PortalException{
+			String contactPersonEmail, String contactPersonPhoneNumber, String websiteLink, long createdBy) throws PortalException{
 			
-			// Create Organization for Employer on name of userId
-			Organization employerOrg = createEmployerOrg(creatorUserId, userId);
-			if(Validator.isNotNull(employerOrg)){
-				 Employer employer = EmployerLocalServiceUtil.createEmployer(CounterLocalServiceUtil.increment());
-				 employer.setAddress1(address1);
-				 employer.setAddress2(address2);
-				 employer.setZipcode(zipcode);
-				 employer.setUserId(userId);
-				 employer.setEmployerOrgId(employerOrg.getOrganizationId());
-				 employer.setCity(city);
-				 employer.setState(state);
-				 employer.setCountry(country);
-				 employer.setContactPersonName(contactPersonName);
-				 employer.setContactPersonEmail(contactPersonEmail);
-				 employer.setContactPersonPhoneNumber(contactPersonPhoneNumber);
-				 employer.setWebsiteLink(websiteLink);
-				 
-				 employer = EmployerLocalServiceUtil.addEmployer(employer);
-				 
-				 _log.info("employer crearted ->" + employer.getEmployerId());
+			// Create Organization for Partner on name of userId
+			Organization partnerOrg = createPartnerOrg(creatorUserId, userId);
+			if(Validator.isNotNull(partnerOrg)){
+				Partner partner = PartnerLocalServiceUtil.createPartner(CounterLocalServiceUtil.increment());
+				partner.setAddress1(address1);
+				partner.setAddress2(address2);
+				partner.setZipcode(zipcode);
+				partner.setUserId(userId);
+				partner.setPartnerOrgId(partnerOrg.getOrganizationId());
+				partner.setCity(city);
+				partner.setState(state);
+				partner.setCountry(country);
+				partner.setContactPersonName(contactPersonName);
+				partner.setContactPersonEmail(contactPersonEmail);
+				partner.setContactPersonPhoneNumber(contactPersonPhoneNumber);
+				partner.setWebsiteLink(websiteLink);
+				
+				partner.setCreatedBy(createdBy);
+				partner.setModifiedBy(createdBy);
+				partner.setCreateDate(new Date());
+				partner.setModifiedDate(new Date());
+				
+				partner = PartnerLocalServiceUtil.addPartner(partner);
+				
+				 _log.info("partner crearted ->" + partner.getPartnerId());
 			}
 	}
 	
-	private Organization createEmployerOrg(long creatorUserId, long userId) throws PortalException{
+	private Organization createPartnerOrg(long creatorUserId, long userId) throws PortalException{
 		return OrganizationLocalServiceUtil.addOrganization(creatorUserId, 0l, String.valueOf(userId), true);
 	}
 	

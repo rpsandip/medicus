@@ -28,7 +28,7 @@ import org.osgi.util.tracker.ServiceTracker;
  * based on the propagated JAAS credentials because this service can only be
  * accessed from within the same VM.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see EmployerLocalService
  * @see com.medicus.common.service.service.base.EmployerLocalServiceBaseImpl
  * @see com.medicus.common.service.service.impl.EmployerLocalServiceImpl
@@ -79,6 +79,22 @@ public class EmployerLocalServiceUtil {
 		return getService().addEmployer(employer);
 	}
 
+	public static com.medicus.common.service.model.Employer addEmployer(
+		java.lang.String firstName, java.lang.String lastName,
+		java.lang.String emailAddress, java.lang.String address1,
+		java.lang.String address2, java.lang.String city,
+		java.lang.String zipcode, java.lang.String state,
+		java.lang.String country, java.lang.String contactPersonName,
+		java.lang.String contactPersonEmail,
+		java.lang.String contactPersonPhoneNumber,
+		java.lang.String websiteLink, long creatorUserId) {
+		return getService()
+				   .addEmployer(firstName, lastName, emailAddress, address1,
+			address2, city, zipcode, state, country, contactPersonName,
+			contactPersonEmail, contactPersonPhoneNumber, websiteLink,
+			creatorUserId);
+	}
+
 	/**
 	* Creates a new employer with the primary key. Does not add the employer to the database.
 	*
@@ -112,6 +128,23 @@ public class EmployerLocalServiceUtil {
 		long employerId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteEmployer(employerId);
+	}
+
+	public static com.medicus.common.service.model.Employer editEmployer(
+		long employerId, java.lang.String firstName, java.lang.String lastName,
+		java.lang.String emailAddress, java.lang.String address1,
+		java.lang.String address2, java.lang.String city,
+		java.lang.String zipcode, java.lang.String state,
+		java.lang.String country, java.lang.String contactPersonName,
+		java.lang.String contactPersonEmail,
+		java.lang.String contactPersonPhoneNumber,
+		java.lang.String websiteLink, long modifiedBy)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .editEmployer(employerId, firstName, lastName, emailAddress,
+			address1, address2, city, zipcode, state, country,
+			contactPersonName, contactPersonEmail, contactPersonPhoneNumber,
+			websiteLink, modifiedBy);
 	}
 
 	public static com.medicus.common.service.model.Employer fetchEmployer(

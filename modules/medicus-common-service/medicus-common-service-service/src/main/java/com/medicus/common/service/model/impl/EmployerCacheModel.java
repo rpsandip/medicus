@@ -28,10 +28,12 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
+import java.util.Date;
+
 /**
  * The cache model class for representing Employer in entity cache.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see Employer
  * @generated
  */
@@ -63,14 +65,16 @@ public class EmployerCacheModel implements CacheModel<Employer>, Externalizable 
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("{employerId=");
 		sb.append(employerId);
-		sb.append(", userId=");
-		sb.append(userId);
-		sb.append(", employerOrgId=");
-		sb.append(employerOrgId);
+		sb.append(", firstName=");
+		sb.append(firstName);
+		sb.append(", lastName=");
+		sb.append(lastName);
+		sb.append(", emailAddress=");
+		sb.append(emailAddress);
 		sb.append(", address1=");
 		sb.append(address1);
 		sb.append(", address2=");
@@ -91,6 +95,14 @@ public class EmployerCacheModel implements CacheModel<Employer>, Externalizable 
 		sb.append(contactPersonPhoneNumber);
 		sb.append(", websiteLink=");
 		sb.append(websiteLink);
+		sb.append(", createDate=");
+		sb.append(createDate);
+		sb.append(", createdBy=");
+		sb.append(createdBy);
+		sb.append(", modifiedDate=");
+		sb.append(modifiedDate);
+		sb.append(", modifiedBy=");
+		sb.append(modifiedBy);
 		sb.append("}");
 
 		return sb.toString();
@@ -101,8 +113,27 @@ public class EmployerCacheModel implements CacheModel<Employer>, Externalizable 
 		EmployerImpl employerImpl = new EmployerImpl();
 
 		employerImpl.setEmployerId(employerId);
-		employerImpl.setUserId(userId);
-		employerImpl.setEmployerOrgId(employerOrgId);
+
+		if (firstName == null) {
+			employerImpl.setFirstName(StringPool.BLANK);
+		}
+		else {
+			employerImpl.setFirstName(firstName);
+		}
+
+		if (lastName == null) {
+			employerImpl.setLastName(StringPool.BLANK);
+		}
+		else {
+			employerImpl.setLastName(lastName);
+		}
+
+		if (emailAddress == null) {
+			employerImpl.setEmailAddress(StringPool.BLANK);
+		}
+		else {
+			employerImpl.setEmailAddress(emailAddress);
+		}
 
 		if (address1 == null) {
 			employerImpl.setAddress1(StringPool.BLANK);
@@ -174,6 +205,24 @@ public class EmployerCacheModel implements CacheModel<Employer>, Externalizable 
 			employerImpl.setWebsiteLink(websiteLink);
 		}
 
+		if (createDate == Long.MIN_VALUE) {
+			employerImpl.setCreateDate(null);
+		}
+		else {
+			employerImpl.setCreateDate(new Date(createDate));
+		}
+
+		employerImpl.setCreatedBy(createdBy);
+
+		if (modifiedDate == Long.MIN_VALUE) {
+			employerImpl.setModifiedDate(null);
+		}
+		else {
+			employerImpl.setModifiedDate(new Date(modifiedDate));
+		}
+
+		employerImpl.setModifiedBy(modifiedBy);
+
 		employerImpl.resetOriginalValues();
 
 		return employerImpl;
@@ -182,10 +231,9 @@ public class EmployerCacheModel implements CacheModel<Employer>, Externalizable 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		employerId = objectInput.readLong();
-
-		userId = objectInput.readLong();
-
-		employerOrgId = objectInput.readLong();
+		firstName = objectInput.readUTF();
+		lastName = objectInput.readUTF();
+		emailAddress = objectInput.readUTF();
 		address1 = objectInput.readUTF();
 		address2 = objectInput.readUTF();
 		city = objectInput.readUTF();
@@ -196,6 +244,12 @@ public class EmployerCacheModel implements CacheModel<Employer>, Externalizable 
 		contactPersonEmail = objectInput.readUTF();
 		contactPersonPhoneNumber = objectInput.readUTF();
 		websiteLink = objectInput.readUTF();
+		createDate = objectInput.readLong();
+
+		createdBy = objectInput.readLong();
+		modifiedDate = objectInput.readLong();
+
+		modifiedBy = objectInput.readLong();
 	}
 
 	@Override
@@ -203,9 +257,26 @@ public class EmployerCacheModel implements CacheModel<Employer>, Externalizable 
 		throws IOException {
 		objectOutput.writeLong(employerId);
 
-		objectOutput.writeLong(userId);
+		if (firstName == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(firstName);
+		}
 
-		objectOutput.writeLong(employerOrgId);
+		if (lastName == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(lastName);
+		}
+
+		if (emailAddress == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(emailAddress);
+		}
 
 		if (address1 == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -276,11 +347,19 @@ public class EmployerCacheModel implements CacheModel<Employer>, Externalizable 
 		else {
 			objectOutput.writeUTF(websiteLink);
 		}
+
+		objectOutput.writeLong(createDate);
+
+		objectOutput.writeLong(createdBy);
+		objectOutput.writeLong(modifiedDate);
+
+		objectOutput.writeLong(modifiedBy);
 	}
 
 	public long employerId;
-	public long userId;
-	public long employerOrgId;
+	public String firstName;
+	public String lastName;
+	public String emailAddress;
 	public String address1;
 	public String address2;
 	public String city;
@@ -291,4 +370,8 @@ public class EmployerCacheModel implements CacheModel<Employer>, Externalizable 
 	public String contactPersonEmail;
 	public String contactPersonPhoneNumber;
 	public String websiteLink;
+	public long createDate;
+	public long createdBy;
+	public long modifiedDate;
+	public long modifiedBy;
 }

@@ -28,7 +28,7 @@ import com.medicus.common.service.model.School;
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see com.medicus.common.service.service.persistence.impl.SchoolPersistenceImpl
  * @see SchoolUtil
  * @generated

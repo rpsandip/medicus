@@ -3,6 +3,10 @@
 <portlet:actionURL var="addCampusURL" name="/add_campus">
 </portlet:actionURL>
  
+<liferay-ui:error key="campus-add-error" message="campus-add-error"/>
+<liferay-ui:error key="campus-update-error" message="campus-update-error"/>
+ 
+ 
 <div class="page-title">
    <div class="title_left">
      <c:choose>

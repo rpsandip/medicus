@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.service.ServiceContext;
 
 import java.io.Serializable;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -32,7 +33,7 @@ import java.util.Objects;
  * This class is a wrapper for {@link Employer}.
  * </p>
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see Employer
  * @generated
  */
@@ -57,8 +58,9 @@ public class EmployerWrapper implements Employer, ModelWrapper<Employer> {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("employerId", getEmployerId());
-		attributes.put("userId", getUserId());
-		attributes.put("employerOrgId", getEmployerOrgId());
+		attributes.put("firstName", getFirstName());
+		attributes.put("lastName", getLastName());
+		attributes.put("emailAddress", getEmailAddress());
 		attributes.put("address1", getAddress1());
 		attributes.put("address2", getAddress2());
 		attributes.put("city", getCity());
@@ -69,6 +71,10 @@ public class EmployerWrapper implements Employer, ModelWrapper<Employer> {
 		attributes.put("contactPersonEmail", getContactPersonEmail());
 		attributes.put("contactPersonPhoneNumber", getContactPersonPhoneNumber());
 		attributes.put("websiteLink", getWebsiteLink());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("createdBy", getCreatedBy());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("modifiedBy", getModifiedBy());
 
 		return attributes;
 	}
@@ -81,16 +87,22 @@ public class EmployerWrapper implements Employer, ModelWrapper<Employer> {
 			setEmployerId(employerId);
 		}
 
-		Long userId = (Long)attributes.get("userId");
+		String firstName = (String)attributes.get("firstName");
 
-		if (userId != null) {
-			setUserId(userId);
+		if (firstName != null) {
+			setFirstName(firstName);
 		}
 
-		Long employerOrgId = (Long)attributes.get("employerOrgId");
+		String lastName = (String)attributes.get("lastName");
 
-		if (employerOrgId != null) {
-			setEmployerOrgId(employerOrgId);
+		if (lastName != null) {
+			setLastName(lastName);
+		}
+
+		String emailAddress = (String)attributes.get("emailAddress");
+
+		if (emailAddress != null) {
+			setEmailAddress(emailAddress);
 		}
 
 		String address1 = (String)attributes.get("address1");
@@ -152,6 +164,30 @@ public class EmployerWrapper implements Employer, ModelWrapper<Employer> {
 
 		if (websiteLink != null) {
 			setWebsiteLink(websiteLink);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Long createdBy = (Long)attributes.get("createdBy");
+
+		if (createdBy != null) {
+			setCreatedBy(createdBy);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		Long modifiedBy = (Long)attributes.get("modifiedBy");
+
+		if (modifiedBy != null) {
+			setModifiedBy(modifiedBy);
 		}
 	}
 
@@ -281,6 +317,36 @@ public class EmployerWrapper implements Employer, ModelWrapper<Employer> {
 	}
 
 	/**
+	* Returns the email address of this employer.
+	*
+	* @return the email address of this employer
+	*/
+	@Override
+	public java.lang.String getEmailAddress() {
+		return _employer.getEmailAddress();
+	}
+
+	/**
+	* Returns the first name of this employer.
+	*
+	* @return the first name of this employer
+	*/
+	@Override
+	public java.lang.String getFirstName() {
+		return _employer.getFirstName();
+	}
+
+	/**
+	* Returns the last name of this employer.
+	*
+	* @return the last name of this employer
+	*/
+	@Override
+	public java.lang.String getLastName() {
+		return _employer.getLastName();
+	}
+
+	/**
 	* Returns the state of this employer.
 	*
 	* @return the state of this employer
@@ -288,16 +354,6 @@ public class EmployerWrapper implements Employer, ModelWrapper<Employer> {
 	@Override
 	public java.lang.String getState() {
 		return _employer.getState();
-	}
-
-	/**
-	* Returns the user uuid of this employer.
-	*
-	* @return the user uuid of this employer
-	*/
-	@Override
-	public java.lang.String getUserUuid() {
-		return _employer.getUserUuid();
 	}
 
 	/**
@@ -331,6 +387,36 @@ public class EmployerWrapper implements Employer, ModelWrapper<Employer> {
 	}
 
 	/**
+	* Returns the create date of this employer.
+	*
+	* @return the create date of this employer
+	*/
+	@Override
+	public Date getCreateDate() {
+		return _employer.getCreateDate();
+	}
+
+	/**
+	* Returns the modified date of this employer.
+	*
+	* @return the modified date of this employer
+	*/
+	@Override
+	public Date getModifiedDate() {
+		return _employer.getModifiedDate();
+	}
+
+	/**
+	* Returns the created by of this employer.
+	*
+	* @return the created by of this employer
+	*/
+	@Override
+	public long getCreatedBy() {
+		return _employer.getCreatedBy();
+	}
+
+	/**
 	* Returns the employer ID of this employer.
 	*
 	* @return the employer ID of this employer
@@ -341,13 +427,13 @@ public class EmployerWrapper implements Employer, ModelWrapper<Employer> {
 	}
 
 	/**
-	* Returns the employer org ID of this employer.
+	* Returns the modified by of this employer.
 	*
-	* @return the employer org ID of this employer
+	* @return the modified by of this employer
 	*/
 	@Override
-	public long getEmployerOrgId() {
-		return _employer.getEmployerOrgId();
+	public long getModifiedBy() {
+		return _employer.getModifiedBy();
 	}
 
 	/**
@@ -358,16 +444,6 @@ public class EmployerWrapper implements Employer, ModelWrapper<Employer> {
 	@Override
 	public long getPrimaryKey() {
 		return _employer.getPrimaryKey();
-	}
-
-	/**
-	* Returns the user ID of this employer.
-	*
-	* @return the user ID of this employer
-	*/
-	@Override
-	public long getUserId() {
-		return _employer.getUserId();
 	}
 
 	@Override
@@ -452,6 +528,36 @@ public class EmployerWrapper implements Employer, ModelWrapper<Employer> {
 	}
 
 	/**
+	* Sets the create date of this employer.
+	*
+	* @param createDate the create date of this employer
+	*/
+	@Override
+	public void setCreateDate(Date createDate) {
+		_employer.setCreateDate(createDate);
+	}
+
+	/**
+	* Sets the created by of this employer.
+	*
+	* @param createdBy the created by of this employer
+	*/
+	@Override
+	public void setCreatedBy(long createdBy) {
+		_employer.setCreatedBy(createdBy);
+	}
+
+	/**
+	* Sets the email address of this employer.
+	*
+	* @param emailAddress the email address of this employer
+	*/
+	@Override
+	public void setEmailAddress(java.lang.String emailAddress) {
+		_employer.setEmailAddress(emailAddress);
+	}
+
+	/**
 	* Sets the employer ID of this employer.
 	*
 	* @param employerId the employer ID of this employer
@@ -459,16 +565,6 @@ public class EmployerWrapper implements Employer, ModelWrapper<Employer> {
 	@Override
 	public void setEmployerId(long employerId) {
 		_employer.setEmployerId(employerId);
-	}
-
-	/**
-	* Sets the employer org ID of this employer.
-	*
-	* @param employerOrgId the employer org ID of this employer
-	*/
-	@Override
-	public void setEmployerOrgId(long employerOrgId) {
-		_employer.setEmployerOrgId(employerOrgId);
 	}
 
 	@Override
@@ -485,6 +581,46 @@ public class EmployerWrapper implements Employer, ModelWrapper<Employer> {
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		_employer.setExpandoBridgeAttributes(serviceContext);
+	}
+
+	/**
+	* Sets the first name of this employer.
+	*
+	* @param firstName the first name of this employer
+	*/
+	@Override
+	public void setFirstName(java.lang.String firstName) {
+		_employer.setFirstName(firstName);
+	}
+
+	/**
+	* Sets the last name of this employer.
+	*
+	* @param lastName the last name of this employer
+	*/
+	@Override
+	public void setLastName(java.lang.String lastName) {
+		_employer.setLastName(lastName);
+	}
+
+	/**
+	* Sets the modified by of this employer.
+	*
+	* @param modifiedBy the modified by of this employer
+	*/
+	@Override
+	public void setModifiedBy(long modifiedBy) {
+		_employer.setModifiedBy(modifiedBy);
+	}
+
+	/**
+	* Sets the modified date of this employer.
+	*
+	* @param modifiedDate the modified date of this employer
+	*/
+	@Override
+	public void setModifiedDate(Date modifiedDate) {
+		_employer.setModifiedDate(modifiedDate);
 	}
 
 	@Override
@@ -515,26 +651,6 @@ public class EmployerWrapper implements Employer, ModelWrapper<Employer> {
 	@Override
 	public void setState(java.lang.String state) {
 		_employer.setState(state);
-	}
-
-	/**
-	* Sets the user ID of this employer.
-	*
-	* @param userId the user ID of this employer
-	*/
-	@Override
-	public void setUserId(long userId) {
-		_employer.setUserId(userId);
-	}
-
-	/**
-	* Sets the user uuid of this employer.
-	*
-	* @param userUuid the user uuid of this employer
-	*/
-	@Override
-	public void setUserUuid(java.lang.String userUuid) {
-		_employer.setUserUuid(userUuid);
 	}
 
 	/**

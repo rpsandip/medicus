@@ -33,7 +33,7 @@ import java.util.Objects;
  * This class is a wrapper for {@link Student_Externship}.
  * </p>
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see Student_Externship
  * @generated
  */
@@ -60,6 +60,7 @@ public class Student_ExternshipWrapper implements Student_Externship,
 
 		attributes.put("studentExternshipId", getStudentExternshipId());
 		attributes.put("studentId", getStudentId());
+		attributes.put("partnerId", getPartnerId());
 		attributes.put("employerId", getEmployerId());
 		attributes.put("startDate", getStartDate());
 		attributes.put("endDate", getEndDate());
@@ -88,6 +89,12 @@ public class Student_ExternshipWrapper implements Student_Externship,
 
 		if (studentId != null) {
 			setStudentId(studentId);
+		}
+
+		Long partnerId = (Long)attributes.get("partnerId");
+
+		if (partnerId != null) {
+			setPartnerId(partnerId);
 		}
 
 		Long employerId = (Long)attributes.get("employerId");
@@ -350,6 +357,16 @@ public class Student_ExternshipWrapper implements Student_Externship,
 	}
 
 	/**
+	* Returns the partner ID of this student_ externship.
+	*
+	* @return the partner ID of this student_ externship
+	*/
+	@Override
+	public long getPartnerId() {
+		return _student_Externship.getPartnerId();
+	}
+
+	/**
 	* Returns the primary key of this student_ externship.
 	*
 	* @return the primary key of this student_ externship
@@ -518,6 +535,16 @@ public class Student_ExternshipWrapper implements Student_Externship,
 	@Override
 	public void setNoOfHoursPerWeek(int noOfHoursPerWeek) {
 		_student_Externship.setNoOfHoursPerWeek(noOfHoursPerWeek);
+	}
+
+	/**
+	* Sets the partner ID of this student_ externship.
+	*
+	* @param partnerId the partner ID of this student_ externship
+	*/
+	@Override
+	public void setPartnerId(long partnerId) {
+		_student_Externship.setPartnerId(partnerId);
 	}
 
 	/**

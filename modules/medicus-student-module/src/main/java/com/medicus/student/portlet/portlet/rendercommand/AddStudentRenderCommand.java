@@ -13,14 +13,15 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
-import com.liferay.portal.kernel.scheduler.SchedulerEntryImpl;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.medicus.common.service.bean.EmployerBean;
+import com.medicus.common.service.bean.PartnerBean;
 import com.medicus.common.service.bean.StudentBean;
 import com.medicus.common.service.bean.Student_ExternshipBean;
 import com.medicus.common.service.model.Employer;
+import com.medicus.common.service.model.Partner;
 import com.medicus.common.service.model.Student;
 import com.medicus.common.service.model.Student_Externship;
+import com.medicus.common.service.service.EmployerLocalServiceUtil;
 import com.medicus.common.service.service.MedicusCommonLocalServiceUtil;
 import com.medicus.common.service.service.SchoolLocalServiceUtil;
 import com.medicus.common.service.service.StudentLocalServiceUtil;
@@ -43,14 +44,23 @@ public class AddStudentRenderCommand implements MVCRenderCommand{
 	public String render(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException {
 		renderRequest.setAttribute("usStateList", MedicusCommonLocalServiceUtil.getUSStateList());
 		renderRequest.setAttribute("schoolList", SchoolLocalServiceUtil.getSchools(-1, -1));
-		List<EmployerBean> employerBeanList = new ArrayList<EmployerBean>();
-		List<Employer> employerList = MedicusCommonLocalServiceUtil.getEmployerList();
-		for(Employer employer :employerList){
-			EmployerBean employerBean = new EmployerBean(employer);
-			employerBeanList.add(employerBean);
-		}
-		renderRequest.setAttribute("employerBeanList", employerBeanList);
 		
+		// Get Partner List
+		List<PartnerBean> partnerBeanList = new ArrayList<PartnerBean>();
+		List<Partner> partnerList = MedicusCommonLocalServiceUtil.getPartnerList();
+		for(Partner partner : partnerList){
+			PartnerBean partnerBean = new PartnerBean(partner);
+			partnerBeanList.add(partnerBean);
+		}
+		renderRequest.setAttribute("partnerBeanList", partnerBeanList);
+		
+		
+		// Get Employer List
+		List<Employer> employerList = new ArrayList<Employer>();
+		employerList = EmployerLocalServiceUtil.getEmployers(-1, -1);
+		renderRequest.setAttribute("employerList", employerList);
+		
+		// Get StudentBean
 		long studentId = ParamUtil.getLong(renderRequest,"studentId");
 		if(studentId>0){
 			try {

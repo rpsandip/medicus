@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link EmployerLocalService}.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see EmployerLocalService
  * @generated
  */
@@ -77,6 +77,22 @@ public class EmployerLocalServiceWrapper implements EmployerLocalService,
 		return _employerLocalService.addEmployer(employer);
 	}
 
+	@Override
+	public com.medicus.common.service.model.Employer addEmployer(
+		java.lang.String firstName, java.lang.String lastName,
+		java.lang.String emailAddress, java.lang.String address1,
+		java.lang.String address2, java.lang.String city,
+		java.lang.String zipcode, java.lang.String state,
+		java.lang.String country, java.lang.String contactPersonName,
+		java.lang.String contactPersonEmail,
+		java.lang.String contactPersonPhoneNumber,
+		java.lang.String websiteLink, long creatorUserId) {
+		return _employerLocalService.addEmployer(firstName, lastName,
+			emailAddress, address1, address2, city, zipcode, state, country,
+			contactPersonName, contactPersonEmail, contactPersonPhoneNumber,
+			websiteLink, creatorUserId);
+	}
+
 	/**
 	* Creates a new employer with the primary key. Does not add the employer to the database.
 	*
@@ -113,6 +129,23 @@ public class EmployerLocalServiceWrapper implements EmployerLocalService,
 		long employerId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _employerLocalService.deleteEmployer(employerId);
+	}
+
+	@Override
+	public com.medicus.common.service.model.Employer editEmployer(
+		long employerId, java.lang.String firstName, java.lang.String lastName,
+		java.lang.String emailAddress, java.lang.String address1,
+		java.lang.String address2, java.lang.String city,
+		java.lang.String zipcode, java.lang.String state,
+		java.lang.String country, java.lang.String contactPersonName,
+		java.lang.String contactPersonEmail,
+		java.lang.String contactPersonPhoneNumber,
+		java.lang.String websiteLink, long modifiedBy)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _employerLocalService.editEmployer(employerId, firstName,
+			lastName, emailAddress, address1, address2, city, zipcode, state,
+			country, contactPersonName, contactPersonEmail,
+			contactPersonPhoneNumber, websiteLink, modifiedBy);
 	}
 
 	@Override

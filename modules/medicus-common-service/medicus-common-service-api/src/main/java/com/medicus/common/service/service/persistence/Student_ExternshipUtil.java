@@ -35,7 +35,7 @@ import java.util.List;
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see Student_ExternshipPersistence
  * @see com.medicus.common.service.service.persistence.impl.Student_ExternshipPersistenceImpl
  * @generated

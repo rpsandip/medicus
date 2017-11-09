@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link SchoolLocalService}.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see SchoolLocalService
  * @generated
  */

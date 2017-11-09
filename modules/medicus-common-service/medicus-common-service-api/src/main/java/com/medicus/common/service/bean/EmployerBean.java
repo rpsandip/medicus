@@ -29,9 +29,10 @@ public class EmployerBean {
 	private String websiteLink;
 	
 	public EmployerBean(Employer employer){
+		this.firstName=employer.getFirstName();
+		this.lastName = employer.getLastName();
+		this.emailAddress = employer.getEmailAddress();
 		this.employerId = employer.getEmployerId();
-		this.userId = employer.getUserId();
-		this.employerOrgId = employer.getEmployerOrgId();
 		this.address1 = employer.getAddress1();
 		this.address2 = employer.getAddress2();
 		this.city = employer.getCity();
@@ -42,6 +43,7 @@ public class EmployerBean {
 		this.contactPersonEmail = employer.getContactPersonEmail();
 		this.contactPersonPhoneNumber = employer.getContactPersonPhoneNumber();
 		this.websiteLink = employer.getWebsiteLink();
+		
 		
 		if(this.userId>0){
 			try {

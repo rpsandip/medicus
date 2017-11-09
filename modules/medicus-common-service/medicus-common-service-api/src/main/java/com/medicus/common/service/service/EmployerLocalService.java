@@ -44,7 +44,7 @@ import java.util.List;
  * credentials because this service can only be accessed from within the same
  * VM.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see EmployerLocalServiceUtil
  * @see com.medicus.common.service.service.base.EmployerLocalServiceBaseImpl
  * @see com.medicus.common.service.service.impl.EmployerLocalServiceImpl
@@ -89,6 +89,16 @@ public interface EmployerLocalService extends BaseLocalService,
 	@Indexable(type = IndexableType.REINDEX)
 	public Employer addEmployer(Employer employer);
 
+	public Employer addEmployer(java.lang.String firstName,
+		java.lang.String lastName, java.lang.String emailAddress,
+		java.lang.String address1, java.lang.String address2,
+		java.lang.String city, java.lang.String zipcode,
+		java.lang.String state, java.lang.String country,
+		java.lang.String contactPersonName,
+		java.lang.String contactPersonEmail,
+		java.lang.String contactPersonPhoneNumber,
+		java.lang.String websiteLink, long creatorUserId);
+
 	/**
 	* Creates a new employer with the primary key. Does not add the employer to the database.
 	*
@@ -115,6 +125,17 @@ public interface EmployerLocalService extends BaseLocalService,
 	*/
 	@Indexable(type = IndexableType.DELETE)
 	public Employer deleteEmployer(long employerId) throws PortalException;
+
+	public Employer editEmployer(long employerId, java.lang.String firstName,
+		java.lang.String lastName, java.lang.String emailAddress,
+		java.lang.String address1, java.lang.String address2,
+		java.lang.String city, java.lang.String zipcode,
+		java.lang.String state, java.lang.String country,
+		java.lang.String contactPersonName,
+		java.lang.String contactPersonEmail,
+		java.lang.String contactPersonPhoneNumber,
+		java.lang.String websiteLink, long modifiedBy)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Employer fetchEmployer(long employerId);

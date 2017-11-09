@@ -19,12 +19,13 @@ import aQute.bnd.annotation.ProviderType;
 import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
  * This class is used by SOAP remote services.
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @generated
  */
 @ProviderType
@@ -33,8 +34,9 @@ public class EmployerSoap implements Serializable {
 		EmployerSoap soapModel = new EmployerSoap();
 
 		soapModel.setEmployerId(model.getEmployerId());
-		soapModel.setUserId(model.getUserId());
-		soapModel.setEmployerOrgId(model.getEmployerOrgId());
+		soapModel.setFirstName(model.getFirstName());
+		soapModel.setLastName(model.getLastName());
+		soapModel.setEmailAddress(model.getEmailAddress());
 		soapModel.setAddress1(model.getAddress1());
 		soapModel.setAddress2(model.getAddress2());
 		soapModel.setCity(model.getCity());
@@ -45,6 +47,10 @@ public class EmployerSoap implements Serializable {
 		soapModel.setContactPersonEmail(model.getContactPersonEmail());
 		soapModel.setContactPersonPhoneNumber(model.getContactPersonPhoneNumber());
 		soapModel.setWebsiteLink(model.getWebsiteLink());
+		soapModel.setCreateDate(model.getCreateDate());
+		soapModel.setCreatedBy(model.getCreatedBy());
+		soapModel.setModifiedDate(model.getModifiedDate());
+		soapModel.setModifiedBy(model.getModifiedBy());
 
 		return soapModel;
 	}
@@ -105,20 +111,28 @@ public class EmployerSoap implements Serializable {
 		_employerId = employerId;
 	}
 
-	public long getUserId() {
-		return _userId;
+	public String getFirstName() {
+		return _firstName;
 	}
 
-	public void setUserId(long userId) {
-		_userId = userId;
+	public void setFirstName(String firstName) {
+		_firstName = firstName;
 	}
 
-	public long getEmployerOrgId() {
-		return _employerOrgId;
+	public String getLastName() {
+		return _lastName;
 	}
 
-	public void setEmployerOrgId(long employerOrgId) {
-		_employerOrgId = employerOrgId;
+	public void setLastName(String lastName) {
+		_lastName = lastName;
+	}
+
+	public String getEmailAddress() {
+		return _emailAddress;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		_emailAddress = emailAddress;
 	}
 
 	public String getAddress1() {
@@ -201,9 +215,42 @@ public class EmployerSoap implements Serializable {
 		_websiteLink = websiteLink;
 	}
 
+	public Date getCreateDate() {
+		return _createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		_createDate = createDate;
+	}
+
+	public long getCreatedBy() {
+		return _createdBy;
+	}
+
+	public void setCreatedBy(long createdBy) {
+		_createdBy = createdBy;
+	}
+
+	public Date getModifiedDate() {
+		return _modifiedDate;
+	}
+
+	public void setModifiedDate(Date modifiedDate) {
+		_modifiedDate = modifiedDate;
+	}
+
+	public long getModifiedBy() {
+		return _modifiedBy;
+	}
+
+	public void setModifiedBy(long modifiedBy) {
+		_modifiedBy = modifiedBy;
+	}
+
 	private long _employerId;
-	private long _userId;
-	private long _employerOrgId;
+	private String _firstName;
+	private String _lastName;
+	private String _emailAddress;
 	private String _address1;
 	private String _address2;
 	private String _city;
@@ -214,4 +261,8 @@ public class EmployerSoap implements Serializable {
 	private String _contactPersonEmail;
 	private String _contactPersonPhoneNumber;
 	private String _websiteLink;
+	private Date _createDate;
+	private long _createdBy;
+	private Date _modifiedDate;
+	private long _modifiedBy;
 }
