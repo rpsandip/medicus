@@ -86,6 +86,17 @@
 		<field name="modifiedDate" type="Date" />
 		<field name="modifiedBy" type="long" />
 	</model>
+	<model name="com.medicus.common.service.model.Interview_Request">
+		<field name="partnerId" type="long" />
+		<field name="studentId" type="long" />
+		<field name="schoolId" type="long" />
+		<field name="campusId" type="long" />
+		<field name="status" type="int" />
+		<field name="createDate" type="Date" />
+		<field name="createdBy" type="long" />
+		<field name="modifiedDate" type="Date" />
+		<field name="modifiedBy" type="long" />
+	</model>
 	<model name="com.medicus.common.service.model.Partner">
 		<field name="partnerId" type="long" />
 		<field name="userId" type="long" />
@@ -212,6 +223,7 @@
 		<field name="graduationDate" type="Date" />
 		<field name="activelySeekingEmployment" type="boolean" />
 		<field name="haveExternship" type="boolean" />
+		<field name="status" type="int" />
 		<field name="createDate" type="Date" />
 		<field name="createdBy" type="long" />
 		<field name="modifiedDate" type="Date" />

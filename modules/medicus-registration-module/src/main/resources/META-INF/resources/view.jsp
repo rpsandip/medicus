@@ -152,12 +152,6 @@
 	               	<aui:input name="contactPersonPhoneNumber" label="contactPersonPhoneNumber" cssClass="form-control col-md-7 col-xs-12" placeholder="xxx-xxx-xxxx">
 				     	<aui:validator name="required" />
 				     	<aui:validator name="maxLength">14</aui:validator>
-				     	<aui:script>
-								new Formatter(document.getElementById('<portlet:namespace/>'+'contactPersonPhoneNumber'), {
-									'pattern': '({{999}})-{{999}}-{{9999}}',
-									'persistent': false
-								});
-							</aui:script>
 					 </aui:input>
 				</div>
 			  </div>
@@ -194,6 +188,11 @@ AUI().use('aui-base','aui-form-validator', function(A) {
 		if(!formValidator.hasErrors()){
 			document.<portlet:namespace />addPartnerFm.submit();
 		}
+	});
+	
+	new Formatter(document.getElementById('<portlet:namespace/>'+'contactPersonPhoneNumber'), {
+		'pattern': '({{999}})-{{999}}-{{9999}}',
+		'persistent': false
 	});
 });
 </aui:script>      

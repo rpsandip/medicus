@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE resource-action-mapping PUBLIC "-//Liferay//DTD Resource Action Mapping 7.0.0//EN" "http://www.liferay.com/dtd/liferay-resource-action-mapping_7_0_0.dtd">
+
+<resource-action-mapping>
+  <model-resource>
+    <model-name>com.medicus.common.service.model.Student</model-name>
+    <portlet-ref>
+      <portlet-name>com_medicus_student_portlet_portlet_StudentModulePortlet</portlet-name>
+    </portlet-ref>
+    <permissions>
+      <supports>
+        <action-key>ADD_STUDENT</action-key>
+        <action-key>IMPORT_STUDENT</action-key>
+        <action-key>VIEW_STUDENT_PROFILE</action-key>
+        <action-key>UPDATE_STUDENT</action-key>
+        <action-key>STUDENT_INTERVIEW_REQUEST</action-key>
+        <action-key>DELETE_STUDENT</action-key>
+      </supports>
+      <site-member-defaults>
+      </site-member-defaults>
+      <guest-defaults>
+      </guest-defaults>
+      <guest-unsupported>
+        <action-key>ADD_STUDENT</action-key>
+        <action-key>IMPORT_STUDENT</action-key>
+        <action-key>VIEW_STUDENT_PROFILE</action-key>
+        <action-key>UPDATE_STUDENT</action-key>
+        <action-key>STUDENT_INTERVIEW_REQUEST</action-key>
+        <action-key>DELETE_STUDENT</action-key>
+      </guest-unsupported>
+    </permissions>
+  </model-resource>
+</resource-action-mapping>

@@ -1844,6 +1844,7 @@ public class StudentPersistenceImpl extends BasePersistenceImpl<Student>
 		studentImpl.setGraduationDate(student.getGraduationDate());
 		studentImpl.setActivelySeekingEmployment(student.isActivelySeekingEmployment());
 		studentImpl.setHaveExternship(student.isHaveExternship());
+		studentImpl.setStatus(student.getStatus());
 		studentImpl.setCreateDate(student.getCreateDate());
 		studentImpl.setCreatedBy(student.getCreatedBy());
 		studentImpl.setModifiedDate(student.getModifiedDate());

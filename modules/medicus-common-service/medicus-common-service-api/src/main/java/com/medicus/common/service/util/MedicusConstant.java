@@ -10,4 +10,6 @@ public class MedicusConstant {
 	public static final String STUDENT_IDNEX_PROFESSION="profession";
 	public static final String STUDENT_IDNEX_LANGUAGE="language";
 	public static final String STUDENT_IDNEX_ZIPCODE="zipcode";
+	public static final String PARTNER_ORG_ROLE="Partner";
+	public static final String MEDICUS_ORG="Medicus";
 }

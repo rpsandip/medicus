@@ -529,6 +529,20 @@ public interface StudentModel extends BaseModel<Student>, ShardedModel,
 	public void setHaveExternship(boolean haveExternship);
 
 	/**
+	 * Returns the status of this student.
+	 *
+	 * @return the status of this student
+	 */
+	public int getStatus();
+
+	/**
+	 * Sets the status of this student.
+	 *
+	 * @param status the status of this student
+	 */
+	public void setStatus(int status);
+
+	/**
 	 * Returns the create date of this student.
 	 *
 	 * @return the create date of this student

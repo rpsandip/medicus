@@ -4,6 +4,7 @@
 <hibernate-mapping auto-import="false" default-lazy="false">
 	<import class="com.medicus.common.service.model.Campus" />
 	<import class="com.medicus.common.service.model.Employer" />
+	<import class="com.medicus.common.service.model.Interview_Request" />
 	<import class="com.medicus.common.service.model.MedicusCommon" />
 	<import class="com.medicus.common.service.model.Partner" />
 	<import class="com.medicus.common.service.model.Registration" />
@@ -50,6 +51,19 @@
 		<property name="contactPersonEmail" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="contactPersonPhoneNumber" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="websiteLink" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="createdBy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedBy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.medicus.common.service.model.impl.Interview_RequestImpl" table="Medicus_Interview_Request">
+		<composite-id class="com.medicus.common.service.service.persistence.Interview_RequestPK" name="primaryKey">
+			<key-property name="partnerId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="studentId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		</composite-id>
+		<property name="schoolId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="campusId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="createdBy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
@@ -131,6 +145,7 @@
 		<property name="graduationDate" type="org.hibernate.type.TimestampType" />
 		<property name="activelySeekingEmployment" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="haveExternship" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="createdBy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />

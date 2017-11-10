@@ -41,6 +41,19 @@ create table Medicus_Employer (
 	modifiedBy LONG
 );
 
+create table Medicus_Interview_Request (
+	partnerId LONG not null,
+	studentId LONG not null,
+	schoolId LONG,
+	campusId LONG,
+	status INTEGER,
+	createDate DATE null,
+	createdBy LONG,
+	modifiedDate DATE null,
+	modifiedBy LONG,
+	primary key (partnerId, studentId)
+);
+
 create table Medicus_Partner (
 	partnerId LONG not null primary key,
 	userId LONG,
@@ -113,6 +126,7 @@ create table Medicus_Student (
 	graduationDate DATE null,
 	activelySeekingEmployment BOOLEAN,
 	haveExternship BOOLEAN,
+	status INTEGER,
 	createDate DATE null,
 	createdBy LONG,
 	modifiedDate DATE null,

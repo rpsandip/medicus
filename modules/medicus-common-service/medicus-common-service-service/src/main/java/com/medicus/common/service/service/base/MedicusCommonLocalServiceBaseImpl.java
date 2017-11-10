@@ -33,6 +33,7 @@ import com.liferay.portal.spring.extender.service.ServiceReference;
 import com.medicus.common.service.service.MedicusCommonLocalService;
 import com.medicus.common.service.service.persistence.CampusPersistence;
 import com.medicus.common.service.service.persistence.EmployerPersistence;
+import com.medicus.common.service.service.persistence.Interview_RequestPersistence;
 import com.medicus.common.service.service.persistence.PartnerPersistence;
 import com.medicus.common.service.service.persistence.SchoolPersistence;
 import com.medicus.common.service.service.persistence.StudentPersistence;
@@ -134,6 +135,44 @@ public abstract class MedicusCommonLocalServiceBaseImpl
 	 */
 	public void setEmployerPersistence(EmployerPersistence employerPersistence) {
 		this.employerPersistence = employerPersistence;
+	}
+
+	/**
+	 * Returns the interview_ request local service.
+	 *
+	 * @return the interview_ request local service
+	 */
+	public com.medicus.common.service.service.Interview_RequestLocalService getInterview_RequestLocalService() {
+		return interview_RequestLocalService;
+	}
+
+	/**
+	 * Sets the interview_ request local service.
+	 *
+	 * @param interview_RequestLocalService the interview_ request local service
+	 */
+	public void setInterview_RequestLocalService(
+		com.medicus.common.service.service.Interview_RequestLocalService interview_RequestLocalService) {
+		this.interview_RequestLocalService = interview_RequestLocalService;
+	}
+
+	/**
+	 * Returns the interview_ request persistence.
+	 *
+	 * @return the interview_ request persistence
+	 */
+	public Interview_RequestPersistence getInterview_RequestPersistence() {
+		return interview_RequestPersistence;
+	}
+
+	/**
+	 * Sets the interview_ request persistence.
+	 *
+	 * @param interview_RequestPersistence the interview_ request persistence
+	 */
+	public void setInterview_RequestPersistence(
+		Interview_RequestPersistence interview_RequestPersistence) {
+		this.interview_RequestPersistence = interview_RequestPersistence;
 	}
 
 	/**
@@ -484,6 +523,10 @@ public abstract class MedicusCommonLocalServiceBaseImpl
 	protected com.medicus.common.service.service.EmployerLocalService employerLocalService;
 	@BeanReference(type = EmployerPersistence.class)
 	protected EmployerPersistence employerPersistence;
+	@BeanReference(type = com.medicus.common.service.service.Interview_RequestLocalService.class)
+	protected com.medicus.common.service.service.Interview_RequestLocalService interview_RequestLocalService;
+	@BeanReference(type = Interview_RequestPersistence.class)
+	protected Interview_RequestPersistence interview_RequestPersistence;
 	@BeanReference(type = MedicusCommonLocalService.class)
 	protected MedicusCommonLocalService medicusCommonLocalService;
 	@BeanReference(type = com.medicus.common.service.service.PartnerLocalService.class)

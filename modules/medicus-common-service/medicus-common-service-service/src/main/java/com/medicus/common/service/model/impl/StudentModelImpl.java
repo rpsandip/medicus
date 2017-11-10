@@ -95,6 +95,7 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 			{ "graduationDate", Types.TIMESTAMP },
 			{ "activelySeekingEmployment", Types.BOOLEAN },
 			{ "haveExternship", Types.BOOLEAN },
+			{ "status", Types.INTEGER },
 			{ "createDate", Types.TIMESTAMP },
 			{ "createdBy", Types.BIGINT },
 			{ "modifiedDate", Types.TIMESTAMP },
@@ -133,13 +134,14 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 		TABLE_COLUMNS_MAP.put("graduationDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("activelySeekingEmployment", Types.BOOLEAN);
 		TABLE_COLUMNS_MAP.put("haveExternship", Types.BOOLEAN);
+		TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
 		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("createdBy", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("modifiedBy", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table Medicus_Student (uuid_ VARCHAR(75) null,studentId LONG not null primary key,companyId LONG,stundetCampusId VARCHAR(75) null,campusId LONG,schoolId LONG,firstName VARCHAR(30) null,middleName VARCHAR(20) null,lastName VARCHAR(30) null,profileImageId LONG,dateOfBirth DATE null,gender VARCHAR(10) null,contactNumber VARCHAR(15) null,homePhoneNumber VARCHAR(15) null,emailAddress VARCHAR(30) null,primaryLanguage VARCHAR(500) null,secondaryLanguage VARCHAR(500) null,address VARCHAR(200) null,city VARCHAR(30) null,zipcode VARCHAR(10) null,state_ VARCHAR(15) null,pace VARCHAR(15) null,gpa DOUBLE,resumeFileEntryId LONG,profession VARCHAR(100) null,practices VARCHAR(100) null,hired BOOLEAN,graduationDate DATE null,activelySeekingEmployment BOOLEAN,haveExternship BOOLEAN,createDate DATE null,createdBy LONG,modifiedDate DATE null,modifiedBy LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Medicus_Student (uuid_ VARCHAR(75) null,studentId LONG not null primary key,companyId LONG,stundetCampusId VARCHAR(75) null,campusId LONG,schoolId LONG,firstName VARCHAR(30) null,middleName VARCHAR(20) null,lastName VARCHAR(30) null,profileImageId LONG,dateOfBirth DATE null,gender VARCHAR(10) null,contactNumber VARCHAR(15) null,homePhoneNumber VARCHAR(15) null,emailAddress VARCHAR(30) null,primaryLanguage VARCHAR(500) null,secondaryLanguage VARCHAR(500) null,address VARCHAR(200) null,city VARCHAR(30) null,zipcode VARCHAR(10) null,state_ VARCHAR(15) null,pace VARCHAR(15) null,gpa DOUBLE,resumeFileEntryId LONG,profession VARCHAR(100) null,practices VARCHAR(100) null,hired BOOLEAN,graduationDate DATE null,activelySeekingEmployment BOOLEAN,haveExternship BOOLEAN,status INTEGER,createDate DATE null,createdBy LONG,modifiedDate DATE null,modifiedBy LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Medicus_Student";
 	public static final String ORDER_BY_JPQL = " ORDER BY student.studentId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Medicus_Student.studentId ASC";
@@ -230,6 +232,7 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 		attributes.put("activelySeekingEmployment",
 			getActivelySeekingEmployment());
 		attributes.put("haveExternship", getHaveExternship());
+		attributes.put("status", getStatus());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("createdBy", getCreatedBy());
 		attributes.put("modifiedDate", getModifiedDate());
@@ -422,6 +425,12 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 
 		if (haveExternship != null) {
 			setHaveExternship(haveExternship);
+		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
 		}
 
 		Date createDate = (Date)attributes.get("createDate");
@@ -885,6 +894,16 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 	}
 
 	@Override
+	public int getStatus() {
+		return _status;
+	}
+
+	@Override
+	public void setStatus(int status) {
+		_status = status;
+	}
+
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -997,6 +1016,7 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 		studentImpl.setGraduationDate(getGraduationDate());
 		studentImpl.setActivelySeekingEmployment(getActivelySeekingEmployment());
 		studentImpl.setHaveExternship(getHaveExternship());
+		studentImpl.setStatus(getStatus());
 		studentImpl.setCreateDate(getCreateDate());
 		studentImpl.setCreatedBy(getCreatedBy());
 		studentImpl.setModifiedDate(getModifiedDate());
@@ -1262,6 +1282,8 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 
 		studentCacheModel.haveExternship = getHaveExternship();
 
+		studentCacheModel.status = getStatus();
+
 		Date createDate = getCreateDate();
 
 		if (createDate != null) {
@@ -1289,7 +1311,7 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(69);
+		StringBundler sb = new StringBundler(71);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -1351,6 +1373,8 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 		sb.append(getActivelySeekingEmployment());
 		sb.append(", haveExternship=");
 		sb.append(getHaveExternship());
+		sb.append(", status=");
+		sb.append(getStatus());
 		sb.append(", createDate=");
 		sb.append(getCreateDate());
 		sb.append(", createdBy=");
@@ -1366,7 +1390,7 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(106);
+		StringBundler sb = new StringBundler(109);
 
 		sb.append("<model><model-name>");
 		sb.append("com.medicus.common.service.model.Student");
@@ -1493,6 +1517,10 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 		sb.append(getHaveExternship());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>status</column-name><column-value><![CDATA[");
+		sb.append(getStatus());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
 		sb.append(getCreateDate());
 		sb.append("]]></column-value></column>");
@@ -1552,6 +1580,7 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 	private Date _graduationDate;
 	private boolean _activelySeekingEmployment;
 	private boolean _haveExternship;
+	private int _status;
 	private Date _createDate;
 	private long _createdBy;
 	private Date _modifiedDate;

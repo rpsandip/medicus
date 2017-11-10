@@ -63,6 +63,7 @@ public class StudentSoap implements Serializable {
 		soapModel.setGraduationDate(model.getGraduationDate());
 		soapModel.setActivelySeekingEmployment(model.getActivelySeekingEmployment());
 		soapModel.setHaveExternship(model.getHaveExternship());
+		soapModel.setStatus(model.getStatus());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setCreatedBy(model.getCreatedBy());
 		soapModel.setModifiedDate(model.getModifiedDate());
@@ -371,6 +372,14 @@ public class StudentSoap implements Serializable {
 		_haveExternship = haveExternship;
 	}
 
+	public int getStatus() {
+		return _status;
+	}
+
+	public void setStatus(int status) {
+		_status = status;
+	}
+
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -433,6 +442,7 @@ public class StudentSoap implements Serializable {
 	private Date _graduationDate;
 	private boolean _activelySeekingEmployment;
 	private boolean _haveExternship;
+	private int _status;
 	private Date _createDate;
 	private long _createdBy;
 	private Date _modifiedDate;

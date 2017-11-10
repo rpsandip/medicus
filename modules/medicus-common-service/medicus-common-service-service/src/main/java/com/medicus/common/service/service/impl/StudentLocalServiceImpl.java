@@ -14,20 +14,15 @@
 
 package com.medicus.common.service.service.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;import javax.sound.sampled.Port;
+import java.util.Map.Entry;
 
-import com.liferay.document.library.kernel.exception.DuplicateFileEntryException;
-import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.service.DLAppServiceUtil;
-import com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil;
 import com.liferay.portal.kernel.dao.orm.Criterion;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Order;
@@ -55,8 +50,6 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.SortFactoryUtil;
 import com.liferay.portal.kernel.search.generic.BooleanQueryImpl;
 import com.liferay.portal.kernel.service.ServiceContext;
-import com.liferay.portal.kernel.upload.FileItem;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -69,6 +62,8 @@ import com.medicus.common.service.service.StudentLocalServiceUtil;
 import com.medicus.common.service.service.Student_ExternshipLocalServiceUtil;
 import com.medicus.common.service.service.base.StudentLocalServiceBaseImpl;
 import com.medicus.common.service.util.MedicusConstant;
+
+import aQute.bnd.annotation.ProviderType;
 
 /**
  * The implementation of the student local service.
@@ -124,6 +119,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 		student.setState(state);
 		student.setPace(pace);
 		student.setGpa(gpa);
+		student.setStatus(0);
 		student.setProfession(profession);
 		student.setPractices(practices);
 		student.setHired(hired);
@@ -432,6 +428,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 		student.setPrimaryLanguage(primaryLangs);
 		student.setSecondaryLanguage(secondaryLangs);
 		student.setGpa(gpa);
+		student.setStatus(0);
 		student.setPace(pace);
 		student.setSchoolId(schoolId);
 		student.setCampusId(campusId);

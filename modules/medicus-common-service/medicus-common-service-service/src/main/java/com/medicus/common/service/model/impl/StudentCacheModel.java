@@ -65,7 +65,7 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(69);
+		StringBundler sb = new StringBundler(71);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -127,6 +127,8 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
 		sb.append(activelySeekingEmployment);
 		sb.append(", haveExternship=");
 		sb.append(haveExternship);
+		sb.append(", status=");
+		sb.append(status);
 		sb.append(", createDate=");
 		sb.append(createDate);
 		sb.append(", createdBy=");
@@ -299,6 +301,7 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
 
 		studentImpl.setActivelySeekingEmployment(activelySeekingEmployment);
 		studentImpl.setHaveExternship(haveExternship);
+		studentImpl.setStatus(status);
 
 		if (createDate == Long.MIN_VALUE) {
 			studentImpl.setCreateDate(null);
@@ -365,6 +368,8 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
 		activelySeekingEmployment = objectInput.readBoolean();
 
 		haveExternship = objectInput.readBoolean();
+
+		status = objectInput.readInt();
 		createDate = objectInput.readLong();
 
 		createdBy = objectInput.readLong();
@@ -523,6 +528,8 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
 		objectOutput.writeBoolean(activelySeekingEmployment);
 
 		objectOutput.writeBoolean(haveExternship);
+
+		objectOutput.writeInt(status);
 		objectOutput.writeLong(createDate);
 
 		objectOutput.writeLong(createdBy);
@@ -561,6 +568,7 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
 	public long graduationDate;
 	public boolean activelySeekingEmployment;
 	public boolean haveExternship;
+	public int status;
 	public long createDate;
 	public long createdBy;
 	public long modifiedDate;

@@ -53,6 +53,7 @@ import com.medicus.common.service.model.Partner;
 import com.medicus.common.service.model.Student;
 import com.medicus.common.service.service.PartnerLocalServiceUtil;
 import com.medicus.common.service.service.base.MedicusCommonLocalServiceBaseImpl;
+import com.medicus.common.service.util.MedicusConstant;
 
 
 /**
@@ -88,7 +89,7 @@ public class MedicusCommonLocalServiceImpl
 	public long getMedicusOrganizationId(){
 		long medicusOrgId=0l;
 		try {
-			Organization org = OrganizationLocalServiceUtil.getOrganization(PortalUtil.getDefaultCompanyId(), "Medicus");
+			Organization org = OrganizationLocalServiceUtil.getOrganization(PortalUtil.getDefaultCompanyId(), MedicusConstant.MEDICUS_ORG);
 			medicusOrgId  = org.getOrganizationId();
 		} catch (PortalException e) {
 			_log.error(e);
@@ -99,7 +100,7 @@ public class MedicusCommonLocalServiceImpl
 	public long getPartnerOrgRoleId(){
 		long partnetRoleId = 0l;
 		try {
-			Role role = RoleLocalServiceUtil.getRole(PortalUtil.getDefaultCompanyId(), "Partner");
+			Role role = RoleLocalServiceUtil.getRole(PortalUtil.getDefaultCompanyId(), MedicusConstant.PARTNER_ORG_ROLE);
 			partnetRoleId = role.getRoleId();
 		} catch (PortalException e) {
 			_log.error(e);
@@ -151,7 +152,7 @@ public class MedicusCommonLocalServiceImpl
 			long repositoryId = groupId;
 			try {
 				ServiceContext serviceContext = new ServiceContext(); 
-				patientFolder = DLAppServiceUtil.addFolder(repositoryId,parentFolderId, folderName,"", serviceContext);
+				patientFolder = DLAppServiceUtil.addFolder(repositoryId,parentFolderId, folderName,StringPool.BLANK, serviceContext);
 			} catch (PortalException e1) { 
 				_log.error(e1.getMessage(), e1);
 			} catch (SystemException e1) {
@@ -174,12 +175,12 @@ public class MedicusCommonLocalServiceImpl
 	
 	public FileEntry addFileEntry(long groupId, long folderId, File file, String fileName) throws PortalException{
 		ServiceContext serviceContext = new ServiceContext(); 
-		return DLAppServiceUtil.addFileEntry(groupId, folderId, fileName, MimeTypesUtil.getContentType(file), fileName, StringPool.BLANK, "", file, serviceContext);
+		return DLAppServiceUtil.addFileEntry(groupId, folderId, fileName, MimeTypesUtil.getContentType(file), fileName, StringPool.BLANK, StringPool.BLANK, file, serviceContext);
 	}
 	
 	public FileEntry updateFileEntry(long fileEntryId,long groupId, long folderId, File file, String fileName) throws PortalException{
 		ServiceContext serviceContext = new ServiceContext(); 
-		return DLAppServiceUtil.updateFileEntry(fileEntryId, fileName, MimeTypesUtil.getContentType(file), fileName, StringPool.BLANK, "", true, file, serviceContext);
+		return DLAppServiceUtil.updateFileEntry(fileEntryId, fileName, MimeTypesUtil.getContentType(file), fileName, StringPool.BLANK, StringPool.BLANK, true, file, serviceContext);
 	}
 	
 	public long getGlobalGroupId(){

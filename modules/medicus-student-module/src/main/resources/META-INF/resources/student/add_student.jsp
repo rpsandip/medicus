@@ -242,6 +242,7 @@
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
 	       					 <aui:input name="zipcode" label="zipcode"  cssClass="form-control col-md-7 col-xs-12" value="${studentBean.zipcode }">
 						     	<aui:validator name="required" />
+						     	<aui:validator name="number" />
 						     	<aui:validator name="maxLength">6</aui:validator>
 							 </aui:input>
 					   	  </div>

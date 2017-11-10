@@ -54,6 +54,7 @@ public class StudentIndexer extends BaseIndexer<Student>{
 		document.addKeyword(MedicusConstant.STUDENT_IDNEX_PROFESSION, object.getProfession());
 		document.addText(MedicusConstant.STUDENT_IDNEX_LANGUAGE, object.getPrimaryLanguage());
 		document.addText(MedicusConstant.STUDENT_IDNEX_ZIPCODE, object.getZipcode());
+		document.addNumber(Field.STATUS,object.getStatus());
 		
 		File file = MedicusCommonLocalServiceUtil.getStudentResumeContent((Student)object);
 		if(Validator.isNotNull(file)){

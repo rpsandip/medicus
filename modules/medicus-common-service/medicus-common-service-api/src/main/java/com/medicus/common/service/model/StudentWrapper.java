@@ -90,6 +90,7 @@ public class StudentWrapper implements Student, ModelWrapper<Student> {
 		attributes.put("activelySeekingEmployment",
 			getActivelySeekingEmployment());
 		attributes.put("haveExternship", getHaveExternship());
+		attributes.put("status", getStatus());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("createdBy", getCreatedBy());
 		attributes.put("modifiedDate", getModifiedDate());
@@ -281,6 +282,12 @@ public class StudentWrapper implements Student, ModelWrapper<Student> {
 			setHaveExternship(haveExternship);
 		}
 
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
+		}
+
 		Date createDate = (Date)attributes.get("createDate");
 
 		if (createDate != null) {
@@ -414,6 +421,16 @@ public class StudentWrapper implements Student, ModelWrapper<Student> {
 	@Override
 	public int compareTo(Student student) {
 		return _student.compareTo(student);
+	}
+
+	/**
+	* Returns the status of this student.
+	*
+	* @return the status of this student
+	*/
+	@Override
+	public int getStatus() {
+		return _student.getStatus();
 	}
 
 	@Override
@@ -1095,6 +1112,16 @@ public class StudentWrapper implements Student, ModelWrapper<Student> {
 	@Override
 	public void setState(java.lang.String state) {
 		_student.setState(state);
+	}
+
+	/**
+	* Sets the status of this student.
+	*
+	* @param status the status of this student
+	*/
+	@Override
+	public void setStatus(int status) {
+		_student.setStatus(status);
 	}
 
 	/**

@@ -3,7 +3,7 @@
         <portlet:param name="mvcRenderCommandName" value="/add_campus" />
 </portlet:renderURL>
 
-<liferay-ui:success key="campus-add-success" message="campus-add-success"/>
+<liferay-ui:success key="campus-add-successes" message="campus-add-successes"/>
 <liferay-ui:success key="campus-update-success" message="campus-update-success"/>
 
 <div class="page-title">

@@ -110,6 +110,7 @@
 		<column name="graduationDate" type="Date" />
 		<column name="activelySeekingEmployment" type="boolean" />
 		<column name="haveExternship" type="boolean" />
+		<column name="status" type="int"></column>
 		
 		<column name="createDate" type="Date"></column>
 		<column name="createdBy" type="long"></column>
@@ -191,4 +192,18 @@
 			<finder-column name="userId"></finder-column>
 		</finder>
 	</entity>
+	
+	<entity name="Interview_Request" local-service="true"  remote-service="false">
+		<column name="partnerId" primary="true" type="long"></column>
+		<column name="studentId" primary="true" type="long"></column>
+		<column name="schoolId" type="long"></column>
+		<column name="campusId" type="long"></column>
+		<column name="status" type="int"></column>
+		
+		<column name="createDate" type="Date"></column>
+		<column name="createdBy" type="long"></column>
+		<column name="modifiedDate" type="Date"></column>
+		<column name="modifiedBy" type="long"></column>
+	</entity>
+	
 </service-builder>

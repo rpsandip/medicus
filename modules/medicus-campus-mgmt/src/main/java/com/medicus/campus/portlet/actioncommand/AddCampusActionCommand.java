@@ -54,7 +54,7 @@ public class AddCampusActionCommand extends BaseMVCActionCommand{
 				Campus	campus = CampusLocalServiceUtil.addCampus(schoolId,name, address1, address2, city, state, country, 
 						campusContactNumber, websiteLink, contactPersonName, contactPersonEmail, 
 						contactPersonPhoneNumber, themeDisplay.getUserId());
-				SessionMessages.add(actionRequest, "campus-add-success");
+				SessionMessages.add(actionRequest, "campus-add-successes");
 			} catch (PortalException e) {
 				SessionErrors.add(actionRequest, "campus-add-error");
 				actionResponse.setRenderParameter("mvcRenderCommandName", "/add_campus");

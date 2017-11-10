@@ -18,13 +18,17 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCResourceCommand;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchContextFactory;
+import com.liferay.portal.kernel.security.permission.PermissionChecker;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.WebKeys;
 import com.medicus.common.service.bean.StudentBean;
 import com.medicus.common.service.model.Student;
+import com.medicus.common.service.service.MedicusCommonLocalServiceUtil;
 import com.medicus.common.service.service.StudentLocalServiceUtil;
 import com.medicus.student.portlet.portlet.StudentPortletConstant;
 
@@ -43,6 +47,8 @@ public class SearchStudentResourceCommand implements MVCResourceCommand{
 	public boolean serveResource(ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 			throws PortletException {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(WebKeys.THEME_DISPLAY);
+		
 		int pageIndex = ParamUtil.getInteger(resourceRequest, "pagetIndex");
 		int start = StudentPortletConstant.STUDENT_DISPLAY_ITEMS*pageIndex;
 		int end  = start + StudentPortletConstant.STUDENT_DISPLAY_ITEMS;
@@ -81,6 +87,26 @@ public class SearchStudentResourceCommand implements MVCResourceCommand{
 		}else{
 			resourceRequest.setAttribute("showLoadMore", false);
 		}
+		
+		// Set Permission
+		
+		PermissionChecker pc = themeDisplay.getPermissionChecker();
+	    boolean hasStudentInterviewRequestPermission  = pc.hasPermission(MedicusCommonLocalServiceUtil.getOrganizationGroupIdFromOrgId(MedicusCommonLocalServiceUtil.getMedicusOrganizationId()),
+	    		Student.class.getName(), Student.class.getName(), "STUDENT_INTERVIEW_REQUEST");
+	    resourceRequest.setAttribute("hasStudentInterviewRequestPermission", hasStudentInterviewRequestPermission);
+	    
+	    boolean hasViewStudentProfilePermission  = pc.hasPermission(MedicusCommonLocalServiceUtil.getOrganizationGroupIdFromOrgId(MedicusCommonLocalServiceUtil.getMedicusOrganizationId()),
+	    		Student.class.getName(), Student.class.getName(), "VIEW_STUDENT_PROFILE");
+	    resourceRequest.setAttribute("hasViewStudentProfilePermission", hasViewStudentProfilePermission);
+	    
+	    boolean hasUpdateStudentPermission  = pc.hasPermission(MedicusCommonLocalServiceUtil.getOrganizationGroupIdFromOrgId(MedicusCommonLocalServiceUtil.getMedicusOrganizationId()),
+	    		Student.class.getName(), Student.class.getName(), "UPDATE_STUDENT");
+	    resourceRequest.setAttribute("hasUpdateStudentPermission", hasUpdateStudentPermission);
+	    
+	    boolean hasDeleteStudentPermission  = pc.hasPermission(MedicusCommonLocalServiceUtil.getOrganizationGroupIdFromOrgId(MedicusCommonLocalServiceUtil.getMedicusOrganizationId()),
+	    		Student.class.getName(), Student.class.getName(), "DELETE_STUDENT");
+	    resourceRequest.setAttribute("hasDeleteStudentPermission", hasDeleteStudentPermission);
+	    
 		
 		PortletRequestDispatcher dispatcher = resourceRequest.getPortletSession().getPortletContext()
 				.getRequestDispatcher("/student/student_list.jsp");
