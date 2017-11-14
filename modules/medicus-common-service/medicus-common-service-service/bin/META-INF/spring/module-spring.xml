@@ -5,6 +5,8 @@
 	<bean class="com.medicus.common.service.service.persistence.impl.CampusPersistenceImpl" id="com.medicus.common.service.service.persistence.CampusPersistence" parent="basePersistence" />
 	<bean class="com.medicus.common.service.service.impl.EmployerLocalServiceImpl" id="com.medicus.common.service.service.EmployerLocalService" />
 	<bean class="com.medicus.common.service.service.persistence.impl.EmployerPersistenceImpl" id="com.medicus.common.service.service.persistence.EmployerPersistence" parent="basePersistence" />
+	<bean class="com.medicus.common.service.service.impl.Interview_RequestLocalServiceImpl" id="com.medicus.common.service.service.Interview_RequestLocalService" />
+	<bean class="com.medicus.common.service.service.persistence.impl.Interview_RequestPersistenceImpl" id="com.medicus.common.service.service.persistence.Interview_RequestPersistence" parent="basePersistence" />
 	<bean class="com.medicus.common.service.service.impl.MedicusCommonLocalServiceImpl" id="com.medicus.common.service.service.MedicusCommonLocalService" />
 	<bean class="com.medicus.common.service.service.impl.PartnerLocalServiceImpl" id="com.medicus.common.service.service.PartnerLocalService" />
 	<bean class="com.medicus.common.service.service.persistence.impl.PartnerPersistenceImpl" id="com.medicus.common.service.service.persistence.PartnerPersistence" parent="basePersistence" />

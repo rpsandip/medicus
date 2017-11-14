@@ -624,6 +624,7 @@ public class Student_ExternshipPersistenceImpl extends BasePersistenceImpl<Stude
 		student_ExternshipImpl.setStartDate(student_Externship.getStartDate());
 		student_ExternshipImpl.setEndDate(student_Externship.getEndDate());
 		student_ExternshipImpl.setNoOfHoursPerWeek(student_Externship.getNoOfHoursPerWeek());
+		student_ExternshipImpl.setStatus(student_Externship.getStatus());
 		student_ExternshipImpl.setMidPointReview(student_Externship.getMidPointReview());
 		student_ExternshipImpl.setMidPointReviewComment(student_Externship.getMidPointReviewComment());
 		student_ExternshipImpl.setFinalReview(student_Externship.getFinalReview());

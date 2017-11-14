@@ -57,6 +57,7 @@ public class StudentBean {
 	private boolean haveExternship;
 	private List<DocumentBean> agreementDocs = new ArrayList<DocumentBean>();
 	private List<DocumentBean> othetAttachments=new ArrayList<DocumentBean>();
+	private List<DocumentBean> timeSheets=new ArrayList<DocumentBean>();
 	
 	public StudentBean(Student student){
 		if(Validator.isNotNull(student)){
@@ -144,16 +145,21 @@ public class StudentBean {
 		}
 		
 		long globalGroupId = MedicusCommonLocalServiceUtil.getGlobalGroupId();
+
+		Folder studentFolder=null;
+		try {
+			studentFolder = DLAppServiceUtil.getFolder(globalGroupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, String.valueOf(student.getStudentId()));
+		} catch (PortalException e1) {
+			_log.error(e1);
+		}
 		
 		try{
-			Folder studentFolder = DLAppServiceUtil.getFolder(globalGroupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, String.valueOf(student.getStudentId()));
 			if(Validator.isNotNull(studentFolder)){
-				//Agreements Documents folder folders
+				//Agreements Documents folder 
 				Folder agreementsFolder = DLAppServiceUtil.getFolder(globalGroupId, studentFolder.getFolderId(), "Agreements");
 				if(Validator.isNotNull(agreementsFolder)){
-					List<FileEntry> otherDocuments = DLAppServiceUtil.getFileEntries(globalGroupId, agreementsFolder.getFolderId());
-					List<DocumentBean> otherDocumentsBeanList = new ArrayList<DocumentBean>();
-					for(FileEntry fileEntry : otherDocuments){
+					List<FileEntry> agreementsDocuments = DLAppServiceUtil.getFileEntries(globalGroupId, agreementsFolder.getFolderId());
+					for(FileEntry fileEntry : agreementsDocuments){
 						DocumentBean documentBean = new DocumentBean(fileEntry);
 						this.agreementDocs.add(documentBean);
 					}
@@ -165,9 +171,8 @@ public class StudentBean {
 		}
 		
 		try{
-			Folder studentFolder = DLAppServiceUtil.getFolder(globalGroupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, String.valueOf(student.getStudentId()));
 			if(Validator.isNotNull(studentFolder)){
-				//Other Docuement folder folders
+				//Other Docuement folder 
 				Folder otherDocumentsFolder = DLAppServiceUtil.getFolder(globalGroupId, studentFolder.getFolderId(), "Other Documents");
 				if(Validator.isNotNull(otherDocumentsFolder)){
 					List<FileEntry> otherDocuments = DLAppServiceUtil.getFileEntries(globalGroupId, otherDocumentsFolder.getFolderId());
@@ -181,6 +186,25 @@ public class StudentBean {
 		}catch(PortalException e){
 			_log.debug(e.getMessage());
 		}
+		
+		try{
+			if(Validator.isNotNull(studentFolder)){
+				//TimeSheet documents folder 
+				Folder timeSheetDocumentFolder = DLAppServiceUtil.getFolder(globalGroupId, studentFolder.getFolderId(), "Timesheets");
+				if(Validator.isNotNull(timeSheetDocumentFolder)){
+					List<FileEntry> timeSheetDocuments = DLAppServiceUtil.getFileEntries(globalGroupId, timeSheetDocumentFolder.getFolderId());
+					for(FileEntry fileEntry : timeSheetDocuments){
+						DocumentBean documentBean = new DocumentBean(fileEntry);
+						this.timeSheets.add(documentBean);
+					}
+					
+				}
+			}
+		}catch(PortalException e){
+			_log.debug(e.getMessage());
+		}
+		
+		
 	  }	
 	}
 	
@@ -455,6 +479,18 @@ public class StudentBean {
 	public void setOthetAttachments(List<DocumentBean> othetAttachments) {
 		this.othetAttachments = othetAttachments;
 	}
+
+
+	public List<DocumentBean> getTimeSheets() {
+		return timeSheets;
+	}
+
+
+	public void setTimeSheets(List<DocumentBean> timeSheets) {
+		this.timeSheets = timeSheets;
+	}
+	
+	
 
 	
 	

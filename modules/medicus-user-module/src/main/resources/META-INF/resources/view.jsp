@@ -8,6 +8,9 @@
 <liferay-ui:error key="user-create-error" message="user-create-error"/>
 <liferay-ui:success key="user-update-success" message="user-update-success"/>
 <liferay-ui:error key="user-update-error" message="user-update-error"/>
+<liferay-ui:error key="user-exist" message="user-exist"/>
+
+
 
 <div class="page-title">
   <div class="title_left">

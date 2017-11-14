@@ -132,6 +132,13 @@ public class PartnerLocalServiceWrapper implements PartnerLocalService,
 		return _partnerLocalService.getPartner(partnerId);
 	}
 
+	@Override
+	public com.medicus.common.service.model.Partner getPartnerByUserId(
+		long userId)
+		throws com.medicus.common.service.exception.NoSuchPartnerException {
+		return _partnerLocalService.getPartnerByUserId(userId);
+	}
+
 	/**
 	* Updates the partner in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*

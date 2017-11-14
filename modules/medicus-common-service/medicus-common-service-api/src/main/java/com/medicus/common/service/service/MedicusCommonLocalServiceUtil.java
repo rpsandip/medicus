@@ -46,6 +46,11 @@ public class MedicusCommonLocalServiceUtil {
 		return getService().isFolderExist(groupId, parentFolderId, folderName);
 	}
 
+	public static com.liferay.portal.kernel.model.User getCampusAdminName(
+		long campusId) {
+		return getService().getCampusAdminName(campusId);
+	}
+
 	public static com.liferay.portal.kernel.model.User isUserExist(
 		java.lang.String emailAddress) {
 		return getService().isUserExist(emailAddress);
@@ -104,8 +109,17 @@ public class MedicusCommonLocalServiceUtil {
 		return getService().getUSStateList();
 	}
 
+	public static long getCampusOrgIdFromRoleIdAndUserId(long userId,
+		long roleId) {
+		return getService().getCampusOrgIdFromRoleIdAndUserId(userId, roleId);
+	}
+
 	public static long getGlobalGroupId() {
 		return getService().getGlobalGroupId();
+	}
+
+	public static long getMedicusGroupId() {
+		return getService().getMedicusGroupId();
 	}
 
 	public static long getMedicusOrganizationId() {
@@ -118,6 +132,10 @@ public class MedicusCommonLocalServiceUtil {
 
 	public static long getPartnerOrgRoleId() {
 		return getService().getPartnerOrgRoleId();
+	}
+
+	public static long getRoleIdFromName(java.lang.String roleName) {
+		return getService().getRoleIdFromName(roleName);
 	}
 
 	public static long getUserPhoneTypeId()

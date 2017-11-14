@@ -69,6 +69,7 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 			{ "startDate", Types.TIMESTAMP },
 			{ "endDate", Types.TIMESTAMP },
 			{ "noOfHoursPerWeek", Types.INTEGER },
+			{ "status", Types.INTEGER },
 			{ "midPointReview", Types.TIMESTAMP },
 			{ "midPointReviewComment", Types.VARCHAR },
 			{ "finalReview", Types.TIMESTAMP },
@@ -88,6 +89,7 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 		TABLE_COLUMNS_MAP.put("startDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("endDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("noOfHoursPerWeek", Types.INTEGER);
+		TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
 		TABLE_COLUMNS_MAP.put("midPointReview", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("midPointReviewComment", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("finalReview", Types.TIMESTAMP);
@@ -98,7 +100,7 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 		TABLE_COLUMNS_MAP.put("modifiedBy", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table Medicus_Student_Externship (studentExternshipId LONG not null primary key,studentId LONG,partnerId LONG,employerId LONG,startDate DATE null,endDate DATE null,noOfHoursPerWeek INTEGER,midPointReview DATE null,midPointReviewComment VARCHAR(200) null,finalReview DATE null,finalReviewComment VARCHAR(200) null,createDate DATE null,createdBy LONG,modifiedDate DATE null,modifiedBy LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Medicus_Student_Externship (studentExternshipId LONG not null primary key,studentId LONG,partnerId LONG,employerId LONG,startDate DATE null,endDate DATE null,noOfHoursPerWeek INTEGER,status INTEGER,midPointReview DATE null,midPointReviewComment VARCHAR(200) null,finalReview DATE null,finalReviewComment VARCHAR(200) null,createDate DATE null,createdBy LONG,modifiedDate DATE null,modifiedBy LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Medicus_Student_Externship";
 	public static final String ORDER_BY_JPQL = " ORDER BY student_Externship.studentExternshipId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Medicus_Student_Externship.studentExternshipId ASC";
@@ -163,6 +165,7 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 		attributes.put("startDate", getStartDate());
 		attributes.put("endDate", getEndDate());
 		attributes.put("noOfHoursPerWeek", getNoOfHoursPerWeek());
+		attributes.put("status", getStatus());
 		attributes.put("midPointReview", getMidPointReview());
 		attributes.put("midPointReviewComment", getMidPointReviewComment());
 		attributes.put("finalReview", getFinalReview());
@@ -220,6 +223,12 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 
 		if (noOfHoursPerWeek != null) {
 			setNoOfHoursPerWeek(noOfHoursPerWeek);
+		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
 		}
 
 		Date midPointReview = (Date)attributes.get("midPointReview");
@@ -352,6 +361,16 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 	@Override
 	public void setNoOfHoursPerWeek(int noOfHoursPerWeek) {
 		_noOfHoursPerWeek = noOfHoursPerWeek;
+	}
+
+	@Override
+	public int getStatus() {
+		return _status;
+	}
+
+	@Override
+	public void setStatus(int status) {
+		_status = status;
 	}
 
 	@Override
@@ -488,6 +507,7 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 		student_ExternshipImpl.setStartDate(getStartDate());
 		student_ExternshipImpl.setEndDate(getEndDate());
 		student_ExternshipImpl.setNoOfHoursPerWeek(getNoOfHoursPerWeek());
+		student_ExternshipImpl.setStatus(getStatus());
 		student_ExternshipImpl.setMidPointReview(getMidPointReview());
 		student_ExternshipImpl.setMidPointReviewComment(getMidPointReviewComment());
 		student_ExternshipImpl.setFinalReview(getFinalReview());
@@ -599,6 +619,8 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 
 		student_ExternshipCacheModel.noOfHoursPerWeek = getNoOfHoursPerWeek();
 
+		student_ExternshipCacheModel.status = getStatus();
+
 		Date midPointReview = getMidPointReview();
 
 		if (midPointReview != null) {
@@ -661,7 +683,7 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(33);
 
 		sb.append("{studentExternshipId=");
 		sb.append(getStudentExternshipId());
@@ -677,6 +699,8 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 		sb.append(getEndDate());
 		sb.append(", noOfHoursPerWeek=");
 		sb.append(getNoOfHoursPerWeek());
+		sb.append(", status=");
+		sb.append(getStatus());
 		sb.append(", midPointReview=");
 		sb.append(getMidPointReview());
 		sb.append(", midPointReviewComment=");
@@ -700,7 +724,7 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(49);
+		StringBundler sb = new StringBundler(52);
 
 		sb.append("<model><model-name>");
 		sb.append("com.medicus.common.service.model.Student_Externship");
@@ -733,6 +757,10 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 		sb.append(
 			"<column><column-name>noOfHoursPerWeek</column-name><column-value><![CDATA[");
 		sb.append(getNoOfHoursPerWeek());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>status</column-name><column-value><![CDATA[");
+		sb.append(getStatus());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>midPointReview</column-name><column-value><![CDATA[");
@@ -785,6 +813,7 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 	private Date _startDate;
 	private Date _endDate;
 	private int _noOfHoursPerWeek;
+	private int _status;
 	private Date _midPointReview;
 	private String _midPointReviewComment;
 	private Date _finalReview;

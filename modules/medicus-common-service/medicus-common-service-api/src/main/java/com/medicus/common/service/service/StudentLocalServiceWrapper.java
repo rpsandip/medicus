@@ -113,7 +113,8 @@ public class StudentLocalServiceWrapper implements StudentLocalService,
 		java.lang.String practices, boolean hired,
 		java.util.Date graduationDate, boolean activelySeekingEmployment,
 		boolean haveExternship, long employerId, long partnerId,
-		java.lang.String partnerZipCode, java.lang.String partnerWebSiteLink,
+		int externshipStatus, java.lang.String partnerZipCode,
+		java.lang.String partnerWebSiteLink,
 		java.util.Date externshipStartDate, java.util.Date externshipEndDate,
 		int noOfHoursPerWeek, java.util.Date midPointReviewDate,
 		java.lang.String midPointReviewComment, java.util.Date finalReviewDate,
@@ -122,6 +123,7 @@ public class StudentLocalServiceWrapper implements StudentLocalService,
 		java.lang.String resumeFileName,
 		java.util.Map<java.lang.String, java.io.File> agreementFileMap,
 		java.util.Map<java.lang.String, java.io.File> othersFileMap,
+		java.util.Map<java.lang.String, java.io.File> timeSheetsFileMap,
 		long createdBy) {
 		return _studentLocalService.addStudent(schoolId, campusId,
 			studentCampusId, firstName, middleName, lastName, emailAddress,
@@ -129,11 +131,12 @@ public class StudentLocalServiceWrapper implements StudentLocalService,
 			secondaryLangs, address, city, zipcode, state, pace, gpa,
 			profession, practices, hired, graduationDate,
 			activelySeekingEmployment, haveExternship, employerId, partnerId,
-			partnerZipCode, partnerWebSiteLink, externshipStartDate,
-			externshipEndDate, noOfHoursPerWeek, midPointReviewDate,
-			midPointReviewComment, finalReviewDate, finalPointReviewComment,
-			profileImage, profileImageFileName, resume, resumeFileName,
-			agreementFileMap, othersFileMap, createdBy);
+			externshipStatus, partnerZipCode, partnerWebSiteLink,
+			externshipStartDate, externshipEndDate, noOfHoursPerWeek,
+			midPointReviewDate, midPointReviewComment, finalReviewDate,
+			finalPointReviewComment, profileImage, profileImageFileName,
+			resume, resumeFileName, agreementFileMap, othersFileMap,
+			timeSheetsFileMap, createdBy);
 	}
 
 	/**
@@ -271,7 +274,8 @@ public class StudentLocalServiceWrapper implements StudentLocalService,
 		java.lang.String profession, java.lang.String practices, boolean hired,
 		java.util.Date graduationDate, boolean activelySeekingEmployment,
 		boolean haveExternship, long employerId, long partnerId,
-		java.lang.String partnerZipCode, java.lang.String partnerWebSiteLink,
+		int externshipStatus, java.lang.String partnerZipCode,
+		java.lang.String partnerWebSiteLink,
 		java.util.Date externshipStartDate, java.util.Date externshipEndDate,
 		int noOfHoursPerWeek, java.util.Date midPointReviewDate,
 		java.lang.String midPointReviewComment, java.util.Date finalReviewDate,
@@ -280,7 +284,8 @@ public class StudentLocalServiceWrapper implements StudentLocalService,
 		java.lang.String resumeFileName,
 		java.util.Map<java.lang.String, java.io.File> agreementFileMap,
 		java.util.Map<java.lang.String, java.io.File> othersFileMap,
-		long modifiedBy)
+		java.util.Map<java.lang.String, java.io.File> timeSheetsFileMap,
+		boolean isApprovedInterviewRequest, long modifiedBy)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _studentLocalService.updateStudent(studentId, schoolId,
 			campusId, studentCampusId, firstName, middleName, lastName,
@@ -288,11 +293,12 @@ public class StudentLocalServiceWrapper implements StudentLocalService,
 			primaryLang, secondaryLangs, address, city, zipcode, state, pace,
 			gpa, profession, practices, hired, graduationDate,
 			activelySeekingEmployment, haveExternship, employerId, partnerId,
-			partnerZipCode, partnerWebSiteLink, externshipStartDate,
-			externshipEndDate, noOfHoursPerWeek, midPointReviewDate,
-			midPointReviewComment, finalReviewDate, finalPointReviewComment,
-			profileImage, profileImageFileName, resume, resumeFileName,
-			agreementFileMap, othersFileMap, modifiedBy);
+			externshipStatus, partnerZipCode, partnerWebSiteLink,
+			externshipStartDate, externshipEndDate, noOfHoursPerWeek,
+			midPointReviewDate, midPointReviewComment, finalReviewDate,
+			finalPointReviewComment, profileImage, profileImageFileName,
+			resume, resumeFileName, agreementFileMap, othersFileMap,
+			timeSheetsFileMap, isApprovedInterviewRequest, modifiedBy);
 	}
 
 	/**

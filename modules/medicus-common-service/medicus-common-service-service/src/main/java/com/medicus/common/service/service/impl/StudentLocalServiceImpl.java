@@ -55,12 +55,16 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.medicus.common.service.exception.NoSuchStudentException;
+import com.medicus.common.service.model.Interview_Request;
 import com.medicus.common.service.model.Student;
 import com.medicus.common.service.model.Student_Externship;
+import com.medicus.common.service.service.Interview_RequestLocalServiceUtil;
 import com.medicus.common.service.service.MedicusCommonLocalServiceUtil;
 import com.medicus.common.service.service.StudentLocalServiceUtil;
 import com.medicus.common.service.service.Student_ExternshipLocalServiceUtil;
 import com.medicus.common.service.service.base.StudentLocalServiceBaseImpl;
+import com.medicus.common.service.service.persistence.Interview_RequestPK;
+import com.medicus.common.service.util.Interview_RequestStatus;
 import com.medicus.common.service.util.MedicusConstant;
 
 import aQute.bnd.annotation.ProviderType;
@@ -90,9 +94,9 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 	public Student addStudent(long schoolId, long campusId, String studentCampusId, String firstName, String middleName,String lastName, String emailAddress,
 			Date dob, String gender, String contactNumber, String homePhoneNumber,String primaryLang, String secondaryLangs, String address, String city, String zipcode, String state, String pace,
 			float gpa, String profession, String practices, boolean hired, Date graduationDate, boolean activelySeekingEmployment, boolean haveExternship,
-			long employerId, long partnerId, String partnerZipCode, String partnerWebSiteLink,Date externshipStartDate, Date externshipEndDate, int noOfHoursPerWeek,
+			long employerId, long partnerId, int externshipStatus, String partnerZipCode, String partnerWebSiteLink,Date externshipStartDate, Date externshipEndDate, int noOfHoursPerWeek,
 			Date midPointReviewDate,String midPointReviewComment,Date finalReviewDate, String finalPointReviewComment,
-			File profileImage, String profileImageFileName,File resume, String resumeFileName, Map<String, File> agreementFileMap, Map<String, File> othersFileMap,long createdBy ){
+			File profileImage, String profileImageFileName,File resume, String resumeFileName, Map<String, File> agreementFileMap, Map<String, File> othersFileMap, Map<String, File> timeSheetsFileMap,long createdBy ){
 		
 		// Check Student is Exist with studentCampusId
 		Student student = getStudentByStudentCampusId(studentCampusId);
@@ -136,12 +140,12 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 		
 		if(haveExternship){
 			// Add Externship Detail
-			Student_ExternshipLocalServiceUtil.addStudentExternship(student.getStudentId(), partnerId, employerId,externshipStartDate, externshipEndDate,
+			Student_ExternshipLocalServiceUtil.addStudentExternship(student.getStudentId(), partnerId, employerId, externshipStatus,externshipStartDate, externshipEndDate,
 				noOfHoursPerWeek, midPointReviewDate, midPointReviewComment, finalReviewDate, finalPointReviewComment, createdBy);
 		}
 		// Get Global groupId and Student Id folder
-		long globalGroupId = MedicusCommonLocalServiceUtil.getGlobalGroupId();
-		Folder studentIdFolder = MedicusCommonLocalServiceUtil.getFolder(globalGroupId, 0l, String.valueOf(student.getStudentId()));
+		long medicusOrgGrouId = MedicusCommonLocalServiceUtil.getMedicusGroupId();
+		Folder studentIdFolder = MedicusCommonLocalServiceUtil.getFolder(medicusOrgGrouId, 0l, String.valueOf(student.getStudentId()));
 		
 		
 		if(Validator.isNotNull(studentIdFolder)){
@@ -149,7 +153,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 			if(Validator.isNotNull(profileImageFileName)){
 				// Add Profile Images
 				 try{
-					FileEntry fileEntry = DLAppServiceUtil.addFileEntry(globalGroupId, studentIdFolder.getFolderId(),  profileImageFileName, MimeTypesUtil.getContentType(profileImage),  profileImageFileName, StringPool.BLANK , StringPool.BLANK, profileImage, serviceContext);
+					FileEntry fileEntry = DLAppServiceUtil.addFileEntry(medicusOrgGrouId, studentIdFolder.getFolderId(),  profileImageFileName, MimeTypesUtil.getContentType(profileImage),  profileImageFileName, StringPool.BLANK , StringPool.BLANK, profileImage, serviceContext);
 					student.setProfileImageId(fileEntry.getFileEntryId());
 				 }catch(PortalException e){
 					 _log.error(e);
@@ -160,7 +164,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 				
 				// Add resume
 				 try{
-					FileEntry fileEntry = DLAppServiceUtil.addFileEntry(globalGroupId, studentIdFolder.getFolderId(),  resumeFileName, MimeTypesUtil.getContentType(resume),  resumeFileName, StringPool.BLANK , StringPool.BLANK, resume, serviceContext);
+					FileEntry fileEntry = DLAppServiceUtil.addFileEntry(medicusOrgGrouId, studentIdFolder.getFolderId(),  resumeFileName, MimeTypesUtil.getContentType(resume),  resumeFileName, StringPool.BLANK , StringPool.BLANK, resume, serviceContext);
 					student.setResumeFileEntryId(fileEntry.getFileEntryId());
 				  }catch(PortalException e){
 				 	 _log.error(e.getMessage());
@@ -168,11 +172,11 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 			}
 			
 			// Add Agreements
-			Folder agreementsFolder = MedicusCommonLocalServiceUtil.getFolder(globalGroupId, studentIdFolder.getFolderId(), "Agreements");
+			Folder agreementsFolder = MedicusCommonLocalServiceUtil.getFolder(medicusOrgGrouId, studentIdFolder.getFolderId(), "Agreements");
 			if(Validator.isNotNull(agreementsFolder)){
 				for (Entry<String, File> fileDetail : agreementFileMap.entrySet()) {
 					try{
-						FileEntry fileEntry = DLAppServiceUtil.addFileEntry(globalGroupId, agreementsFolder.getFolderId(),  fileDetail.getKey(), MimeTypesUtil.getContentType(fileDetail.getValue()),  fileDetail.getKey(), StringPool.BLANK , StringPool.BLANK, fileDetail.getValue(), serviceContext);
+						FileEntry fileEntry = DLAppServiceUtil.addFileEntry(medicusOrgGrouId, agreementsFolder.getFolderId(),  fileDetail.getKey(), MimeTypesUtil.getContentType(fileDetail.getValue()),  fileDetail.getKey(), StringPool.BLANK , StringPool.BLANK, fileDetail.getValue(), serviceContext);
 					  }catch(PortalException e){
 					 	 _log.error(e.getMessage());
 					  }
@@ -181,16 +185,30 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 			
 			
 			 // Add attachment
-			Folder otherDocumentsFolder = MedicusCommonLocalServiceUtil.getFolder(globalGroupId, studentIdFolder.getFolderId(), "Other Documents");
+			Folder otherDocumentsFolder = MedicusCommonLocalServiceUtil.getFolder(medicusOrgGrouId, studentIdFolder.getFolderId(), "Other Documents");
 			if(Validator.isNotNull(otherDocumentsFolder)){
 				for (Entry<String, File> fileDetail : othersFileMap.entrySet()) {
 					try{
-						FileEntry fileEntry = DLAppServiceUtil.addFileEntry(globalGroupId, otherDocumentsFolder.getFolderId(),  fileDetail.getKey(), MimeTypesUtil.getContentType(fileDetail.getValue()),  fileDetail.getKey(), StringPool.BLANK , StringPool.BLANK, fileDetail.getValue(), serviceContext);
+						FileEntry fileEntry = DLAppServiceUtil.addFileEntry(medicusOrgGrouId, otherDocumentsFolder.getFolderId(),  fileDetail.getKey(), MimeTypesUtil.getContentType(fileDetail.getValue()),  fileDetail.getKey(), StringPool.BLANK , StringPool.BLANK, fileDetail.getValue(), serviceContext);
 					  }catch(PortalException e){
 					 	 _log.error(e.getMessage());
 					  }
 				}
 			}
+			
+			// Add Time Sheets
+			Folder timeSheetsFolder = MedicusCommonLocalServiceUtil.getFolder(medicusOrgGrouId, studentIdFolder.getFolderId(), "Timesheets");
+			if(Validator.isNotNull(timeSheetsFolder)){
+				for (Entry<String, File> fileDetail : timeSheetsFileMap.entrySet()) {
+					try{
+						FileEntry fileEntry = DLAppServiceUtil.addFileEntry(medicusOrgGrouId, timeSheetsFolder.getFolderId(),  fileDetail.getKey(), MimeTypesUtil.getContentType(fileDetail.getValue()),  fileDetail.getKey(), StringPool.BLANK , StringPool.BLANK, fileDetail.getValue(), serviceContext);
+					  }catch(PortalException e){
+					 	 _log.error(e.getMessage());
+					  }
+				}
+			}
+			
+			
 			
 			// Update student records
 			student = StudentLocalServiceUtil.updateStudent(student);
@@ -217,9 +235,9 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 	public Student updateStudent(long studentId, long schoolId, long campusId, String studentCampusId, String firstName, String middleName,String lastName, String emailAddress,
 			Date dob, String gender, String contactNumber, String homePhoneNumber,String primaryLang, String secondaryLangs, String address, String city, String zipcode, String state, String pace,
 			float gpa, String profession, String practices, boolean hired, Date graduationDate, boolean activelySeekingEmployment, boolean haveExternship,
-			long employerId,long partnerId, String partnerZipCode, String partnerWebSiteLink,Date externshipStartDate, Date externshipEndDate, int noOfHoursPerWeek,
+			long employerId,long partnerId, int externshipStatus,String partnerZipCode, String partnerWebSiteLink,Date externshipStartDate, Date externshipEndDate, int noOfHoursPerWeek,
 			Date midPointReviewDate,String midPointReviewComment,Date finalReviewDate, String finalPointReviewComment,
-			File profileImage, String profileImageFileName,File resume, String resumeFileName,Map<String, File> agreementFileMap, Map<String, File> othersFileMap,long modifiedBy) throws PortalException{
+			File profileImage, String profileImageFileName,File resume, String resumeFileName,Map<String, File> agreementFileMap, Map<String, File> othersFileMap,  Map<String,File> timeSheetsFileMap,boolean isApprovedInterviewRequest,long modifiedBy) throws PortalException{
 		
 			Student student = null;
 		    
@@ -267,21 +285,22 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 			
 			if(haveExternship && Validator.isNotNull(studentExternship)){
 				// Update Existing Student Externship
-				Student_ExternshipLocalServiceUtil.updateStudentExternship(studentExternship,student.getStudentId(), partnerId, externshipStartDate, externshipEndDate,
+				studentExternship = Student_ExternshipLocalServiceUtil.updateStudentExternship(studentExternship,student.getStudentId(), partnerId, employerId, externshipStatus,externshipStartDate, externshipEndDate,
 					noOfHoursPerWeek, midPointReviewDate, midPointReviewComment, finalReviewDate, finalPointReviewComment, modifiedBy);
+			
 			}else if(!haveExternship && Validator.isNotNull(studentExternship)) {
 				// Delete Expternship
 				Student_ExternshipLocalServiceUtil.deleteStudent_Externship(studentExternship);
 				
 				// Delete Externship documents 1. Agremeents 2. Other documents
 				
-				long globalGroupId = MedicusCommonLocalServiceUtil.getGlobalGroupId();
+				long medicusOrgGrouId = MedicusCommonLocalServiceUtil.getMedicusGroupId();
 				
 				try{
-					Folder studentFolder = DLAppServiceUtil.getFolder(globalGroupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, String.valueOf(student.getStudentId()));
+					Folder studentFolder = DLAppServiceUtil.getFolder(medicusOrgGrouId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, String.valueOf(student.getStudentId()));
 					if(Validator.isNotNull(studentFolder)){
 						
-						Folder agreementsFolder = DLAppServiceUtil.getFolder(globalGroupId, studentFolder.getFolderId(), "Agreements");
+						Folder agreementsFolder = DLAppServiceUtil.getFolder(medicusOrgGrouId, studentFolder.getFolderId(), "Agreements");
 						DLAppServiceUtil.deleteFolder(agreementsFolder.getFolderId());
 					}
 				}catch(PortalException e){
@@ -291,10 +310,10 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 				
 				//Delete Other Document folder folders
 				try{
-					Folder studentFolder = DLAppServiceUtil.getFolder(globalGroupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, String.valueOf(student.getStudentId()));
+					Folder studentFolder = DLAppServiceUtil.getFolder(medicusOrgGrouId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, String.valueOf(student.getStudentId()));
 					if(Validator.isNotNull(studentFolder)){
 						
-						Folder otherDocumentsFolder = DLAppServiceUtil.getFolder(globalGroupId, studentFolder.getFolderId(), "Other Documents");
+						Folder otherDocumentsFolder = DLAppServiceUtil.getFolder(medicusOrgGrouId, studentFolder.getFolderId(), "Other Documents");
 						DLAppServiceUtil.deleteFolder(otherDocumentsFolder.getFolderId());
 					}
 				}catch(PortalException e){
@@ -302,13 +321,22 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 				}
 			}else if(haveExternship && Validator.isNull(studentExternship)){
 				// Add new Externship Detail
-				Student_ExternshipLocalServiceUtil.addStudentExternship(student.getStudentId(), partnerId, employerId,externshipStartDate, externshipEndDate,
+				Student_ExternshipLocalServiceUtil.addStudentExternship(student.getStudentId(), partnerId, employerId,  externshipStatus,externshipStartDate, externshipEndDate,
 					noOfHoursPerWeek, midPointReviewDate, midPointReviewComment, finalReviewDate, finalPointReviewComment, modifiedBy);
 			}
 			
+			
+			// Update approved Interivew Request
+			if(isApprovedInterviewRequest){
+				Interview_Request interviewRequest = Interview_RequestLocalServiceUtil.updateInterviewRequest(studentId, partnerId, Interview_RequestStatus.APPROVED.getValue());
+				if(Validator.isNull(interviewRequest)){
+					_log.debug("error while update interview request studentId->" + studentId +" partnerId ->" + partnerId);
+				}
+			}
+			
 			// Get Global groupId and Student Id folder
-			long globalGroupId = MedicusCommonLocalServiceUtil.getGlobalGroupId();
-			Folder studentIdFolder = MedicusCommonLocalServiceUtil.getFolder(globalGroupId, 0l, String.valueOf(student.getStudentId()));
+			long medicusOrgGrouId = MedicusCommonLocalServiceUtil.getMedicusGroupId();
+			Folder studentIdFolder = MedicusCommonLocalServiceUtil.getFolder(medicusOrgGrouId, 0l, String.valueOf(student.getStudentId()));
 			
 			if(Validator.isNotNull(studentIdFolder)){
 				
@@ -326,7 +354,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 					}else{
 						// Add Profile Image 
 						try{
-							FileEntry fileEntry = DLAppServiceUtil.addFileEntry(globalGroupId, studentIdFolder.getFolderId(),  profileImageFileName, MimeTypesUtil.getContentType(profileImage),  profileImageFileName, StringPool.BLANK , StringPool.BLANK, profileImage, serviceContext);
+							FileEntry fileEntry = DLAppServiceUtil.addFileEntry(medicusOrgGrouId, studentIdFolder.getFolderId(),  profileImageFileName, MimeTypesUtil.getContentType(profileImage),  profileImageFileName, StringPool.BLANK , StringPool.BLANK, profileImage, serviceContext);
 							student.setProfileImageId(fileEntry.getFileEntryId());
 						 }catch(PortalException e){
 							 _log.error(e);
@@ -347,7 +375,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 					}else{
 						// Add resume
 						 try{
-							FileEntry fileEntry = DLAppServiceUtil.addFileEntry(globalGroupId, studentIdFolder.getFolderId(),  resumeFileName, MimeTypesUtil.getContentType(resume),  resumeFileName, StringPool.BLANK , StringPool.BLANK, resume, serviceContext);
+							FileEntry fileEntry = DLAppServiceUtil.addFileEntry(medicusOrgGrouId, studentIdFolder.getFolderId(),  resumeFileName, MimeTypesUtil.getContentType(resume),  resumeFileName, StringPool.BLANK , StringPool.BLANK, resume, serviceContext);
 							student.setResumeFileEntryId(fileEntry.getFileEntryId());
 						  }catch(PortalException e){
 						 	 _log.error(e);
@@ -357,12 +385,12 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 				
 				
 				// Add agreements
-				Folder agreementsFolder = MedicusCommonLocalServiceUtil.getFolder(globalGroupId, studentIdFolder.getFolderId(), "Agreements");
+				Folder agreementsFolder = MedicusCommonLocalServiceUtil.getFolder(medicusOrgGrouId, studentIdFolder.getFolderId(), "Agreements");
 				if(Validator.isNotNull(agreementsFolder)){
 					for (Entry<String, File> fileDetail : agreementFileMap.entrySet()) {
 						try{
 							if(Validator.isNotNull(fileDetail.getKey())){
-								FileEntry fileEntry = DLAppServiceUtil.addFileEntry(globalGroupId, agreementsFolder.getFolderId(),  fileDetail.getKey(), MimeTypesUtil.getContentType(fileDetail.getValue()),  fileDetail.getKey(), StringPool.BLANK , StringPool.BLANK, fileDetail.getValue(), serviceContext);
+								FileEntry fileEntry = DLAppServiceUtil.addFileEntry(medicusOrgGrouId, agreementsFolder.getFolderId(),  fileDetail.getKey(), MimeTypesUtil.getContentType(fileDetail.getValue()),  fileDetail.getKey(), StringPool.BLANK , StringPool.BLANK, fileDetail.getValue(), serviceContext);
 							}
 						  }catch(PortalException e){
 						 	 _log.error(e);
@@ -372,15 +400,27 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 				
 				
 				// Add attachment
-				Folder otherDocumentsFolder = MedicusCommonLocalServiceUtil.getFolder(globalGroupId, studentIdFolder.getFolderId(), "Other Documents");
+				Folder otherDocumentsFolder = MedicusCommonLocalServiceUtil.getFolder(medicusOrgGrouId, studentIdFolder.getFolderId(), "Other Documents");
 				if(Validator.isNotNull(otherDocumentsFolder)){
 					for (Entry<String, File> fileDetail : othersFileMap.entrySet()) {
 						try{
 							if(Validator.isNotNull(fileDetail.getKey())){
-								FileEntry fileEntry = DLAppServiceUtil.addFileEntry(globalGroupId, otherDocumentsFolder.getFolderId(),  fileDetail.getKey(), MimeTypesUtil.getContentType(fileDetail.getValue()),  fileDetail.getKey(), StringPool.BLANK , StringPool.BLANK, fileDetail.getValue(), serviceContext);
+								FileEntry fileEntry = DLAppServiceUtil.addFileEntry(medicusOrgGrouId, otherDocumentsFolder.getFolderId(),  fileDetail.getKey(), MimeTypesUtil.getContentType(fileDetail.getValue()),  fileDetail.getKey(), StringPool.BLANK , StringPool.BLANK, fileDetail.getValue(), serviceContext);
 							}
 						  }catch(PortalException e){
 						 	 _log.error(e);
+						  }
+					}
+				}
+				
+				// Add Time Sheets
+				Folder timeSheetsFolder = MedicusCommonLocalServiceUtil.getFolder(medicusOrgGrouId, studentIdFolder.getFolderId(), "Timesheets");
+				if(Validator.isNotNull(timeSheetsFolder)){
+					for (Entry<String, File> fileDetail : timeSheetsFileMap.entrySet()) {
+						try{
+							FileEntry fileEntry = DLAppServiceUtil.addFileEntry(medicusOrgGrouId, timeSheetsFolder.getFolderId(),  fileDetail.getKey(), MimeTypesUtil.getContentType(fileDetail.getValue()),  fileDetail.getKey(), StringPool.BLANK , StringPool.BLANK, fileDetail.getValue(), serviceContext);
+						  }catch(PortalException e){
+						 	 _log.error(e.getMessage());
 						  }
 					}
 				}
@@ -461,9 +501,9 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 			student = StudentLocalServiceUtil.getStudent(studentId);
 			
 			// Delete student documents
-			long globalGroupId = MedicusCommonLocalServiceUtil.getGlobalGroupId();
+			long medicusOrgGrouId = MedicusCommonLocalServiceUtil.getMedicusGroupId();
 			try{
-				Folder studentFolder = DLAppServiceUtil.getFolder(globalGroupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, String.valueOf(student.getStudentId()));
+				Folder studentFolder = DLAppServiceUtil.getFolder(medicusOrgGrouId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, String.valueOf(student.getStudentId()));
 				DLAppServiceUtil.deleteFolder(studentFolder.getFolderId());
 			}catch(PortalException e){
 				_log.error(e.getMessage());
@@ -475,6 +515,12 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 				Student_ExternshipLocalServiceUtil.deleteStudent_Externship(student_Externship);
 			}catch(PortalException e){
 				_log.error(e.getMessage());
+			}
+			
+			// Delete inteview request
+			List<Interview_Request> studentInteriewRequestList = Interview_RequestLocalServiceUtil.getInterviewRequestsByStudentId(studentId);
+			for(Interview_Request interviewRequest : studentInteriewRequestList){
+				Interview_RequestLocalServiceUtil.deleteInterview_Request(interviewRequest);
 			}
 			
 			// Delete Student itself

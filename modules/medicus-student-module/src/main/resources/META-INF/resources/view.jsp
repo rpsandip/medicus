@@ -24,7 +24,6 @@
 <liferay-ui:error key="student-exist" message="student-exist"/>
 <liferay-ui:error key="student-update-exist" message="student-update-exist"/>
 
-
 <div class="page-title">
   <div class="title_left">
 	<h2>Students</h2>
@@ -113,6 +112,8 @@
                   <div class="col-md-2 col-sm-2 col-xs-12 text-left">
                     <button type="button" class="btn btn-success search-student">Submit</button>
                   </div>
+                  <input type="hidden" id="userSchoolId" name="userSchoolId" value="${ userSchoolId}"/>
+                  <input type="hidden" id="userCampusId" name="userCampusId" value="${userCampusId }"/>
          		</form>
              	<br>
 		  </div>
@@ -127,6 +128,32 @@
 	</div>
   </div>
 </div>
+<div id="interivew-request-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Interview Request</h4>
+        <div class="msg">
+        	
+        </div>
+      </div>
+      <div class="modal-body">
+       	<div class="form-group">
+       	   <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+       	   		Are you sure you want to sent Interview Request?
+       	   </div>
+              <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                <button type="button" class="btn btn-primary sent-interview-request">Yes</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+              </div>
+         </div>
+         <aui:input type="hidden" name="studentId"/>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
  var studentFn={};
@@ -137,8 +164,6 @@
 AUI().use('aui-io-request', 'aui-autocomplete','liferay-portlet-url' ,'aui-base','aui-form-validator','autocomplete-list','autocomplete-filters','autocomplete-highlighters','node-event-simulate', function(A) {
 	var searchStudentURL = '${searchStudentURL}';
 	var pagetIndex=0;
-	
-	loadStudents(pagetIndex,false);
 	
 	A.one(".load-more-students").on('click', function(){
 		pagetIndex++;
@@ -163,7 +188,10 @@ AUI().use('aui-io-request', 'aui-autocomplete','liferay-portlet-url' ,'aui-base'
 		 resourceURL.setParameter("profession",A.one("#profession").val());
 		 resourceURL.setParameter("schoolId",A.one("#schoolId").val());
 		 resourceURL.setParameter("campusId",A.one("#campusId").val());
+		 resourceURL.setParameter("userSchoolId",userSchoolId);
+		 resourceURL.setParameter("userCampusId", userCampusId);
 
+		 
 		 var languages = "";
 		 A.all('#language option:selected').each(
 		  function (node) {
@@ -230,11 +258,78 @@ AUI().use('aui-io-request', 'aui-autocomplete','liferay-portlet-url' ,'aui-base'
 					for(var i in schoolDetail.campuses){
 					    A.one('#campusId').append("<option  value='"+ schoolDetail.campuses[i].campusId +"' >"+ schoolDetail.campuses[i].name +"</option> ");
 					}
+					if(parseInt(userCampusId)>0){
+						A.one("#campusId").val(userCampusId);
+					}
+					
+					loadStudents(pagetIndex,false);
 				}
 			  }
 			
 			});
 		});
+		
+		var userSchoolId= A.one("#userSchoolId").get('value');
+		var userCampusId = A.one("#userCampusId").get('value');
+		if(parseInt(userSchoolId)>0){
+			console.log("simulate");
+			A.one("#schoolId").val(userSchoolId);
+			A.one("#schoolId").simulate('change');
+		}else{
+			A.one("#schoolId").val("");
+			loadStudents(pagetIndex,false);
+		}
 });
 </aui:script>              
-	
+
+<script>
+ jQuery.noConflict();
+    (function($) {
+      $(function() {
+    	  AUI().use('aui-io-request', 'aui-autocomplete','liferay-portlet-url' ,'aui-base','aui-form-validator','autocomplete-list','autocomplete-filters','autocomplete-highlighters','node-event-simulate', function(A) {
+    		  
+    		  
+    		  $('#interivew-request-modal').on('show.bs.modal', function(e) {
+    			  $(".msg").html("");
+                  //get data-id attribute of the clicked element
+                  var studentId = $(e.relatedTarget).data('studentid');
+                  //populate the textbox
+                  $(e.currentTarget).find('#<portlet:namespace />studentId').val(studentId);
+              });
+    		  
+    		  A.one(".sent-interview-request").on('click', function(){
+    				
+    			  var studentId = A.one("#<portlet:namespace />studentId").get('value');
+    				
+    			  var resourceURL= Liferay.PortletURL.createResourceURL();
+       			  resourceURL.setPortletId('com_medicus_student_portlet_portlet_StudentModulePortlet');
+       			  resourceURL.setResourceId('/interview_request');
+       			 
+    				A.io.request(resourceURL.toString(),{
+    					dataType: 'json',
+    					method: 'GET',
+    					data :{
+    						'<portlet:namespace/>studentId' : studentId
+    					},
+    					on: {
+    					success: function() {
+    						var response=this.get('responseData');
+    						console.log('Response -> ' + response.status);
+    						$(".msg").html("").removeClass("red").removeClass("green");
+    						var status = response.status;
+    						$(".msg").text(response.msg);
+    						if(status==='err'){
+    							$(".msg").addClass('red');
+    						}else{
+    							$(".msg").addClass('green');
+    						}
+    					}
+    				  }
+    				
+    				});
+    		  });
+    		  
+    	  });
+      });
+   })(jQuery);
+</script>

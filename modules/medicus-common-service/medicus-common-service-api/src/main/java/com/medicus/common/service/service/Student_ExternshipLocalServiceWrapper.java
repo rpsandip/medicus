@@ -68,15 +68,15 @@ public class Student_ExternshipLocalServiceWrapper
 
 	@Override
 	public com.medicus.common.service.model.Student_Externship addStudentExternship(
-		long studentId, long partnerId, long employerId,
+		long studentId, long partnerId, long employerId, int externshipStatus,
 		java.util.Date startDate, java.util.Date endDate, int noOfHoursPerWeek,
 		java.util.Date midPointReview, java.lang.String midPointReviewComment,
 		java.util.Date finalReview, java.lang.String finalReviewComment,
 		long createdBy) {
 		return _student_ExternshipLocalService.addStudentExternship(studentId,
-			partnerId, employerId, startDate, endDate, noOfHoursPerWeek,
-			midPointReview, midPointReviewComment, finalReview,
-			finalReviewComment, createdBy);
+			partnerId, employerId, externshipStatus, startDate, endDate,
+			noOfHoursPerWeek, midPointReview, midPointReviewComment,
+			finalReview, finalReviewComment, createdBy);
 	}
 
 	/**
@@ -159,15 +159,15 @@ public class Student_ExternshipLocalServiceWrapper
 	@Override
 	public com.medicus.common.service.model.Student_Externship updateStudentExternship(
 		com.medicus.common.service.model.Student_Externship studentExternship,
-		long studentId, long partnerId, java.util.Date startDate,
-		java.util.Date endDate, int noOfHoursPerWeek,
+		long studentId, long partnerId, long employerId, int externshipStatus,
+		java.util.Date startDate, java.util.Date endDate, int noOfHoursPerWeek,
 		java.util.Date midPointReview, java.lang.String midPointReviewComment,
 		java.util.Date finalReview, java.lang.String finalReviewComment,
 		long modifiedBy) {
 		return _student_ExternshipLocalService.updateStudentExternship(studentExternship,
-			studentId, partnerId, startDate, endDate, noOfHoursPerWeek,
-			midPointReview, midPointReviewComment, finalReview,
-			finalReviewComment, modifiedBy);
+			studentId, partnerId, employerId, externshipStatus, startDate,
+			endDate, noOfHoursPerWeek, midPointReview, midPointReviewComment,
+			finalReview, finalReviewComment, modifiedBy);
 	}
 
 	/**

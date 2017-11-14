@@ -62,6 +62,11 @@
 		<column name="modifiedDate" type="Date"></column>
 		<column name="modifiedBy" type="long"></column>
 		
+		<order by="desc">
+			<order-column name="createDate">
+			</order-column>
+		</order>
+		
 		<finder return-type="Collection" name="schoolId">
 			<finder-column name="schoolId"></finder-column>
 		</finder>
@@ -70,10 +75,6 @@
 			<finder-column name="name"></finder-column>
 		</finder>
 		
-		<order by="desc">
-			<order-column name="createDate">
-			</order-column>
-		</order>
 	</entity>
 	
 	<entity name="MedicusCommon" local-service="true"  remote-service="false"/>
@@ -131,6 +132,7 @@
 		<column name="startDate" type="Date"/>
 		<column name="endDate" type="Date"/>
 		<column name="noOfHoursPerWeek" type="int"/>
+		<column name="status" type="int"/>
 		<column name="midPointReview" type="Date"/>
 		<column name="midPointReviewComment" type="String"/>
 		<column name="finalReview" type="Date"/>
@@ -204,6 +206,24 @@
 		<column name="createdBy" type="long"></column>
 		<column name="modifiedDate" type="Date"></column>
 		<column name="modifiedBy" type="long"></column>
+		
+		<order by="desc">
+			<order-column name="createDate">
+			</order-column>
+		</order>
+		
+		<finder return-type="Collection" name="partnerId">
+			<finder-column name="partnerId"></finder-column>
+		</finder>
+		
+		<finder return-type="Collection" name="campusId">
+			<finder-column name="campusId"></finder-column>
+		</finder>
+		
+		<finder return-type="Collection" name="studentId">
+			<finder-column name="studentId"></finder-column>
+		</finder>
+		
 	</entity>
 	
 </service-builder>

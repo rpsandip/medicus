@@ -61,6 +61,9 @@ public interface MedicusCommonLocalService extends BaseLocalService {
 		java.lang.String folderName);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public User getCampusAdminName(long campusId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public User isUserExist(java.lang.String emailAddress);
 
 	public FileEntry addFileEntry(long groupId, long folderId, File file,
@@ -97,7 +100,13 @@ public interface MedicusCommonLocalService extends BaseLocalService {
 	public List<java.lang.String> getUSStateList();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public long getCampusOrgIdFromRoleIdAndUserId(long userId, long roleId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long getGlobalGroupId();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public long getMedicusGroupId();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long getMedicusOrganizationId();
@@ -107,6 +116,9 @@ public interface MedicusCommonLocalService extends BaseLocalService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long getPartnerOrgRoleId();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public long getRoleIdFromName(java.lang.String roleName);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long getUserPhoneTypeId() throws SystemException;

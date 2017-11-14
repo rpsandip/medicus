@@ -161,6 +161,20 @@ public interface Student_ExternshipModel extends BaseModel<Student_Externship> {
 	public void setNoOfHoursPerWeek(int noOfHoursPerWeek);
 
 	/**
+	 * Returns the status of this student_ externship.
+	 *
+	 * @return the status of this student_ externship
+	 */
+	public int getStatus();
+
+	/**
+	 * Sets the status of this student_ externship.
+	 *
+	 * @param status the status of this student_ externship
+	 */
+	public void setStatus(int status);
+
+	/**
 	 * Returns the mid point review of this student_ externship.
 	 *
 	 * @return the mid point review of this student_ externship

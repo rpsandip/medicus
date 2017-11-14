@@ -40,6 +40,7 @@ public class Student_ExternshipSoap implements Serializable {
 		soapModel.setStartDate(model.getStartDate());
 		soapModel.setEndDate(model.getEndDate());
 		soapModel.setNoOfHoursPerWeek(model.getNoOfHoursPerWeek());
+		soapModel.setStatus(model.getStatus());
 		soapModel.setMidPointReview(model.getMidPointReview());
 		soapModel.setMidPointReviewComment(model.getMidPointReviewComment());
 		soapModel.setFinalReview(model.getFinalReview());
@@ -159,6 +160,14 @@ public class Student_ExternshipSoap implements Serializable {
 		_noOfHoursPerWeek = noOfHoursPerWeek;
 	}
 
+	public int getStatus() {
+		return _status;
+	}
+
+	public void setStatus(int status) {
+		_status = status;
+	}
+
 	public Date getMidPointReview() {
 		return _midPointReview;
 	}
@@ -230,6 +239,7 @@ public class Student_ExternshipSoap implements Serializable {
 	private Date _startDate;
 	private Date _endDate;
 	private int _noOfHoursPerWeek;
+	private int _status;
 	private Date _midPointReview;
 	private String _midPointReviewComment;
 	private Date _finalReview;

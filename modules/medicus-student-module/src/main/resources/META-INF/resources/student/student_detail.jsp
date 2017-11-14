@@ -159,6 +159,25 @@
 						</div>
 						<div class="form-group">
 							<c:choose>
+								<c:when test="${not empty  studentExternshipBean.status}">
+									<c:set var="status" value="${studentExternshipBean.status}"/>
+			               			 <%
+			                			String status="";
+			                			if(Validator.isNotNull(Student_ExternshipStatus.findByValue((int)pageContext.getAttribute("status")))){
+			                				status = Student_ExternshipStatus.findByValue((int)pageContext.getAttribute("status")).getLabel();
+			                			}
+			               			 %>
+			                		<label class="control-label col-md-3 col-sm-3 col-xs-12">Exnternship Status :</label>  <%=status %>
+								</c:when>
+								<c:otherwise>
+									<label class="control-label col-md-3 col-sm-3 col-xs-12">Exnternship Status :</label>  -
+								</c:otherwise>
+							</c:choose>
+							
+			              
+						</div>
+						<div class="form-group">
+							<c:choose>
 								<c:when test="${not empty studentExternshipBean.startDate }">
 									<fmt:formatDate pattern = "MM/dd/yyyy" value = "${studentExternshipBean.startDate}" var="externshipStartDate" />
 									<label class="control-label col-md-3 col-sm-3 col-xs-12">Externship Start Date:</label>${externshipStartDate}
@@ -231,6 +250,21 @@
 							</c:otherwise>
 							</c:choose> 
 						</div>
+						
+						<div class="form-group">
+							<c:choose>
+							<c:when test="${fn:length(studentBean.timeSheets) > 0}">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12">TimeSheets:</label>
+									<c:forEach items="${studentBean.timeSheets}" var="document">
+										<a href="${document.documentURL }"><i class="fa fa-file-word-o"></i> ${document.fileName }</a><br/>
+									</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">TimeSheets:</label> -
+							</c:otherwise>
+							</c:choose> 
+						</div>
+						
 						<div class="form-group">
 							<c:choose>
 							<c:when test="${fn:length(studentBean.agreementDocs) > 0}">

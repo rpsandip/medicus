@@ -69,15 +69,16 @@ public class Student_ExternshipLocalServiceUtil {
 	}
 
 	public static com.medicus.common.service.model.Student_Externship addStudentExternship(
-		long studentId, long partnerId, long employerId,
+		long studentId, long partnerId, long employerId, int externshipStatus,
 		java.util.Date startDate, java.util.Date endDate, int noOfHoursPerWeek,
 		java.util.Date midPointReview, java.lang.String midPointReviewComment,
 		java.util.Date finalReview, java.lang.String finalReviewComment,
 		long createdBy) {
 		return getService()
 				   .addStudentExternship(studentId, partnerId, employerId,
-			startDate, endDate, noOfHoursPerWeek, midPointReview,
-			midPointReviewComment, finalReview, finalReviewComment, createdBy);
+			externshipStatus, startDate, endDate, noOfHoursPerWeek,
+			midPointReview, midPointReviewComment, finalReview,
+			finalReviewComment, createdBy);
 	}
 
 	/**
@@ -152,15 +153,16 @@ public class Student_ExternshipLocalServiceUtil {
 
 	public static com.medicus.common.service.model.Student_Externship updateStudentExternship(
 		com.medicus.common.service.model.Student_Externship studentExternship,
-		long studentId, long partnerId, java.util.Date startDate,
-		java.util.Date endDate, int noOfHoursPerWeek,
+		long studentId, long partnerId, long employerId, int externshipStatus,
+		java.util.Date startDate, java.util.Date endDate, int noOfHoursPerWeek,
 		java.util.Date midPointReview, java.lang.String midPointReviewComment,
 		java.util.Date finalReview, java.lang.String finalReviewComment,
 		long modifiedBy) {
 		return getService()
 				   .updateStudentExternship(studentExternship, studentId,
-			partnerId, startDate, endDate, noOfHoursPerWeek, midPointReview,
-			midPointReviewComment, finalReview, finalReviewComment, modifiedBy);
+			partnerId, employerId, externshipStatus, startDate, endDate,
+			noOfHoursPerWeek, midPointReview, midPointReviewComment,
+			finalReview, finalReviewComment, modifiedBy);
 	}
 
 	/**

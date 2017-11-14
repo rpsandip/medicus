@@ -23,6 +23,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 
+import javax.sound.sampled.Port;
+
 import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.document.library.kernel.service.DLAppServiceUtil;
 import com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil;
@@ -30,11 +32,13 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.ListType;
 import com.liferay.portal.kernel.model.ListTypeConstants;
 import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.model.UserGroupRole;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
@@ -42,6 +46,7 @@ import com.liferay.portal.kernel.service.ListTypeServiceUtil;
 import com.liferay.portal.kernel.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.kernel.service.RoleLocalServiceUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
@@ -49,8 +54,10 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.medicus.common.service.model.Campus;
 import com.medicus.common.service.model.Partner;
 import com.medicus.common.service.model.Student;
+import com.medicus.common.service.service.CampusLocalServiceUtil;
 import com.medicus.common.service.service.PartnerLocalServiceUtil;
 import com.medicus.common.service.service.base.MedicusCommonLocalServiceBaseImpl;
 import com.medicus.common.service.util.MedicusConstant;
@@ -95,6 +102,17 @@ public class MedicusCommonLocalServiceImpl
 			_log.error(e);
 		}
 		return medicusOrgId;
+	}
+	
+	public long getMedicusGroupId(){
+		long medicusGroupId=0l;
+		try {
+			Organization org = OrganizationLocalServiceUtil.getOrganization(PortalUtil.getDefaultCompanyId(), MedicusConstant.MEDICUS_ORG);
+			medicusGroupId  = org.getGroupId();
+		} catch (PortalException e) {
+			_log.error(e);
+		}
+		return medicusGroupId;
 	}
 	
 	public long getPartnerOrgRoleId(){
@@ -184,11 +202,12 @@ public class MedicusCommonLocalServiceImpl
 	}
 	
 	public long getGlobalGroupId(){
-		try {
+		/*try {
 			return GroupLocalServiceUtil.getCompanyGroup(PortalUtil.getDefaultCompanyId()).getGroupId();
 		} catch (PortalException e) {
-		}
-		return 0l;
+		}*/
+		return getMedicusGroupId();
+		//return 0l;
 	}
 	
 	public String getDLFileURL(DLFileEntry file) {
@@ -215,4 +234,66 @@ public class MedicusCommonLocalServiceImpl
 		}
 		return file;
 	}
+	
+	public long getRoleIdFromName(String roleName){
+		long roleId=0;
+		try {
+			Role role = RoleLocalServiceUtil.getRole(PortalUtil.getDefaultCompanyId(),roleName);
+			roleId = role.getRoleId();
+		} catch (PortalException e) {
+			_log.error(e.getMessage());
+		}
+		return roleId;
+	}
+	
+	public User getCampusAdminName(long campusId){
+		User campusAdminUser = null;
+		if(campusId>0){
+			try {
+				Campus campus = CampusLocalServiceUtil.getCampus(campusId);
+				Organization campusOrg = OrganizationLocalServiceUtil.getOrganization(PortalUtil.getDefaultCompanyId(),
+						String.valueOf(campus.getCampusId()));
+				long orgGroupId = getOrganizationGroupIdFromOrgId(campusOrg.getOrganizationId());
+				List<UserGroupRole> userGroupRoleList = UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(orgGroupId, getRoleIdFromName(MedicusConstant.CAMPUS_ADMIN_ROLE));
+				if(userGroupRoleList.size()>0){
+					campusAdminUser = UserLocalServiceUtil.getUser(userGroupRoleList.get(0).getUserId());
+					return campusAdminUser;
+				}
+			} catch (PortalException e) {
+				_log.error(e.getMessage());
+			}
+		}
+		return campusAdminUser;
+	}
+	
+	public long getCampusOrgIdFromRoleIdAndUserId(long userId, long roleId){
+		long orgId  = 0;
+		
+		List<UserGroupRole> userGroupRoleList = UserGroupRoleLocalServiceUtil.getUserGroupRoles(userId);
+		long campusOrgGroupId = 0;
+		for(UserGroupRole userGroupRole : userGroupRoleList){
+			if(userGroupRole.getRoleId()==roleId){
+				campusOrgGroupId = userGroupRole.getGroupId();
+				try {
+					Group group = GroupLocalServiceUtil.getGroup(campusOrgGroupId);
+					Organization org = OrganizationLocalServiceUtil.getOrganization(group.getOrganizationId());
+					if(!org.getName().equals(MedicusConstant.MEDICUS_ORG)){
+						try{
+							String campusId = org.getName();
+							Campus campus = CampusLocalServiceUtil.getCampus(Long.parseLong(campusId));
+							return campus.getCampusId();
+						}catch(PortalException e){
+							_log.error(e.getMessage());
+						}
+					}
+					
+				} catch (PortalException e) {
+					_log.error(e.getMessage());
+				}
+			}
+		}
+		
+		return orgId;
+	}
+	
 }

@@ -29,6 +29,7 @@ public class Student_ExternshipBean {
 	private String finalReviewComment;
 	private PartnerBean partnerBean;
 	private EmployerBean employerBean;
+	private int status;
 	
 	public Student_ExternshipBean(Student_Externship studentExternship){
 		if(Validator.isNotNull(studentExternship)){
@@ -43,6 +44,7 @@ public class Student_ExternshipBean {
 			this.midPointReviewComment = studentExternship.getFinalReviewComment();
 			this.finalReview = studentExternship.getFinalReview();
 			this.finalReviewComment = studentExternship.getFinalReviewComment();
+			this.status = studentExternship.getStatus();
 			
 			if(this.partnerId>0){
 				try {
@@ -139,15 +141,17 @@ public class Student_ExternshipBean {
 	public void setEmployerId(long employerId) {
 		this.employerId = employerId;
 	}
-
-
 	public EmployerBean getEmployerBean() {
 		return employerBean;
 	}
-
-
 	public void setEmployerBean(EmployerBean employerBean) {
 		this.employerBean = employerBean;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
 	}
 	
 	

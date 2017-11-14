@@ -122,15 +122,16 @@ public interface StudentLocalService extends BaseLocalService,
 		java.lang.String pace, float gpa, java.lang.String profession,
 		java.lang.String practices, boolean hired, Date graduationDate,
 		boolean activelySeekingEmployment, boolean haveExternship,
-		long employerId, long partnerId, java.lang.String partnerZipCode,
-		java.lang.String partnerWebSiteLink, Date externshipStartDate,
-		Date externshipEndDate, int noOfHoursPerWeek, Date midPointReviewDate,
-		java.lang.String midPointReviewComment, Date finalReviewDate,
-		java.lang.String finalPointReviewComment, File profileImage,
-		java.lang.String profileImageFileName, File resume,
+		long employerId, long partnerId, int externshipStatus,
+		java.lang.String partnerZipCode, java.lang.String partnerWebSiteLink,
+		Date externshipStartDate, Date externshipEndDate, int noOfHoursPerWeek,
+		Date midPointReviewDate, java.lang.String midPointReviewComment,
+		Date finalReviewDate, java.lang.String finalPointReviewComment,
+		File profileImage, java.lang.String profileImageFileName, File resume,
 		java.lang.String resumeFileName,
 		Map<java.lang.String, File> agreementFileMap,
-		Map<java.lang.String, File> othersFileMap, long createdBy);
+		Map<java.lang.String, File> othersFileMap,
+		Map<java.lang.String, File> timeSheetsFileMap, long createdBy);
 
 	/**
 	* Creates a new student with the primary key. Does not add the student to the database.
@@ -229,15 +230,17 @@ public interface StudentLocalService extends BaseLocalService,
 		java.lang.String pace, float gpa, java.lang.String profession,
 		java.lang.String practices, boolean hired, Date graduationDate,
 		boolean activelySeekingEmployment, boolean haveExternship,
-		long employerId, long partnerId, java.lang.String partnerZipCode,
-		java.lang.String partnerWebSiteLink, Date externshipStartDate,
-		Date externshipEndDate, int noOfHoursPerWeek, Date midPointReviewDate,
-		java.lang.String midPointReviewComment, Date finalReviewDate,
-		java.lang.String finalPointReviewComment, File profileImage,
-		java.lang.String profileImageFileName, File resume,
+		long employerId, long partnerId, int externshipStatus,
+		java.lang.String partnerZipCode, java.lang.String partnerWebSiteLink,
+		Date externshipStartDate, Date externshipEndDate, int noOfHoursPerWeek,
+		Date midPointReviewDate, java.lang.String midPointReviewComment,
+		Date finalReviewDate, java.lang.String finalPointReviewComment,
+		File profileImage, java.lang.String profileImageFileName, File resume,
 		java.lang.String resumeFileName,
 		Map<java.lang.String, File> agreementFileMap,
-		Map<java.lang.String, File> othersFileMap, long modifiedBy)
+		Map<java.lang.String, File> othersFileMap,
+		Map<java.lang.String, File> timeSheetsFileMap,
+		boolean isApprovedInterviewRequest, long modifiedBy)
 		throws PortalException;
 
 	/**

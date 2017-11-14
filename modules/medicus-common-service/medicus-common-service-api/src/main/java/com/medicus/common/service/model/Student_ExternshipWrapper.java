@@ -65,6 +65,7 @@ public class Student_ExternshipWrapper implements Student_Externship,
 		attributes.put("startDate", getStartDate());
 		attributes.put("endDate", getEndDate());
 		attributes.put("noOfHoursPerWeek", getNoOfHoursPerWeek());
+		attributes.put("status", getStatus());
 		attributes.put("midPointReview", getMidPointReview());
 		attributes.put("midPointReviewComment", getMidPointReviewComment());
 		attributes.put("finalReview", getFinalReview());
@@ -119,6 +120,12 @@ public class Student_ExternshipWrapper implements Student_Externship,
 
 		if (noOfHoursPerWeek != null) {
 			setNoOfHoursPerWeek(noOfHoursPerWeek);
+		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
 		}
 
 		Date midPointReview = (Date)attributes.get("midPointReview");
@@ -219,6 +226,16 @@ public class Student_ExternshipWrapper implements Student_Externship,
 	@Override
 	public int getNoOfHoursPerWeek() {
 		return _student_Externship.getNoOfHoursPerWeek();
+	}
+
+	/**
+	* Returns the status of this student_ externship.
+	*
+	* @return the status of this student_ externship
+	*/
+	@Override
+	public int getStatus() {
+		return _student_Externship.getStatus();
 	}
 
 	@Override
@@ -570,6 +587,16 @@ public class Student_ExternshipWrapper implements Student_Externship,
 	@Override
 	public void setStartDate(Date startDate) {
 		_student_Externship.setStartDate(startDate);
+	}
+
+	/**
+	* Sets the status of this student_ externship.
+	*
+	* @param status the status of this student_ externship
+	*/
+	@Override
+	public void setStatus(int status) {
+		_student_Externship.setStatus(status);
 	}
 
 	/**

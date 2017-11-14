@@ -141,6 +141,7 @@ create table Medicus_Student_Externship (
 	startDate DATE null,
 	endDate DATE null,
 	noOfHoursPerWeek INTEGER,
+	status INTEGER,
 	midPointReview DATE null,
 	midPointReviewComment VARCHAR(200) null,
 	finalReview DATE null,

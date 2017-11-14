@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
+import com.medicus.common.service.exception.NoSuchPartnerException;
 import com.medicus.common.service.model.Partner;
 
 import java.io.Serializable;
@@ -128,6 +129,10 @@ public interface PartnerLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Partner getPartner(long partnerId) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Partner getPartnerByUserId(long userId)
+		throws NoSuchPartnerException;
 
 	/**
 	* Updates the partner in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

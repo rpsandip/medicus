@@ -49,7 +49,7 @@ public class Student_ExternshipLocalServiceImpl
 	/*
 	 * Add Student Externship detail
 	 */
-	public Student_Externship addStudentExternship(long studentId, long partnerId, long employerId,Date startDate, Date endDate, int noOfHoursPerWeek,
+	public Student_Externship addStudentExternship(long studentId, long partnerId, long employerId, int externshipStatus,Date startDate, Date endDate, int noOfHoursPerWeek,
 			Date midPointReview, String midPointReviewComment, Date finalReview, String finalReviewComment, long createdBy){
 		Student_Externship studentExternship = Student_ExternshipLocalServiceUtil.createStudent_Externship(CounterLocalServiceUtil.increment());
 		studentExternship.setStudentId(studentId);
@@ -57,6 +57,7 @@ public class Student_ExternshipLocalServiceImpl
 		studentExternship.setEmployerId(employerId);
 		studentExternship.setStartDate(startDate);
 		studentExternship.setEndDate(endDate);
+		studentExternship.setStatus(externshipStatus);
 		studentExternship.setNoOfHoursPerWeek(noOfHoursPerWeek);
 		studentExternship.setMidPointReview(midPointReview);
 		studentExternship.setMidPointReviewComment(midPointReviewComment);
@@ -72,10 +73,12 @@ public class Student_ExternshipLocalServiceImpl
 		return studentExternship;
 	}
 	
-	public Student_Externship updateStudentExternship(Student_Externship studentExternship, long studentId, long partnerId, Date startDate, Date endDate, int noOfHoursPerWeek,
+	public Student_Externship updateStudentExternship(Student_Externship studentExternship, long studentId, long partnerId, long employerId, int externshipStatus,Date startDate, Date endDate, int noOfHoursPerWeek,
 			Date midPointReview, String midPointReviewComment, Date finalReview, String finalReviewComment, long modifiedBy){
 			
 		    studentExternship.setPartnerId(partnerId);
+		    studentExternship.setEmployerId(employerId);
+		    studentExternship.setStatus(externshipStatus);
 			studentExternship.setStartDate(startDate);
 			studentExternship.setEndDate(endDate);
 			studentExternship.setNoOfHoursPerWeek(noOfHoursPerWeek);

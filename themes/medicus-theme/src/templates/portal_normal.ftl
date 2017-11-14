@@ -29,6 +29,29 @@
   	 <link rel="stylesheet" href="${css_folder}/green.css">
   	 <link rel="stylesheet" href="${css_folder}/nprogress.css">
   	 <link rel="stylesheet" href="${css_folder}/custom.css">
+  	 
+  	     <script>
+		   		 define._amd = define.amd;
+		    	define.amd = false;
+			</script>
+		
+					<script src="${javascript_folder}/jquery.min.js"></script>
+					<script src="${javascript_folder}/bootstrap.min.js"></script>
+					<script src="${javascript_folder}/moment.min.js"></script>
+					<script src="${javascript_folder}/jquery.dataTables.min.js"></script>
+					<script src="${javascript_folder}/jquery.easing.js"></script>
+					<script src="${javascript_folder}/jquery.flexslider.js"></script>
+					<script src="${javascript_folder}/dataTables.bootstrap.min.js"></script>
+					<script src="${javascript_folder}/bootstrap-datetimepicker.min.js"></script>
+					<script src="${javascript_folder}/Chart.min.js"></script>
+					<script src="${javascript_folder}/icheck.min.js"></script>
+					<script src="${javascript_folder}/jquery.smartWizard.js"></script>
+					<script src="${javascript_folder}/nprogress.js"></script>
+					<script src="${javascript_folder}/jquery.formatter.js"></script>
+					<script src="${javascript_folder}/common.js"></script>
+			<script>
+						define.amd = define._amd;
+			</script>
   	
 </head>
  <#if !is_signed_in>
@@ -271,29 +294,6 @@
 				<!-- inject:js -->
 				<!-- endinject -->
 		
-				<script>
-					    define._amd = define.amd;
-					    define.amd = false;
-				</script>
-					
-					<script src="${javascript_folder}/jquery.min.js"></script>
-					<script src="${javascript_folder}/bootstrap.min.js"></script>
-					<script src="${javascript_folder}/moment.min.js"></script>
-					<script src="${javascript_folder}/jquery.dataTables.min.js"></script>
-					<script src="${javascript_folder}/jquery.easing.js"></script>
-					<script src="${javascript_folder}/jquery.flexslider.js"></script>
-					<script src="${javascript_folder}/dataTables.bootstrap.min.js"></script>
-					<script src="${javascript_folder}/bootstrap-datetimepicker.min.js"></script>
-					<script src="${javascript_folder}/Chart.min.js"></script>
-					<script src="${javascript_folder}/icheck.min.js"></script>
-					<script src="${javascript_folder}/jquery.smartWizard.js"></script>
-					<script src="${javascript_folder}/nprogress.js"></script>
-					<script src="${javascript_folder}/jquery.formatter.js"></script>
-					<script src="${javascript_folder}/common.js"></script>
-
-					<script>
-						define.amd = define._amd;
-					</script>
 			</div>
 	</body>
 </#if>

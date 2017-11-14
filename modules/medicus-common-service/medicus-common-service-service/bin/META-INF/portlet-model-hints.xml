@@ -86,6 +86,17 @@
 		<field name="modifiedDate" type="Date" />
 		<field name="modifiedBy" type="long" />
 	</model>
+	<model name="com.medicus.common.service.model.Interview_Request">
+		<field name="partnerId" type="long" />
+		<field name="studentId" type="long" />
+		<field name="schoolId" type="long" />
+		<field name="campusId" type="long" />
+		<field name="status" type="int" />
+		<field name="createDate" type="Date" />
+		<field name="createdBy" type="long" />
+		<field name="modifiedDate" type="Date" />
+		<field name="modifiedBy" type="long" />
+	</model>
 	<model name="com.medicus.common.service.model.Partner">
 		<field name="partnerId" type="long" />
 		<field name="userId" type="long" />
@@ -157,13 +168,13 @@
 		<field name="campusId" type="long" />
 		<field name="schoolId" type="long" />
 		<field name="firstName" type="String">
-			<hint name="max-length">20</hint>
+			<hint name="max-length">30</hint>
 		</field>
 		<field name="middleName" type="String">
 			<hint name="max-length">20</hint>
 		</field>
 		<field name="lastName" type="String">
-			<hint name="max-length">20</hint>
+			<hint name="max-length">30</hint>
 		</field>
 		<field name="profileImageId" type="long" />
 		<field name="dateOfBirth" type="Date" />
@@ -180,19 +191,19 @@
 			<hint name="max-length">30</hint>
 		</field>
 		<field name="primaryLanguage" type="String">
-			<hint name="max-length">200</hint>
+			<hint name="max-length">500</hint>
 		</field>
 		<field name="secondaryLanguage" type="String">
-			<hint name="max-length">200</hint>
+			<hint name="max-length">500</hint>
 		</field>
 		<field name="address" type="String">
-			<hint name="max-length">100</hint>
+			<hint name="max-length">200</hint>
 		</field>
 		<field name="city" type="String">
-			<hint name="max-length">15</hint>
+			<hint name="max-length">30</hint>
 		</field>
 		<field name="zipcode" type="String">
-			<hint name="max-length">6</hint>
+			<hint name="max-length">10</hint>
 		</field>
 		<field name="state" type="String">
 			<hint name="max-length">15</hint>
@@ -203,15 +214,16 @@
 		<field name="gpa" type="float" />
 		<field name="resumeFileEntryId" type="long" />
 		<field name="profession" type="String">
-			<hint name="max-length">30</hint>
+			<hint name="max-length">100</hint>
 		</field>
 		<field name="practices" type="String">
-			<hint name="max-length">30</hint>
+			<hint name="max-length">100</hint>
 		</field>
 		<field name="hired" type="boolean" />
 		<field name="graduationDate" type="Date" />
 		<field name="activelySeekingEmployment" type="boolean" />
 		<field name="haveExternship" type="boolean" />
+		<field name="status" type="int" />
 		<field name="createDate" type="Date" />
 		<field name="createdBy" type="long" />
 		<field name="modifiedDate" type="Date" />
@@ -225,6 +237,7 @@
 		<field name="startDate" type="Date" />
 		<field name="endDate" type="Date" />
 		<field name="noOfHoursPerWeek" type="int" />
+		<field name="status" type="int" />
 		<field name="midPointReview" type="Date" />
 		<field name="midPointReviewComment" type="String">
 			<hint name="max-length">200</hint>

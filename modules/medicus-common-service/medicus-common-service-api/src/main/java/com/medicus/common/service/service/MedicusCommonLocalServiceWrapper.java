@@ -42,6 +42,12 @@ public class MedicusCommonLocalServiceWrapper
 	}
 
 	@Override
+	public com.liferay.portal.kernel.model.User getCampusAdminName(
+		long campusId) {
+		return _medicusCommonLocalService.getCampusAdminName(campusId);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.model.User isUserExist(
 		java.lang.String emailAddress) {
 		return _medicusCommonLocalService.isUserExist(emailAddress);
@@ -111,8 +117,19 @@ public class MedicusCommonLocalServiceWrapper
 	}
 
 	@Override
+	public long getCampusOrgIdFromRoleIdAndUserId(long userId, long roleId) {
+		return _medicusCommonLocalService.getCampusOrgIdFromRoleIdAndUserId(userId,
+			roleId);
+	}
+
+	@Override
 	public long getGlobalGroupId() {
 		return _medicusCommonLocalService.getGlobalGroupId();
+	}
+
+	@Override
+	public long getMedicusGroupId() {
+		return _medicusCommonLocalService.getMedicusGroupId();
 	}
 
 	@Override
@@ -128,6 +145,11 @@ public class MedicusCommonLocalServiceWrapper
 	@Override
 	public long getPartnerOrgRoleId() {
 		return _medicusCommonLocalService.getPartnerOrgRoleId();
+	}
+
+	@Override
+	public long getRoleIdFromName(java.lang.String roleName) {
+		return _medicusCommonLocalService.getRoleIdFromName(roleName);
 	}
 
 	@Override

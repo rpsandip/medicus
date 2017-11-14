@@ -66,7 +66,7 @@ public class Student_ExternshipCacheModel implements CacheModel<Student_Externsh
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(33);
 
 		sb.append("{studentExternshipId=");
 		sb.append(studentExternshipId);
@@ -82,6 +82,8 @@ public class Student_ExternshipCacheModel implements CacheModel<Student_Externsh
 		sb.append(endDate);
 		sb.append(", noOfHoursPerWeek=");
 		sb.append(noOfHoursPerWeek);
+		sb.append(", status=");
+		sb.append(status);
 		sb.append(", midPointReview=");
 		sb.append(midPointReview);
 		sb.append(", midPointReviewComment=");
@@ -127,6 +129,7 @@ public class Student_ExternshipCacheModel implements CacheModel<Student_Externsh
 		}
 
 		student_ExternshipImpl.setNoOfHoursPerWeek(noOfHoursPerWeek);
+		student_ExternshipImpl.setStatus(status);
 
 		if (midPointReview == Long.MIN_VALUE) {
 			student_ExternshipImpl.setMidPointReview(null);
@@ -192,6 +195,8 @@ public class Student_ExternshipCacheModel implements CacheModel<Student_Externsh
 		endDate = objectInput.readLong();
 
 		noOfHoursPerWeek = objectInput.readInt();
+
+		status = objectInput.readInt();
 		midPointReview = objectInput.readLong();
 		midPointReviewComment = objectInput.readUTF();
 		finalReview = objectInput.readLong();
@@ -218,6 +223,8 @@ public class Student_ExternshipCacheModel implements CacheModel<Student_Externsh
 		objectOutput.writeLong(endDate);
 
 		objectOutput.writeInt(noOfHoursPerWeek);
+
+		objectOutput.writeInt(status);
 		objectOutput.writeLong(midPointReview);
 
 		if (midPointReviewComment == null) {
@@ -251,6 +258,7 @@ public class Student_ExternshipCacheModel implements CacheModel<Student_Externsh
 	public long startDate;
 	public long endDate;
 	public int noOfHoursPerWeek;
+	public int status;
 	public long midPointReview;
 	public String midPointReviewComment;
 	public long finalReview;

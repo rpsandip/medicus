@@ -58,7 +58,18 @@ public class SearchStudentResourceCommand implements MVCResourceCommand{
 		String profession = ParamUtil.getString(resourceRequest, "profession");
 		long schoolId = ParamUtil.getLong(resourceRequest, "schoolId");
 		long campusId = ParamUtil.getLong(resourceRequest, "campusId");
+		long userSchoolId = ParamUtil.getLong(resourceRequest, "userSchoolId");
+		long userCampusId = ParamUtil.getLong(resourceRequest, "userCampusId");
 		String languages = ParamUtil.getString(resourceRequest, "languages");
+		
+		if(userSchoolId>0){
+			schoolId = userSchoolId;
+		}
+		
+		if(userCampusId>0){
+			campusId = userCampusId;
+		}
+		
 		List<String> languageList = new ArrayList<String>();
 		if(Validator.isNotNull(languages)){
 			languageList = ListUtil.fromArray(languages.split(StringPool.COMMA));

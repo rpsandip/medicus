@@ -35,34 +35,47 @@
 				</div>
 				<div class="right col-xs-3 pull-right action-btn">
 				  <div class="col-xs-12 col-sm-6 col-md-12 text-center student-btn emphasis">
-					   <portlet:renderURL var="editStudnetURL">
-		      				<portlet:param name="mvcRenderCommandName" value="/add_student" />
-		      				<portlet:param name="studentId" value="${student.studentId }" />
-					  </portlet:renderURL>
-					  <a href="${editStudnetURL }" class="btn btn-primary btn-xs">
-						<i class="fa fa-edit"> </i> Edit Profile
-					  </a>
-					  <portlet:renderURL var="viewStudentDetailURL">
-		     					 <portlet:param name="mvcRenderCommandName" value="/student_detail" />
-		     					 <portlet:param name="studentId" value="${student.studentId }" />
-					  </portlet:renderURL>
-					  <a href="${viewStudentDetailURL }" class="btn btn-primary btn-xs">
-						<i class="fa fa-user"> </i> View Profile
-					  </a>
-					  <portlet:renderURL var="editExternshipURL">
-		      				<portlet:param name="mvcRenderCommandName" value="/add_student" />
-		      				<portlet:param name="studentId" value="${student.studentId }" />
-		      				<portlet:param name="addExternship" value="true" />
-					  </portlet:renderURL>
-					  <a href="${editExternshipURL }" class="btn btn-primary btn-xs">
-						<i class="fa fa-user"> </i> Add Externship
-					  </a>
-					   <portlet:actionURL var="deleteStudentURL" name="/delete_student">
-					   		<portlet:param name="studentId" value="${student.studentId }" />
-					   </portlet:actionURL>
-					   <a href="${deleteStudentURL }" class="btn btn-primary btn-xs">
-						<i class="fa fa-user"> </i> Delete
-					  </a>
+					  <c:if test="${hasUpdateStudentPermission }">
+						  <portlet:renderURL var="editStudnetURL">
+			      				<portlet:param name="mvcRenderCommandName" value="/add_student" />
+			      				<portlet:param name="studentId" value="${student.studentId }" />
+						  </portlet:renderURL>
+						  <a href="${editStudnetURL }" class="btn btn-primary btn-xs">
+							<i class="fa fa-edit"> </i> Edit Profile
+						  </a>
+					  </c:if>
+					  <c:if test="${hasViewStudentProfilePermission }">
+						  <portlet:renderURL var="viewStudentDetailURL">
+			     					 <portlet:param name="mvcRenderCommandName" value="/student_detail" />
+			     					 <portlet:param name="studentId" value="${student.studentId }" />
+						  </portlet:renderURL>
+						  <a href="${viewStudentDetailURL }" class="btn btn-primary btn-xs">
+							<i class="fa fa-user"> </i> View Profile
+						  </a>
+					  </c:if>
+					  <c:if test="${hasUpdateStudentPermission }">
+						  <portlet:renderURL var="editExternshipURL">
+			      				<portlet:param name="mvcRenderCommandName" value="/add_student" />
+			      				<portlet:param name="studentId" value="${student.studentId }" />
+			      				<portlet:param name="addExternship" value="true" />
+						  </portlet:renderURL>
+						  <a href="${editExternshipURL }" class="btn btn-primary btn-xs">
+							<i class="fa fa-user"> </i> Add Externship
+						  </a>
+					  </c:if>
+					   <c:if test="${hasDeleteStudentPermission }">
+						   <portlet:actionURL var="deleteStudentURL" name="/delete_student">
+						   		<portlet:param name="studentId" value="${student.studentId }" />
+						   </portlet:actionURL>
+						   <a href="${deleteStudentURL }" class="btn btn-primary btn-xs">
+							<i class="fa fa-user"> </i> Delete
+						   </a>
+					   </c:if>
+					   <c:if test="${hasStudentInterviewRequestPermission }">
+						   <a class="btn btn-primary btn-xs inter-view-request" data-studentId="${ student.studentId}" data-toggle="modal" data-target="#interivew-request-modal">
+							<i class="fa fa-user"> </i> Interview Request
+						   </a>
+					   </c:if>
 				  </div>
 				</div>
 			  </div>

@@ -4359,4 +4359,7 @@ display: block; }
     top: 0;
 }
 
+.approve-request-box label{
+			text-align: left !important;
+		}
 /* Liferay CSS : END */

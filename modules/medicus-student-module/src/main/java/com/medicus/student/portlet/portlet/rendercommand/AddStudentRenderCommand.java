@@ -1,7 +1,9 @@
 package com.medicus.student.portlet.portlet.rendercommand;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
@@ -26,6 +28,7 @@ import com.medicus.common.service.service.MedicusCommonLocalServiceUtil;
 import com.medicus.common.service.service.SchoolLocalServiceUtil;
 import com.medicus.common.service.service.StudentLocalServiceUtil;
 import com.medicus.common.service.service.Student_ExternshipLocalServiceUtil;
+import com.medicus.common.service.util.Student_ExternshipStatus;
 import com.medicus.student.portlet.portlet.StudentPortletConstant;
 
 @Component(
@@ -78,8 +81,22 @@ public class AddStudentRenderCommand implements MVCRenderCommand{
 				_log.error(e.getMessage());
 			}
 		}
+		
+		// Prepare Map for Student Exnternship status
+		Map<Integer,String> externshipStatusMap = new HashMap<Integer,String>();
+		for(Student_ExternshipStatus externShipStatus : Student_ExternshipStatus.values()){
+			externshipStatusMap.put(externShipStatus.getValue(), externShipStatus.getLabel());
+		}
+		
+		//Check for approve Inrerview request
+		boolean isApproveInterviewRequest = ParamUtil.getBoolean(renderRequest, "approveInterviewRequest");
+				
+		
+		renderRequest.setAttribute("externshipStatusMap", externshipStatusMap);
 		renderRequest.setAttribute("studentId", studentId);
 		renderRequest.setAttribute("addExternship", ParamUtil.getBoolean(renderRequest, "addExternship"));
+		renderRequest.setAttribute("isApproveInterviewRequest", isApproveInterviewRequest);
+		renderRequest.setAttribute("inteviewRequestPartnerId", ParamUtil.getLong(renderRequest, "inteviewRequestPartnerId"));
 		return "/student/add_student.jsp";
 		
 	}

@@ -79,6 +79,9 @@ public class AddStudentActionCommand extends BaseMVCActionCommand{
 			long partnerId = ParamUtil.getLong(actionRequest, "partnerName");
 			String partnerZipCode = ParamUtil.getString(actionRequest, "partnerZipCode");
 			String partnerWebSiteLink = ParamUtil.getString(actionRequest, "partnerWebSiteLink");
+			int externshipStatus = ParamUtil.getInteger(actionRequest, "externshipStatus");
+			boolean isApproveInterviewRequest = ParamUtil.getBoolean(actionRequest, "isApproveInterviewRequest");
+			
 			Date externshipStartDate = null;
 			Date externshipEndDate = null;
 			int noOfHoursPerWeek = ParamUtil.getInteger(actionRequest, "noOfHoursPerWeek");
@@ -127,6 +130,7 @@ public class AddStudentActionCommand extends BaseMVCActionCommand{
 			Map<String, FileItem[]> files= uploadPortletRequest.getMultipartParameterMap();
 			Map<String, File> agreementsFileMap = new HashMap<String, File>();
 			Map<String, File> othersFileMap = new HashMap<String, File>();
+			Map<String, File> timeSheetsMap = new HashMap<String, File>();
 			for (Entry<String, FileItem[]> file2 : files.entrySet()) {
 				FileItem item[] =file2.getValue();
 				String name  = file2.getKey();
@@ -142,6 +146,13 @@ public class AddStudentActionCommand extends BaseMVCActionCommand{
 						String fileName = fileItem.getFileName();
 						File file = fileItem.getStoreLocation();
 						agreementsFileMap.put(fileName, file);
+					}
+				}
+				if(name.startsWith("timesheets")){
+					for (FileItem fileItem : item) {
+						String fileName = fileItem.getFileName();
+						File file = fileItem.getStoreLocation();
+						timeSheetsMap.put(fileName, file);
 					}
 				}
 			}
@@ -168,11 +179,11 @@ public class AddStudentActionCommand extends BaseMVCActionCommand{
 				if(Validator.isNull(student) && Validator.isNotNull(studentCampusId)){
 					 student = StudentLocalServiceUtil.addStudent(schoolId, campusId, studentCampusId, firstName, middleName,lastName,
 							emailAddress, dob, gender, contactNo, homePhoneNumber,primaryLanguage, secondaryLanugage, address, city,zipcode, state, pace, gpa,profession,
-							practices, isHired, graduationDate, activelySeekingEmployment, haveExternship, employerId,partnerId,
+							practices, isHired, graduationDate, activelySeekingEmployment, haveExternship, employerId,partnerId,externshipStatus,
 							partnerZipCode, partnerWebSiteLink, externshipStartDate, externshipEndDate, 
 							noOfHoursPerWeek, midPointReviewDate, midPointReviewComment, finalReviewDate,
 							finalPointReviewComment, profilePic, profilePicFileName,resume, resumeFileName,agreementsFileMap,
-							othersFileMap, themeDisplay.getUserId());
+							othersFileMap, timeSheetsMap,themeDisplay.getUserId());
 					
 					if(Validator.isNotNull(student)){
 						SessionMessages.add(actionRequest, "student-add-success");
@@ -190,11 +201,11 @@ public class AddStudentActionCommand extends BaseMVCActionCommand{
 					try {
 						 student = StudentLocalServiceUtil.updateStudent(studentId, schoolId, campusId, studentCampusId, firstName, middleName,lastName,
 								emailAddress, dob, gender, contactNo, homePhoneNumber,primaryLanguage, secondaryLanugage, address, city,zipcode, state, pace, gpa,profession,
-								practices, isHired, graduationDate, activelySeekingEmployment, haveExternship, employerId,partnerId,
+								practices, isHired, graduationDate, activelySeekingEmployment, haveExternship, employerId,partnerId,externshipStatus,
 								partnerZipCode, partnerWebSiteLink, externshipStartDate, externshipEndDate, 
 								noOfHoursPerWeek, midPointReviewDate, midPointReviewComment, finalReviewDate,
 								finalPointReviewComment, profilePic, profilePicFileName,resume, resumeFileName,agreementsFileMap,
-								othersFileMap, themeDisplay.getUserId());
+								othersFileMap, timeSheetsMap,isApproveInterviewRequest, themeDisplay.getUserId());
 						SessionMessages.add(actionRequest, "student-update-success");
 					} catch (PortalException e) {
 						SessionErrors.add(actionRequest, "student-update-error");

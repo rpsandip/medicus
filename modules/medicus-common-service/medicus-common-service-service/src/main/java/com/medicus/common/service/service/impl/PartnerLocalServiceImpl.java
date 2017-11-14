@@ -16,6 +16,9 @@ package com.medicus.common.service.service.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.medicus.common.service.exception.NoSuchPartnerException;
+import com.medicus.common.service.model.Partner;
+import com.medicus.common.service.service.PartnerLocalServiceUtil;
 import com.medicus.common.service.service.base.PartnerLocalServiceBaseImpl;
 
 /**
@@ -28,15 +31,13 @@ import com.medicus.common.service.service.base.PartnerLocalServiceBaseImpl;
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
- * @author Brian Wing Shun Chan
+ * @author sandip.patel
  * @see PartnerLocalServiceBaseImpl
  * @see com.medicus.common.service.service.PartnerLocalServiceUtil
  */
 @ProviderType
 public class PartnerLocalServiceImpl extends PartnerLocalServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Always use {@link com.medicus.common.service.service.PartnerLocalServiceUtil} to access the partner local service.
-	 */
+	public Partner getPartnerByUserId(long userId) throws NoSuchPartnerException{
+		return partnerPersistence.findByuserId(userId);
+	}
 }

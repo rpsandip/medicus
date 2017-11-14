@@ -132,6 +132,12 @@ public class PartnerLocalServiceUtil {
 		return getService().getPartner(partnerId);
 	}
 
+	public static com.medicus.common.service.model.Partner getPartnerByUserId(
+		long userId)
+		throws com.medicus.common.service.exception.NoSuchPartnerException {
+		return getService().getPartnerByUserId(userId);
+	}
+
 	/**
 	* Updates the partner in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*

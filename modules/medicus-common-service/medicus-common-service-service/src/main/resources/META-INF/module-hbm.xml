@@ -161,6 +161,7 @@
 		<property name="startDate" type="org.hibernate.type.TimestampType" />
 		<property name="endDate" type="org.hibernate.type.TimestampType" />
 		<property name="noOfHoursPerWeek" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="midPointReview" type="org.hibernate.type.TimestampType" />
 		<property name="midPointReviewComment" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="finalReview" type="org.hibernate.type.TimestampType" />

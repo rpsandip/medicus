@@ -83,8 +83,8 @@ public interface Student_ExternshipLocalService extends BaseLocalService,
 		throws PortalException;
 
 	public Student_Externship addStudentExternship(long studentId,
-		long partnerId, long employerId, Date startDate, Date endDate,
-		int noOfHoursPerWeek, Date midPointReview,
+		long partnerId, long employerId, int externshipStatus, Date startDate,
+		Date endDate, int noOfHoursPerWeek, Date midPointReview,
 		java.lang.String midPointReviewComment, Date finalReview,
 		java.lang.String finalReviewComment, long createdBy);
 
@@ -147,9 +147,10 @@ public interface Student_ExternshipLocalService extends BaseLocalService,
 
 	public Student_Externship updateStudentExternship(
 		Student_Externship studentExternship, long studentId, long partnerId,
-		Date startDate, Date endDate, int noOfHoursPerWeek,
-		Date midPointReview, java.lang.String midPointReviewComment,
-		Date finalReview, java.lang.String finalReviewComment, long modifiedBy);
+		long employerId, int externshipStatus, Date startDate, Date endDate,
+		int noOfHoursPerWeek, Date midPointReview,
+		java.lang.String midPointReviewComment, Date finalReview,
+		java.lang.String finalReviewComment, long modifiedBy);
 
 	/**
 	* Updates the student_ externship in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

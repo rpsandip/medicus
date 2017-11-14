@@ -127,28 +127,28 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 	    			 homeCell.setCellType(Cell.CELL_TYPE_STRING);
 	    			 
 	    			 if(Validator.isNull(student)){
-		    		 student = StudentLocalServiceUtil.importStudent(
-		    				 nextRow.getCell(0).toString() /*First Name*/, 
-		    				 nextRow.getCell(1).toString() /*Middle Name*/, 
-		    				 nextRow.getCell(2).toString() /*Last Name*/, 
-		    				 nextRow.getCell(4).toString() /*Email Address*/,
-		    				 dob/*DOB*/,
-		    				 nextRow.getCell(3).toString() /*Student Id*/,
-		    				 nextRow.getCell(6).toString() /*Address*/, 
-		    				 nextRow.getCell(7).toString() /*City*/, 
-		    				 zipCodeCell.toString() /*Zipcode*/,
-		    				 nextRow.getCell(9).toString() /*State*/, 
-		    				 mobileCell.toString() /*Mobile Phone*/, 
-		    				 homeCell.toString() /*Home Phone*/,
-		    				 nextRow.getCell(12).toString() /*Gender*/,
-		    				 nextRow.getCell(13).toString() /*primaryLangs*/,
-		    				 nextRow.getCell(14).toString() /*Secondary Languages*/, 
-		    				 Float.parseFloat(nextRow.getCell(15).toString()) /*GPA*/,
-		    				 nextRow.getCell(16).toString() /* Pace*/,
-		    				 schoolId,
-		    				 campusId,
-		    				 nextRow.getCell(19).toString() /*Profession*/, 
-		    				 themeDisplay.getUserId());
+//		    		 student = StudentLocalServiceUtil.importStudent(
+//		    				 nextRow.getCell(0).toString() /*First Name*/, 
+//		    				 nextRow.getCell(1).toString() /*Middle Name*/, 
+//		    				 nextRow.getCell(2).toString() /*Last Name*/, 
+//		    				 nextRow.getCell(4).toString() /*Email Address*/,
+//		    				 dob/*DOB*/,
+//		    				 nextRow.getCell(3).toString() /*Student Id*/,
+//		    				 nextRow.getCell(6).toString() /*Address*/, 
+//		    				 nextRow.getCell(7).toString() /*City*/, 
+//		    				 zipCodeCell.toString() /*Zipcode*/,
+//		    				 nextRow.getCell(9).toString() /*State*/, 
+//		    				 mobileCell.toString() /*Mobile Phone*/, 
+//		    				 homeCell.toString() /*Home Phone*/,
+//		    				 nextRow.getCell(12).toString() /*Gender*/,
+//		    				 nextRow.getCell(13).toString() /*primaryLangs*/,
+//		    				 nextRow.getCell(14).toString() /*Secondary Languages*/, 
+//		    				 Float.parseFloat(nextRow.getCell(15).toString()) /*GPA*/,
+//		    				 nextRow.getCell(16).toString() /* Pace*/,
+//		    				 schoolId,
+//		    				 campusId,
+//		    				 nextRow.getCell(19).toString() /*Profession*/, 
+//		    				 themeDisplay.getUserId());
 		    		 
 			    		 if(Validator.isNotNull(student)){
 			    			 successImportedStudentCount++;

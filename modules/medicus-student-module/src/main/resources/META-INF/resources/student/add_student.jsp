@@ -386,10 +386,20 @@
 	                   <div class="externship-data">
 	                   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
+							 <aui:select name="externshipStatus" label="externship.status">
+							 <aui:option value="">Please Select Externship Status</aui:option>
+							 	<c:forEach items="${externshipStatusMap }" var="externshipStatus">
+							 		<aui:option value="${externshipStatus.key }" selected="${studentExternShipBean.status eq externshipStatus.key ? true : false }">${partnerBean.firstName } ${externshipStatus.value }</aui:option>
+							 	</c:forEach>
+							 </aui:select>
+					   	  </div>
+					   </div>
+	                   <div class="form-group">
+	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
 							 <aui:select name="partnerName" label="partner.name">
 							 <aui:option value="">Please Select Partner</aui:option>
 							 	<c:forEach items="${partnerBeanList }" var="partnerBean">
-							 		<aui:option value="${partnerBean.partnerId }" selected="${studentExternShipBean.partnerId eq partnerBean.partnerId ? true : false }">${partnerBean.firstName } ${partnerBean.lastName }</aui:option>
+							 		<aui:option value="${partnerBean.partnerId }" selected="${(partnerBean.partnerId eq studentExternShipBean.partnerId) or (partnerBean.partnerId eq inteviewRequestPartnerId)  ? true : false }">${partnerBean.firstName } ${partnerBean.lastName }</aui:option>
 							 	</c:forEach>
 							 </aui:select>
 					   	  </div>
@@ -476,6 +486,13 @@
 	                     </div>
 	                   </div>
 	                   <div class="form-group">
+	                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Time Sheets <span class="required">*</span>
+	                     </label>
+	                     <div class="col-md-6 col-sm-6 col-xs-12">
+	                       <input type="file" id="timesheets" name="timesheets" required="required" class="form-control col-md-7 col-xs-12" multiple="multiple">
+	                     </div>
+	                   </div>
+	                   <div class="form-group">
 	                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Agreement Details <span class="required">*</span>
 	                     </label>
 	                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -531,6 +548,8 @@
 	                     </div>
 	                   </div>
 	                   <aui:input type="hidden" value="${studentId }" name="studentId"/>
+	                   <aui:input type="hidden" value="${isApproveInterviewRequest }" name="isApproveInterviewRequest"/>
+	                   
 	                   <div class="ln_solid"></div>	
     				 	<div class="form-group">
 				        	<div class="col-md-10 col-sm-6 col-xs-12 col-md-offset-3">
@@ -898,9 +917,11 @@ AUI().use('aui-io-request', 'aui-autocomplete' ,'aui-base','aui-form-validator',
 		A.one("#<portlet:namespace/>school").simulate('change');
 		A.one("#<portlet:namespace/>partnerName").simulate('change');
         var haveExternship = '${studentBean.haveExternship}';
+        var isApproveInterviewRequest = '${isApproveInterviewRequest}';
 		console.log("haveExternship->" + haveExternship);
-        if(haveExternship=='true' || haveExternship==true){
+        if(haveExternship=='true' || isApproveInterviewRequest=='true'){
 			A.one(".externship-data").show();
+			A.one("#<portlet:namespace/>yes")._node.checked=true;
 		}
 	}
 	// EDIT : End
