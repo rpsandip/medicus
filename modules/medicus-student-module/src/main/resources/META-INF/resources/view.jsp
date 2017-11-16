@@ -314,7 +314,7 @@ AUI().use('aui-io-request', 'aui-autocomplete','liferay-portlet-url' ,'aui-base'
     					on: {
     					success: function() {
     						var response=this.get('responseData');
-    						console.log('Response -> ' + response.status);
+    						//console.log('Response -> ' + response.status);
     						$(".msg").html("").removeClass("red").removeClass("green");
     						var status = response.status;
     						$(".msg").text(response.msg);

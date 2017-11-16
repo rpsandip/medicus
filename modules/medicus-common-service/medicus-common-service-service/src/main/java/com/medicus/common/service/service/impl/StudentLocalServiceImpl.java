@@ -329,6 +329,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 			// Update approved Interivew Request
 			if(isApprovedInterviewRequest){
 				Interview_Request interviewRequest = Interview_RequestLocalServiceUtil.updateInterviewRequest(studentId, partnerId, Interview_RequestStatus.APPROVED.getValue());
+				MedicusCommonLocalServiceUtil.sendApproveInterviewRequestMail(interviewRequest);
 				if(Validator.isNull(interviewRequest)){
 					_log.debug("error while update interview request studentId->" + studentId +" partnerId ->" + partnerId);
 				}

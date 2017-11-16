@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
+import com.medicus.common.service.model.Interview_Request;
 import com.medicus.common.service.model.Partner;
 import com.medicus.common.service.model.Student;
 
@@ -122,4 +123,7 @@ public interface MedicusCommonLocalService extends BaseLocalService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long getUserPhoneTypeId() throws SystemException;
+
+	public void sendApproveInterviewRequestMail(
+		Interview_Request interviewRequest);
 }

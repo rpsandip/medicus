@@ -21,10 +21,10 @@
 	                     </div>
 	                   </div>
 	                   <div class="form-group">
-				        <div class="col-md-10 col-sm-6 col-xs-12 col-md-offset-3">
-							<aui:button type="button" value="Submit"  cssClass="importStudentBtn btn btn-success"/>
+				        	<div class="col-md-10 col-sm-6 col-xs-12 col-md-offset-3">
+								<aui:button type="button" value="Submit"  cssClass="importStudentBtn btn btn-success"/>
+							</div>
 						</div>
-					</div>
 					</aui:form>
 					<c:if test="${isImported eq true }">
 						<b>Total Students:: </b> ${totalStudentCount }  <br/>

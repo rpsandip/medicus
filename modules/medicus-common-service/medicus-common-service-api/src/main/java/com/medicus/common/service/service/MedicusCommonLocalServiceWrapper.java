@@ -159,6 +159,12 @@ public class MedicusCommonLocalServiceWrapper
 	}
 
 	@Override
+	public void sendApproveInterviewRequestMail(
+		com.medicus.common.service.model.Interview_Request interviewRequest) {
+		_medicusCommonLocalService.sendApproveInterviewRequestMail(interviewRequest);
+	}
+
+	@Override
 	public MedicusCommonLocalService getWrappedService() {
 		return _medicusCommonLocalService;
 	}

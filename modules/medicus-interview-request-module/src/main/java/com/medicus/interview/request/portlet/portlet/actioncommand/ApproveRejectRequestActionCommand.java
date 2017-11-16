@@ -66,20 +66,24 @@ public class ApproveRejectRequestActionCommand extends BaseMVCActionCommand{
 			Interview_Request interviewRequest = Interview_RequestLocalServiceUtil.getInterview_Request(interviewRequestPK);
 			if(interviewRequest.getStatus()==Interview_RequestStatus.PENDING.getValue()){
 				if(action.equals("approve")){
+					
+					// Move this code to Studentlocalservice updateStudent method as we are redicting
+					// to edit student profile on click of approve button.
+					 
 					// Update Request to Approve
-					interviewRequest.setStatus(Interview_RequestStatus.APPROVED.getValue());
-					Interview_RequestLocalServiceUtil.updateInterview_Request(interviewRequest);
+					//interviewRequest.setStatus(Interview_RequestStatus.APPROVED.getValue());
+					//Interview_RequestLocalServiceUtil.updateInterview_Request(interviewRequest);
 					
 					//Send Mail 
-					sendMail(interviewRequest, action, comment);
-					SessionMessages.add(actionRequest, "request-approve-success");
+					//sendMail(interviewRequest, action, comment);
+					//SessionMessages.add(actionRequest, "request-approve-success");
 				}else if(action.equals("reject")){
 					// Update Request to Reject
 					interviewRequest.setStatus(Interview_RequestStatus.REJECTED.getValue());
 					Interview_RequestLocalServiceUtil.updateInterview_Request(interviewRequest);
 					
 					//Send Mail
-					sendMail(interviewRequest, action, comment);
+					sendRejectMail(interviewRequest, action, comment);
 					SessionMessages.add(actionRequest, "request-reject-success");
 				}
 			}else{
@@ -92,7 +96,7 @@ public class ApproveRejectRequestActionCommand extends BaseMVCActionCommand{
 		}
 	}
 
-	private void sendMail(Interview_Request interviewRequest, String action, String comment){
+	private void sendRejectMail(Interview_Request interviewRequest, String action, String comment){
 		if(Validator.isNotNull(interviewRequest)){
 			try {
 				Student student = StudentLocalServiceUtil.getStudent(interviewRequest.getStudentId());
@@ -103,7 +107,7 @@ public class ApproveRejectRequestActionCommand extends BaseMVCActionCommand{
 				InputStream is = null;
 			    UnsyncBufferedReader unsyncBufferedReader = null;
 			    ClassLoader classloader = getClass().getClassLoader();
-				is = classloader.getResourceAsStream("approve-reject-request-mail-body.tmpl");
+				is = classloader.getResourceAsStream("reject-request-mail-body.tmpl");
 				StringBundler sb = new StringBundler();
 				unsyncBufferedReader = new UnsyncBufferedReader(new InputStreamReader(is));
 				String line = null;

@@ -143,6 +143,11 @@ public class MedicusCommonLocalServiceUtil {
 		return getService().getUserPhoneTypeId();
 	}
 
+	public static void sendApproveInterviewRequestMail(
+		com.medicus.common.service.model.Interview_Request interviewRequest) {
+		getService().sendApproveInterviewRequestMail(interviewRequest);
+	}
+
 	public static MedicusCommonLocalService getService() {
 		return _serviceTracker.getService();
 	}
