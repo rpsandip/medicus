@@ -131,6 +131,8 @@ public class InterviewRequestModulePortlet extends MVCPortlet {
 			interviewRequestBean.setStudentId(interviewRequest.getStudentId());
 			interviewRequestBean.setPartnerId(interviewRequest.getPartnerId());
 			interviewRequestBean.setStatus(interviewRequest.getStatus());
+			interviewRequestBean.setCreateDate(interviewRequest.getCreateDate());
+			interviewRequestBean.setModifiedDate(interviewRequest.getModifiedDate());
 			
 			if(interviewRequest.getStudentId()>0){
 				try {

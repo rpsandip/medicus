@@ -20,7 +20,7 @@
 					<thead>
 			            <tr>
 			                <th>Name</th>
-			                <th>Address1</th>
+			                <th>Address</th>
 			                <th>City</th>
 			                <th>Contact Number</th>
 			                <th>Website Link</th>

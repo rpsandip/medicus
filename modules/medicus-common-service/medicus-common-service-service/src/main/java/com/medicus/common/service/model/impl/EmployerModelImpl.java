@@ -67,7 +67,6 @@ public class EmployerModelImpl extends BaseModelImpl<Employer>
 			{ "lastName", Types.VARCHAR },
 			{ "emailAddress", Types.VARCHAR },
 			{ "address1", Types.VARCHAR },
-			{ "address2", Types.VARCHAR },
 			{ "city", Types.VARCHAR },
 			{ "zipcode", Types.VARCHAR },
 			{ "state_", Types.VARCHAR },
@@ -89,7 +88,6 @@ public class EmployerModelImpl extends BaseModelImpl<Employer>
 		TABLE_COLUMNS_MAP.put("lastName", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("emailAddress", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("address1", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("address2", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("city", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("zipcode", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("state_", Types.VARCHAR);
@@ -104,7 +102,7 @@ public class EmployerModelImpl extends BaseModelImpl<Employer>
 		TABLE_COLUMNS_MAP.put("modifiedBy", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table Medicus_Employer (employerId LONG not null primary key,firstName VARCHAR(75) null,lastName VARCHAR(75) null,emailAddress VARCHAR(75) null,address1 VARCHAR(100) null,address2 VARCHAR(100) null,city VARCHAR(15) null,zipcode VARCHAR(15) null,state_ VARCHAR(15) null,country VARCHAR(15) null,contactPersonName VARCHAR(50) null,contactPersonEmail VARCHAR(30) null,contactPersonPhoneNumber VARCHAR(15) null,websiteLink VARCHAR(100) null,createDate DATE null,createdBy LONG,modifiedDate DATE null,modifiedBy LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Medicus_Employer (employerId LONG not null primary key,firstName VARCHAR(75) null,lastName VARCHAR(75) null,emailAddress VARCHAR(75) null,address1 VARCHAR(100) null,city VARCHAR(15) null,zipcode VARCHAR(15) null,state_ VARCHAR(15) null,country VARCHAR(15) null,contactPersonName VARCHAR(50) null,contactPersonEmail VARCHAR(30) null,contactPersonPhoneNumber VARCHAR(15) null,websiteLink VARCHAR(100) null,createDate DATE null,createdBy LONG,modifiedDate DATE null,modifiedBy LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Medicus_Employer";
 	public static final String ORDER_BY_JPQL = " ORDER BY employer.employerId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Medicus_Employer.employerId ASC";
@@ -163,7 +161,6 @@ public class EmployerModelImpl extends BaseModelImpl<Employer>
 		attributes.put("lastName", getLastName());
 		attributes.put("emailAddress", getEmailAddress());
 		attributes.put("address1", getAddress1());
-		attributes.put("address2", getAddress2());
 		attributes.put("city", getCity());
 		attributes.put("zipcode", getZipcode());
 		attributes.put("state", getState());
@@ -213,12 +210,6 @@ public class EmployerModelImpl extends BaseModelImpl<Employer>
 
 		if (address1 != null) {
 			setAddress1(address1);
-		}
-
-		String address2 = (String)attributes.get("address2");
-
-		if (address2 != null) {
-			setAddress2(address2);
 		}
 
 		String city = (String)attributes.get("city");
@@ -363,21 +354,6 @@ public class EmployerModelImpl extends BaseModelImpl<Employer>
 	@Override
 	public void setAddress1(String address1) {
 		_address1 = address1;
-	}
-
-	@Override
-	public String getAddress2() {
-		if (_address2 == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _address2;
-		}
-	}
-
-	@Override
-	public void setAddress2(String address2) {
-		_address2 = address2;
 	}
 
 	@Override
@@ -578,7 +554,6 @@ public class EmployerModelImpl extends BaseModelImpl<Employer>
 		employerImpl.setLastName(getLastName());
 		employerImpl.setEmailAddress(getEmailAddress());
 		employerImpl.setAddress1(getAddress1());
-		employerImpl.setAddress2(getAddress2());
 		employerImpl.setCity(getCity());
 		employerImpl.setZipcode(getZipcode());
 		employerImpl.setState(getState());
@@ -694,14 +669,6 @@ public class EmployerModelImpl extends BaseModelImpl<Employer>
 			employerCacheModel.address1 = null;
 		}
 
-		employerCacheModel.address2 = getAddress2();
-
-		String address2 = employerCacheModel.address2;
-
-		if ((address2 != null) && (address2.length() == 0)) {
-			employerCacheModel.address2 = null;
-		}
-
 		employerCacheModel.city = getCity();
 
 		String city = employerCacheModel.city;
@@ -794,7 +761,7 @@ public class EmployerModelImpl extends BaseModelImpl<Employer>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(35);
 
 		sb.append("{employerId=");
 		sb.append(getEmployerId());
@@ -806,8 +773,6 @@ public class EmployerModelImpl extends BaseModelImpl<Employer>
 		sb.append(getEmailAddress());
 		sb.append(", address1=");
 		sb.append(getAddress1());
-		sb.append(", address2=");
-		sb.append(getAddress2());
 		sb.append(", city=");
 		sb.append(getCity());
 		sb.append(", zipcode=");
@@ -839,7 +804,7 @@ public class EmployerModelImpl extends BaseModelImpl<Employer>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(58);
+		StringBundler sb = new StringBundler(55);
 
 		sb.append("<model><model-name>");
 		sb.append("com.medicus.common.service.model.Employer");
@@ -864,10 +829,6 @@ public class EmployerModelImpl extends BaseModelImpl<Employer>
 		sb.append(
 			"<column><column-name>address1</column-name><column-value><![CDATA[");
 		sb.append(getAddress1());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>address2</column-name><column-value><![CDATA[");
-		sb.append(getAddress2());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>city</column-name><column-value><![CDATA[");
@@ -932,7 +893,6 @@ public class EmployerModelImpl extends BaseModelImpl<Employer>
 	private String _lastName;
 	private String _emailAddress;
 	private String _address1;
-	private String _address2;
 	private String _city;
 	private String _zipcode;
 	private String _state;

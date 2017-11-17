@@ -61,7 +61,6 @@ public class CampusWrapper implements Campus, ModelWrapper<Campus> {
 		attributes.put("schoolId", getSchoolId());
 		attributes.put("name", getName());
 		attributes.put("address1", getAddress1());
-		attributes.put("address2", getAddress2());
 		attributes.put("city", getCity());
 		attributes.put("state", getState());
 		attributes.put("country", getCountry());
@@ -104,12 +103,6 @@ public class CampusWrapper implements Campus, ModelWrapper<Campus> {
 
 		if (address1 != null) {
 			setAddress1(address1);
-		}
-
-		String address2 = (String)attributes.get("address2");
-
-		if (address2 != null) {
-			setAddress2(address2);
 		}
 
 		String city = (String)attributes.get("city");
@@ -271,16 +264,6 @@ public class CampusWrapper implements Campus, ModelWrapper<Campus> {
 	@Override
 	public java.lang.String getAddress1() {
 		return _campus.getAddress1();
-	}
-
-	/**
-	* Returns the address2 of this campus.
-	*
-	* @return the address2 of this campus
-	*/
-	@Override
-	public java.lang.String getAddress2() {
-		return _campus.getAddress2();
 	}
 
 	/**
@@ -476,16 +459,6 @@ public class CampusWrapper implements Campus, ModelWrapper<Campus> {
 	@Override
 	public void setAddress1(java.lang.String address1) {
 		_campus.setAddress1(address1);
-	}
-
-	/**
-	* Sets the address2 of this campus.
-	*
-	* @param address2 the address2 of this campus
-	*/
-	@Override
-	public void setAddress2(java.lang.String address2) {
-		_campus.setAddress2(address2);
 	}
 
 	@Override

@@ -46,14 +46,13 @@ public class SchoolLocalServiceImpl extends SchoolLocalServiceBaseImpl {
 	 * Method for add school detail
 	 * @see com.medicus.common.service.service.SchoolLocalService#addSchool(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, long)
 	 */
-	public School addSchool(String name, String address1, String address2, String city, String state,
+	public School addSchool(String name, String address1, String city, String state,
 			String country, String schoolContactNumber, String websiteLink,String contactPersonName, 
 			String contactPersonEmail, String contactPersonPhoneNumber, long createdBy){
 		
 		School school = SchoolLocalServiceUtil.createSchool(CounterLocalServiceUtil.increment());
 		school.setName(name);
 		school.setAddress1(address1);
-		school.setAddress2(address2);
 		school.setCity(city);
 		school.setState(state);
 		school.setCountry(country);
@@ -79,14 +78,13 @@ public class SchoolLocalServiceImpl extends SchoolLocalServiceBaseImpl {
 	 * Method for edit school Detail
 	 * @see com.medicus.common.service.service.SchoolLocalService#updateSchool(long, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, long)
 	 */
-	public School updateSchool(long schoolId, String name, String address1, String address2, String city, String state,
+	public School updateSchool(long schoolId, String name, String address1, String city, String state,
 			String country, String schoolContactNumber, String websiteLink,String contactPersonName, 
 			String contactPersonEmail, String contactPersonPhoneNumber, long modifiedBy) throws PortalException{
 		
 		School school = SchoolLocalServiceUtil.getSchool(schoolId);
 		school.setName(name);
 		school.setAddress1(address1);
-		school.setAddress2(address2);
 		school.setCity(city);
 		school.setState(state);
 		school.setCountry(country);

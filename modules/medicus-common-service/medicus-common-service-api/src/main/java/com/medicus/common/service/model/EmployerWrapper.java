@@ -62,7 +62,6 @@ public class EmployerWrapper implements Employer, ModelWrapper<Employer> {
 		attributes.put("lastName", getLastName());
 		attributes.put("emailAddress", getEmailAddress());
 		attributes.put("address1", getAddress1());
-		attributes.put("address2", getAddress2());
 		attributes.put("city", getCity());
 		attributes.put("zipcode", getZipcode());
 		attributes.put("state", getState());
@@ -109,12 +108,6 @@ public class EmployerWrapper implements Employer, ModelWrapper<Employer> {
 
 		if (address1 != null) {
 			setAddress1(address1);
-		}
-
-		String address2 = (String)attributes.get("address2");
-
-		if (address2 != null) {
-			setAddress2(address2);
 		}
 
 		String city = (String)attributes.get("city");
@@ -254,16 +247,6 @@ public class EmployerWrapper implements Employer, ModelWrapper<Employer> {
 	@Override
 	public java.lang.String getAddress1() {
 		return _employer.getAddress1();
-	}
-
-	/**
-	* Returns the address2 of this employer.
-	*
-	* @return the address2 of this employer
-	*/
-	@Override
-	public java.lang.String getAddress2() {
-		return _employer.getAddress2();
 	}
 
 	/**
@@ -459,16 +442,6 @@ public class EmployerWrapper implements Employer, ModelWrapper<Employer> {
 	@Override
 	public void setAddress1(java.lang.String address1) {
 		_employer.setAddress1(address1);
-	}
-
-	/**
-	* Sets the address2 of this employer.
-	*
-	* @param address2 the address2 of this employer
-	*/
-	@Override
-	public void setAddress2(java.lang.String address2) {
-		_employer.setAddress2(address2);
 	}
 
 	@Override

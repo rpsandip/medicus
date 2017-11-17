@@ -65,7 +65,7 @@ public class EmployerCacheModel implements CacheModel<Employer>, Externalizable 
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(35);
 
 		sb.append("{employerId=");
 		sb.append(employerId);
@@ -77,8 +77,6 @@ public class EmployerCacheModel implements CacheModel<Employer>, Externalizable 
 		sb.append(emailAddress);
 		sb.append(", address1=");
 		sb.append(address1);
-		sb.append(", address2=");
-		sb.append(address2);
 		sb.append(", city=");
 		sb.append(city);
 		sb.append(", zipcode=");
@@ -140,13 +138,6 @@ public class EmployerCacheModel implements CacheModel<Employer>, Externalizable 
 		}
 		else {
 			employerImpl.setAddress1(address1);
-		}
-
-		if (address2 == null) {
-			employerImpl.setAddress2(StringPool.BLANK);
-		}
-		else {
-			employerImpl.setAddress2(address2);
 		}
 
 		if (city == null) {
@@ -235,7 +226,6 @@ public class EmployerCacheModel implements CacheModel<Employer>, Externalizable 
 		lastName = objectInput.readUTF();
 		emailAddress = objectInput.readUTF();
 		address1 = objectInput.readUTF();
-		address2 = objectInput.readUTF();
 		city = objectInput.readUTF();
 		zipcode = objectInput.readUTF();
 		state = objectInput.readUTF();
@@ -283,13 +273,6 @@ public class EmployerCacheModel implements CacheModel<Employer>, Externalizable 
 		}
 		else {
 			objectOutput.writeUTF(address1);
-		}
-
-		if (address2 == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
-		}
-		else {
-			objectOutput.writeUTF(address2);
 		}
 
 		if (city == null) {
@@ -361,7 +344,6 @@ public class EmployerCacheModel implements CacheModel<Employer>, Externalizable 
 	public String lastName;
 	public String emailAddress;
 	public String address1;
-	public String address2;
 	public String city;
 	public String zipcode;
 	public String state;

@@ -37,7 +37,6 @@ public class PartnerSoap implements Serializable {
 		soapModel.setUserId(model.getUserId());
 		soapModel.setPartnerOrgId(model.getPartnerOrgId());
 		soapModel.setAddress1(model.getAddress1());
-		soapModel.setAddress2(model.getAddress2());
 		soapModel.setCity(model.getCity());
 		soapModel.setZipcode(model.getZipcode());
 		soapModel.setState(model.getState());
@@ -132,14 +131,6 @@ public class PartnerSoap implements Serializable {
 
 	public void setAddress1(String address1) {
 		_address1 = address1;
-	}
-
-	public String getAddress2() {
-		return _address2;
-	}
-
-	public void setAddress2(String address2) {
-		_address2 = address2;
 	}
 
 	public String getCity() {
@@ -242,7 +233,6 @@ public class PartnerSoap implements Serializable {
 	private long _userId;
 	private long _partnerOrgId;
 	private String _address1;
-	private String _address2;
 	private String _city;
 	private String _zipcode;
 	private String _state;

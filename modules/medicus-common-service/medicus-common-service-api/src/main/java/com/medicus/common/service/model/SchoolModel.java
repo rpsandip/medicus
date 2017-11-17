@@ -107,21 +107,6 @@ public interface SchoolModel extends BaseModel<School> {
 	public void setAddress1(String address1);
 
 	/**
-	 * Returns the address2 of this school.
-	 *
-	 * @return the address2 of this school
-	 */
-	@AutoEscape
-	public String getAddress2();
-
-	/**
-	 * Sets the address2 of this school.
-	 *
-	 * @param address2 the address2 of this school
-	 */
-	public void setAddress2(String address2);
-
-	/**
 	 * Returns the city of this school.
 	 *
 	 * @return the city of this school

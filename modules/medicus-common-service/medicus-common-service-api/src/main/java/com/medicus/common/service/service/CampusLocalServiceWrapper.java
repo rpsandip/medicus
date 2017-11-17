@@ -79,15 +79,14 @@ public class CampusLocalServiceWrapper implements CampusLocalService,
 	@Override
 	public com.medicus.common.service.model.Campus addCampus(long schoolId,
 		java.lang.String name, java.lang.String address1,
-		java.lang.String address2, java.lang.String city,
-		java.lang.String state, java.lang.String country,
-		java.lang.String campusContactNumber, java.lang.String websiteLink,
-		java.lang.String contactPersonName,
+		java.lang.String city, java.lang.String state,
+		java.lang.String country, java.lang.String campusContactNumber,
+		java.lang.String websiteLink, java.lang.String contactPersonName,
 		java.lang.String contactPersonEmail,
 		java.lang.String contactPersonPhoneNumber, long createdBy)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _campusLocalService.addCampus(schoolId, name, address1,
-			address2, city, state, country, campusContactNumber, websiteLink,
+		return _campusLocalService.addCampus(schoolId, name, address1, city,
+			state, country, campusContactNumber, websiteLink,
 			contactPersonName, contactPersonEmail, contactPersonPhoneNumber,
 			createdBy);
 	}
@@ -156,17 +155,16 @@ public class CampusLocalServiceWrapper implements CampusLocalService,
 	@Override
 	public com.medicus.common.service.model.Campus upateCampus(long campusId,
 		long schoolId, java.lang.String name, java.lang.String address1,
-		java.lang.String address2, java.lang.String city,
-		java.lang.String state, java.lang.String country,
-		java.lang.String campusContactNumber, java.lang.String websiteLink,
-		java.lang.String contactPersonName,
+		java.lang.String city, java.lang.String state,
+		java.lang.String country, java.lang.String campusContactNumber,
+		java.lang.String websiteLink, java.lang.String contactPersonName,
 		java.lang.String contactPersonEmail,
 		java.lang.String contactPersonPhoneNumber, long modifiedBy)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _campusLocalService.upateCampus(campusId, schoolId, name,
-			address1, address2, city, state, country, campusContactNumber,
-			websiteLink, contactPersonName, contactPersonEmail,
-			contactPersonPhoneNumber, modifiedBy);
+			address1, city, state, country, campusContactNumber, websiteLink,
+			contactPersonName, contactPersonEmail, contactPersonPhoneNumber,
+			modifiedBy);
 	}
 
 	/**

@@ -598,7 +598,6 @@ public class PartnerPersistenceImpl extends BasePersistenceImpl<Partner>
 		partnerImpl.setUserId(partner.getUserId());
 		partnerImpl.setPartnerOrgId(partner.getPartnerOrgId());
 		partnerImpl.setAddress1(partner.getAddress1());
-		partnerImpl.setAddress2(partner.getAddress2());
 		partnerImpl.setCity(partner.getCity());
 		partnerImpl.setZipcode(partner.getZipcode());
 		partnerImpl.setState(partner.getState());

@@ -81,15 +81,6 @@
 			  </div>
 			  <div class="form-group">
                	 <div class="col-md-10 col-sm-6 col-xs-12">
-	               	<aui:input name="address2" label="address2" cssClass="form-control col-md-7 col-xs-12">
-				     	<aui:validator name="required" />
-				     	<aui:validator name="maxLength">60</aui:validator>
-					 </aui:input>
-				</div>
-			  </div>
-			  
-			  <div class="form-group">
-               	 <div class="col-md-10 col-sm-6 col-xs-12">
 	               	<aui:input name="zipcode" label="zipcode" cssClass="form-control col-md-7 col-xs-12">
 				     	<aui:validator name="required" />
 				     	<aui:validator name="maxLength">8</aui:validator>

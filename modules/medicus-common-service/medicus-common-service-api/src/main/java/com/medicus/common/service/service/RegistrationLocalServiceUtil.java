@@ -56,16 +56,16 @@ public class RegistrationLocalServiceUtil {
 		java.lang.String fName, java.lang.String lastName,
 		java.lang.String emailAddress, java.lang.String password1,
 		java.lang.String password2, java.lang.String address1,
-		java.lang.String address2, java.lang.String city,
-		java.lang.String zipcode, java.lang.String state,
-		java.lang.String country, java.lang.String contactPersonName,
+		java.lang.String city, java.lang.String zipcode,
+		java.lang.String state, java.lang.String country,
+		java.lang.String contactPersonName,
 		java.lang.String contactPersonEmail,
 		java.lang.String contactPersonPhoneNumber,
 		java.lang.String websiteLink, long creatorUserId, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .registerPartner(fName, lastName, emailAddress, password1,
-			password2, address1, address2, city, zipcode, state, country,
+			password2, address1, city, zipcode, state, country,
 			contactPersonName, contactPersonEmail, contactPersonPhoneNumber,
 			websiteLink, creatorUserId, groupId);
 	}

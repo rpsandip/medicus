@@ -82,15 +82,15 @@ public class EmployerLocalServiceUtil {
 	public static com.medicus.common.service.model.Employer addEmployer(
 		java.lang.String firstName, java.lang.String lastName,
 		java.lang.String emailAddress, java.lang.String address1,
-		java.lang.String address2, java.lang.String city,
-		java.lang.String zipcode, java.lang.String state,
-		java.lang.String country, java.lang.String contactPersonName,
+		java.lang.String city, java.lang.String zipcode,
+		java.lang.String state, java.lang.String country,
+		java.lang.String contactPersonName,
 		java.lang.String contactPersonEmail,
 		java.lang.String contactPersonPhoneNumber,
 		java.lang.String websiteLink, long creatorUserId) {
 		return getService()
 				   .addEmployer(firstName, lastName, emailAddress, address1,
-			address2, city, zipcode, state, country, contactPersonName,
+			city, zipcode, state, country, contactPersonName,
 			contactPersonEmail, contactPersonPhoneNumber, websiteLink,
 			creatorUserId);
 	}
@@ -133,18 +133,18 @@ public class EmployerLocalServiceUtil {
 	public static com.medicus.common.service.model.Employer editEmployer(
 		long employerId, java.lang.String firstName, java.lang.String lastName,
 		java.lang.String emailAddress, java.lang.String address1,
-		java.lang.String address2, java.lang.String city,
-		java.lang.String zipcode, java.lang.String state,
-		java.lang.String country, java.lang.String contactPersonName,
+		java.lang.String city, java.lang.String zipcode,
+		java.lang.String state, java.lang.String country,
+		java.lang.String contactPersonName,
 		java.lang.String contactPersonEmail,
 		java.lang.String contactPersonPhoneNumber,
 		java.lang.String websiteLink, long modifiedBy)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .editEmployer(employerId, firstName, lastName, emailAddress,
-			address1, address2, city, zipcode, state, country,
-			contactPersonName, contactPersonEmail, contactPersonPhoneNumber,
-			websiteLink, modifiedBy);
+			address1, city, zipcode, state, country, contactPersonName,
+			contactPersonEmail, contactPersonPhoneNumber, websiteLink,
+			modifiedBy);
 	}
 
 	public static com.medicus.common.service.model.Employer fetchEmployer(

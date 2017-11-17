@@ -38,7 +38,6 @@ public class EmployerSoap implements Serializable {
 		soapModel.setLastName(model.getLastName());
 		soapModel.setEmailAddress(model.getEmailAddress());
 		soapModel.setAddress1(model.getAddress1());
-		soapModel.setAddress2(model.getAddress2());
 		soapModel.setCity(model.getCity());
 		soapModel.setZipcode(model.getZipcode());
 		soapModel.setState(model.getState());
@@ -143,14 +142,6 @@ public class EmployerSoap implements Serializable {
 		_address1 = address1;
 	}
 
-	public String getAddress2() {
-		return _address2;
-	}
-
-	public void setAddress2(String address2) {
-		_address2 = address2;
-	}
-
 	public String getCity() {
 		return _city;
 	}
@@ -252,7 +243,6 @@ public class EmployerSoap implements Serializable {
 	private String _lastName;
 	private String _emailAddress;
 	private String _address1;
-	private String _address2;
 	private String _city;
 	private String _zipcode;
 	private String _state;

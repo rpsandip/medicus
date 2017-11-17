@@ -15,7 +15,8 @@ public class Interview_RequestBean {
 	private Student student;
 	private Campus campus;
 	private int status;
-
+	private Date modifiedDate;
+	
 	
 	public long getPartnerId() {
 		return partnerId;
@@ -65,6 +66,12 @@ public class Interview_RequestBean {
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	public Date getModifiedDate() {
+		return modifiedDate;
+	}
+	public void setModifiedDate(Date modifiedDate) {
+		this.modifiedDate = modifiedDate;
 	}
 	
 	

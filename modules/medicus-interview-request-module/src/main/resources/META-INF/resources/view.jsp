@@ -29,6 +29,8 @@
 			            	<th>Student Name</th>
 			                <th>Student Id</th>
 			                <th>Partner</th>
+			                <th>Requested Date</th>
+			                <th>Action Date</th>
 			                <th>Status</th>
 			                <c:if test="${hasStudentInterviewRequestUpdatePermission }">
 			               <th style="width: 20%;">Action</th>
@@ -51,6 +53,14 @@
 			                	}
 			                %>
 			                <%=stauts %>
+			                </td>
+			                <td>
+			                 <fmt:formatDate pattern = "MM/dd/YYYY" value = "${interviewRequestBean.createDate}" var="requestDate" />
+			                 ${requestDate }
+			                </td>
+			                <td>
+			                <fmt:formatDate pattern = "MM/dd/YYYY" value = "${interviewRequestBean.modifiedDate}" var="actionDate" />
+			                ${actionDate }
 			                </td>
 			                <c:if test="${hasStudentInterviewRequestUpdatePermission }">
 				                <td style="width: 20%">

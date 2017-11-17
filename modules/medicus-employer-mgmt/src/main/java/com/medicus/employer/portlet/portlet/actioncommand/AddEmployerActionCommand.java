@@ -37,7 +37,6 @@ public class AddEmployerActionCommand extends BaseMVCActionCommand{
 		String lastName = ParamUtil.getString(actionRequest, "lastName");
 		String emailAddress= ParamUtil.getString(actionRequest, "emailAddress");
 		String address1 = ParamUtil.getString(actionRequest, "address1");
-		String address2 = ParamUtil.getString(actionRequest, "address2");
 		String zipcode = ParamUtil.getString(actionRequest, "zipcode");
 		String city = ParamUtil.getString(actionRequest, "city");
 		String state = ParamUtil.getString(actionRequest, "state");
@@ -48,8 +47,7 @@ public class AddEmployerActionCommand extends BaseMVCActionCommand{
 		String websiteLink = ParamUtil.getString(actionRequest, "websiteLink");
 		
 		if(employerId==0){
-			Employer employer = EmployerLocalServiceUtil.addEmployer(firstName, lastName, emailAddress, address1,
-				address2, city, zipcode, state,country, contactPersonName, contactPersonEmail,
+			Employer employer = EmployerLocalServiceUtil.addEmployer(firstName, lastName, emailAddress, address1, city, zipcode, state,country, contactPersonName, contactPersonEmail,
 				contactPersonPhoneNumber, websiteLink, themeDisplay.getUserId());
 			if(Validator.isNotNull(employer)){
 				SessionMessages.add(actionRequest, "employer-add-success");
@@ -59,7 +57,7 @@ public class AddEmployerActionCommand extends BaseMVCActionCommand{
 			}
 		}else{
 			Employer employer = EmployerLocalServiceUtil.editEmployer(employerId, firstName, lastName,
-					emailAddress, address1, address2, city, zipcode, state, country, contactPersonName,
+					emailAddress, address1, city, zipcode, state, country, contactPersonName,
 					contactPersonEmail, contactPersonPhoneNumber, websiteLink, themeDisplay.getUserId());
 			if(Validator.isNotNull(employer)){
 				SessionMessages.add(actionRequest, "employer-update-success");

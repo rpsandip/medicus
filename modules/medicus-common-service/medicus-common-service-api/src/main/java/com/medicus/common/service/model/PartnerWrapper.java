@@ -61,7 +61,6 @@ public class PartnerWrapper implements Partner, ModelWrapper<Partner> {
 		attributes.put("userId", getUserId());
 		attributes.put("partnerOrgId", getPartnerOrgId());
 		attributes.put("address1", getAddress1());
-		attributes.put("address2", getAddress2());
 		attributes.put("city", getCity());
 		attributes.put("zipcode", getZipcode());
 		attributes.put("state", getState());
@@ -102,12 +101,6 @@ public class PartnerWrapper implements Partner, ModelWrapper<Partner> {
 
 		if (address1 != null) {
 			setAddress1(address1);
-		}
-
-		String address2 = (String)attributes.get("address2");
-
-		if (address2 != null) {
-			setAddress2(address2);
 		}
 
 		String city = (String)attributes.get("city");
@@ -247,16 +240,6 @@ public class PartnerWrapper implements Partner, ModelWrapper<Partner> {
 	@Override
 	public java.lang.String getAddress1() {
 		return _partner.getAddress1();
-	}
-
-	/**
-	* Returns the address2 of this partner.
-	*
-	* @return the address2 of this partner
-	*/
-	@Override
-	public java.lang.String getAddress2() {
-		return _partner.getAddress2();
 	}
 
 	/**
@@ -452,16 +435,6 @@ public class PartnerWrapper implements Partner, ModelWrapper<Partner> {
 	@Override
 	public void setAddress1(java.lang.String address1) {
 		_partner.setAddress1(address1);
-	}
-
-	/**
-	* Sets the address2 of this partner.
-	*
-	* @param address2 the address2 of this partner
-	*/
-	@Override
-	public void setAddress2(java.lang.String address2) {
-		_partner.setAddress2(address2);
 	}
 
 	@Override

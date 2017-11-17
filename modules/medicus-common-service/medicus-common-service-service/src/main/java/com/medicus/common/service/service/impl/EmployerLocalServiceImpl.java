@@ -43,7 +43,7 @@ public class EmployerLocalServiceImpl extends EmployerLocalServiceBaseImpl {
 	/*
 	 * Add Employer Detail
 	 */
-	public Employer addEmployer(String firstName, String lastName, String emailAddress,String address1, String address2, 
+	public Employer addEmployer(String firstName, String lastName, String emailAddress,String address1, 
 			String city, String zipcode, String state, String country, String contactPersonName,
 			String contactPersonEmail, String contactPersonPhoneNumber, String websiteLink,long creatorUserId){
 		
@@ -52,7 +52,6 @@ public class EmployerLocalServiceImpl extends EmployerLocalServiceBaseImpl {
 		employer.setLastName(lastName);
 		employer.setEmailAddress(emailAddress);
 		employer.setAddress1(address1);
-		employer.setAddress2(address2);
 		employer.setCity(city);
 		employer.setZipcode(zipcode);
 		employer.setState(state);
@@ -75,7 +74,7 @@ public class EmployerLocalServiceImpl extends EmployerLocalServiceBaseImpl {
 	/*
 	 * Update Employer Detail
 	 */
-	public Employer editEmployer(long employerId, String firstName, String lastName, String emailAddress,String address1, String address2, 
+	public Employer editEmployer(long employerId, String firstName, String lastName, String emailAddress,String address1, 
 			String city, String zipcode, String state, String country, String contactPersonName,
 			String contactPersonEmail, String contactPersonPhoneNumber, String websiteLink,long modifiedBy) throws PortalException{
 		
@@ -85,7 +84,6 @@ public class EmployerLocalServiceImpl extends EmployerLocalServiceBaseImpl {
 		employer.setLastName(lastName);
 		employer.setEmailAddress(emailAddress);
 		employer.setAddress1(address1);
-		employer.setAddress2(address2);
 		employer.setCity(city);
 		employer.setZipcode(zipcode);
 		employer.setState(state);

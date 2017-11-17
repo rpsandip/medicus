@@ -31,9 +31,6 @@ public class ImportStudentRenderCommand implements MVCRenderCommand{
 			renderRequest.setAttribute("totalStudentCount", ParamUtil.getString(renderRequest, "totalStudentCount"));
 			renderRequest.setAttribute("successImportedStudentCount", ParamUtil.getString(renderRequest, "successImportedStudentCount"));
 			renderRequest.setAttribute("UnsuccessImportedStudentCount", ParamUtil.getString(renderRequest, "UnsuccessImportedStudentCount"));
-			String[] unsuccessfullStudentEmail = ParamUtil.getString(renderRequest, "unsuccesfulltStudentEmail").split(StringPool.COMMA);
-			List<String> unsuccessfullStudentEmailList =  ListUtil.fromArray(unsuccessfullStudentEmail);
-			renderRequest.setAttribute("unsuccessfullStudentEmailList", unsuccessfullStudentEmailList);
 			renderRequest.setAttribute("isImported", isImported);
 			
 			List<String> unsuccessfullStudentList = (List<String>)renderRequest.getAttribute("unsuccessfullStudentList");

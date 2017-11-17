@@ -81,14 +81,13 @@ public class SchoolLocalServiceUtil {
 
 	public static com.medicus.common.service.model.School addSchool(
 		java.lang.String name, java.lang.String address1,
-		java.lang.String address2, java.lang.String city,
-		java.lang.String state, java.lang.String country,
-		java.lang.String schoolContactNumber, java.lang.String websiteLink,
-		java.lang.String contactPersonName,
+		java.lang.String city, java.lang.String state,
+		java.lang.String country, java.lang.String schoolContactNumber,
+		java.lang.String websiteLink, java.lang.String contactPersonName,
 		java.lang.String contactPersonEmail,
 		java.lang.String contactPersonPhoneNumber, long createdBy) {
 		return getService()
-				   .addSchool(name, address1, address2, city, state, country,
+				   .addSchool(name, address1, city, state, country,
 			schoolContactNumber, websiteLink, contactPersonName,
 			contactPersonEmail, contactPersonPhoneNumber, createdBy);
 	}
@@ -165,18 +164,16 @@ public class SchoolLocalServiceUtil {
 
 	public static com.medicus.common.service.model.School updateSchool(
 		long schoolId, java.lang.String name, java.lang.String address1,
-		java.lang.String address2, java.lang.String city,
-		java.lang.String state, java.lang.String country,
-		java.lang.String schoolContactNumber, java.lang.String websiteLink,
-		java.lang.String contactPersonName,
+		java.lang.String city, java.lang.String state,
+		java.lang.String country, java.lang.String schoolContactNumber,
+		java.lang.String websiteLink, java.lang.String contactPersonName,
 		java.lang.String contactPersonEmail,
 		java.lang.String contactPersonPhoneNumber, long modifiedBy)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
-				   .updateSchool(schoolId, name, address1, address2, city,
-			state, country, schoolContactNumber, websiteLink,
-			contactPersonName, contactPersonEmail, contactPersonPhoneNumber,
-			modifiedBy);
+				   .updateSchool(schoolId, name, address1, city, state,
+			country, schoolContactNumber, websiteLink, contactPersonName,
+			contactPersonEmail, contactPersonPhoneNumber, modifiedBy);
 	}
 
 	/**

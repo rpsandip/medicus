@@ -66,7 +66,6 @@ public class SchoolModelImpl extends BaseModelImpl<School>
 			{ "schoolId", Types.BIGINT },
 			{ "name", Types.VARCHAR },
 			{ "address1", Types.VARCHAR },
-			{ "address2", Types.VARCHAR },
 			{ "city", Types.VARCHAR },
 			{ "state_", Types.VARCHAR },
 			{ "country", Types.VARCHAR },
@@ -88,7 +87,6 @@ public class SchoolModelImpl extends BaseModelImpl<School>
 		TABLE_COLUMNS_MAP.put("schoolId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("name", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("address1", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("address2", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("city", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("state_", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("country", Types.VARCHAR);
@@ -105,7 +103,7 @@ public class SchoolModelImpl extends BaseModelImpl<School>
 		TABLE_COLUMNS_MAP.put("modifiedBy", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table Medicus_School (schoolId LONG not null primary key,name VARCHAR(100) null,address1 VARCHAR(100) null,address2 VARCHAR(100) null,city VARCHAR(15) null,state_ VARCHAR(15) null,country VARCHAR(15) null,zipcode VARCHAR(6) null,contactNumber VARCHAR(15) null,websiteLink VARCHAR(100) null,contactPersonName VARCHAR(50) null,contactPersonPhoneNumber VARCHAR(15) null,contactPersonEmail VARCHAR(30) null,status INTEGER,createDate DATE null,createdBy LONG,modifiedDate DATE null,modifiedBy LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Medicus_School (schoolId LONG not null primary key,name VARCHAR(100) null,address1 VARCHAR(100) null,city VARCHAR(15) null,state_ VARCHAR(15) null,country VARCHAR(15) null,zipcode VARCHAR(6) null,contactNumber VARCHAR(15) null,websiteLink VARCHAR(100) null,contactPersonName VARCHAR(50) null,contactPersonPhoneNumber VARCHAR(15) null,contactPersonEmail VARCHAR(30) null,status INTEGER,createDate DATE null,createdBy LONG,modifiedDate DATE null,modifiedBy LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Medicus_School";
 	public static final String ORDER_BY_JPQL = " ORDER BY school.createDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY Medicus_School.createDate DESC";
@@ -166,7 +164,6 @@ public class SchoolModelImpl extends BaseModelImpl<School>
 		attributes.put("schoolId", getSchoolId());
 		attributes.put("name", getName());
 		attributes.put("address1", getAddress1());
-		attributes.put("address2", getAddress2());
 		attributes.put("city", getCity());
 		attributes.put("state", getState());
 		attributes.put("country", getCountry());
@@ -206,12 +203,6 @@ public class SchoolModelImpl extends BaseModelImpl<School>
 
 		if (address1 != null) {
 			setAddress1(address1);
-		}
-
-		String address2 = (String)attributes.get("address2");
-
-		if (address2 != null) {
-			setAddress2(address2);
 		}
 
 		String city = (String)attributes.get("city");
@@ -348,21 +339,6 @@ public class SchoolModelImpl extends BaseModelImpl<School>
 	@Override
 	public void setAddress1(String address1) {
 		_address1 = address1;
-	}
-
-	@Override
-	public String getAddress2() {
-		if (_address2 == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _address2;
-		}
-	}
-
-	@Override
-	public void setAddress2(String address2) {
-		_address2 = address2;
 	}
 
 	@Override
@@ -592,7 +568,6 @@ public class SchoolModelImpl extends BaseModelImpl<School>
 		schoolImpl.setSchoolId(getSchoolId());
 		schoolImpl.setName(getName());
 		schoolImpl.setAddress1(getAddress1());
-		schoolImpl.setAddress2(getAddress2());
 		schoolImpl.setCity(getCity());
 		schoolImpl.setState(getState());
 		schoolImpl.setCountry(getCountry());
@@ -698,14 +673,6 @@ public class SchoolModelImpl extends BaseModelImpl<School>
 			schoolCacheModel.address1 = null;
 		}
 
-		schoolCacheModel.address2 = getAddress2();
-
-		String address2 = schoolCacheModel.address2;
-
-		if ((address2 != null) && (address2.length() == 0)) {
-			schoolCacheModel.address2 = null;
-		}
-
 		schoolCacheModel.city = getCity();
 
 		String city = schoolCacheModel.city;
@@ -808,7 +775,7 @@ public class SchoolModelImpl extends BaseModelImpl<School>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(35);
 
 		sb.append("{schoolId=");
 		sb.append(getSchoolId());
@@ -816,8 +783,6 @@ public class SchoolModelImpl extends BaseModelImpl<School>
 		sb.append(getName());
 		sb.append(", address1=");
 		sb.append(getAddress1());
-		sb.append(", address2=");
-		sb.append(getAddress2());
 		sb.append(", city=");
 		sb.append(getCity());
 		sb.append(", state=");
@@ -853,7 +818,7 @@ public class SchoolModelImpl extends BaseModelImpl<School>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(58);
+		StringBundler sb = new StringBundler(55);
 
 		sb.append("<model><model-name>");
 		sb.append("com.medicus.common.service.model.School");
@@ -870,10 +835,6 @@ public class SchoolModelImpl extends BaseModelImpl<School>
 		sb.append(
 			"<column><column-name>address1</column-name><column-value><![CDATA[");
 		sb.append(getAddress1());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>address2</column-name><column-value><![CDATA[");
-		sb.append(getAddress2());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>city</column-name><column-value><![CDATA[");
@@ -945,7 +906,6 @@ public class SchoolModelImpl extends BaseModelImpl<School>
 	private String _name;
 	private String _originalName;
 	private String _address1;
-	private String _address2;
 	private String _city;
 	private String _state;
 	private String _country;

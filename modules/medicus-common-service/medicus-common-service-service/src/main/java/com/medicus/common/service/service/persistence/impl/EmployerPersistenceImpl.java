@@ -343,7 +343,6 @@ public class EmployerPersistenceImpl extends BasePersistenceImpl<Employer>
 		employerImpl.setLastName(employer.getLastName());
 		employerImpl.setEmailAddress(employer.getEmailAddress());
 		employerImpl.setAddress1(employer.getAddress1());
-		employerImpl.setAddress2(employer.getAddress2());
 		employerImpl.setCity(employer.getCity());
 		employerImpl.setZipcode(employer.getZipcode());
 		employerImpl.setState(employer.getState());

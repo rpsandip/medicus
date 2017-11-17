@@ -141,8 +141,10 @@ public class Interview_RequestLocalServiceUtil {
 	}
 
 	public static com.medicus.common.service.model.Interview_Request updateInterviewRequest(
-		long studentId, long partnerId, int status) {
-		return getService().updateInterviewRequest(studentId, partnerId, status);
+		long studentId, long partnerId, int status, long modifiedBy) {
+		return getService()
+				   .updateInterviewRequest(studentId, partnerId, status,
+			modifiedBy);
 	}
 
 	/**

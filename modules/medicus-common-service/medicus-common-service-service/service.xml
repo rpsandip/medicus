@@ -12,7 +12,6 @@
 		<!-- Other fields -->
 		<column name="name" type="String" />
 		<column name="address1" type="String" />
-		<column name="address2" type="String" />
 		<column name="city" type="String" />
 		<column name="state" type="String" />
 		<column name="country" type="String" />
@@ -46,7 +45,6 @@
 		<column name="schoolId" type="long" />
 		<column name="name" type="String" />
 		<column name="address1" type="String" />
-		<column name="address2" type="String" />
 		<column name="city" type="String" />
 		<column name="state" type="String" />
 		<column name="country" type="String" />
@@ -153,7 +151,6 @@
 		<column name="lastName"  type="String" />
 		<column name="emailAddress"  type="String" />
 		<column name="address1" type="String" />
-		<column name="address2"  type="String" />
 		<column name="city"  type="String" />
 		<column name="zipcode"  type="String" />
 		<column name="state"  type="String" />
@@ -175,7 +172,6 @@
 		<column name="userId"  type="long" />
 		<column name="partnerOrgId"  type="long" />
 		<column name="address1" type="String" />
-		<column name="address2"  type="String" />
 		<column name="city"  type="String" />
 		<column name="zipcode"  type="String" />
 		<column name="state"  type="String" />

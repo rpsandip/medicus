@@ -1149,7 +1149,6 @@ public class CampusPersistenceImpl extends BasePersistenceImpl<Campus>
 		campusImpl.setSchoolId(campus.getSchoolId());
 		campusImpl.setName(campus.getName());
 		campusImpl.setAddress1(campus.getAddress1());
-		campusImpl.setAddress2(campus.getAddress2());
 		campusImpl.setCity(campus.getCity());
 		campusImpl.setState(campus.getState());
 		campusImpl.setCountry(campus.getCountry());

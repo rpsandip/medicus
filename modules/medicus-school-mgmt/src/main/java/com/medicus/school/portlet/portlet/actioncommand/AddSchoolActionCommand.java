@@ -38,7 +38,6 @@ public class AddSchoolActionCommand extends BaseMVCActionCommand{
 		long schoolId = ParamUtil.getLong(actionRequest, "schoolId");
 		String name = ParamUtil.getString(actionRequest, "name");
 		String address1 = ParamUtil.getString(actionRequest, "address1");
-		String address2 = ParamUtil.getString(actionRequest, "address2");
 		String city = ParamUtil.getString(actionRequest, "city");
 		String state = ParamUtil.getString(actionRequest, "state");
 		String country = ParamUtil.getString(actionRequest, "country");
@@ -49,7 +48,7 @@ public class AddSchoolActionCommand extends BaseMVCActionCommand{
 		String contactPersonEmail = ParamUtil.getString(actionRequest, "contactPersonEmail");
 		
 		if(schoolId==0){
-			School school = SchoolLocalServiceUtil.addSchool(name, address1, address2, city, state, country,
+			School school = SchoolLocalServiceUtil.addSchool(name, address1, city, state, country,
 					schoolContactNumber, websiteLink, contactPersonName, contactPersonEmail, contactPersonPhoneNumber, themeDisplay.getUserId());
 			if(Validator.isNotNull(school)){
 				SessionMessages.add(actionRequest, "school-add-success");
@@ -59,7 +58,7 @@ public class AddSchoolActionCommand extends BaseMVCActionCommand{
 			}
 		}else{
 			try {
-				School school = SchoolLocalServiceUtil.updateSchool(schoolId,name, address1, address2, city, state, country,
+				School school = SchoolLocalServiceUtil.updateSchool(schoolId,name, address1, city, state, country,
 						schoolContactNumber, websiteLink, contactPersonName, contactPersonEmail, contactPersonPhoneNumber, themeDisplay.getUserId());
 				SessionMessages.add(actionRequest, "school-update-success");
 			} catch (PortalException e) {

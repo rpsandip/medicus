@@ -17,7 +17,6 @@ public class PartnerBean {
 	private long userId;
 	private long partnerOrgId;
 	private String address1;
-	private String  address2;
 	private String city;
 	private String zipcode;
 	private String state;
@@ -32,7 +31,6 @@ public class PartnerBean {
 		this.userId = partner.getUserId();
 		this.partnerOrgId = partner.getPartnerId();
 		this.address1 = partner.getAddress1();
-		this.address2 = partner.getAddress2();
 		this.city = partner.getCity();
 		this.zipcode = partner.getZipcode();
 		this.state = partner.getState();
@@ -96,12 +94,6 @@ public class PartnerBean {
 	}
 	public void setAddress1(String address1) {
 		this.address1 = address1;
-	}
-	public String getAddress2() {
-		return address2;
-	}
-	public void setAddress2(String address2) {
-		this.address2 = address2;
 	}
 	public String getCity() {
 		return city;

@@ -39,7 +39,6 @@ public class AddCampusActionCommand extends BaseMVCActionCommand{
 		long schoolId = ParamUtil.getLong(actionRequest, "schoolId");
 		String name = ParamUtil.getString(actionRequest, "name");
 		String address1 = ParamUtil.getString(actionRequest, "address1");
-		String address2 = ParamUtil.getString(actionRequest, "address2");
 		String city = ParamUtil.getString(actionRequest, "city");
 		String state = ParamUtil.getString(actionRequest, "state");
 		String country = ParamUtil.getString(actionRequest, "country");
@@ -51,7 +50,7 @@ public class AddCampusActionCommand extends BaseMVCActionCommand{
 		
 		if(campusId==0){
 			try {
-				Campus	campus = CampusLocalServiceUtil.addCampus(schoolId,name, address1, address2, city, state, country, 
+				Campus	campus = CampusLocalServiceUtil.addCampus(schoolId,name, address1, city, state, country, 
 						campusContactNumber, websiteLink, contactPersonName, contactPersonEmail, 
 						contactPersonPhoneNumber, themeDisplay.getUserId());
 				SessionMessages.add(actionRequest, "campus-add-successes");
@@ -63,7 +62,7 @@ public class AddCampusActionCommand extends BaseMVCActionCommand{
 			}
 		}else{
 			try {
-				Campus campus = CampusLocalServiceUtil.upateCampus(campusId, schoolId,name, address1, address2, city, state,
+				Campus campus = CampusLocalServiceUtil.upateCampus(campusId, schoolId,name, address1, city, state,
 						country, campusContactNumber, websiteLink, contactPersonName, contactPersonEmail,
 						contactPersonPhoneNumber, themeDisplay.getUserId());
 				SessionMessages.add(actionRequest, "campus-update-success");

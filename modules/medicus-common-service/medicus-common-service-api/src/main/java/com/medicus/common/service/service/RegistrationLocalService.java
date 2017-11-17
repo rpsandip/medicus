@@ -53,10 +53,9 @@ public interface RegistrationLocalService extends BaseLocalService {
 	public User registerPartner(java.lang.String fName,
 		java.lang.String lastName, java.lang.String emailAddress,
 		java.lang.String password1, java.lang.String password2,
-		java.lang.String address1, java.lang.String address2,
-		java.lang.String city, java.lang.String zipcode,
-		java.lang.String state, java.lang.String country,
-		java.lang.String contactPersonName,
+		java.lang.String address1, java.lang.String city,
+		java.lang.String zipcode, java.lang.String state,
+		java.lang.String country, java.lang.String contactPersonName,
 		java.lang.String contactPersonEmail,
 		java.lang.String contactPersonPhoneNumber,
 		java.lang.String websiteLink, long creatorUserId, long groupId)

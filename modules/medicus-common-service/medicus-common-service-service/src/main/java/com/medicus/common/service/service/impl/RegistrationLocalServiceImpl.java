@@ -65,7 +65,7 @@ public class RegistrationLocalServiceImpl extends RegistrationLocalServiceBaseIm
 	Log  _log = LogFactoryUtil.getLog(RegistrationLocalServiceImpl.class.getName());
 	
 	public User registerPartner(String fName, String lastName, String emailAddress, String password1, String password2,
-			String address1, String address2, String city, String zipcode, String state, String country, String contactPersonName,
+			String address1, String city, String zipcode, String state, String country, String contactPersonName,
 			String contactPersonEmail, String contactPersonPhoneNumber, String websiteLink,long creatorUserId, long groupId) throws PortalException{
 		
 		User user = null;
@@ -98,7 +98,7 @@ public class RegistrationLocalServiceImpl extends RegistrationLocalServiceBaseIm
 				 UserGroupRoleLocalServiceUtil.addUserGroupRoles(user.getUserId(), medicusOrganizationGroupId, new long[]{partnerRoleId});
 				
 			 // Add Partner detail
-				 addPartnerDetail(creatorUserId, user.getUserId(),password1, password2, address1, address2, city, zipcode, state, country,
+				 addPartnerDetail(creatorUserId, user.getUserId(),password1, password2, address1, city, zipcode, state, country,
 					 contactPersonName, contactPersonEmail, contactPersonPhoneNumber, websiteLink,  creatorUserId);
 		
 			 }
@@ -108,7 +108,7 @@ public class RegistrationLocalServiceImpl extends RegistrationLocalServiceBaseIm
 	}
 	
 	private void addPartnerDetail(long creatorUserId, long userId, String password1, String password2,
-			String address1, String address2, String city, String zipcode, String state, String country, String contactPersonName,
+			String address1, String city, String zipcode, String state, String country, String contactPersonName,
 			String contactPersonEmail, String contactPersonPhoneNumber, String websiteLink, long createdBy) throws PortalException{
 			
 			// Create Organization for Partner on name of userId
@@ -116,7 +116,6 @@ public class RegistrationLocalServiceImpl extends RegistrationLocalServiceBaseIm
 			if(Validator.isNotNull(partnerOrg)){
 				Partner partner = PartnerLocalServiceUtil.createPartner(CounterLocalServiceUtil.increment());
 				partner.setAddress1(address1);
-				partner.setAddress2(address2);
 				partner.setZipcode(zipcode);
 				partner.setUserId(userId);
 				partner.setPartnerOrgId(partnerOrg.getOrganizationId());

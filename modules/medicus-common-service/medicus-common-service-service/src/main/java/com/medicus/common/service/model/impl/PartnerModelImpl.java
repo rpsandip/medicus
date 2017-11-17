@@ -69,7 +69,6 @@ public class PartnerModelImpl extends BaseModelImpl<Partner>
 			{ "userId", Types.BIGINT },
 			{ "partnerOrgId", Types.BIGINT },
 			{ "address1", Types.VARCHAR },
-			{ "address2", Types.VARCHAR },
 			{ "city", Types.VARCHAR },
 			{ "zipcode", Types.VARCHAR },
 			{ "state_", Types.VARCHAR },
@@ -90,7 +89,6 @@ public class PartnerModelImpl extends BaseModelImpl<Partner>
 		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("partnerOrgId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("address1", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("address2", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("city", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("zipcode", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("state_", Types.VARCHAR);
@@ -105,7 +103,7 @@ public class PartnerModelImpl extends BaseModelImpl<Partner>
 		TABLE_COLUMNS_MAP.put("modifiedBy", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table Medicus_Partner (partnerId LONG not null primary key,userId LONG,partnerOrgId LONG,address1 VARCHAR(75) null,address2 VARCHAR(75) null,city VARCHAR(75) null,zipcode VARCHAR(75) null,state_ VARCHAR(75) null,country VARCHAR(75) null,contactPersonName VARCHAR(75) null,contactPersonEmail VARCHAR(75) null,contactPersonPhoneNumber VARCHAR(75) null,websiteLink VARCHAR(75) null,createDate DATE null,createdBy LONG,modifiedDate DATE null,modifiedBy LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Medicus_Partner (partnerId LONG not null primary key,userId LONG,partnerOrgId LONG,address1 VARCHAR(75) null,city VARCHAR(75) null,zipcode VARCHAR(75) null,state_ VARCHAR(75) null,country VARCHAR(75) null,contactPersonName VARCHAR(75) null,contactPersonEmail VARCHAR(75) null,contactPersonPhoneNumber VARCHAR(75) null,websiteLink VARCHAR(75) null,createDate DATE null,createdBy LONG,modifiedDate DATE null,modifiedBy LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Medicus_Partner";
 	public static final String ORDER_BY_JPQL = " ORDER BY partner.partnerId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Medicus_Partner.partnerId ASC";
@@ -167,7 +165,6 @@ public class PartnerModelImpl extends BaseModelImpl<Partner>
 		attributes.put("userId", getUserId());
 		attributes.put("partnerOrgId", getPartnerOrgId());
 		attributes.put("address1", getAddress1());
-		attributes.put("address2", getAddress2());
 		attributes.put("city", getCity());
 		attributes.put("zipcode", getZipcode());
 		attributes.put("state", getState());
@@ -211,12 +208,6 @@ public class PartnerModelImpl extends BaseModelImpl<Partner>
 
 		if (address1 != null) {
 			setAddress1(address1);
-		}
-
-		String address2 = (String)attributes.get("address2");
-
-		if (address2 != null) {
-			setAddress2(address2);
 		}
 
 		String city = (String)attributes.get("city");
@@ -364,21 +355,6 @@ public class PartnerModelImpl extends BaseModelImpl<Partner>
 	@Override
 	public void setAddress1(String address1) {
 		_address1 = address1;
-	}
-
-	@Override
-	public String getAddress2() {
-		if (_address2 == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _address2;
-		}
-	}
-
-	@Override
-	public void setAddress2(String address2) {
-		_address2 = address2;
 	}
 
 	@Override
@@ -582,7 +558,6 @@ public class PartnerModelImpl extends BaseModelImpl<Partner>
 		partnerImpl.setUserId(getUserId());
 		partnerImpl.setPartnerOrgId(getPartnerOrgId());
 		partnerImpl.setAddress1(getAddress1());
-		partnerImpl.setAddress2(getAddress2());
 		partnerImpl.setCity(getCity());
 		partnerImpl.setZipcode(getZipcode());
 		partnerImpl.setState(getState());
@@ -684,14 +659,6 @@ public class PartnerModelImpl extends BaseModelImpl<Partner>
 			partnerCacheModel.address1 = null;
 		}
 
-		partnerCacheModel.address2 = getAddress2();
-
-		String address2 = partnerCacheModel.address2;
-
-		if ((address2 != null) && (address2.length() == 0)) {
-			partnerCacheModel.address2 = null;
-		}
-
 		partnerCacheModel.city = getCity();
 
 		String city = partnerCacheModel.city;
@@ -784,7 +751,7 @@ public class PartnerModelImpl extends BaseModelImpl<Partner>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(35);
+		StringBundler sb = new StringBundler(33);
 
 		sb.append("{partnerId=");
 		sb.append(getPartnerId());
@@ -794,8 +761,6 @@ public class PartnerModelImpl extends BaseModelImpl<Partner>
 		sb.append(getPartnerOrgId());
 		sb.append(", address1=");
 		sb.append(getAddress1());
-		sb.append(", address2=");
-		sb.append(getAddress2());
 		sb.append(", city=");
 		sb.append(getCity());
 		sb.append(", zipcode=");
@@ -827,7 +792,7 @@ public class PartnerModelImpl extends BaseModelImpl<Partner>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(55);
+		StringBundler sb = new StringBundler(52);
 
 		sb.append("<model><model-name>");
 		sb.append("com.medicus.common.service.model.Partner");
@@ -848,10 +813,6 @@ public class PartnerModelImpl extends BaseModelImpl<Partner>
 		sb.append(
 			"<column><column-name>address1</column-name><column-value><![CDATA[");
 		sb.append(getAddress1());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>address2</column-name><column-value><![CDATA[");
-		sb.append(getAddress2());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>city</column-name><column-value><![CDATA[");
@@ -917,7 +878,6 @@ public class PartnerModelImpl extends BaseModelImpl<Partner>
 	private boolean _setOriginalUserId;
 	private long _partnerOrgId;
 	private String _address1;
-	private String _address2;
 	private String _city;
 	private String _zipcode;
 	private String _state;

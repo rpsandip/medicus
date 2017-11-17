@@ -10,9 +10,6 @@
 		<field name="address1" type="String">
 			<hint name="max-length">75</hint>
 		</field>
-		<field name="address2" type="String">
-			<hint name="max-length">75</hint>
-		</field>
 		<field name="city" type="String">
 			<hint name="max-length">15</hint>
 		</field>
@@ -52,9 +49,6 @@
 		<field name="lastName" type="String" />
 		<field name="emailAddress" type="String" />
 		<field name="address1" type="String">
-			<hint name="max-length">100</hint>
-		</field>
-		<field name="address2" type="String">
 			<hint name="max-length">100</hint>
 		</field>
 		<field name="city" type="String">
@@ -102,7 +96,6 @@
 		<field name="userId" type="long" />
 		<field name="partnerOrgId" type="long" />
 		<field name="address1" type="String" />
-		<field name="address2" type="String" />
 		<field name="city" type="String" />
 		<field name="zipcode" type="String" />
 		<field name="state" type="String" />
@@ -122,9 +115,6 @@
 			<hint name="max-length">100</hint>
 		</field>
 		<field name="address1" type="String">
-			<hint name="max-length">100</hint>
-		</field>
-		<field name="address2" type="String">
 			<hint name="max-length">100</hint>
 		</field>
 		<field name="city" type="String">

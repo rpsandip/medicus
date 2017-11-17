@@ -91,10 +91,9 @@ public interface SchoolLocalService extends BaseLocalService,
 	public School addSchool(School school);
 
 	public School addSchool(java.lang.String name, java.lang.String address1,
-		java.lang.String address2, java.lang.String city,
-		java.lang.String state, java.lang.String country,
-		java.lang.String schoolContactNumber, java.lang.String websiteLink,
-		java.lang.String contactPersonName,
+		java.lang.String city, java.lang.String state,
+		java.lang.String country, java.lang.String schoolContactNumber,
+		java.lang.String websiteLink, java.lang.String contactPersonName,
 		java.lang.String contactPersonEmail,
 		java.lang.String contactPersonPhoneNumber, long createdBy);
 
@@ -152,10 +151,10 @@ public interface SchoolLocalService extends BaseLocalService,
 	public School updateSchool(School school);
 
 	public School updateSchool(long schoolId, java.lang.String name,
-		java.lang.String address1, java.lang.String address2,
-		java.lang.String city, java.lang.String state,
-		java.lang.String country, java.lang.String schoolContactNumber,
-		java.lang.String websiteLink, java.lang.String contactPersonName,
+		java.lang.String address1, java.lang.String city,
+		java.lang.String state, java.lang.String country,
+		java.lang.String schoolContactNumber, java.lang.String websiteLink,
+		java.lang.String contactPersonName,
 		java.lang.String contactPersonEmail,
 		java.lang.String contactPersonPhoneNumber, long modifiedBy)
 		throws PortalException;

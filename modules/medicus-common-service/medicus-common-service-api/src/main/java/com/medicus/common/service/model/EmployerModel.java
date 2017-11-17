@@ -137,21 +137,6 @@ public interface EmployerModel extends BaseModel<Employer> {
 	public void setAddress1(String address1);
 
 	/**
-	 * Returns the address2 of this employer.
-	 *
-	 * @return the address2 of this employer
-	 */
-	@AutoEscape
-	public String getAddress2();
-
-	/**
-	 * Sets the address2 of this employer.
-	 *
-	 * @param address2 the address2 of this employer
-	 */
-	public void setAddress2(String address2);
-
-	/**
 	 * Returns the city of this employer.
 	 *
 	 * @return the city of this employer

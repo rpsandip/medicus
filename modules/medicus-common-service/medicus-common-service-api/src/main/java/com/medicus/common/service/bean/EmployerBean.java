@@ -18,7 +18,6 @@ public class EmployerBean {
 	private long userId;
 	private long employerOrgId;
 	private String address1;
-	private String  address2;
 	private String city;
 	private String zipcode;
 	private String state;
@@ -34,7 +33,6 @@ public class EmployerBean {
 		this.emailAddress = employer.getEmailAddress();
 		this.employerId = employer.getEmployerId();
 		this.address1 = employer.getAddress1();
-		this.address2 = employer.getAddress2();
 		this.city = employer.getCity();
 		this.zipcode = employer.getZipcode();
 		this.state = employer.getState();
@@ -103,14 +101,6 @@ public class EmployerBean {
 
 	public void setAddress1(String address1) {
 		this.address1 = address1;
-	}
-
-	public String getAddress2() {
-		return address2;
-	}
-
-	public void setAddress2(String address2) {
-		this.address2 = address2;
 	}
 
 	public String getCity() {

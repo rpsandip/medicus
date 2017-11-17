@@ -37,7 +37,6 @@ public class CampusSoap implements Serializable {
 		soapModel.setSchoolId(model.getSchoolId());
 		soapModel.setName(model.getName());
 		soapModel.setAddress1(model.getAddress1());
-		soapModel.setAddress2(model.getAddress2());
 		soapModel.setCity(model.getCity());
 		soapModel.setState(model.getState());
 		soapModel.setCountry(model.getCountry());
@@ -134,14 +133,6 @@ public class CampusSoap implements Serializable {
 
 	public void setAddress1(String address1) {
 		_address1 = address1;
-	}
-
-	public String getAddress2() {
-		return _address2;
-	}
-
-	public void setAddress2(String address2) {
-		_address2 = address2;
 	}
 
 	public String getCity() {
@@ -260,7 +251,6 @@ public class CampusSoap implements Serializable {
 	private long _schoolId;
 	private String _name;
 	private String _address1;
-	private String _address2;
 	private String _city;
 	private String _state;
 	private String _country;

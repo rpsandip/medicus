@@ -18,7 +18,6 @@ public class CampusBean {
 	private String name;
 	private String schoolName;
 	private String address1;
-	private String address2;
 	private String city;
 	private String state;
 	private String country;
@@ -39,7 +38,6 @@ public class CampusBean {
 		this.schoolId = campus.getSchoolId();
 		this.name = campus.getName();
 		this.address1 = campus.getAddress1();
-		this.address2 = campus.getAddress2();
 		this.city = campus.getCity();
 		this.websiteLink = campus.getWebsiteLink();
 		this.state = campus.getState();
@@ -90,12 +88,6 @@ public class CampusBean {
 	}
 	public void setAddress1(String address1) {
 		this.address1 = address1;
-	}
-	public String getAddress2() {
-		return address2;
-	}
-	public void setAddress2(String address2) {
-		this.address2 = address2;
 	}
 	public String getCity() {
 		return city;

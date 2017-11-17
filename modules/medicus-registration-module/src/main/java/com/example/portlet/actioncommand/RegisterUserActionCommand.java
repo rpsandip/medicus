@@ -48,7 +48,6 @@ public class RegisterUserActionCommand extends BaseMVCActionCommand{
 			String password1 = ParamUtil.getString(actionRequest, "password");
 			String password2= ParamUtil.getString(actionRequest, "password2");
 			String address1 = ParamUtil.getString(actionRequest, "address1");
-			String address2 = ParamUtil.getString(actionRequest, "address2");
 			String zipcode = ParamUtil.getString(actionRequest, "zipcode");
 			String city = ParamUtil.getString(actionRequest, "city");
 			String state = ParamUtil.getString(actionRequest, "state");
@@ -62,7 +61,7 @@ public class RegisterUserActionCommand extends BaseMVCActionCommand{
 			if(Validator.isNull(user)){
 				try {
 					user = RegistrationLocalServiceUtil.registerPartner(firstName,lastName, emailAddress, password1, password2,
-							address1, address2, city, zipcode, state, country, contactPersonName, contactPersonEmail,
+							address1, city, zipcode, state, country, contactPersonName, contactPersonEmail,
 							contactPersonPhoneNumber, websiteLink, themeDisplay.getUserId(), themeDisplay.getScopeGroupId());
 					SessionMessages.add(actionRequest, "user-register-success");
 				} catch (PortalException e) {

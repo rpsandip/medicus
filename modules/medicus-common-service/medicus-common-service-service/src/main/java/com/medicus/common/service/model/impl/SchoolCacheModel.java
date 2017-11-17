@@ -65,7 +65,7 @@ public class SchoolCacheModel implements CacheModel<School>, Externalizable {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(35);
 
 		sb.append("{schoolId=");
 		sb.append(schoolId);
@@ -73,8 +73,6 @@ public class SchoolCacheModel implements CacheModel<School>, Externalizable {
 		sb.append(name);
 		sb.append(", address1=");
 		sb.append(address1);
-		sb.append(", address2=");
-		sb.append(address2);
 		sb.append(", city=");
 		sb.append(city);
 		sb.append(", state=");
@@ -126,13 +124,6 @@ public class SchoolCacheModel implements CacheModel<School>, Externalizable {
 		}
 		else {
 			schoolImpl.setAddress1(address1);
-		}
-
-		if (address2 == null) {
-			schoolImpl.setAddress2(StringPool.BLANK);
-		}
-		else {
-			schoolImpl.setAddress2(address2);
 		}
 
 		if (city == null) {
@@ -228,7 +219,6 @@ public class SchoolCacheModel implements CacheModel<School>, Externalizable {
 		schoolId = objectInput.readLong();
 		name = objectInput.readUTF();
 		address1 = objectInput.readUTF();
-		address2 = objectInput.readUTF();
 		city = objectInput.readUTF();
 		state = objectInput.readUTF();
 		country = objectInput.readUTF();
@@ -265,13 +255,6 @@ public class SchoolCacheModel implements CacheModel<School>, Externalizable {
 		}
 		else {
 			objectOutput.writeUTF(address1);
-		}
-
-		if (address2 == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
-		}
-		else {
-			objectOutput.writeUTF(address2);
 		}
 
 		if (city == null) {
@@ -349,7 +332,6 @@ public class SchoolCacheModel implements CacheModel<School>, Externalizable {
 	public long schoolId;
 	public String name;
 	public String address1;
-	public String address2;
 	public String city;
 	public String state;
 	public String country;

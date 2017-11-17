@@ -144,7 +144,7 @@ public interface Interview_RequestLocalService extends BaseLocalService,
 		Interview_RequestPK interview_RequestPK) throws PortalException;
 
 	public Interview_Request updateInterviewRequest(long studentId,
-		long partnerId, int status);
+		long partnerId, int status, long modifiedBy);
 
 	/**
 	* Updates the interview_ request in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

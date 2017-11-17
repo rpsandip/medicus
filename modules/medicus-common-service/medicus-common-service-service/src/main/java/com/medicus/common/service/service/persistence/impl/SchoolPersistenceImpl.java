@@ -628,7 +628,6 @@ public class SchoolPersistenceImpl extends BasePersistenceImpl<School>
 		schoolImpl.setSchoolId(school.getSchoolId());
 		schoolImpl.setName(school.getName());
 		schoolImpl.setAddress1(school.getAddress1());
-		schoolImpl.setAddress2(school.getAddress2());
 		schoolImpl.setCity(school.getCity());
 		schoolImpl.setState(school.getState());
 		schoolImpl.setCountry(school.getCountry());

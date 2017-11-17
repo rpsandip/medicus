@@ -147,9 +147,9 @@ public class Interview_RequestLocalServiceWrapper
 
 	@Override
 	public com.medicus.common.service.model.Interview_Request updateInterviewRequest(
-		long studentId, long partnerId, int status) {
+		long studentId, long partnerId, int status, long modifiedBy) {
 		return _interview_RequestLocalService.updateInterviewRequest(studentId,
-			partnerId, status);
+			partnerId, status, modifiedBy);
 	}
 
 	/**

@@ -52,7 +52,7 @@ public class CampusLocalServiceImpl extends CampusLocalServiceBaseImpl {
 	/*
 	 * Method for add Campus detail
 	 */
-	public Campus addCampus(long schoolId,String name, String address1, String address2, String city, String state,
+	public Campus addCampus(long schoolId,String name, String address1, String city, String state,
 			String country, String campusContactNumber, String websiteLink,String contactPersonName, 
 			String contactPersonEmail, String contactPersonPhoneNumber, long createdBy) throws PortalException{
 		
@@ -60,7 +60,6 @@ public class CampusLocalServiceImpl extends CampusLocalServiceBaseImpl {
 		campus.setSchoolId(schoolId);
 		campus.setName(name);
 		campus.setAddress1(address1);
-		campus.setAddress2(address2);
 		campus.setCity(city);
 		campus.setState(state);
 		campus.setCountry(country);
@@ -88,7 +87,7 @@ public class CampusLocalServiceImpl extends CampusLocalServiceBaseImpl {
 	/*
 	 * Method for update Campus detail
 	 */
-	public Campus upateCampus(long campusId, long schoolId,String name, String address1, String address2, String city, String state,
+	public Campus upateCampus(long campusId, long schoolId,String name, String address1, String city, String state,
 			String country, String campusContactNumber, String websiteLink,String contactPersonName, 
 			String contactPersonEmail, String contactPersonPhoneNumber, long modifiedBy) throws PortalException{
 		
@@ -96,7 +95,6 @@ public class CampusLocalServiceImpl extends CampusLocalServiceBaseImpl {
 		campus.setSchoolId(schoolId);
 		campus.setName(name);
 		campus.setAddress1(address1);
-		campus.setAddress2(address2);
 		campus.setCity(city);
 		campus.setState(state);
 		campus.setCountry(country);

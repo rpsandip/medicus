@@ -99,13 +99,15 @@ public class Interview_RequestLocalServiceImpl
 		return interviewRequest;
 	}
 	
-	public Interview_Request updateInterviewRequest(long studentId, long partnerId, int status){
+	public Interview_Request updateInterviewRequest(long studentId, long partnerId, int status, long modifiedBy){
 		Interview_RequestPK interviewRequestPK = new Interview_RequestPK(partnerId, studentId);
 		Interview_Request interviewRequest = null;
 		try {
 			 interviewRequest = Interview_RequestLocalServiceUtil.getInterview_Request(interviewRequestPK);
 			 if(interviewRequest.getStatus()==Interview_RequestStatus.PENDING.getValue()){
 				 interviewRequest.setStatus(status);
+				 interviewRequest.setModifiedDate(new Date());
+				 interviewRequest.setModifiedBy(modifiedBy);
 				 interviewRequest =  Interview_RequestLocalServiceUtil.updateInterview_Request(interviewRequest);
 			 }
 		} catch (PortalException e) {

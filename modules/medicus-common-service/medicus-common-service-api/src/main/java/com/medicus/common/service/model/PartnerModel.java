@@ -134,21 +134,6 @@ public interface PartnerModel extends BaseModel<Partner> {
 	public void setAddress1(String address1);
 
 	/**
-	 * Returns the address2 of this partner.
-	 *
-	 * @return the address2 of this partner
-	 */
-	@AutoEscape
-	public String getAddress2();
-
-	/**
-	 * Sets the address2 of this partner.
-	 *
-	 * @param address2 the address2 of this partner
-	 */
-	public void setAddress2(String address2);
-
-	/**
 	 * Returns the city of this partner.
 	 *
 	 * @return the city of this partner

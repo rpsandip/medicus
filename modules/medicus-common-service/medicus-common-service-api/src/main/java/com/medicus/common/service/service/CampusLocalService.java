@@ -91,10 +91,10 @@ public interface CampusLocalService extends BaseLocalService,
 	public Campus addCampus(Campus campus);
 
 	public Campus addCampus(long schoolId, java.lang.String name,
-		java.lang.String address1, java.lang.String address2,
-		java.lang.String city, java.lang.String state,
-		java.lang.String country, java.lang.String campusContactNumber,
-		java.lang.String websiteLink, java.lang.String contactPersonName,
+		java.lang.String address1, java.lang.String city,
+		java.lang.String state, java.lang.String country,
+		java.lang.String campusContactNumber, java.lang.String websiteLink,
+		java.lang.String contactPersonName,
 		java.lang.String contactPersonEmail,
 		java.lang.String contactPersonPhoneNumber, long createdBy)
 		throws PortalException;
@@ -145,10 +145,9 @@ public interface CampusLocalService extends BaseLocalService,
 
 	public Campus upateCampus(long campusId, long schoolId,
 		java.lang.String name, java.lang.String address1,
-		java.lang.String address2, java.lang.String city,
-		java.lang.String state, java.lang.String country,
-		java.lang.String campusContactNumber, java.lang.String websiteLink,
-		java.lang.String contactPersonName,
+		java.lang.String city, java.lang.String state,
+		java.lang.String country, java.lang.String campusContactNumber,
+		java.lang.String websiteLink, java.lang.String contactPersonName,
 		java.lang.String contactPersonEmail,
 		java.lang.String contactPersonPhoneNumber, long modifiedBy)
 		throws PortalException;

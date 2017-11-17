@@ -81,14 +81,14 @@ public class EmployerLocalServiceWrapper implements EmployerLocalService,
 	public com.medicus.common.service.model.Employer addEmployer(
 		java.lang.String firstName, java.lang.String lastName,
 		java.lang.String emailAddress, java.lang.String address1,
-		java.lang.String address2, java.lang.String city,
-		java.lang.String zipcode, java.lang.String state,
-		java.lang.String country, java.lang.String contactPersonName,
+		java.lang.String city, java.lang.String zipcode,
+		java.lang.String state, java.lang.String country,
+		java.lang.String contactPersonName,
 		java.lang.String contactPersonEmail,
 		java.lang.String contactPersonPhoneNumber,
 		java.lang.String websiteLink, long creatorUserId) {
 		return _employerLocalService.addEmployer(firstName, lastName,
-			emailAddress, address1, address2, city, zipcode, state, country,
+			emailAddress, address1, city, zipcode, state, country,
 			contactPersonName, contactPersonEmail, contactPersonPhoneNumber,
 			websiteLink, creatorUserId);
 	}
@@ -135,17 +135,17 @@ public class EmployerLocalServiceWrapper implements EmployerLocalService,
 	public com.medicus.common.service.model.Employer editEmployer(
 		long employerId, java.lang.String firstName, java.lang.String lastName,
 		java.lang.String emailAddress, java.lang.String address1,
-		java.lang.String address2, java.lang.String city,
-		java.lang.String zipcode, java.lang.String state,
-		java.lang.String country, java.lang.String contactPersonName,
+		java.lang.String city, java.lang.String zipcode,
+		java.lang.String state, java.lang.String country,
+		java.lang.String contactPersonName,
 		java.lang.String contactPersonEmail,
 		java.lang.String contactPersonPhoneNumber,
 		java.lang.String websiteLink, long modifiedBy)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _employerLocalService.editEmployer(employerId, firstName,
-			lastName, emailAddress, address1, address2, city, zipcode, state,
-			country, contactPersonName, contactPersonEmail,
-			contactPersonPhoneNumber, websiteLink, modifiedBy);
+			lastName, emailAddress, address1, city, zipcode, state, country,
+			contactPersonName, contactPersonEmail, contactPersonPhoneNumber,
+			websiteLink, modifiedBy);
 	}
 
 	@Override

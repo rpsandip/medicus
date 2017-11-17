@@ -121,21 +121,6 @@ public interface CampusModel extends BaseModel<Campus> {
 	public void setAddress1(String address1);
 
 	/**
-	 * Returns the address2 of this campus.
-	 *
-	 * @return the address2 of this campus
-	 */
-	@AutoEscape
-	public String getAddress2();
-
-	/**
-	 * Sets the address2 of this campus.
-	 *
-	 * @param address2 the address2 of this campus
-	 */
-	public void setAddress2(String address2);
-
-	/**
 	 * Returns the city of this campus.
 	 *
 	 * @return the city of this campus
