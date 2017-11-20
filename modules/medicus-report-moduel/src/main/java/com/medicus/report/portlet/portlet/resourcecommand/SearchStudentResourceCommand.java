@@ -1,40 +1,40 @@
-package com.medicus.student.portlet.portlet.resourcecommand;
+package com.medicus.report.portlet.portlet.resourcecommand;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.portlet.PortletException;
-import javax.portlet.PortletRequestDispatcher;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 import javax.servlet.http.HttpServletRequest;
 
 import org.osgi.service.component.annotations.Component;
 
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCResourceCommand;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchContextFactory;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.medicus.common.service.bean.StudentBean;
 import com.medicus.common.service.model.Student;
-import com.medicus.common.service.service.MedicusCommonLocalServiceUtil;
 import com.medicus.common.service.service.StudentLocalServiceUtil;
-import com.medicus.student.portlet.portlet.StudentPortletConstant;
+import com.medicus.report.portlet.portlet.util.ReportModuleConstant;
 
 @Component(
 	    property = {
-	    	"javax.portlet.name=" + StudentPortletConstant.PORTLET_ID,
+	    	"javax.portlet.name=" + ReportModuleConstant.PORTLET_ID,
 	        "mvc.command.name=/search_studetns"
 	    },
 	    service = MVCResourceCommand.class
@@ -48,10 +48,12 @@ public class SearchStudentResourceCommand implements MVCResourceCommand{
 			throws PortletException {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(WebKeys.THEME_DISPLAY);
+		JSONObject responseObj = JSONFactoryUtil.createJSONObject();
+		JSONArray dataArray = JSONFactoryUtil.createJSONArray();
 		
-		int pageIndex = ParamUtil.getInteger(resourceRequest, "pagetIndex");
-		int start = StudentPortletConstant.STUDENT_DISPLAY_ITEMS*pageIndex;
-		int end  = start + StudentPortletConstant.STUDENT_DISPLAY_ITEMS;
+		HttpServletRequest httpRequest = PortalUtil.getOriginalServletRequest(PortalUtil.getHttpServletRequest(resourceRequest));
+		int start = Integer.parseInt(httpRequest.getParameter("start"));
+		int length = Integer.parseInt(httpRequest.getParameter("length"));
 		String keyword = ParamUtil.getString(resourceRequest, "keyword");
 		String zipcode = ParamUtil.getString(resourceRequest, "zipcode");
 		String gender = ParamUtil.getString(resourceRequest, "gender");
@@ -80,54 +82,40 @@ public class SearchStudentResourceCommand implements MVCResourceCommand{
 		
 		List<StudentBean> studentBeanList = new ArrayList<StudentBean>();
 		JSONObject jsonObject = StudentLocalServiceUtil.searchStudents(keyword, zipcode, gender, profession,
-				languageList,schoolId, campusId, start, end,searchContext);
+				languageList,schoolId, campusId, start, start+length,searchContext);
 		
 		List<Student> studentList = (List<Student>)jsonObject.get("studentList");
 		long totalHits = jsonObject.getLong("totalHits");
 		
 		
 		for(Student student : studentList){
-			StudentBean studentBean = new StudentBean(student,true);
-			studentBeanList.add(studentBean);
+			StudentBean studentBean = new StudentBean(student, true);
+			JSONObject studentJSONObject = JSONFactoryUtil.createJSONObject();
+			String middleName = StringPool.BLANK;
+			if(Validator.isNotNull(student.getLastName())){
+				middleName = StringUtil.upperCase(student.getMiddleName().substring(0, 1)).concat(".");
+			}
+			studentJSONObject.put("name", student.getFirstName()+StringPool.SPACE+ middleName+ StringPool.SPACE + student.getLastName());
+			studentJSONObject.put("studentId", student.getStundetCampusId());
+			studentJSONObject.put("gender", studentBean.getGender());
+			studentJSONObject.put("zipcode", studentBean.getZipcode());
+			studentJSONObject.put("profession", studentBean.getProfession());
+			studentJSONObject.put("language", studentBean.getPrimaryLanguages());
+			studentJSONObject.put("school", studentBean.getSchoolName());
+			studentJSONObject.put("campus", studentBean.getCampusName());
+			dataArray.put(studentJSONObject);
 		}
 		
-		resourceRequest.setAttribute("studentBeanList", studentBeanList);
-		
-		if(totalHits>end){
-			resourceRequest.setAttribute("showLoadMore", true);
-		}else{
-			resourceRequest.setAttribute("showLoadMore", false);
-		}
-		
-		// Set Permission
-		
-		PermissionChecker pc = themeDisplay.getPermissionChecker();
-	    boolean hasStudentInterviewRequestPermission  = pc.hasPermission(MedicusCommonLocalServiceUtil.getOrganizationGroupIdFromOrgId(MedicusCommonLocalServiceUtil.getMedicusOrganizationId()),
-	    		Student.class.getName(), Student.class.getName(), "STUDENT_INTERVIEW_REQUEST");
-	    resourceRequest.setAttribute("hasStudentInterviewRequestPermission", hasStudentInterviewRequestPermission);
-	    
-	    boolean hasViewStudentProfilePermission  = pc.hasPermission(MedicusCommonLocalServiceUtil.getOrganizationGroupIdFromOrgId(MedicusCommonLocalServiceUtil.getMedicusOrganizationId()),
-	    		Student.class.getName(), Student.class.getName(), "VIEW_STUDENT_PROFILE");
-	    resourceRequest.setAttribute("hasViewStudentProfilePermission", hasViewStudentProfilePermission);
-	    
-	    boolean hasUpdateStudentPermission  = pc.hasPermission(MedicusCommonLocalServiceUtil.getOrganizationGroupIdFromOrgId(MedicusCommonLocalServiceUtil.getMedicusOrganizationId()),
-	    		Student.class.getName(), Student.class.getName(), "UPDATE_STUDENT");
-	    resourceRequest.setAttribute("hasUpdateStudentPermission", hasUpdateStudentPermission);
-	    
-	    boolean hasDeleteStudentPermission  = pc.hasPermission(MedicusCommonLocalServiceUtil.getOrganizationGroupIdFromOrgId(MedicusCommonLocalServiceUtil.getMedicusOrganizationId()),
-	    		Student.class.getName(), Student.class.getName(), "DELETE_STUDENT");
-	    resourceRequest.setAttribute("hasDeleteStudentPermission", hasDeleteStudentPermission);
-	    
-		
-		PortletRequestDispatcher dispatcher = resourceRequest.getPortletSession().getPortletContext()
-				.getRequestDispatcher("/student/student_list.jsp");
-
-		try {
-			dispatcher.include(resourceRequest, resourceResponse);
-		} catch (IOException e) {
-			_log.error(e);
-		}
-		
+		 responseObj.put("iTotalRecords", totalHits);
+		 responseObj.put("iTotalDisplayRecords", totalHits);
+		 responseObj.put("aaData", dataArray);
+		    
+		 try {
+				resourceResponse.getWriter().write(responseObj.toString());
+			} catch (IOException e) {
+				_log.error(e.getMessage(), e);
+		 }
+		 
 		return true;
 	}
 

@@ -208,6 +208,56 @@ public class StudentBean {
 	  }	
 	}
 	
+	public StudentBean(Student student,boolean showAsProfile){
+		if(Validator.isNotNull(student)){
+			this.studentId = student.getStudentId();
+			this.stundetCampusId = student.getStundetCampusId();
+			this.campusId = student.getCampusId();
+			this.schoolId = student.getSchoolId();
+			this.firstName = student.getFirstName();
+			this.lastName = student.getLastName();
+			if(Validator.isNotNull(student.getMiddleName())){
+				this.middleName = student.getMiddleName();
+			}
+			this.gender = student.getGender();
+			this.profession  = student.getProfession();
+			this.primaryLanguages = student.getPrimaryLanguage();
+			this.emailAddress = student.getEmailAddress();
+			if(Validator.isNotNull(student.getZipcode())){
+				this.zipcode = student.getZipcode();
+			}
+			if(this.campusId>0){
+				try {
+					Campus campus = CampusLocalServiceUtil.getCampus(this.campusId);
+					this.campusName = campus.getName();
+				} catch (PortalException e) {
+					_log.debug(e);
+				}
+			}
+			
+			if(this.schoolId>0){
+				try {
+					School school = SchoolLocalServiceUtil.getSchool(this.schoolId);
+					this.schoolName = school.getName();
+				} catch (PortalException e) {
+					_log.debug(e);
+				}
+			}
+			
+			if(student.getProfileImageId()>0){
+				DLFileEntry fileEntry;
+				try {
+					fileEntry = DLFileEntryLocalServiceUtil.getDLFileEntry(student.getProfileImageId());
+					DocumentBean profileDoc = new DocumentBean(fileEntry);
+					this.profileDoc = profileDoc;
+					
+				} catch (PortalException e) {
+					_log.debug(e);
+				}
+			}
+		}
+	}
+	
 	
 	public long getStudentId() {
 		return studentId;
