@@ -55,6 +55,7 @@ import com.medicus.common.service.service.persistence.EmployerPersistence;
 import com.medicus.common.service.service.persistence.Interview_RequestPersistence;
 import com.medicus.common.service.service.persistence.PartnerPersistence;
 import com.medicus.common.service.service.persistence.SchoolPersistence;
+import com.medicus.common.service.service.persistence.StudentFinder;
 import com.medicus.common.service.service.persistence.StudentPersistence;
 import com.medicus.common.service.service.persistence.Student_ExternshipPersistence;
 
@@ -659,6 +660,24 @@ public abstract class StudentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
+	 * Returns the student finder.
+	 *
+	 * @return the student finder
+	 */
+	public StudentFinder getStudentFinder() {
+		return studentFinder;
+	}
+
+	/**
+	 * Sets the student finder.
+	 *
+	 * @param studentFinder the student finder
+	 */
+	public void setStudentFinder(StudentFinder studentFinder) {
+		this.studentFinder = studentFinder;
+	}
+
+	/**
 	 * Returns the student_ externship local service.
 	 *
 	 * @return the student_ externship local service
@@ -889,6 +908,8 @@ public abstract class StudentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected StudentLocalService studentLocalService;
 	@BeanReference(type = StudentPersistence.class)
 	protected StudentPersistence studentPersistence;
+	@BeanReference(type = StudentFinder.class)
+	protected StudentFinder studentFinder;
 	@BeanReference(type = com.medicus.common.service.service.Student_ExternshipLocalService.class)
 	protected com.medicus.common.service.service.Student_ExternshipLocalService student_ExternshipLocalService;
 	@BeanReference(type = Student_ExternshipPersistence.class)

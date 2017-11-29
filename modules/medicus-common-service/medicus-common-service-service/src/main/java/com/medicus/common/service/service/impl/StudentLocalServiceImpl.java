@@ -54,6 +54,7 @@ import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.medicus.common.service.bean.GrooupByEntityBean;
 import com.medicus.common.service.exception.NoSuchStudentException;
 import com.medicus.common.service.model.Interview_Request;
 import com.medicus.common.service.model.Student;
@@ -63,7 +64,6 @@ import com.medicus.common.service.service.MedicusCommonLocalServiceUtil;
 import com.medicus.common.service.service.StudentLocalServiceUtil;
 import com.medicus.common.service.service.Student_ExternshipLocalServiceUtil;
 import com.medicus.common.service.service.base.StudentLocalServiceBaseImpl;
-import com.medicus.common.service.service.persistence.Interview_RequestPK;
 import com.medicus.common.service.util.Interview_RequestStatus;
 import com.medicus.common.service.util.MedicusConstant;
 
@@ -616,7 +616,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 		
 		try{
 		BooleanQuery searchQuery = BooleanQueryFactoryUtil.create(searchContext);
-	    
+		
 		// Add Student Class Name Criteria
 	    searchQuery.addRequiredTerm(Field.ENTRY_CLASS_NAME, Student.class.getName());
 	    
@@ -702,6 +702,18 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 		jsonObject.put("studentList", studentList);
 		
 		return jsonObject;
+	}
+	
+	public List<GrooupByEntityBean> groupByGender(){
+		return studentFinder.groupByStudentGender();
+	}
+	
+	public List<GrooupByEntityBean> groupByProfession(){
+		return studentFinder.groupByStudentProfession();
+	}
+	
+	public List<GrooupByEntityBean> groupByLanguages(String lanugage){
+		return studentFinder.groupByStudentLanguages(lanugage);
 	}
 	
 }

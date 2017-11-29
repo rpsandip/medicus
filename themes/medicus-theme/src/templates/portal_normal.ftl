@@ -291,6 +291,22 @@
 				
 				<@liferay_util["include"] page=bottom_include />
 				
+				<script>
+		   		   define._amd = define.amd;
+		        	define.amd = false;
+			    </script>
+		
+					<script src="${javascript_folder}/jquery.min.js"></script>
+					<script src="${javascript_folder}/bootstrap.min.js"></script>
+					<script src="${javascript_folder}/moment.min.js"></script>
+					<script src="${javascript_folder}/jquery.dataTables.min.js"></script>
+					<script src="${javascript_folder}/jquery.easing.js"></script>
+					<script src="${javascript_folder}/jquery.flexslider.js"></script>
+					<script src="${javascript_folder}/dataTables.bootstrap.min.js"></script>
+			<script>
+						define.amd = define._amd;
+			</script>
+				
 				<!-- inject:js -->
 				<!-- endinject -->
 		

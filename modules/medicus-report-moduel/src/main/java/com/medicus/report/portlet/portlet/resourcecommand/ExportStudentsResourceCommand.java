@@ -85,6 +85,7 @@ public class ExportStudentsResourceCommand implements MVCResourceCommand{
                     HttpHeaders.CONTENT_DISPOSITION, "attachment;  filename=Medicus_Students.xlsx");
 
         	File file = ReportFileUtil.generateReport(studentList);
+        	
             OutputStream pos = resourceResponse.getPortletOutputStream();
             try {
             	byte[] bytesArray = new byte[(int) file.length()];

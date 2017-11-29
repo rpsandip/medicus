@@ -1,10 +1,23 @@
 package com.medicus.campus.portlet;
 
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
+import com.liferay.portal.kernel.search.BooleanQuery;
+import com.liferay.portal.kernel.search.BooleanQueryFactoryUtil;
+import com.liferay.portal.kernel.search.Document;
+import com.liferay.portal.kernel.search.Field;
+import com.liferay.portal.kernel.search.GroupBy;
+import com.liferay.portal.kernel.search.Hits;
+import com.liferay.portal.kernel.search.IndexSearcherHelperUtil;
+import com.liferay.portal.kernel.search.SearchContext;
+import com.liferay.portal.kernel.search.SearchContextFactory;
+import com.liferay.portal.kernel.util.PortalUtil;
 import com.medicus.common.service.bean.CampusBean;
+import com.medicus.common.service.bean.GrooupByEntityBean;
 import com.medicus.common.service.model.Campus;
+import com.medicus.common.service.model.Student;
 import com.medicus.common.service.service.CampusLocalServiceUtil;
 import com.medicus.common.service.service.MedicusCommonLocalServiceUtil;
+import com.medicus.common.service.service.StudentLocalServiceUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,6 +27,7 @@ import javax.portlet.Portlet;
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+import javax.servlet.http.HttpServletRequest;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -43,6 +57,7 @@ public class CampusModulePortlet extends MVCPortlet {
 		}
 		renderRequest.setAttribute("campusBeanList", campusBeanList);
 		renderRequest.setAttribute("usStateList", MedicusCommonLocalServiceUtil.getUSStateList());
+
 		include(viewTemplate, renderRequest, renderResponse);
 	}
 }

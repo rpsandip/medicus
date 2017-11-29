@@ -377,6 +377,19 @@ public class StudentLocalServiceUtil {
 		return getService().getStudents(start, end);
 	}
 
+	public static java.util.List<com.medicus.common.service.bean.GrooupByEntityBean> groupByGender() {
+		return getService().groupByGender();
+	}
+
+	public static java.util.List<com.medicus.common.service.bean.GrooupByEntityBean> groupByLanguages(
+		java.lang.String lanugage) {
+		return getService().groupByLanguages(lanugage);
+	}
+
+	public static java.util.List<com.medicus.common.service.bean.GrooupByEntityBean> groupByProfession() {
+		return getService().groupByProfession();
+	}
+
 	public static java.util.List<com.medicus.common.service.model.Student> searchStudents(
 		java.lang.String keyword, java.lang.String zipcode,
 		java.lang.String gender, java.lang.String profession,

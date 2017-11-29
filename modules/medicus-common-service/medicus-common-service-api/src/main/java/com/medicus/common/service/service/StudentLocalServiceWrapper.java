@@ -392,6 +392,22 @@ public class StudentLocalServiceWrapper implements StudentLocalService,
 	}
 
 	@Override
+	public java.util.List<com.medicus.common.service.bean.GrooupByEntityBean> groupByGender() {
+		return _studentLocalService.groupByGender();
+	}
+
+	@Override
+	public java.util.List<com.medicus.common.service.bean.GrooupByEntityBean> groupByLanguages(
+		java.lang.String lanugage) {
+		return _studentLocalService.groupByLanguages(lanugage);
+	}
+
+	@Override
+	public java.util.List<com.medicus.common.service.bean.GrooupByEntityBean> groupByProfession() {
+		return _studentLocalService.groupByProfession();
+	}
+
+	@Override
 	public java.util.List<com.medicus.common.service.model.Student> searchStudents(
 		java.lang.String keyword, java.lang.String zipcode,
 		java.lang.String gender, java.lang.String profession,

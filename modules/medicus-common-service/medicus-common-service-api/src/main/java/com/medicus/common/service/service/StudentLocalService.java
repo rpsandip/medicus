@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
+import com.medicus.common.service.bean.GrooupByEntityBean;
 import com.medicus.common.service.model.Student;
 
 import java.io.File;
@@ -310,6 +311,12 @@ public interface StudentLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Student> getStudents(int start, int end);
+
+	public List<GrooupByEntityBean> groupByGender();
+
+	public List<GrooupByEntityBean> groupByLanguages(java.lang.String lanugage);
+
+	public List<GrooupByEntityBean> groupByProfession();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Student> searchStudents(java.lang.String keyword,

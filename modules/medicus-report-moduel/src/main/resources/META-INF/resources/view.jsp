@@ -100,8 +100,6 @@
             </table>
           </div>  	
 		  <div class="clearfix"></div>
-		  <div class="studentList"></div>
-		  <div class="clearfix"></div>
 		</div>
 	  </div>
 	</div>
