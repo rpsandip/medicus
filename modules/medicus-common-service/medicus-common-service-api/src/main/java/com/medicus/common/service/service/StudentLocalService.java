@@ -312,11 +312,19 @@ public interface StudentLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Student> getStudents(int start, int end);
 
-	public List<GrooupByEntityBean> groupByGender();
+	public List<GrooupByEntityBean> groupByGender(long schoolId, long campusId);
 
-	public List<GrooupByEntityBean> groupByLanguages(java.lang.String lanugage);
+	public List<GrooupByEntityBean> groupByLanguages(
+		java.lang.String lanugage, java.lang.String searchByColumnName,
+		java.lang.String searchByColumnValue, long schoolId, long campusId);
 
-	public List<GrooupByEntityBean> groupByProfession();
+	public List<GrooupByEntityBean> groupByProfession(long schoolId,
+		long campusId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<GrooupByEntityBean> searchByXAxis(
+		java.lang.String groupByColumnName, java.lang.String searchColumnName,
+		java.lang.String searchColumnValue, long schoolId, long campusId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Student> searchStudents(java.lang.String keyword,

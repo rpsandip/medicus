@@ -303,6 +303,7 @@
 					<script src="${javascript_folder}/jquery.easing.js"></script>
 					<script src="${javascript_folder}/jquery.flexslider.js"></script>
 					<script src="${javascript_folder}/dataTables.bootstrap.min.js"></script>
+					<script src="${javascript_folder}/bootstrap-datetimepicker.min.js"></script>
 			<script>
 						define.amd = define._amd;
 			</script>

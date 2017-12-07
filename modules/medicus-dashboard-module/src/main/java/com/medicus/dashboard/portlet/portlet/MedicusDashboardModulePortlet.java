@@ -2,6 +2,8 @@ package com.medicus.dashboard.portlet.portlet;
 
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.medicus.common.service.bean.GrooupByEntityBean;
+import com.medicus.common.service.model.School;
+import com.medicus.common.service.service.MedicusCommonLocalServiceUtil;
 import com.medicus.common.service.service.StudentLocalServiceUtil;
 
 import java.io.IOException;
@@ -10,6 +12,7 @@ import java.util.List;
 
 import javax.portlet.Portlet;
 import javax.portlet.PortletException;
+import javax.portlet.PortletRequest;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
@@ -33,44 +36,48 @@ public class MedicusDashboardModulePortlet extends MVCPortlet {
 	public void doView(RenderRequest renderRequest, RenderResponse renderResponse)
 			throws IOException, PortletException {
 		
-	   // TODO : Need to make role base and school/campus specific search.	
+	   List<School> schoolListForSchoolAdmin = new ArrayList<School>();
+	   MedicusCommonLocalServiceUtil.setUserSchoolIdCampusIdInRequest(renderRequest, schoolListForSchoolAdmin);
 		
+	   long userCampusId = (Long)renderRequest.getAttribute("userCampusId");
+	   long userSchoolId = 	(Long)renderRequest.getAttribute("userSchoolId");
+	   
 	   // Gender Chart Detail	
-       List<GrooupByEntityBean> genderList = StudentLocalServiceUtil.groupByGender();
+       List<GrooupByEntityBean> genderList = StudentLocalServiceUtil.groupByGender(userSchoolId, userCampusId);
 	   renderRequest.setAttribute("genderList", genderList);
 	   
 	   // Profession Chart Detail
-	   List<GrooupByEntityBean> professionList = StudentLocalServiceUtil.groupByProfession();
+	   List<GrooupByEntityBean> professionList = StudentLocalServiceUtil.groupByProfession(userSchoolId, userCampusId);
 	   renderRequest.setAttribute("professionList", professionList);
 	   
 	   // Languge Chart Detail
 	   List<GrooupByEntityBean> finalLangList = new ArrayList<GrooupByEntityBean>();
 	   
-	   List<GrooupByEntityBean> englishStudetList = StudentLocalServiceUtil.groupByLanguages("English");
-	   List<GrooupByEntityBean> spanishStudetList = StudentLocalServiceUtil.groupByLanguages("Spanish");
-	   List<GrooupByEntityBean> frenchStudetList = StudentLocalServiceUtil.groupByLanguages("French");
-	   List<GrooupByEntityBean> chineseMStudetList = StudentLocalServiceUtil.groupByLanguages("Chinese - Mandarin");
-	   List<GrooupByEntityBean> chineseCStudetList = StudentLocalServiceUtil.groupByLanguages("Chinese -Cantonese");
-	   List<GrooupByEntityBean> tagalogStudetList = StudentLocalServiceUtil.groupByLanguages("Tagalog");
-	   List<GrooupByEntityBean> vietnamesetudetList = StudentLocalServiceUtil.groupByLanguages("Vietnamese");
-	   List<GrooupByEntityBean> koreanStudetList = StudentLocalServiceUtil.groupByLanguages("Korean");
-	   List<GrooupByEntityBean> germantudetList = StudentLocalServiceUtil.groupByLanguages("German");
-	   List<GrooupByEntityBean> arabicStudetList = StudentLocalServiceUtil.groupByLanguages("Arabic");
-	   List<GrooupByEntityBean> russianStudetList = StudentLocalServiceUtil.groupByLanguages("Russian");
-	   List<GrooupByEntityBean> italianStudetList = StudentLocalServiceUtil.groupByLanguages("Italian");
-	   List<GrooupByEntityBean> portugueseStudetList = StudentLocalServiceUtil.groupByLanguages("Portuguese");
-	   List<GrooupByEntityBean> hindiStudetList = StudentLocalServiceUtil.groupByLanguages("Hindi");
-	   List<GrooupByEntityBean> polishStudetList = StudentLocalServiceUtil.groupByLanguages("Polish");
-	   List<GrooupByEntityBean> japaneseStudetList = StudentLocalServiceUtil.groupByLanguages("Japanese");
-	   List<GrooupByEntityBean> urduStudetList = StudentLocalServiceUtil.groupByLanguages("Urdu");
-	   List<GrooupByEntityBean> persianStudetList = StudentLocalServiceUtil.groupByLanguages("Persian");
-	   List<GrooupByEntityBean> gujaratiStudetList = StudentLocalServiceUtil.groupByLanguages("Gujarati");
-	   List<GrooupByEntityBean> greekStudetList = StudentLocalServiceUtil.groupByLanguages("Greek");
-	   List<GrooupByEntityBean> bengaliStudetList = StudentLocalServiceUtil.groupByLanguages("Bengali");
-	   List<GrooupByEntityBean> panjabiStudetList = StudentLocalServiceUtil.groupByLanguages("Panjabi");
-	   List<GrooupByEntityBean> teluguStudetList = StudentLocalServiceUtil.groupByLanguages("Telugu");
-	   List<GrooupByEntityBean> armenianStudetList = StudentLocalServiceUtil.groupByLanguages("Armenian");
-	   List<GrooupByEntityBean> hmongStudetList = StudentLocalServiceUtil.groupByLanguages("Hmong");
+	   List<GrooupByEntityBean> englishStudetList = StudentLocalServiceUtil.groupByLanguages("English", null, null,userSchoolId, userCampusId);
+	   List<GrooupByEntityBean> spanishStudetList = StudentLocalServiceUtil.groupByLanguages("Spanish", null, null,userSchoolId, userCampusId);
+	   List<GrooupByEntityBean> frenchStudetList = StudentLocalServiceUtil.groupByLanguages("French", null, null,userSchoolId, userCampusId);
+	   List<GrooupByEntityBean> chineseMStudetList = StudentLocalServiceUtil.groupByLanguages("Chinese - Mandarin", null, null,userSchoolId, userCampusId);
+	   List<GrooupByEntityBean> chineseCStudetList = StudentLocalServiceUtil.groupByLanguages("Chinese -Cantonese", null, null,userSchoolId, userCampusId);
+	   List<GrooupByEntityBean> tagalogStudetList = StudentLocalServiceUtil.groupByLanguages("Tagalog", null, null,userSchoolId, userCampusId);
+	   List<GrooupByEntityBean> vietnamesetudetList = StudentLocalServiceUtil.groupByLanguages("Vietnamese", null, null,userSchoolId, userCampusId);
+	   List<GrooupByEntityBean> koreanStudetList = StudentLocalServiceUtil.groupByLanguages("Korean", null, null,userSchoolId, userCampusId);
+	   List<GrooupByEntityBean> germantudetList = StudentLocalServiceUtil.groupByLanguages("German", null, null,userSchoolId, userCampusId);
+	   List<GrooupByEntityBean> arabicStudetList = StudentLocalServiceUtil.groupByLanguages("Arabic", null, null,userSchoolId, userCampusId);
+	   List<GrooupByEntityBean> russianStudetList = StudentLocalServiceUtil.groupByLanguages("Russian", null, null,userSchoolId, userCampusId);
+	   List<GrooupByEntityBean> italianStudetList = StudentLocalServiceUtil.groupByLanguages("Italian", null, null,userSchoolId, userCampusId);
+	   List<GrooupByEntityBean> portugueseStudetList = StudentLocalServiceUtil.groupByLanguages("Portuguese", null, null,userSchoolId, userCampusId);
+	   List<GrooupByEntityBean> hindiStudetList = StudentLocalServiceUtil.groupByLanguages("Hindi", null, null,userSchoolId, userCampusId);
+	   List<GrooupByEntityBean> polishStudetList = StudentLocalServiceUtil.groupByLanguages("Polish", null, null,userSchoolId, userCampusId);
+	   List<GrooupByEntityBean> japaneseStudetList = StudentLocalServiceUtil.groupByLanguages("Japanese", null, null,userSchoolId, userCampusId);
+	   List<GrooupByEntityBean> urduStudetList = StudentLocalServiceUtil.groupByLanguages("Urdu", null, null,userSchoolId, userCampusId);
+	   List<GrooupByEntityBean> persianStudetList = StudentLocalServiceUtil.groupByLanguages("Persian", null, null,userSchoolId, userCampusId);
+	   List<GrooupByEntityBean> gujaratiStudetList = StudentLocalServiceUtil.groupByLanguages("Gujarati", null, null,userSchoolId, userCampusId);
+	   List<GrooupByEntityBean> greekStudetList = StudentLocalServiceUtil.groupByLanguages("Greek", null, null,userSchoolId, userCampusId);
+	   List<GrooupByEntityBean> bengaliStudetList = StudentLocalServiceUtil.groupByLanguages("Bengali", null, null,userSchoolId, userCampusId);
+	   List<GrooupByEntityBean> panjabiStudetList = StudentLocalServiceUtil.groupByLanguages("Panjabi", null, null,userSchoolId, userCampusId);
+	   List<GrooupByEntityBean> teluguStudetList = StudentLocalServiceUtil.groupByLanguages("Telugu", null, null,userSchoolId, userCampusId);
+	   List<GrooupByEntityBean> armenianStudetList = StudentLocalServiceUtil.groupByLanguages("Armenian", null, null,userSchoolId, userCampusId);
+	   List<GrooupByEntityBean> hmongStudetList = StudentLocalServiceUtil.groupByLanguages("Hmong", null, null,userSchoolId, userCampusId);
 	   
 	   
 	   
@@ -149,7 +156,6 @@ public class MedicusDashboardModulePortlet extends MVCPortlet {
 	   if(hmongStudetList.get(0).getCount()>0){
 		   finalLangList.add(new GrooupByEntityBean(hmongStudetList.get(0).getCount(), hmongStudetList.get(0).getFieldName()));
 	   }
-	   
 	   
 	   renderRequest.setAttribute("finalLangList", finalLangList);
 	   include(viewTemplate, renderRequest, renderResponse);

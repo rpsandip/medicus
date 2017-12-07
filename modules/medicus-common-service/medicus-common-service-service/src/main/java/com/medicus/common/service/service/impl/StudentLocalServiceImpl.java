@@ -643,7 +643,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 	    }
 	    
 	    if(Validator.isNotNull(zipcode)){
-	    	searchQuery.addTerm(MedicusConstant.STUDENT_IDNEX_LASTNAME, zipcode);
+	    	searchQuery.addRequiredTerm(MedicusConstant.STUDENT_IDNEX_ZIPCODE, zipcode);
 	    }
 	    
 	    if(Validator.isNotNull(gender)){
@@ -704,16 +704,20 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 		return jsonObject;
 	}
 	
-	public List<GrooupByEntityBean> groupByGender(){
-		return studentFinder.groupByStudentGender();
+	public List<GrooupByEntityBean> groupByGender(long schoolId, long campusId){
+		return studentFinder.groupByStudentGender(schoolId,campusId);
 	}
 	
-	public List<GrooupByEntityBean> groupByProfession(){
-		return studentFinder.groupByStudentProfession();
+	public List<GrooupByEntityBean> groupByProfession(long schoolId, long campusId){
+		return studentFinder.groupByStudentProfession(schoolId,campusId);
 	}
 	
-	public List<GrooupByEntityBean> groupByLanguages(String lanugage){
-		return studentFinder.groupByStudentLanguages(lanugage);
+	public List<GrooupByEntityBean> groupByLanguages(String lanugage,String searchByColumnName, String searchByColumnValue,long schoolId, long campusId){
+		return studentFinder.groupByStudentLanguages(lanugage, searchByColumnName, searchByColumnValue,schoolId,campusId);
+	}
+	
+	public List<GrooupByEntityBean> searchByXAxis(String groupByColumnName, String searchColumnName, String searchColumnValue,long schoolId, long campusId){
+		return studentFinder.searchByXAxis(groupByColumnName, searchColumnName, searchColumnValue,schoolId,campusId);
 	}
 	
 }

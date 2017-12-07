@@ -148,6 +148,13 @@ public class MedicusCommonLocalServiceUtil {
 		getService().sendApproveInterviewRequestMail(interviewRequest);
 	}
 
+	public static void setUserSchoolIdCampusIdInRequest(
+		javax.portlet.PortletRequest request,
+		java.util.List<com.medicus.common.service.model.School> schoolListForSchoolAdmin) {
+		getService()
+			.setUserSchoolIdCampusIdInRequest(request, schoolListForSchoolAdmin);
+	}
+
 	public static MedicusCommonLocalService getService() {
 		return _serviceTracker.getService();
 	}

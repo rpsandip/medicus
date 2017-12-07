@@ -392,19 +392,31 @@ public class StudentLocalServiceWrapper implements StudentLocalService,
 	}
 
 	@Override
-	public java.util.List<com.medicus.common.service.bean.GrooupByEntityBean> groupByGender() {
-		return _studentLocalService.groupByGender();
+	public java.util.List<com.medicus.common.service.bean.GrooupByEntityBean> groupByGender(
+		long schoolId, long campusId) {
+		return _studentLocalService.groupByGender(schoolId, campusId);
 	}
 
 	@Override
 	public java.util.List<com.medicus.common.service.bean.GrooupByEntityBean> groupByLanguages(
-		java.lang.String lanugage) {
-		return _studentLocalService.groupByLanguages(lanugage);
+		java.lang.String lanugage, java.lang.String searchByColumnName,
+		java.lang.String searchByColumnValue, long schoolId, long campusId) {
+		return _studentLocalService.groupByLanguages(lanugage,
+			searchByColumnName, searchByColumnValue, schoolId, campusId);
 	}
 
 	@Override
-	public java.util.List<com.medicus.common.service.bean.GrooupByEntityBean> groupByProfession() {
-		return _studentLocalService.groupByProfession();
+	public java.util.List<com.medicus.common.service.bean.GrooupByEntityBean> groupByProfession(
+		long schoolId, long campusId) {
+		return _studentLocalService.groupByProfession(schoolId, campusId);
+	}
+
+	@Override
+	public java.util.List<com.medicus.common.service.bean.GrooupByEntityBean> searchByXAxis(
+		java.lang.String groupByColumnName, java.lang.String searchColumnName,
+		java.lang.String searchColumnValue, long schoolId, long campusId) {
+		return _studentLocalService.searchByXAxis(groupByColumnName,
+			searchColumnName, searchColumnValue, schoolId, campusId);
 	}
 
 	@Override

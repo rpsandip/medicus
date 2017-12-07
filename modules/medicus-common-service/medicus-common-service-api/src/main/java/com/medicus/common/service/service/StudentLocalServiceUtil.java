@@ -377,17 +377,30 @@ public class StudentLocalServiceUtil {
 		return getService().getStudents(start, end);
 	}
 
-	public static java.util.List<com.medicus.common.service.bean.GrooupByEntityBean> groupByGender() {
-		return getService().groupByGender();
+	public static java.util.List<com.medicus.common.service.bean.GrooupByEntityBean> groupByGender(
+		long schoolId, long campusId) {
+		return getService().groupByGender(schoolId, campusId);
 	}
 
 	public static java.util.List<com.medicus.common.service.bean.GrooupByEntityBean> groupByLanguages(
-		java.lang.String lanugage) {
-		return getService().groupByLanguages(lanugage);
+		java.lang.String lanugage, java.lang.String searchByColumnName,
+		java.lang.String searchByColumnValue, long schoolId, long campusId) {
+		return getService()
+				   .groupByLanguages(lanugage, searchByColumnName,
+			searchByColumnValue, schoolId, campusId);
 	}
 
-	public static java.util.List<com.medicus.common.service.bean.GrooupByEntityBean> groupByProfession() {
-		return getService().groupByProfession();
+	public static java.util.List<com.medicus.common.service.bean.GrooupByEntityBean> groupByProfession(
+		long schoolId, long campusId) {
+		return getService().groupByProfession(schoolId, campusId);
+	}
+
+	public static java.util.List<com.medicus.common.service.bean.GrooupByEntityBean> searchByXAxis(
+		java.lang.String groupByColumnName, java.lang.String searchColumnName,
+		java.lang.String searchColumnValue, long schoolId, long campusId) {
+		return getService()
+				   .searchByXAxis(groupByColumnName, searchColumnName,
+			searchColumnValue, schoolId, campusId);
 	}
 
 	public static java.util.List<com.medicus.common.service.model.Student> searchStudents(

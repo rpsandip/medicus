@@ -22,10 +22,17 @@ import aQute.bnd.annotation.ProviderType;
  */
 @ProviderType
 public interface StudentFinder {
-	public java.util.List<com.medicus.common.service.bean.GrooupByEntityBean> groupByStudentGender();
+	public java.util.List<com.medicus.common.service.bean.GrooupByEntityBean> groupByStudentGender(
+		long schoolId, long campusId);
 
-	public java.util.List<com.medicus.common.service.bean.GrooupByEntityBean> groupByStudentProfession();
+	public java.util.List<com.medicus.common.service.bean.GrooupByEntityBean> groupByStudentProfession(
+		long schoolId, long campusId);
 
 	public java.util.List<com.medicus.common.service.bean.GrooupByEntityBean> groupByStudentLanguages(
-		java.lang.String language);
+		java.lang.String language, java.lang.String searchByColumnName,
+		java.lang.String searchByColumnValue, long schoolId, long campusId);
+
+	public java.util.List<com.medicus.common.service.bean.GrooupByEntityBean> searchByXAxis(
+		java.lang.String groupByColumnName, java.lang.String searchColumnName,
+		java.lang.String searchColumnValue, long schoolId, long campusId);
 }

@@ -18,5 +18,6 @@ public class MedicusConstant {
 	public static final String CAMPUS_ADMIN_ROLE="Campus Admin";
 	public static final String FROM_EMAIL = "no-reply@medicus.com";
 	public static final String STUDENT_PAGE_URL="/student";
+	public static final String REPORT_PAGE_URL="/report"; 
 	
 }

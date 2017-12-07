@@ -30,11 +30,14 @@ import com.liferay.portal.kernel.transaction.Transactional;
 
 import com.medicus.common.service.model.Interview_Request;
 import com.medicus.common.service.model.Partner;
+import com.medicus.common.service.model.School;
 import com.medicus.common.service.model.Student;
 
 import java.io.File;
 
 import java.util.List;
+
+import javax.portlet.PortletRequest;
 
 /**
  * Provides the local service interface for MedicusCommon. Methods of this
@@ -126,4 +129,7 @@ public interface MedicusCommonLocalService extends BaseLocalService {
 
 	public void sendApproveInterviewRequestMail(
 		Interview_Request interviewRequest);
+
+	public void setUserSchoolIdCampusIdInRequest(PortletRequest request,
+		List<School> schoolListForSchoolAdmin);
 }

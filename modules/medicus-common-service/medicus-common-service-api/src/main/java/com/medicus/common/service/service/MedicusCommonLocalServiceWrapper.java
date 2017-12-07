@@ -165,6 +165,14 @@ public class MedicusCommonLocalServiceWrapper
 	}
 
 	@Override
+	public void setUserSchoolIdCampusIdInRequest(
+		javax.portlet.PortletRequest request,
+		java.util.List<com.medicus.common.service.model.School> schoolListForSchoolAdmin) {
+		_medicusCommonLocalService.setUserSchoolIdCampusIdInRequest(request,
+			schoolListForSchoolAdmin);
+	}
+
+	@Override
 	public MedicusCommonLocalService getWrappedService() {
 		return _medicusCommonLocalService;
 	}

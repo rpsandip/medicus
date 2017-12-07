@@ -1,0 +1,4 @@
+Bundle-Name: medicus-graph-portlet
+Bundle-SymbolicName: com.medicus.graph.portlet
+Bundle-Version: 1.0.0
+Export-Package: com.medicus.graph.portlet.constants

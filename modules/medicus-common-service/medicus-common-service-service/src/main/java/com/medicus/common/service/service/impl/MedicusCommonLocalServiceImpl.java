@@ -22,10 +22,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import javax.portlet.PortletRequest;
 import javax.sound.sampled.Port;
 
 import com.liferay.document.library.kernel.model.DLFileEntry;
@@ -54,6 +56,7 @@ import com.liferay.portal.kernel.service.RoleLocalServiceUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
@@ -63,13 +66,17 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.WebKeys;
 import com.medicus.common.service.bean.PartnerBean;
 import com.medicus.common.service.model.Campus;
 import com.medicus.common.service.model.Interview_Request;
 import com.medicus.common.service.model.Partner;
+import com.medicus.common.service.model.School;
 import com.medicus.common.service.model.Student;
 import com.medicus.common.service.service.CampusLocalServiceUtil;
+import com.medicus.common.service.service.MedicusCommonLocalServiceUtil;
 import com.medicus.common.service.service.PartnerLocalServiceUtil;
+import com.medicus.common.service.service.SchoolLocalServiceUtil;
 import com.medicus.common.service.service.StudentLocalServiceUtil;
 import com.medicus.common.service.service.base.MedicusCommonLocalServiceBaseImpl;
 import com.medicus.common.service.util.MedicusConstant;
@@ -358,6 +365,64 @@ public class MedicusCommonLocalServiceImpl
 			} catch (PortalException |IOException | AddressException e) {
 				_log.error(e.getMessage());
 			}
+		}
+	}
+	
+	public void setUserSchoolIdCampusIdInRequest(PortletRequest request, List<School> schoolListForSchoolAdmin){
+		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(WebKeys.THEME_DISPLAY);
+		long medicusOrgId = MedicusCommonLocalServiceUtil.getMedicusOrganizationId();
+		long medicusOrgGroupId = MedicusCommonLocalServiceUtil.getOrganizationGroupIdFromOrgId(medicusOrgId);
+		
+		// Check users role from CampusAdmin, Campus Super Admin, School Admin, School Super Admin
+		// and set it as default search of users.
+
+		long campusId=0;
+		long schoolId=0;
+		try {
+			Role schoolSupreAdminRole = RoleLocalServiceUtil.getRole(PortalUtil.getDefaultCompanyId(), PropsUtil.get("medicus.school.super.admin.role"));
+			Role schoolAdminRole = RoleLocalServiceUtil.getRole(PortalUtil.getDefaultCompanyId(), PropsUtil.get("medicus.school.admin.role"));
+			Role campusSuperAdminRole = RoleLocalServiceUtil.getRole(PortalUtil.getDefaultCompanyId(), PropsUtil.get("medicus.campus.super.admin.role"));
+			Role campusAdminRole = RoleLocalServiceUtil.getRole(PortalUtil.getDefaultCompanyId(), PropsUtil.get("medicus.campus.admin.role"));
+	
+			boolean hasSchoolAdminRole = UserGroupRoleLocalServiceUtil.hasUserGroupRole(themeDisplay.getUserId(), medicusOrgGroupId, schoolAdminRole.getRoleId());
+			boolean hasSchoolSuperAdminRole = UserGroupRoleLocalServiceUtil.hasUserGroupRole(themeDisplay.getUserId(), medicusOrgGroupId, schoolSupreAdminRole.getRoleId());
+			boolean hasCampusAdminRole = UserGroupRoleLocalServiceUtil.hasUserGroupRole(themeDisplay.getUserId(), medicusOrgGroupId, campusAdminRole.getRoleId());
+			boolean hasCampusSuperAdminRole = UserGroupRoleLocalServiceUtil.hasUserGroupRole(themeDisplay.getUserId(), medicusOrgGroupId, campusSuperAdminRole.getRoleId());
+			
+			if(hasCampusAdminRole){
+				 campusId = MedicusCommonLocalServiceUtil.getCampusOrgIdFromRoleIdAndUserId(themeDisplay.getUserId(), campusAdminRole.getRoleId());
+			}
+			if(hasCampusSuperAdminRole){
+				 campusId = MedicusCommonLocalServiceUtil.getCampusOrgIdFromRoleIdAndUserId(themeDisplay.getUserId(), campusSuperAdminRole.getRoleId());
+			}
+			if(hasSchoolAdminRole){
+				 campusId = MedicusCommonLocalServiceUtil.getCampusOrgIdFromRoleIdAndUserId(themeDisplay.getUserId(), schoolAdminRole.getRoleId());
+			}
+			if(hasSchoolSuperAdminRole){
+				 campusId = MedicusCommonLocalServiceUtil.getCampusOrgIdFromRoleIdAndUserId(themeDisplay.getUserId(), schoolSupreAdminRole.getRoleId());
+			}
+			
+			if(campusId>0){
+				try{
+					Campus campus = CampusLocalServiceUtil.getCampus(campusId);
+					schoolId = campus.getSchoolId();
+				}catch(PortalException e){
+					_log.debug(e.getMessage());
+				}
+			}
+			if(schoolId>0){
+				try{
+					School school = SchoolLocalServiceUtil.getSchool(schoolId);
+					schoolListForSchoolAdmin.add(school);
+				}catch(PortalException e){
+					_log.debug(e.getMessage());
+				}
+			}
+			request.setAttribute("userCampusId", campusId);
+			request.setAttribute("userSchoolId", schoolId);
+			
+		} catch (PortalException e) {
+			_log.error(e);
 		}
 	}
 	
