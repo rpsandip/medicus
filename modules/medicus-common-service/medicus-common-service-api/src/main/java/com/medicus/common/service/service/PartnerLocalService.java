@@ -117,6 +117,15 @@ public interface PartnerLocalService extends BaseLocalService,
 	@Indexable(type = IndexableType.DELETE)
 	public Partner deletePartner(long partnerId) throws PortalException;
 
+	public Partner editPartner(long partnerId, java.lang.String fName,
+		java.lang.String address1, java.lang.String city,
+		java.lang.String zipcode, java.lang.String state,
+		java.lang.String country, java.lang.String contactPersonName,
+		java.lang.String contactPersonEmail,
+		java.lang.String contactPersonPhoneNumber,
+		java.lang.String websiteLink, long modifiedUserId)
+		throws PortalException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Partner fetchPartner(long partnerId);
 

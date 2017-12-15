@@ -92,7 +92,7 @@ public class SearchStudentResourceCommand implements MVCResourceCommand{
 			StudentBean studentBean = new StudentBean(student, true);
 			JSONObject studentJSONObject = JSONFactoryUtil.createJSONObject();
 			String middleName = StringPool.BLANK;
-			if(Validator.isNotNull(student.getLastName())){
+			if(Validator.isNotNull(student.getMiddleName())){
 				middleName = StringUtil.upperCase(student.getMiddleName().substring(0, 1)).concat(".");
 			}
 			studentJSONObject.put("name", student.getFirstName()+StringPool.SPACE+ middleName+ StringPool.SPACE + student.getLastName());

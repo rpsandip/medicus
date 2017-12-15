@@ -5,7 +5,9 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.medicus.common.service.model.Partner;
+import com.medicus.common.service.util.MedicusConstant;
 
 public class PartnerBean {
 	Log _log = LogFactoryUtil.getLog(PartnerBean.class.getName());
@@ -25,6 +27,7 @@ public class PartnerBean {
 	private String contactPersonEmail;
 	private String contactPersonPhoneNumber;
 	private String websiteLink;
+	private User user;
 	
 	public PartnerBean(Partner partner){
 		this.partnerId = partner.getPartnerId();
@@ -43,8 +46,13 @@ public class PartnerBean {
 		if(this.userId>0){
 			try {
 				User user = UserLocalServiceUtil.getUser(userId);
+				this.user= user;
 				this.firstName = user.getFirstName();
-				this.lastName = user.getLastName();
+				if(MedicusConstant.PARTNER_DEFAULT_LAST_NAME.equals(user.getLastName())){
+					this.lastName = StringPool.BLANK;
+				}else{
+					this.lastName = user.getLastName();
+				}
 				this.emailAddress = user.getEmailAddress();
 			} catch (PortalException e) {
 				_log.error(e);
@@ -142,6 +150,16 @@ public class PartnerBean {
 	}
 	public void setWebsiteLink(String websiteLink) {
 		this.websiteLink = websiteLink;
+	}
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	

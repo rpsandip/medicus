@@ -73,7 +73,6 @@
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
 	       					 <aui:input name="middleName" label="middleName"  cssClass="form-control col-md-7 col-xs-12" value="${studentBean.middleName }">
-						     	<aui:validator name="required" />
 						     	<aui:validator name="maxLength">30</aui:validator>
 							 </aui:input>
 					   	  </div>
@@ -91,7 +90,7 @@
 	       					 <aui:input name="emailAddress" label="emailAddress"  cssClass="form-control col-md-7 col-xs-12" value="${studentBean.emailAddress }">
 						     	<aui:validator name="required" />
 						     	<aui:validator name="email" />
-						     	<aui:validator name="maxLength">30</aui:validator>
+						     	<aui:validator name="maxLength">60</aui:validator>
 							 </aui:input>
 					   	  </div>
 					   </div>	  
@@ -149,7 +148,6 @@
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
 	       					 <aui:input name="homePhoneNumber" label="homePhoneNumber"  cssClass="form-control col-md-7 col-xs-12" value="${studentBean.homeNumber }" placeholder="xxx-xxx-xxxx">
-						     	<aui:validator name="required" />
 						     	<aui:validator name="maxLength">14</aui:validator>
 							 </aui:input>
 							 <aui:script>
@@ -622,9 +620,6 @@ jQuery.noConflict();
 					<portlet:namespace/>lastName: {
 						required: true
 					},
-					<portlet:namespace/>middleName: {
-						required: true
-					},
 					<portlet:namespace/>emailAddress: {
 						required: true
 					},
@@ -637,13 +632,7 @@ jQuery.noConflict();
 					<portlet:namespace/>contactNo: {
 						required: true
 					},
-					<portlet:namespace/>homePhoneNumber: {
-						required: true
-					},
 					<portlet:namespace/>primaryLanguage: {
-						required: true
-					},
-					<portlet:namespace/>secondaryLanguage: {
 						required: true
 					},
 					<portlet:namespace/>address: {
@@ -664,9 +653,6 @@ jQuery.noConflict();
 			var step2Validator = new A.FormValidator({
 				boundingBox: document.<portlet:namespace/>addStudentFm,
 				rules: {
-					<portlet:namespace/>pace: {
-						required: true
-					},
 					<portlet:namespace/>gpa: {
 						required: true
 					},

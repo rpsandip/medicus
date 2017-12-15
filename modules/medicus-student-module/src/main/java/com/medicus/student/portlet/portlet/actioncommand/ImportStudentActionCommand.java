@@ -107,6 +107,10 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 	    	 
 	    	 if(nextRow.getRowNum()!=0 && Validator.isNotNull(nextRow.getCell(0).toString()) && schoolId!=0 && campusId !=0){
 	    		 
+	    		 boolean isEmptyRow = checkIfRowIsEmpty(nextRow);;
+
+	    		 if(!isEmptyRow){
+	    		 
 	    		 boolean validRow = validateRow(nextRow);
 	    		 if(validRow){
 	    			 
@@ -156,6 +160,7 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 	    		 }else{
 	    			 unsuccessfullStudentList.add(nextRow.getCell(3).toString()+StringPool.COMMA+nextRow.getCell(4).toString());
 	    		 }
+	    	   }
 	    	 }else{
 	    		 unsuccessfullStudentList.add(nextRow.getCell(3).toString()+StringPool.COMMA+nextRow.getCell(4).toString());
 	    	 }
@@ -219,8 +224,6 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 	private boolean validateRow(Row row){
 		if(Validator.isNull(row.getCell(0).toString().trim())){
 			 return false;
-		 }else if(Validator.isNull(row.getCell(1).toString().trim())){
-			 return false;
 		 }else if(Validator.isNull(row.getCell(2).toString().trim())){
 			 return false;
 		 }else if(Validator.isNull(row.getCell(3).toString().trim())){
@@ -239,17 +242,11 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 			 return false;
 		 }else if(Validator.isNull(row.getCell(10).toString().trim())){
 			 return false;
-		 }else if(Validator.isNull(row.getCell(11).toString().trim())){
-			 return false;
 		 }else if(Validator.isNull(row.getCell(12).toString().trim())){
 			 return false;
 		 }else if(Validator.isNull(row.getCell(13).toString().trim())){
 			 return false;
-		 }else if(Validator.isNull(row.getCell(14).toString().trim())){
-			 return false;
 		 }else if(Validator.isNull(row.getCell(15).toString().trim())){
-			 return false;
-		 }else if(Validator.isNull(row.getCell(16).toString().trim())){
 			 return false;
 		 }else if(Validator.isNull(row.getCell(17).toString().trim())){
 			 return false;
@@ -293,4 +290,20 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 		 }
 		 return campusId;
 	 }
+	 
+	 public boolean checkIfRowIsEmpty(Row row) {
+		    if (row == null) {
+		        return true;
+		    }
+		    if (row.getLastCellNum() <= 0) {
+		        return true;
+		    }
+		    for (int cellNum = row.getFirstCellNum(); cellNum < row.getLastCellNum(); cellNum++) {
+		        Cell cell = row.getCell(cellNum);
+		        if (cell != null && cell.getCellType() != Cell.CELL_TYPE_BLANK && Validator.isNotNull(cell.toString())) {
+		            return false;
+		        }
+		    }
+		    return true;
+		}
 }

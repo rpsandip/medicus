@@ -84,12 +84,21 @@ public class RegistrationLocalServiceImpl extends RegistrationLocalServiceBaseIm
 			serviceContext.setModifiedDate(new Date());
 			long[] organizationIds = new long[]{medicusOrganizationId};
 
-			user = UserLocalServiceUtil.addUser(creatorUserId, PortalUtil.getDefaultCompanyId(), false, password1, password2,
-					 true, null, emailAddress, 0l, StringPool.BLANK, 
-					PortalUtil.getSiteDefaultLocale(groupId), fName,StringPool.BLANK, lastName, 1l, 
-					1l, true, 1, 1, 1970,
-					StringPool.BLANK, null, organizationIds, null, null,
-					true, serviceContext);
+			if(Validator.isNotNull(password1) && Validator.isNotNull(password2)){
+				user = UserLocalServiceUtil.addUser(creatorUserId, PortalUtil.getDefaultCompanyId(), false, password1, password2,
+						 true, null, emailAddress, 0l, StringPool.BLANK, 
+						PortalUtil.getSiteDefaultLocale(groupId), fName,StringPool.BLANK, lastName, 1l, 
+						1l, true, 1, 1, 1970,
+						StringPool.BLANK, null, organizationIds, null, null,
+						true, serviceContext);
+			}else{
+				user = UserLocalServiceUtil.addUser(creatorUserId, PortalUtil.getDefaultCompanyId(), true, StringPool.BLANK, StringPool.BLANK,
+						 true, null, emailAddress, 0l, StringPool.BLANK, 
+						PortalUtil.getSiteDefaultLocale(groupId), fName,StringPool.BLANK, lastName, 1l, 
+						1l, true, 1, 1, 1970,
+						StringPool.BLANK, null, organizationIds, null, null,
+						true, serviceContext);
+			}
 			
 			_log.info("User crearted ->" + user.getUserId());
 			

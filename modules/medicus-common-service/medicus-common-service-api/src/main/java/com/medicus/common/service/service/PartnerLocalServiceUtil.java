@@ -114,6 +114,21 @@ public class PartnerLocalServiceUtil {
 		return getService().deletePartner(partnerId);
 	}
 
+	public static com.medicus.common.service.model.Partner editPartner(
+		long partnerId, java.lang.String fName, java.lang.String address1,
+		java.lang.String city, java.lang.String zipcode,
+		java.lang.String state, java.lang.String country,
+		java.lang.String contactPersonName,
+		java.lang.String contactPersonEmail,
+		java.lang.String contactPersonPhoneNumber,
+		java.lang.String websiteLink, long modifiedUserId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .editPartner(partnerId, fName, address1, city, zipcode,
+			state, country, contactPersonName, contactPersonEmail,
+			contactPersonPhoneNumber, websiteLink, modifiedUserId);
+	}
+
 	public static com.medicus.common.service.model.Partner fetchPartner(
 		long partnerId) {
 		return getService().fetchPartner(partnerId);

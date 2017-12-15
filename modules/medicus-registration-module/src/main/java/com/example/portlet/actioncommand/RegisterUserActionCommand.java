@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.medicus.common.service.service.MedicusCommonLocalServiceUtil;
 import com.medicus.common.service.service.RegistrationLocalServiceUtil;
+import com.medicus.common.service.util.MedicusConstant;
 
 
 @Component(
@@ -43,7 +44,6 @@ public class RegisterUserActionCommand extends BaseMVCActionCommand{
 		
 			ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
 			String firstName = ParamUtil.getString(actionRequest, "firstName");
-			String lastName = ParamUtil.getString(actionRequest, "lastName");
 			String emailAddress= ParamUtil.getString(actionRequest, "emailAddress");
 			String password1 = ParamUtil.getString(actionRequest, "password");
 			String password2= ParamUtil.getString(actionRequest, "password2");
@@ -60,7 +60,7 @@ public class RegisterUserActionCommand extends BaseMVCActionCommand{
 			User user = MedicusCommonLocalServiceUtil.isUserExist(emailAddress);
 			if(Validator.isNull(user)){
 				try {
-					user = RegistrationLocalServiceUtil.registerPartner(firstName,lastName, emailAddress, password1, password2,
+					user = RegistrationLocalServiceUtil.registerPartner(firstName,MedicusConstant.PARTNER_DEFAULT_LAST_NAME, emailAddress, password1, password2,
 							address1, city, zipcode, state, country, contactPersonName, contactPersonEmail,
 							contactPersonPhoneNumber, websiteLink, themeDisplay.getUserId(), themeDisplay.getScopeGroupId());
 					SessionMessages.add(actionRequest, "user-register-success");

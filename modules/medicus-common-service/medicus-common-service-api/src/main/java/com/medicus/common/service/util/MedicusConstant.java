@@ -1,5 +1,7 @@
 package com.medicus.common.service.util;
 
+import com.liferay.portal.kernel.util.StringPool;
+
 public class MedicusConstant {
 	public static final String STUDENT_IDNEX_FIRSTNAME="firstName";
 	public static final String STUDENT_IDNEX_LASTNAME="lastName";
@@ -19,5 +21,7 @@ public class MedicusConstant {
 	public static final String FROM_EMAIL = "no-reply@medicus.com";
 	public static final String STUDENT_PAGE_URL="/student";
 	public static final String REPORT_PAGE_URL="/report"; 
+	public static final String PARTNER_DEFAULT_LAST_NAME=StringPool.TILDE;
+	public static final String MEDICUST_DEFAULT_COUNTRY="US";
 	
 }

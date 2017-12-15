@@ -16,6 +16,13 @@ package com.medicus.common.service.service.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
+import java.util.Date;
+
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.medicus.common.service.exception.NoSuchPartnerException;
 import com.medicus.common.service.model.Partner;
 import com.medicus.common.service.service.PartnerLocalServiceUtil;
@@ -37,7 +44,42 @@ import com.medicus.common.service.service.base.PartnerLocalServiceBaseImpl;
  */
 @ProviderType
 public class PartnerLocalServiceImpl extends PartnerLocalServiceBaseImpl {
+	
+	Log _log = LogFactoryUtil.getLog(PartnerLocalServiceImpl.class.getName());
+	
 	public Partner getPartnerByUserId(long userId) throws NoSuchPartnerException{
 		return partnerPersistence.findByuserId(userId);
+	}	
+	
+	public Partner editPartner(long partnerId, String fName,
+			String address1, String city, String zipcode, String state, String country, String contactPersonName,
+			String contactPersonEmail, String contactPersonPhoneNumber, String websiteLink,long modifiedUserId) throws PortalException{
+		
+			Partner partner = PartnerLocalServiceUtil.getPartner(partnerId);
+			User user = UserLocalServiceUtil.getUser(partner.getUserId());
+			
+			user.setFirstName(fName);
+			
+			// Update user
+			user = UserLocalServiceUtil.updateUser(user);
+			
+			// Update Partner Detail
+			
+			partner.setAddress1(address1);
+			partner.setCountry(country);
+			partner.setCity(city);
+			partner.setState(state);
+			partner.setZipcode(zipcode);
+			partner.setContactPersonEmail(contactPersonName);
+			partner.setContactPersonEmail(contactPersonEmail);
+			partner.setContactPersonPhoneNumber(contactPersonPhoneNumber);
+			partner.setWebsiteLink(websiteLink);
+			
+			partner.setModifiedBy(modifiedUserId);
+			partner.setModifiedDate(new Date());
+			
+			partner = PartnerLocalServiceUtil.updatePartner(partner);
+		
+			return partner;
 	}
 }

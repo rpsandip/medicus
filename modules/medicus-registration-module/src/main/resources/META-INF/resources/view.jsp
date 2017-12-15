@@ -8,7 +8,7 @@
 <liferay-ui:success key="user-register-success" message="user-register-success"/>
 <liferay-ui:error key="medicus-organization-not-exist" message="medicus-organization-not-exist"/>
 
- <button class="btn btn-success" type="button" data-toggle="modal" data-target="#registrationform">Sign Up</button>
+ <button class="btn btn-success" type="button" data-toggle="modal" data-target="#registrationform">Partner Registration</button>
  	<style>
    		.portlet-title-default, .portlet-title-text {
 			display: none;
@@ -27,15 +27,7 @@
             <aui:form name="addPartnerFm" action="${registerPartnerURL}" cssClass="form-horizontal form-label-left">
               <div class="form-group">
                	 <div class="col-md-10 col-sm-6 col-xs-12">
-	               	<aui:input name="firstName" label="firstName" cssClass="form-control col-md-7 col-xs-12">
-				     	<aui:validator name="required" />
-				     	<aui:validator name="maxLength">60</aui:validator>
-					 </aui:input>
-				</div>
-			  </div>
-			  <div class="form-group">
-               	 <div class="col-md-10 col-sm-6 col-xs-12">
-	               	<aui:input name="lastName" label="lastName" cssClass="form-control col-md-7 col-xs-12">
+	               	<aui:input name="firstName" label="Facility" cssClass="form-control col-md-7 col-xs-12">
 				     	<aui:validator name="required" />
 				     	<aui:validator name="maxLength">60</aui:validator>
 					 </aui:input>
@@ -121,7 +113,6 @@
 			  <div class="form-group">
                	 <div class="col-md-10 col-sm-6 col-xs-12">
 	               	<aui:input name="contactPersonName" label="contactPersonName" cssClass="form-control col-md-7 col-xs-12">
-				     	<aui:validator name="required" />
 				     	<aui:validator name="maxLength">60</aui:validator>
 					 </aui:input>
 				</div>
@@ -131,8 +122,8 @@
 			  <div class="form-group">
                	 <div class="col-md-10 col-sm-6 col-xs-12">
 	               	<aui:input name="contactPersonEmail" label="contactPersonEmail" cssClass="form-control col-md-7 col-xs-12">
-				     	<aui:validator name="required" />
 				     	<aui:validator name="maxLength">20</aui:validator>
+					 	<aui:validator name="email"></aui:validator>
 					 </aui:input>
 				</div>
 			  </div>
@@ -141,7 +132,6 @@
 			  <div class="form-group">
                	 <div class="col-md-10 col-sm-6 col-xs-12">
 	               	<aui:input name="contactPersonPhoneNumber" label="contactPersonPhoneNumber" cssClass="form-control col-md-7 col-xs-12" placeholder="xxx-xxx-xxxx">
-				     	<aui:validator name="required" />
 				     	<aui:validator name="maxLength">14</aui:validator>
 					 </aui:input>
 				</div>
@@ -151,7 +141,7 @@
 			  <div class="form-group">
                	 <div class="col-md-10 col-sm-6 col-xs-12">
 	               	<aui:input name="websiteLink" label="websiteLink" cssClass="form-control col-md-7 col-xs-12">
-				     	<aui:validator name="maxLength">30</aui:validator>
+				     	<aui:validator name="maxLength">50</aui:validator>
 					 </aui:input>
 				</div>
 			  </div>

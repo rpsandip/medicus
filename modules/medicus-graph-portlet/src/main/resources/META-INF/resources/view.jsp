@@ -92,6 +92,9 @@
                   </div>
             </form>
           </div>
+          <div >
+          	<h3 class="graph-search-detail"></h3>
+          </div>
           <div class="col-md-12 col-sm-12 col-xs-12">
 					<div class="x_content">
 						<table class="" style="width: 100%">
@@ -103,6 +106,19 @@
 						</table>
 					</div>
 			</div>
+			<div class="col-md-6 col-sm-6 col-xs-12">
+					<div class="x_panel">
+						<div class="x_content">
+							<table class="" style="width: 100%">
+								<tr>
+									<td>
+										<canvas id="stident-pi-chart"></canvas>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
           <div class="col-md-12 col-sm-12 col-xs-12 text-center">
 		  	<table id="students" class="table table-striped" cellspacing="0" width="100%">
             		<tbody></tbody>
@@ -183,17 +199,24 @@ AUI().use('aui-io-request', 'aui-autocomplete','liferay-portlet-url' ,'aui-base'
 		 var searchByColumnValue = '';
 		 var groupByColumnName = A.one("#<portlet:namespace />groupBy").get('value');
 		 
+		 A.one(".graph-search-detail").html('');
+		 var search_info='This graph shows students who ';
+		 
 		 if(searchByColumnName=="gender"){
 			 searchByColumnValue = A.one("#<portlet:namespace/>gender").get('value');
+			 search_info += "has Gender as " + A.one("#<portlet:namespace/>gender").get('value');
 		 }
 		 if(searchByColumnName=="primaryLanguage"){
 			 searchByColumnValue = A.one("#<portlet:namespace/>languages").get('value');
+			 search_info += "speaks Language as " + A.one("#<portlet:namespace/>languages").get('value');
 		 }
 		 if(searchByColumnName=="zipcode"){
 			 searchByColumnValue = A.one("#<portlet:namespace/>zipcode").get('value');
+			 search_info += "has Zipcode as " + A.one("#<portlet:namespace/>zipcode").get('value');
 		 }
 		 if(searchByColumnName=="profession"){
 			 searchByColumnValue = A.one("#<portlet:namespace/>profession").get('value');
+			 search_info += "has Profession as " + A.one("#<portlet:namespace/>profession").get('value');
 		 }
 		
 		resourceURL.setParameter("searchByColumnName",searchByColumnName); 
@@ -201,6 +224,10 @@ AUI().use('aui-io-request', 'aui-autocomplete','liferay-portlet-url' ,'aui-base'
 		resourceURL.setParameter("groupByColumnName",groupByColumnName); 
 		resourceURL.setParameter('userSchoolId','${userSchoolId}');
 		resourceURL.setParameter('userCampusId','${userCampusId}');
+		
+		search_info += " and group by "+ uppercaseFirstLetter(groupByColumnName);
+		
+		A.one(".graph-search-detail").html(search_info);
 		
 		return resourceURL.toString();
 	}
@@ -281,6 +308,7 @@ AUI().use('aui-io-request', 'aui-autocomplete','liferay-portlet-url' ,'aui-base'
 				var graphResponse=this.get('responseData');
 				ss = graphResponse;
 				prepareBarChart(graphResponse,A.one("#<portlet:namespace />groupBy").get('value'));
+				preparePieChart(graphResponse,A.one("#<portlet:namespace />groupBy").get('value'));
 			}
 		  }
 		});  
@@ -326,6 +354,62 @@ AUI().use('aui-io-request', 'aui-autocomplete','liferay-portlet-url' ,'aui-base'
 			  }
 			}
 		  });
+    }
+    
+    function preparePieChart(graphResponse, groupByColumnName){
+    	
+    	var ctx = document.getElementById("stident-pi-chart");
+		  var countArray=[];
+		  var labelArray=[];
+		  
+		  countArray = graphResponse.countList;
+		  labelArray = graphResponse.labelList;
+		  
+		  var data = {
+			datasets: [{
+			  data: countArray,
+			  backgroundColor: [
+				"#455C73",
+				"#9B59B6",
+				"#BDC3C7",
+				"#26B99A",
+				"#3498DB",
+				"#55c3a0",
+				"#c38d55",
+				"#5c55c3",
+				"#ad55c3",
+				"#c35597c4",
+				"#8f55c3",
+				"#5568c3",
+				"#55c3b4",
+				"#adc355",
+				"#c35555",
+				"#455C73",
+				"#9B59B6",
+				"#BDC3C7"
+			  ],
+			  label: '' // for legend
+			}],
+			labels: labelArray
+		  };
+
+		  var pieChart = new Chart(ctx, {
+			data: data,
+			type: 'pie',
+			otpions: {
+			  legend: false
+			}
+		  });
+    	
+    }
+    
+    function uppercaseFirstLetter(string) 
+    {
+    	if(string.length>0){
+        	return string.charAt(0).toUpperCase() + string.slice(1);
+    	}else{
+    		return '';
+    	}
     }
     
     
