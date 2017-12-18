@@ -6,6 +6,9 @@
 <div class="page-title">
   <div class="title_left">
    	<h2><liferay-ui:message key="import.partner"/> </h2>
+   	<c:if test="${fn:length(import_partner_file_url) gt 0}">
+   		<a href="${import_partner_file_url }" class="btn btn-primary btn-xs">Download Sample Partner Import File</a>
+   	</c:if>
   </div>
 </div>
 <div class="row">
@@ -35,9 +38,11 @@
 							<ul>
 								<b>Email Address</b>
 								<c:forEach items="${unsuccessfullPartnerList }" var ="unsuccessfullPartner">
-									<li>
-										${unsuccessfullPartner }
-									</li>
+									<c:if test="${fn:length(unsuccessfullPartner) gt 0}">
+										<li>
+											${unsuccessfullPartner }
+										</li>
+									</c:if>
 								</c:forEach>
 							</ul>
 						</c:if>	

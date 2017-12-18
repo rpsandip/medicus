@@ -98,6 +98,12 @@ public interface MedicusCommonLocalService extends BaseLocalService {
 	public java.lang.String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.lang.String getPartnerImportFileURL();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.lang.String getStudentImportFileURL();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Partner> getPartnerList();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

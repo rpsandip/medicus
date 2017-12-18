@@ -55,6 +55,7 @@ public class StudentSoap implements Serializable {
 		soapModel.setZipcode(model.getZipcode());
 		soapModel.setState(model.getState());
 		soapModel.setPace(model.getPace());
+		soapModel.setRaceDesc(model.getRaceDesc());
 		soapModel.setGpa(model.getGpa());
 		soapModel.setResumeFileEntryId(model.getResumeFileEntryId());
 		soapModel.setProfession(model.getProfession());
@@ -296,6 +297,14 @@ public class StudentSoap implements Serializable {
 		_pace = pace;
 	}
 
+	public String getRaceDesc() {
+		return _raceDesc;
+	}
+
+	public void setRaceDesc(String raceDesc) {
+		_raceDesc = raceDesc;
+	}
+
 	public float getGpa() {
 		return _gpa;
 	}
@@ -434,6 +443,7 @@ public class StudentSoap implements Serializable {
 	private String _zipcode;
 	private String _state;
 	private String _pace;
+	private String _raceDesc;
 	private float _gpa;
 	private long _resumeFileEntryId;
 	private String _profession;

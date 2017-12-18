@@ -629,6 +629,7 @@ public class Student_ExternshipPersistenceImpl extends BasePersistenceImpl<Stude
 		student_ExternshipImpl.setMidPointReviewComment(student_Externship.getMidPointReviewComment());
 		student_ExternshipImpl.setFinalReview(student_Externship.getFinalReview());
 		student_ExternshipImpl.setFinalReviewComment(student_Externship.getFinalReviewComment());
+		student_ExternshipImpl.setShiftDesc(student_Externship.getShiftDesc());
 		student_ExternshipImpl.setCreateDate(student_Externship.getCreateDate());
 		student_ExternshipImpl.setCreatedBy(student_Externship.getCreatedBy());
 		student_ExternshipImpl.setModifiedDate(student_Externship.getModifiedDate());

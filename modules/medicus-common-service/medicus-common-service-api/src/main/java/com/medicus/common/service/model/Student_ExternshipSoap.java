@@ -45,6 +45,7 @@ public class Student_ExternshipSoap implements Serializable {
 		soapModel.setMidPointReviewComment(model.getMidPointReviewComment());
 		soapModel.setFinalReview(model.getFinalReview());
 		soapModel.setFinalReviewComment(model.getFinalReviewComment());
+		soapModel.setShiftDesc(model.getShiftDesc());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setCreatedBy(model.getCreatedBy());
 		soapModel.setModifiedDate(model.getModifiedDate());
@@ -200,6 +201,14 @@ public class Student_ExternshipSoap implements Serializable {
 		_finalReviewComment = finalReviewComment;
 	}
 
+	public String getShiftDesc() {
+		return _shiftDesc;
+	}
+
+	public void setShiftDesc(String shiftDesc) {
+		_shiftDesc = shiftDesc;
+	}
+
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -244,6 +253,7 @@ public class Student_ExternshipSoap implements Serializable {
 	private String _midPointReviewComment;
 	private Date _finalReview;
 	private String _finalReviewComment;
+	private String _shiftDesc;
 	private Date _createDate;
 	private long _createdBy;
 	private Date _modifiedDate;

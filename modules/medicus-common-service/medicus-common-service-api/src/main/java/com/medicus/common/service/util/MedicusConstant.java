@@ -23,5 +23,8 @@ public class MedicusConstant {
 	public static final String REPORT_PAGE_URL="/report"; 
 	public static final String PARTNER_DEFAULT_LAST_NAME=StringPool.TILDE;
 	public static final String MEDICUST_DEFAULT_COUNTRY="US";
+	public static final String MEDICUS_IMPORT_STUDENT_FILE_NAME="STUDENT_IMPORT";
+	public static final String MEDICUS_IMPORT_PARTNER_FILE_NAME="PARTNER_IMPORT";
+	
 	
 }

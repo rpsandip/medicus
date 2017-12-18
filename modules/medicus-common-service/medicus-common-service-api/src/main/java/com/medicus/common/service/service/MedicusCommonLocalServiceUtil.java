@@ -101,6 +101,14 @@ public class MedicusCommonLocalServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
+	public static java.lang.String getPartnerImportFileURL() {
+		return getService().getPartnerImportFileURL();
+	}
+
+	public static java.lang.String getStudentImportFileURL() {
+		return getService().getStudentImportFileURL();
+	}
+
 	public static java.util.List<com.medicus.common.service.model.Partner> getPartnerList() {
 		return getService().getPartnerList();
 	}

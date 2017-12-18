@@ -74,6 +74,7 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 			{ "midPointReviewComment", Types.VARCHAR },
 			{ "finalReview", Types.TIMESTAMP },
 			{ "finalReviewComment", Types.VARCHAR },
+			{ "shiftDesc", Types.VARCHAR },
 			{ "createDate", Types.TIMESTAMP },
 			{ "createdBy", Types.BIGINT },
 			{ "modifiedDate", Types.TIMESTAMP },
@@ -94,13 +95,14 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 		TABLE_COLUMNS_MAP.put("midPointReviewComment", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("finalReview", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("finalReviewComment", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("shiftDesc", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("createdBy", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("modifiedBy", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table Medicus_Student_Externship (studentExternshipId LONG not null primary key,studentId LONG,partnerId LONG,employerId LONG,startDate DATE null,endDate DATE null,noOfHoursPerWeek INTEGER,status INTEGER,midPointReview DATE null,midPointReviewComment VARCHAR(200) null,finalReview DATE null,finalReviewComment VARCHAR(200) null,createDate DATE null,createdBy LONG,modifiedDate DATE null,modifiedBy LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Medicus_Student_Externship (studentExternshipId LONG not null primary key,studentId LONG,partnerId LONG,employerId LONG,startDate DATE null,endDate DATE null,noOfHoursPerWeek INTEGER,status INTEGER,midPointReview DATE null,midPointReviewComment VARCHAR(200) null,finalReview DATE null,finalReviewComment VARCHAR(200) null,shiftDesc VARCHAR(75) null,createDate DATE null,createdBy LONG,modifiedDate DATE null,modifiedBy LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Medicus_Student_Externship";
 	public static final String ORDER_BY_JPQL = " ORDER BY student_Externship.studentExternshipId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Medicus_Student_Externship.studentExternshipId ASC";
@@ -170,6 +172,7 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 		attributes.put("midPointReviewComment", getMidPointReviewComment());
 		attributes.put("finalReview", getFinalReview());
 		attributes.put("finalReviewComment", getFinalReviewComment());
+		attributes.put("shiftDesc", getShiftDesc());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("createdBy", getCreatedBy());
 		attributes.put("modifiedDate", getModifiedDate());
@@ -254,6 +257,12 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 
 		if (finalReviewComment != null) {
 			setFinalReviewComment(finalReviewComment);
+		}
+
+		String shiftDesc = (String)attributes.get("shiftDesc");
+
+		if (shiftDesc != null) {
+			setShiftDesc(shiftDesc);
 		}
 
 		Date createDate = (Date)attributes.get("createDate");
@@ -424,6 +433,21 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 	}
 
 	@Override
+	public String getShiftDesc() {
+		if (_shiftDesc == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _shiftDesc;
+		}
+	}
+
+	@Override
+	public void setShiftDesc(String shiftDesc) {
+		_shiftDesc = shiftDesc;
+	}
+
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -512,6 +536,7 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 		student_ExternshipImpl.setMidPointReviewComment(getMidPointReviewComment());
 		student_ExternshipImpl.setFinalReview(getFinalReview());
 		student_ExternshipImpl.setFinalReviewComment(getFinalReviewComment());
+		student_ExternshipImpl.setShiftDesc(getShiftDesc());
 		student_ExternshipImpl.setCreateDate(getCreateDate());
 		student_ExternshipImpl.setCreatedBy(getCreatedBy());
 		student_ExternshipImpl.setModifiedDate(getModifiedDate());
@@ -656,6 +681,14 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 			student_ExternshipCacheModel.finalReviewComment = null;
 		}
 
+		student_ExternshipCacheModel.shiftDesc = getShiftDesc();
+
+		String shiftDesc = student_ExternshipCacheModel.shiftDesc;
+
+		if ((shiftDesc != null) && (shiftDesc.length() == 0)) {
+			student_ExternshipCacheModel.shiftDesc = null;
+		}
+
 		Date createDate = getCreateDate();
 
 		if (createDate != null) {
@@ -683,7 +716,7 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(33);
+		StringBundler sb = new StringBundler(35);
 
 		sb.append("{studentExternshipId=");
 		sb.append(getStudentExternshipId());
@@ -709,6 +742,8 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 		sb.append(getFinalReview());
 		sb.append(", finalReviewComment=");
 		sb.append(getFinalReviewComment());
+		sb.append(", shiftDesc=");
+		sb.append(getShiftDesc());
 		sb.append(", createDate=");
 		sb.append(getCreateDate());
 		sb.append(", createdBy=");
@@ -724,7 +759,7 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(52);
+		StringBundler sb = new StringBundler(55);
 
 		sb.append("<model><model-name>");
 		sb.append("com.medicus.common.service.model.Student_Externship");
@@ -779,6 +814,10 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 		sb.append(getFinalReviewComment());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>shiftDesc</column-name><column-value><![CDATA[");
+		sb.append(getShiftDesc());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
 		sb.append(getCreateDate());
 		sb.append("]]></column-value></column>");
@@ -818,6 +857,7 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 	private String _midPointReviewComment;
 	private Date _finalReview;
 	private String _finalReviewComment;
+	private String _shiftDesc;
 	private Date _createDate;
 	private long _createdBy;
 	private Date _modifiedDate;

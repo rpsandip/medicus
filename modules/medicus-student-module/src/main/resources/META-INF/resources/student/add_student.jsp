@@ -241,7 +241,7 @@
 	       					 <aui:input name="zipcode" label="zipcode"  cssClass="form-control col-md-7 col-xs-12" value="${studentBean.zipcode }">
 						     	<aui:validator name="required" />
 						     	<aui:validator name="number" />
-						     	<aui:validator name="maxLength">6</aui:validator>
+						     	<aui:validator name="maxLength">10</aui:validator>
 							 </aui:input>
 					   	  </div>
 					   </div>
@@ -252,6 +252,13 @@
 	               						<aui:option value="${state }" selected="${studentBean.state eq state? true:false }">${state }</aui:option>
 	               					</c:forEach>
 	               				</aui:select>
+							</div>
+			  			</div>
+			  			<div class="form-group">
+               		   	 	<div class="col-md-10 col-sm-6 col-xs-12">
+	               				<aui:input name="raceDesc" label="raceDesc"  cssClass="form-control col-md-7 col-xs-12" value="${studentBean.raceDesc }">
+						     		<aui:validator name="maxLength">75</aui:validator>
+							 	</aui:input>
 							</div>
 			  			</div>
 	               </div>
@@ -405,14 +412,12 @@
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
 	       					 <aui:input name="partnerZipCode" label="partner.zipcode"  cssClass="form-control col-md-7 col-xs-12" readonly="true" value="${studentExternShipBean.partnerBean.zipcode }">
-						     	<aui:validator name="maxLength">6</aui:validator>
 							 </aui:input>
 					   	  </div>
 					   </div>
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
 	       					 <aui:input name="partnerWebSiteLink" label="partner.websitelink"  cssClass="form-control col-md-7 col-xs-12" readonly="true" value="${studentExternShipBean.partnerBean.websiteLink }">
-						     	<aui:validator name="maxLength">50</aui:validator>
 							 </aui:input>
 					   	  </div>
 					   </div>
@@ -470,6 +475,13 @@
                              </span>
 					   	  </div>
 					   </div>
+					   <div class="form-group">
+               		   	 	<div class="col-md-10 col-sm-6 col-xs-12">
+	               				<aui:input name="shiftDesc" label="shiftDesc"  cssClass="form-control col-md-7 col-xs-12" value="${studentExternShipBean.shiftDesc }">
+						     		<aui:validator name="maxLength">75</aui:validator>
+							 	</aui:input>
+							</div>
+			  			</div>
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
 	       					 <aui:input name="finalPointReviewComment" type="textarea" label="final.point.review.comment"  cssClass="form-control col-md-7 col-xs-12" value="${ studentExternShipBean.finalReviewComment}">

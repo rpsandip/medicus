@@ -87,6 +87,7 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 			{ "zipcode", Types.VARCHAR },
 			{ "state_", Types.VARCHAR },
 			{ "pace", Types.VARCHAR },
+			{ "raceDesc", Types.VARCHAR },
 			{ "gpa", Types.FLOAT },
 			{ "resumeFileEntryId", Types.BIGINT },
 			{ "profession", Types.VARCHAR },
@@ -126,6 +127,7 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 		TABLE_COLUMNS_MAP.put("zipcode", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("state_", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("pace", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("raceDesc", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("gpa", Types.FLOAT);
 		TABLE_COLUMNS_MAP.put("resumeFileEntryId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("profession", Types.VARCHAR);
@@ -141,7 +143,7 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 		TABLE_COLUMNS_MAP.put("modifiedBy", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table Medicus_Student (uuid_ VARCHAR(75) null,studentId LONG not null primary key,companyId LONG,stundetCampusId VARCHAR(75) null,campusId LONG,schoolId LONG,firstName VARCHAR(30) null,middleName VARCHAR(20) null,lastName VARCHAR(30) null,profileImageId LONG,dateOfBirth DATE null,gender VARCHAR(10) null,contactNumber VARCHAR(15) null,homePhoneNumber VARCHAR(15) null,emailAddress VARCHAR(30) null,primaryLanguage VARCHAR(500) null,secondaryLanguage VARCHAR(500) null,address VARCHAR(200) null,city VARCHAR(30) null,zipcode VARCHAR(10) null,state_ VARCHAR(15) null,pace VARCHAR(15) null,gpa DOUBLE,resumeFileEntryId LONG,profession VARCHAR(100) null,practices VARCHAR(100) null,hired BOOLEAN,graduationDate DATE null,activelySeekingEmployment BOOLEAN,haveExternship BOOLEAN,status INTEGER,createDate DATE null,createdBy LONG,modifiedDate DATE null,modifiedBy LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Medicus_Student (uuid_ VARCHAR(75) null,studentId LONG not null primary key,companyId LONG,stundetCampusId VARCHAR(75) null,campusId LONG,schoolId LONG,firstName VARCHAR(30) null,middleName VARCHAR(20) null,lastName VARCHAR(30) null,profileImageId LONG,dateOfBirth DATE null,gender VARCHAR(10) null,contactNumber VARCHAR(15) null,homePhoneNumber VARCHAR(15) null,emailAddress VARCHAR(30) null,primaryLanguage VARCHAR(500) null,secondaryLanguage VARCHAR(500) null,address VARCHAR(200) null,city VARCHAR(30) null,zipcode VARCHAR(10) null,state_ VARCHAR(15) null,pace VARCHAR(15) null,raceDesc VARCHAR(75) null,gpa DOUBLE,resumeFileEntryId LONG,profession VARCHAR(100) null,practices VARCHAR(100) null,hired BOOLEAN,graduationDate DATE null,activelySeekingEmployment BOOLEAN,haveExternship BOOLEAN,status INTEGER,createDate DATE null,createdBy LONG,modifiedDate DATE null,modifiedBy LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Medicus_Student";
 	public static final String ORDER_BY_JPQL = " ORDER BY student.studentId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Medicus_Student.studentId ASC";
@@ -223,6 +225,7 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 		attributes.put("zipcode", getZipcode());
 		attributes.put("state", getState());
 		attributes.put("pace", getPace());
+		attributes.put("raceDesc", getRaceDesc());
 		attributes.put("gpa", getGpa());
 		attributes.put("resumeFileEntryId", getResumeFileEntryId());
 		attributes.put("profession", getProfession());
@@ -376,6 +379,12 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 
 		if (pace != null) {
 			setPace(pace);
+		}
+
+		String raceDesc = (String)attributes.get("raceDesc");
+
+		if (raceDesc != null) {
+			setRaceDesc(raceDesc);
 		}
 
 		Float gpa = (Float)attributes.get("gpa");
@@ -789,6 +798,21 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 	}
 
 	@Override
+	public String getRaceDesc() {
+		if (_raceDesc == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _raceDesc;
+		}
+	}
+
+	@Override
+	public void setRaceDesc(String raceDesc) {
+		_raceDesc = raceDesc;
+	}
+
+	@Override
 	public float getGpa() {
 		return _gpa;
 	}
@@ -1008,6 +1032,7 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 		studentImpl.setZipcode(getZipcode());
 		studentImpl.setState(getState());
 		studentImpl.setPace(getPace());
+		studentImpl.setRaceDesc(getRaceDesc());
 		studentImpl.setGpa(getGpa());
 		studentImpl.setResumeFileEntryId(getResumeFileEntryId());
 		studentImpl.setProfession(getProfession());
@@ -1247,6 +1272,14 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 			studentCacheModel.pace = null;
 		}
 
+		studentCacheModel.raceDesc = getRaceDesc();
+
+		String raceDesc = studentCacheModel.raceDesc;
+
+		if ((raceDesc != null) && (raceDesc.length() == 0)) {
+			studentCacheModel.raceDesc = null;
+		}
+
 		studentCacheModel.gpa = getGpa();
 
 		studentCacheModel.resumeFileEntryId = getResumeFileEntryId();
@@ -1311,7 +1344,7 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(71);
+		StringBundler sb = new StringBundler(73);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -1357,6 +1390,8 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 		sb.append(getState());
 		sb.append(", pace=");
 		sb.append(getPace());
+		sb.append(", raceDesc=");
+		sb.append(getRaceDesc());
 		sb.append(", gpa=");
 		sb.append(getGpa());
 		sb.append(", resumeFileEntryId=");
@@ -1390,7 +1425,7 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(109);
+		StringBundler sb = new StringBundler(112);
 
 		sb.append("<model><model-name>");
 		sb.append("com.medicus.common.service.model.Student");
@@ -1485,6 +1520,10 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 		sb.append(getPace());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>raceDesc</column-name><column-value><![CDATA[");
+		sb.append(getRaceDesc());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>gpa</column-name><column-value><![CDATA[");
 		sb.append(getGpa());
 		sb.append("]]></column-value></column>");
@@ -1572,6 +1611,7 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 	private String _zipcode;
 	private String _state;
 	private String _pace;
+	private String _raceDesc;
 	private float _gpa;
 	private long _resumeFileEntryId;
 	private String _profession;

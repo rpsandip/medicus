@@ -95,7 +95,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 			Date dob, String gender, String contactNumber, String homePhoneNumber,String primaryLang, String secondaryLangs, String address, String city, String zipcode, String state, String pace,
 			float gpa, String profession, String practices, boolean hired, Date graduationDate, boolean activelySeekingEmployment, boolean haveExternship,
 			long employerId, long partnerId, int externshipStatus, String partnerZipCode, String partnerWebSiteLink,Date externshipStartDate, Date externshipEndDate, int noOfHoursPerWeek,
-			Date midPointReviewDate,String midPointReviewComment,Date finalReviewDate, String finalPointReviewComment,
+			Date midPointReviewDate,String midPointReviewComment,Date finalReviewDate, String finalPointReviewComment, String raceDesc, String shiftDesc,
 			File profileImage, String profileImageFileName,File resume, String resumeFileName, Map<String, File> agreementFileMap, Map<String, File> othersFileMap, Map<String, File> timeSheetsFileMap,long createdBy ){
 		
 		// Check Student is Exist with studentCampusId
@@ -130,6 +130,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 		student.setGraduationDate(graduationDate);
 		student.setActivelySeekingEmployment(activelySeekingEmployment);
 		student.setHaveExternship(haveExternship);
+		student.setRaceDesc(raceDesc);
 		student.setCompanyId(PortalUtil.getDefaultCompanyId());
 		student.setCreatedBy(createdBy);
 		student.setModifiedBy(createdBy);
@@ -141,7 +142,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 		if(haveExternship){
 			// Add Externship Detail
 			Student_ExternshipLocalServiceUtil.addStudentExternship(student.getStudentId(), partnerId, employerId, externshipStatus,externshipStartDate, externshipEndDate,
-				noOfHoursPerWeek, midPointReviewDate, midPointReviewComment, finalReviewDate, finalPointReviewComment, createdBy);
+				noOfHoursPerWeek, midPointReviewDate, midPointReviewComment, finalReviewDate, finalPointReviewComment, shiftDesc,createdBy);
 		}
 		// Get Global groupId and Student Id folder
 		long medicusOrgGrouId = MedicusCommonLocalServiceUtil.getMedicusGroupId();
@@ -236,7 +237,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 			Date dob, String gender, String contactNumber, String homePhoneNumber,String primaryLang, String secondaryLangs, String address, String city, String zipcode, String state, String pace,
 			float gpa, String profession, String practices, boolean hired, Date graduationDate, boolean activelySeekingEmployment, boolean haveExternship,
 			long employerId,long partnerId, int externshipStatus,String partnerZipCode, String partnerWebSiteLink,Date externshipStartDate, Date externshipEndDate, int noOfHoursPerWeek,
-			Date midPointReviewDate,String midPointReviewComment,Date finalReviewDate, String finalPointReviewComment,
+			Date midPointReviewDate,String midPointReviewComment,Date finalReviewDate, String finalPointReviewComment,String raceDesc, String shiftDesc,
 			File profileImage, String profileImageFileName,File resume, String resumeFileName,Map<String, File> agreementFileMap, Map<String, File> othersFileMap,  Map<String,File> timeSheetsFileMap,boolean isApprovedInterviewRequest,long modifiedBy) throws PortalException{
 		
 			Student student = null;
@@ -269,7 +270,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 			student.setGraduationDate(graduationDate);
 			student.setActivelySeekingEmployment(activelySeekingEmployment);
 			student.setHaveExternship(haveExternship);
-			
+			student.setRaceDesc(raceDesc);
 			student.setModifiedBy(modifiedBy);
 			student.setModifiedDate(new Date());
 			
@@ -286,7 +287,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 			if(haveExternship && Validator.isNotNull(studentExternship)){
 				// Update Existing Student Externship
 				studentExternship = Student_ExternshipLocalServiceUtil.updateStudentExternship(studentExternship,student.getStudentId(), partnerId, employerId, externshipStatus,externshipStartDate, externshipEndDate,
-					noOfHoursPerWeek, midPointReviewDate, midPointReviewComment, finalReviewDate, finalPointReviewComment, modifiedBy);
+					noOfHoursPerWeek, midPointReviewDate, midPointReviewComment, finalReviewDate, finalPointReviewComment, shiftDesc,modifiedBy);
 			
 			}else if(!haveExternship && Validator.isNotNull(studentExternship)) {
 				// Delete Expternship
@@ -322,7 +323,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 			}else if(haveExternship && Validator.isNull(studentExternship)){
 				// Add new Externship Detail
 				Student_ExternshipLocalServiceUtil.addStudentExternship(student.getStudentId(), partnerId, employerId,  externshipStatus,externshipStartDate, externshipEndDate,
-					noOfHoursPerWeek, midPointReviewDate, midPointReviewComment, finalReviewDate, finalPointReviewComment, modifiedBy);
+					noOfHoursPerWeek, midPointReviewDate, midPointReviewComment, finalReviewDate, finalPointReviewComment, shiftDesc,modifiedBy);
 			}
 			
 			
@@ -449,7 +450,9 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 	 */
 	public Student importStudent(String firstName, String middleName, String lastName, String emailAddress, Date dob,
 			String studentCampusId, String address, String city, String zipcode, String state,String mobilePhone,
-			String homePhone, String gender, String primaryLangs, String secondaryLangs, float gpa, String pace, long schoolId, long campusId, String profession,long createdBy){
+			String homePhone, String gender, String primaryLangs, String secondaryLangs, float gpa, String pace,String raceDesc,
+			String shiftDesc, Date externshipStartDate,Date graduationDate,
+			long schoolId, long campusId, String profession,long createdBy){
 		
 		// Add student record
 		Student student = StudentLocalServiceUtil.createStudent(counterLocalService.increment());
@@ -469,11 +472,15 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 		student.setPrimaryLanguage(primaryLangs);
 		student.setSecondaryLanguage(secondaryLangs);
 		student.setGpa(gpa);
+		student.setProfession(profession);
 		student.setStatus(0);
 		student.setPace(pace);
+		student.setGraduationDate(graduationDate);
+		student.setRaceDesc(raceDesc);
 		student.setSchoolId(schoolId);
 		student.setCampusId(campusId);
 		student.setProfession(profession);
+		student.setHaveExternship(true);
 		
 		student.setCreatedBy(createdBy);
 		student.setModifiedBy(createdBy);
@@ -481,6 +488,12 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 		student.setModifiedDate(new Date());
 		
 		student = StudentLocalServiceUtil.addStudent(student);
+		
+		if(Validator.isNotNull(student)){
+			Student_Externship studentExternship = Student_ExternshipLocalServiceUtil.addStudentExternship(student.getStudentId(),
+					0l, 0l, 0, externshipStartDate, null, 0,
+					null, StringPool.BLANK, null, StringPool.BLANK, shiftDesc, createdBy);
+		}
 		
 		// Index Student detail
 		Indexer<Student> studentIndexer = IndexerRegistryUtil.getIndexer(Student.class);

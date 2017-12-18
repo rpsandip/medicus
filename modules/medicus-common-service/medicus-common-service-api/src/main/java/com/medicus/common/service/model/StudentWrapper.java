@@ -81,6 +81,7 @@ public class StudentWrapper implements Student, ModelWrapper<Student> {
 		attributes.put("zipcode", getZipcode());
 		attributes.put("state", getState());
 		attributes.put("pace", getPace());
+		attributes.put("raceDesc", getRaceDesc());
 		attributes.put("gpa", getGpa());
 		attributes.put("resumeFileEntryId", getResumeFileEntryId());
 		attributes.put("profession", getProfession());
@@ -231,6 +232,12 @@ public class StudentWrapper implements Student, ModelWrapper<Student> {
 
 		if (pace != null) {
 			setPace(pace);
+		}
+
+		String raceDesc = (String)attributes.get("raceDesc");
+
+		if (raceDesc != null) {
+			setRaceDesc(raceDesc);
 		}
 
 		Float gpa = (Float)attributes.get("gpa");
@@ -576,6 +583,16 @@ public class StudentWrapper implements Student, ModelWrapper<Student> {
 	@Override
 	public java.lang.String getProfession() {
 		return _student.getProfession();
+	}
+
+	/**
+	* Returns the race desc of this student.
+	*
+	* @return the race desc of this student
+	*/
+	@Override
+	public java.lang.String getRaceDesc() {
+		return _student.getRaceDesc();
 	}
 
 	/**
@@ -1072,6 +1089,16 @@ public class StudentWrapper implements Student, ModelWrapper<Student> {
 	@Override
 	public void setProfileImageId(long profileImageId) {
 		_student.setProfileImageId(profileImageId);
+	}
+
+	/**
+	* Sets the race desc of this student.
+	*
+	* @param raceDesc the race desc of this student
+	*/
+	@Override
+	public void setRaceDesc(java.lang.String raceDesc) {
+		_student.setRaceDesc(raceDesc);
 	}
 
 	/**

@@ -20,6 +20,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.osgi.service.component.annotations.Component;
 
+import com.liferay.portal.kernel.cache.MultiVMPoolUtil;
+import com.liferay.portal.kernel.cache.PortalCache;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
@@ -105,6 +107,21 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 				_log.error(e.getMessage());
 			 }
 	    	 
+	    	 Date graduationDate = null;
+	    	 try{
+	    		 graduationDate = nextRow.getCell(22).getDateCellValue();
+	    	 }catch(Exception e){
+	    		 _log.error(e.getMessage());
+	    	 }
+	    	 
+	    	 Date externshipStartDate = null;
+	    	 try{
+	    		 externshipStartDate = nextRow.getCell(23).getDateCellValue();
+	    	 }catch(Exception e){
+	    		 _log.error(e.getMessage());
+	    	 }
+	    	 
+	    	 
 	    	 if(nextRow.getRowNum()!=0 && Validator.isNotNull(nextRow.getCell(0).toString()) && schoolId!=0 && campusId !=0){
 	    		 
 	    		 boolean isEmptyRow = checkIfRowIsEmpty(nextRow);;
@@ -125,6 +142,9 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 	    			 Cell homeCell = nextRow.getCell(11);
 	    			 homeCell.setCellType(Cell.CELL_TYPE_STRING);
 	    			 
+	    			 Cell studentIdCell = nextRow.getCell(3);
+	    			 studentIdCell.setCellType(Cell.CELL_TYPE_STRING);
+	    			 
 	    			 if(Validator.isNull(student)){
 		    		 student = StudentLocalServiceUtil.importStudent(
 		    				 nextRow.getCell(0).toString() /*First Name*/, 
@@ -132,7 +152,7 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 		    				 nextRow.getCell(2).toString() /*Last Name*/, 
 		    				 nextRow.getCell(4).toString() /*Email Address*/,
 		    				 dob/*DOB*/,
-		    				 nextRow.getCell(3).toString() /*Student Id*/,
+		    				 nextRow.getCell(3).getStringCellValue() /*Student Id*/,
 		    				 nextRow.getCell(6).toString() /*Address*/, 
 		    				 nextRow.getCell(7).toString() /*City*/, 
 		    				 zipCodeCell.toString() /*Zipcode*/,
@@ -144,6 +164,10 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 		    				 nextRow.getCell(14).toString() /*Secondary Languages*/, 
 		    				 Float.parseFloat(nextRow.getCell(15).toString()) /*GPA*/,
 		    				 nextRow.getCell(16).toString() /* Pace*/,
+		    				 nextRow.getCell(20).toString(),/*shift*/
+		    				 nextRow.getCell(21).toString(),/*Race*/
+		    				 externshipStartDate,
+		    				 graduationDate,
 		    				 schoolId,
 		    				 campusId,
 		    				 nextRow.getCell(19).toString() /*Profession*/, 
@@ -171,7 +195,8 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 	     response.setRenderParameter("UnsuccessImportedStudentCount", String.valueOf(totalStudentCount-successImportedStudentCount));
 	     response.setRenderParameter("isImported",String.valueOf(true));
 	     SessionMessages.add(request, "student-import-success");
-	     request.setAttribute("unsuccessfullStudentList", unsuccessfullStudentList);
+	     PortalCache portalCache =   MultiVMPoolUtil.getCache(Student.class.getName());
+    	 portalCache.put("unsuccessfullStudentList", unsuccessfullStudentList);
 	     response.setRenderParameter("mvcRenderCommandName", "/import_student");
 	}
 	
@@ -215,6 +240,14 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 		 }else if(!firstRow.getCell(18).toString().trim().equalsIgnoreCase("Campus")){
 			 return false;
 		 }else if(!firstRow.getCell(19).toString().trim().equalsIgnoreCase("Profession")){
+			 return false;
+		 }else if(!firstRow.getCell(20).toString().trim().equalsIgnoreCase("Shift")){
+			 return false;
+		 }else if(!firstRow.getCell(21).toString().trim().equalsIgnoreCase("Race")){
+			 return false;
+		 }else if(!firstRow.getCell(22).toString().trim().equalsIgnoreCase("Graduation Date")){
+			 return false;
+		 }else if(!firstRow.getCell(23).toString().trim().equalsIgnoreCase("Externship Start Date")){
 			 return false;
 		 }else{
 			 return true;

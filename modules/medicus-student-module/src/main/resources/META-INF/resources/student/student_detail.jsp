@@ -2,6 +2,7 @@
 <div class="page-title">
   <div class="title_left">
 	<h2>Student Details</h2>
+	<a class="btn btn-primary btn-xs" href="/group/medicus/student">  &lt&ltBack </a>
   </div>
 </div>
 <div class="clearfix"></div>
@@ -27,6 +28,16 @@
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">First Name:</label> ${studentBean.firstName }
+						</div>
+						<div class="form-group">
+							<c:choose>
+							<c:when test="${not empty studentBean.middleName}">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name:</label>${studentBean.middleName}								
+							</c:when>
+							<c:otherwise>
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name:</label> -
+							</c:otherwise>	
+							</c:choose>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name:</label> ${studentBean.lastName }
@@ -83,7 +94,14 @@
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">Primary Language:</label>${studentBean.primaryLanguages}
 						</div>
 						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">Secondary Language:</label>${studentBean.secondaryLanguage}
+							<c:choose>
+							<c:when test="${not empty studentBean.secondaryLanguage}">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Secondary Language:</label>${studentBean.secondaryLanguage}								
+							</c:when>
+							<c:otherwise>
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Secondary Language:</label> -
+							</c:otherwise>	
+							</c:choose>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">Address:</label>${studentBean.address}
@@ -100,7 +118,14 @@
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="academin_info_content" aria-labelledby="academic-info-tab">
 						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">Pace Of Student:</label>${studentBean.pace}
+							<c:choose>
+							<c:when test="${not empty studentBean.pace}">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Pace Of Student:</label>${studentBean.pace}								
+							</c:when>
+							<c:otherwise>
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Pace Of Student:</label> -
+							</c:otherwise>	
+							</c:choose>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">School:</label>${studentBean.schoolName}

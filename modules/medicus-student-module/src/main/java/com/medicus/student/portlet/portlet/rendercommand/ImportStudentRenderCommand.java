@@ -8,10 +8,15 @@ import javax.portlet.RenderResponse;
 
 import org.osgi.service.component.annotations.Component;
 
+import com.liferay.portal.kernel.cache.MultiVMPoolUtil;
+import com.liferay.portal.kernel.cache.PortalCache;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.medicus.common.service.model.Partner;
+import com.medicus.common.service.model.Student;
+import com.medicus.common.service.service.MedicusCommonLocalServiceUtil;
 import com.medicus.student.portlet.portlet.StudentPortletConstant;
 
 @Component(
@@ -33,9 +38,13 @@ public class ImportStudentRenderCommand implements MVCRenderCommand{
 			renderRequest.setAttribute("UnsuccessImportedStudentCount", ParamUtil.getString(renderRequest, "UnsuccessImportedStudentCount"));
 			renderRequest.setAttribute("isImported", isImported);
 			
-			List<String> unsuccessfullStudentList = (List<String>)renderRequest.getAttribute("unsuccessfullStudentList");
+			PortalCache portalCache =   MultiVMPoolUtil.getCache(Student.class.getName());
+			List<String> unsuccessfullStudentList = (List<String>)portalCache.get("unsuccessfullStudentList");
+			portalCache.remove("unsuccessfullStudentList");
 			renderRequest.setAttribute("unsuccessfullStudentList", unsuccessfullStudentList);
+			
 		}
+		renderRequest.setAttribute("import_studnet_file_url", MedicusCommonLocalServiceUtil.getStudentImportFileURL());
 		return "/student/import_student.jsp";
 	}
 }

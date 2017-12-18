@@ -29,7 +29,7 @@ public class DeleteStudentActionCommand extends BaseMVCActionCommand{
 	@Override
 	protected void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) throws Exception {
 		
-		long studentId = ParamUtil.getLong(actionRequest, "studentId");
+		long studentId = ParamUtil.getLong(actionRequest, "deletestudentId");
 		boolean isDeleted = StudentLocalServiceUtil.deleteStudentDetail(studentId);
 		if(isDeleted){
 			SessionMessages.add(actionRequest, "student-delete-success");

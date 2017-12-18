@@ -73,12 +73,12 @@ public class Student_ExternshipLocalServiceUtil {
 		java.util.Date startDate, java.util.Date endDate, int noOfHoursPerWeek,
 		java.util.Date midPointReview, java.lang.String midPointReviewComment,
 		java.util.Date finalReview, java.lang.String finalReviewComment,
-		long createdBy) {
+		java.lang.String shiftDesc, long createdBy) {
 		return getService()
 				   .addStudentExternship(studentId, partnerId, employerId,
 			externshipStatus, startDate, endDate, noOfHoursPerWeek,
 			midPointReview, midPointReviewComment, finalReview,
-			finalReviewComment, createdBy);
+			finalReviewComment, shiftDesc, createdBy);
 	}
 
 	/**
@@ -157,12 +157,12 @@ public class Student_ExternshipLocalServiceUtil {
 		java.util.Date startDate, java.util.Date endDate, int noOfHoursPerWeek,
 		java.util.Date midPointReview, java.lang.String midPointReviewComment,
 		java.util.Date finalReview, java.lang.String finalReviewComment,
-		long modifiedBy) {
+		java.lang.String shiftDesc, long modifiedBy) {
 		return getService()
 				   .updateStudentExternship(studentExternship, studentId,
 			partnerId, employerId, externshipStatus, startDate, endDate,
 			noOfHoursPerWeek, midPointReview, midPointReviewComment,
-			finalReview, finalReviewComment, modifiedBy);
+			finalReview, finalReviewComment, shiftDesc, modifiedBy);
 	}
 
 	/**

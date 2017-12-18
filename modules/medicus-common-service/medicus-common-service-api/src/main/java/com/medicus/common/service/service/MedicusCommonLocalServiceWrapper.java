@@ -107,6 +107,16 @@ public class MedicusCommonLocalServiceWrapper
 	}
 
 	@Override
+	public java.lang.String getPartnerImportFileURL() {
+		return _medicusCommonLocalService.getPartnerImportFileURL();
+	}
+
+	@Override
+	public java.lang.String getStudentImportFileURL() {
+		return _medicusCommonLocalService.getStudentImportFileURL();
+	}
+
+	@Override
 	public java.util.List<com.medicus.common.service.model.Partner> getPartnerList() {
 		return _medicusCommonLocalService.getPartnerList();
 	}

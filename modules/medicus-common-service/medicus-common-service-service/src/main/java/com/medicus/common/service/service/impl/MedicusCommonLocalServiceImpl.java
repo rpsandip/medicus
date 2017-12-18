@@ -31,6 +31,7 @@ import javax.portlet.PortletRequest;
 import javax.sound.sampled.Port;
 
 import com.liferay.document.library.kernel.model.DLFileEntry;
+import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.service.DLAppServiceUtil;
 import com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil;
 import com.liferay.mail.kernel.model.MailMessage;
@@ -426,5 +427,31 @@ public class MedicusCommonLocalServiceImpl
 		}
 	}
 	
+	public String getPartnerImportFileURL(){
+			long medicusOrgId = MedicusCommonLocalServiceUtil.getMedicusOrganizationId();
+			long medicusGroupId = MedicusCommonLocalServiceUtil.getOrganizationGroupIdFromOrgId(medicusOrgId);
+		
+			try {
+				DLFileEntry fileEntry = DLFileEntryLocalServiceUtil.getFileEntry(medicusGroupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, MedicusConstant.MEDICUS_IMPORT_PARTNER_FILE_NAME);
+				return MedicusCommonLocalServiceUtil.getDLFileURL(fileEntry);
+			} catch (PortalException e) {
+				_log.error(e);
+			}
+			
+			return StringPool.BLANK;
+	}
 	
+	public String getStudentImportFileURL(){
+		long medicusOrgId = MedicusCommonLocalServiceUtil.getMedicusOrganizationId();
+		long medicusGroupId = MedicusCommonLocalServiceUtil.getOrganizationGroupIdFromOrgId(medicusOrgId);
+	
+		try {
+			DLFileEntry fileEntry = DLFileEntryLocalServiceUtil.getFileEntry(medicusGroupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, MedicusConstant.MEDICUS_IMPORT_STUDENT_FILE_NAME);
+			return MedicusCommonLocalServiceUtil.getDLFileURL(fileEntry);
+		} catch (PortalException e) {
+			_log.error(e);
+		}
+		
+		return StringPool.BLANK;
+}
 }

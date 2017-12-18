@@ -7,6 +7,9 @@
         <portlet:param name="mvcRenderCommandName" value="/import_student" />
 </portlet:renderURL>
 
+<portlet:actionURL var="deleteStudentURL" name="/delete_student">
+</portlet:actionURL>
+
 <portlet:resourceURL id="/getSchoolDetail" var="getSchoolDetailURL"></portlet:resourceURL>
 
 <portlet:resourceURL id="/search_studetns" var="searchStudentURL"></portlet:resourceURL>
@@ -155,6 +158,37 @@
   </div>
 </div>
 
+<div id="delete-student-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Delete Student</h4>
+        <div class="msg">
+        	
+        </div>
+      </div>
+      <div class="modal-body">
+       	<div class="form-group">
+       	   <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+       	   		Are you sure you want to delete student?
+       	   </div>
+              <aui:form name="deletePartner" action="${deleteStudentURL}" cssClass="form-horizontal form-label-left">
+	       	   <div class="col-md-8 col-sm-6 col-xs-12 col-md-offset-3 approve-request-box">
+	       	   		<aui:input type="hidden" name="deletestudentId"/>
+	       	   </div>
+	           <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+	           		<aui:button type="submit" value="Yes"  cssClass="btn btn-success"/>
+	                <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+	           </div>
+           </aui:form>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
  var studentFn={};
 </script>
@@ -295,6 +329,14 @@ AUI().use('aui-io-request', 'aui-autocomplete','liferay-portlet-url' ,'aui-base'
                   var studentId = $(e.relatedTarget).data('studentid');
                   //populate the textbox
                   $(e.currentTarget).find('#<portlet:namespace />studentId').val(studentId);
+              });
+    		  
+    		  
+    		  $('#delete-student-modal').on('show.bs.modal', function(e) {
+                  //get data-id attribute of the clicked element
+                  var studentId = $(e.relatedTarget).data('studentid');
+                  //populate the textbox
+                  $(e.currentTarget).find('#<portlet:namespace />deletestudentId').val(studentId);
               });
     		  
     		  A.one(".sent-interview-request").on('click', function(){

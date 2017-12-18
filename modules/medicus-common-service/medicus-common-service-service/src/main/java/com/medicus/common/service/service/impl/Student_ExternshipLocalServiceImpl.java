@@ -50,7 +50,7 @@ public class Student_ExternshipLocalServiceImpl
 	 * Add Student Externship detail
 	 */
 	public Student_Externship addStudentExternship(long studentId, long partnerId, long employerId, int externshipStatus,Date startDate, Date endDate, int noOfHoursPerWeek,
-			Date midPointReview, String midPointReviewComment, Date finalReview, String finalReviewComment, long createdBy){
+			Date midPointReview, String midPointReviewComment, Date finalReview, String finalReviewComment, String shiftDesc,long createdBy){
 		Student_Externship studentExternship = Student_ExternshipLocalServiceUtil.createStudent_Externship(CounterLocalServiceUtil.increment());
 		studentExternship.setStudentId(studentId);
 		studentExternship.setPartnerId(partnerId);
@@ -63,6 +63,7 @@ public class Student_ExternshipLocalServiceImpl
 		studentExternship.setMidPointReviewComment(midPointReviewComment);
 		studentExternship.setFinalReview(finalReview);
 		studentExternship.setFinalReviewComment(finalReviewComment);
+		studentExternship.setShiftDesc(shiftDesc);
 		studentExternship.setCreatedBy(createdBy);
 		studentExternship.setCreateDate(new Date());
 		studentExternship.setModifiedBy(createdBy);
@@ -74,7 +75,7 @@ public class Student_ExternshipLocalServiceImpl
 	}
 	
 	public Student_Externship updateStudentExternship(Student_Externship studentExternship, long studentId, long partnerId, long employerId, int externshipStatus,Date startDate, Date endDate, int noOfHoursPerWeek,
-			Date midPointReview, String midPointReviewComment, Date finalReview, String finalReviewComment, long modifiedBy){
+			Date midPointReview, String midPointReviewComment, Date finalReview, String finalReviewComment, String shiftDesc,long modifiedBy){
 			
 		    studentExternship.setPartnerId(partnerId);
 		    studentExternship.setEmployerId(employerId);
@@ -83,6 +84,7 @@ public class Student_ExternshipLocalServiceImpl
 			studentExternship.setEndDate(endDate);
 			studentExternship.setNoOfHoursPerWeek(noOfHoursPerWeek);
 			studentExternship.setMidPointReview(midPointReview);
+			studentExternship.setShiftDesc(shiftDesc);
 			studentExternship.setMidPointReviewComment(midPointReviewComment);
 			studentExternship.setFinalReview(finalReview);
 			studentExternship.setFinalReviewComment(finalReviewComment);

@@ -54,7 +54,6 @@ public class StudentDetailRenderCommand implements MVCRenderCommand{
 			} catch (PortalException e) {
 				_log.error(e.getMessage());
 			}	
-				
 			
 		}else{
 			SessionErrors.add(renderRequest, "student-detail-err");

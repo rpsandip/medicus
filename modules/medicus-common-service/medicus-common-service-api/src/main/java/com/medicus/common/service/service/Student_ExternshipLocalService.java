@@ -86,7 +86,8 @@ public interface Student_ExternshipLocalService extends BaseLocalService,
 		long partnerId, long employerId, int externshipStatus, Date startDate,
 		Date endDate, int noOfHoursPerWeek, Date midPointReview,
 		java.lang.String midPointReviewComment, Date finalReview,
-		java.lang.String finalReviewComment, long createdBy);
+		java.lang.String finalReviewComment, java.lang.String shiftDesc,
+		long createdBy);
 
 	/**
 	* Adds the student_ externship to the database. Also notifies the appropriate model listeners.
@@ -150,7 +151,8 @@ public interface Student_ExternshipLocalService extends BaseLocalService,
 		long employerId, int externshipStatus, Date startDate, Date endDate,
 		int noOfHoursPerWeek, Date midPointReview,
 		java.lang.String midPointReviewComment, Date finalReview,
-		java.lang.String finalReviewComment, long modifiedBy);
+		java.lang.String finalReviewComment, java.lang.String shiftDesc,
+		long modifiedBy);
 
 	/**
 	* Updates the student_ externship in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

@@ -49,6 +49,7 @@ public class StudentBean {
 	private String zipcode;
 	private String state;
 	private String pace;
+	private String raceDesc;
 	private float gpa;
 	private DocumentBean resumeDoc;
 	private boolean hired;
@@ -102,7 +103,7 @@ public class StudentBean {
 		this.graduationDate = student.getGraduationDate();
 		this.activelySeekingEmployment = student.getActivelySeekingEmployment();
 		this.haveExternship = student.getHaveExternship();
-		
+		this.raceDesc = student.getRaceDesc();
 		if(this.campusId>0){
 			try {
 				Campus campus = CampusLocalServiceUtil.getCampus(this.campusId);
@@ -538,6 +539,14 @@ public class StudentBean {
 
 	public void setTimeSheets(List<DocumentBean> timeSheets) {
 		this.timeSheets = timeSheets;
+	}
+
+	public String getRaceDesc() {
+		return raceDesc;
+	}
+
+	public void setRaceDesc(String raceDesc) {
+		this.raceDesc = raceDesc;
 	}
 	
 	

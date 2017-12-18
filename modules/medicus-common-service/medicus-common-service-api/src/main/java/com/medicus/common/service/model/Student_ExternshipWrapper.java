@@ -70,6 +70,7 @@ public class Student_ExternshipWrapper implements Student_Externship,
 		attributes.put("midPointReviewComment", getMidPointReviewComment());
 		attributes.put("finalReview", getFinalReview());
 		attributes.put("finalReviewComment", getFinalReviewComment());
+		attributes.put("shiftDesc", getShiftDesc());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("createdBy", getCreatedBy());
 		attributes.put("modifiedDate", getModifiedDate());
@@ -151,6 +152,12 @@ public class Student_ExternshipWrapper implements Student_Externship,
 
 		if (finalReviewComment != null) {
 			setFinalReviewComment(finalReviewComment);
+		}
+
+		String shiftDesc = (String)attributes.get("shiftDesc");
+
+		if (shiftDesc != null) {
+			setShiftDesc(shiftDesc);
 		}
 
 		Date createDate = (Date)attributes.get("createDate");
@@ -271,6 +278,16 @@ public class Student_ExternshipWrapper implements Student_Externship,
 	@Override
 	public java.lang.String getMidPointReviewComment() {
 		return _student_Externship.getMidPointReviewComment();
+	}
+
+	/**
+	* Returns the shift desc of this student_ externship.
+	*
+	* @return the shift desc of this student_ externship
+	*/
+	@Override
+	public java.lang.String getShiftDesc() {
+		return _student_Externship.getShiftDesc();
 	}
 
 	@Override
@@ -577,6 +594,16 @@ public class Student_ExternshipWrapper implements Student_Externship,
 	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		_student_Externship.setPrimaryKeyObj(primaryKeyObj);
+	}
+
+	/**
+	* Sets the shift desc of this student_ externship.
+	*
+	* @param shiftDesc the shift desc of this student_ externship
+	*/
+	@Override
+	public void setShiftDesc(java.lang.String shiftDesc) {
+		_student_Externship.setShiftDesc(shiftDesc);
 	}
 
 	/**

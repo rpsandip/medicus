@@ -233,6 +233,21 @@ public interface Student_ExternshipModel extends BaseModel<Student_Externship> {
 	public void setFinalReviewComment(String finalReviewComment);
 
 	/**
+	 * Returns the shift desc of this student_ externship.
+	 *
+	 * @return the shift desc of this student_ externship
+	 */
+	@AutoEscape
+	public String getShiftDesc();
+
+	/**
+	 * Sets the shift desc of this student_ externship.
+	 *
+	 * @param shiftDesc the shift desc of this student_ externship
+	 */
+	public void setShiftDesc(String shiftDesc);
+
+	/**
 	 * Returns the create date of this student_ externship.
 	 *
 	 * @return the create date of this student_ externship

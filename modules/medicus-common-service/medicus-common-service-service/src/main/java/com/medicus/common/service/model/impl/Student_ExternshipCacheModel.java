@@ -66,7 +66,7 @@ public class Student_ExternshipCacheModel implements CacheModel<Student_Externsh
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(33);
+		StringBundler sb = new StringBundler(35);
 
 		sb.append("{studentExternshipId=");
 		sb.append(studentExternshipId);
@@ -92,6 +92,8 @@ public class Student_ExternshipCacheModel implements CacheModel<Student_Externsh
 		sb.append(finalReview);
 		sb.append(", finalReviewComment=");
 		sb.append(finalReviewComment);
+		sb.append(", shiftDesc=");
+		sb.append(shiftDesc);
 		sb.append(", createDate=");
 		sb.append(createDate);
 		sb.append(", createdBy=");
@@ -159,6 +161,13 @@ public class Student_ExternshipCacheModel implements CacheModel<Student_Externsh
 			student_ExternshipImpl.setFinalReviewComment(finalReviewComment);
 		}
 
+		if (shiftDesc == null) {
+			student_ExternshipImpl.setShiftDesc(StringPool.BLANK);
+		}
+		else {
+			student_ExternshipImpl.setShiftDesc(shiftDesc);
+		}
+
 		if (createDate == Long.MIN_VALUE) {
 			student_ExternshipImpl.setCreateDate(null);
 		}
@@ -201,6 +210,7 @@ public class Student_ExternshipCacheModel implements CacheModel<Student_Externsh
 		midPointReviewComment = objectInput.readUTF();
 		finalReview = objectInput.readLong();
 		finalReviewComment = objectInput.readUTF();
+		shiftDesc = objectInput.readUTF();
 		createDate = objectInput.readLong();
 
 		createdBy = objectInput.readLong();
@@ -243,6 +253,13 @@ public class Student_ExternshipCacheModel implements CacheModel<Student_Externsh
 			objectOutput.writeUTF(finalReviewComment);
 		}
 
+		if (shiftDesc == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(shiftDesc);
+		}
+
 		objectOutput.writeLong(createDate);
 
 		objectOutput.writeLong(createdBy);
@@ -263,6 +280,7 @@ public class Student_ExternshipCacheModel implements CacheModel<Student_Externsh
 	public String midPointReviewComment;
 	public long finalReview;
 	public String finalReviewComment;
+	public String shiftDesc;
 	public long createDate;
 	public long createdBy;
 	public long modifiedDate;

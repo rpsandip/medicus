@@ -67,7 +67,7 @@
 						   <portlet:actionURL var="deleteStudentURL" name="/delete_student">
 						   		<portlet:param name="studentId" value="${student.studentId }" />
 						   </portlet:actionURL>
-						   <a href="${deleteStudentURL }" class="btn btn-primary btn-xs">
+						   <a class="btn btn-primary btn-xs" data-studentId="${ student.studentId}" data-toggle="modal" data-target="#delete-student-modal">
 							<i class="fa fa-user"> </i> Delete
 						   </a>
 					   </c:if>

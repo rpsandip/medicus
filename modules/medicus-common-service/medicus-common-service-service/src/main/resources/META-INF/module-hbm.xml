@@ -133,6 +133,7 @@
 		<property name="zipcode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property column="state_" name="state" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="pace" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="raceDesc" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="gpa" type="com.liferay.portal.dao.orm.hibernate.FloatType" />
 		<property name="resumeFileEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="profession" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -162,6 +163,7 @@
 		<property name="midPointReviewComment" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="finalReview" type="org.hibernate.type.TimestampType" />
 		<property name="finalReviewComment" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="shiftDesc" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="createdBy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />

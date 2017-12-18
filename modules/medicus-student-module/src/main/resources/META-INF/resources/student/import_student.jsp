@@ -7,6 +7,9 @@
 <div class="page-title">
   <div class="title_left">
    	<h2><liferay-ui:message key="import.student"/> </h2>
+   	<c:if test="${fn:length(import_studnet_file_url) gt 0}">
+   		<a href="${import_studnet_file_url }" class="btn btn-primary btn-xs">Download Sample Student Import File</a>
+   	</c:if>
   </div>
 </div>
 <div class="row">
@@ -37,9 +40,11 @@
 								<b>StudentID  &nbsp; &nbsp; &nbsp; &nbsp; Email Address</b>
 								<c:forEach items="${unsuccessfullStudentList }" var ="unsuccessfullStudent">
 								<c:set var="detail" value="${fn:split(unsuccessfullStudent, ',')}" />
-									<li>
-										${detail[0]} &nbsp; &nbsp; &nbsp; &nbsp;${detail[1]}
-									</li>
+									<c:if test="${fn:length(detail[0]) gt 0}">
+										<li>
+											${detail[0]} &nbsp; &nbsp; &nbsp; &nbsp;${detail[1]}
+										</li>
+									</c:if>
 								</c:forEach>
 							</ul>
 						</c:if>	

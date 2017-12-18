@@ -201,6 +201,7 @@
 		<field name="pace" type="String">
 			<hint name="max-length">15</hint>
 		</field>
+		<field name="raceDesc" type="String" />
 		<field name="gpa" type="float" />
 		<field name="resumeFileEntryId" type="long" />
 		<field name="profession" type="String">
@@ -236,6 +237,7 @@
 		<field name="finalReviewComment" type="String">
 			<hint name="max-length">200</hint>
 		</field>
+		<field name="shiftDesc" type="String" />
 		<field name="createDate" type="Date" />
 		<field name="createdBy" type="long" />
 		<field name="modifiedDate" type="Date" />

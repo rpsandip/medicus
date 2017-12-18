@@ -101,6 +101,7 @@
 		<column name="zipcode" type="String" />
 		<column name="state" type="String" />
 		<column name="pace" type="String" />
+		<column name="raceDesc" type="String" />
 		<column name="gpa" type="float" />
 		<column name="resumeFileEntryId" type="long" />
 		<column name="profession" type="String" />
@@ -135,6 +136,7 @@
 		<column name="midPointReviewComment" type="String"/>
 		<column name="finalReview" type="Date"/>
 		<column name="finalReviewComment" type="String"/>
+		<column name="shiftDesc" type="String"/>
 		<column name="createDate" type="Date"></column>
 		<column name="createdBy" type="long"></column>
 		<column name="modifiedDate" type="Date"></column>

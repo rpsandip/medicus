@@ -89,7 +89,10 @@
 		  		</div>
 		  		<div class="col-md-2 col-sm-2 col-xs-12 text-left">
                     <button type="button" class="btn btn-success search-student">Submit</button>
-                  </div>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-12 text-left">
+           			<button type="button" class="btn btn-success export-report">Export</button>
+    			 </div>
             </form>
           </div>
           <div >
@@ -233,11 +236,11 @@ AUI().use('aui-io-request', 'aui-autocomplete','liferay-portlet-url' ,'aui-base'
 	}
     
     
-    function createSearchStudentResourceURL(){
+    function createSearchStudentResourceURL(resourceName){
     	
     	var resourceURL= Liferay.PortletURL.createResourceURL();
 		 resourceURL.setPortletId('com_medicus_report_portlet_portlet_MedicusReportModulePortlet');
-		 resourceURL.setResourceId('/search_studetns');
+		 resourceURL.setResourceId(resourceName);
 	     var plid = '${report_page_plid}';
 	     resourceURL.setPlid(plid);
 	     
@@ -265,7 +268,7 @@ AUI().use('aui-io-request', 'aui-autocomplete','liferay-portlet-url' ,'aui-base'
     
     function searchStudents(){
     	
-    	var searchStudentResourceURL= createSearchStudentResourceURL();
+    	var searchStudentResourceURL= createSearchStudentResourceURL('/search_studetns');
 
     	console.log("searchStudentResourceURL->" + searchStudentResourceURL);
     	
@@ -291,7 +294,7 @@ AUI().use('aui-io-request', 'aui-autocomplete','liferay-portlet-url' ,'aui-base'
 	    	                ]
 	    	 });
     	}else{
-    		stuentsDataTables.ajax.url(createSearchStudentResourceURL()).load();
+    		stuentsDataTables.ajax.url(createSearchStudentResourceURL('/search_studetns')).load();
     	}
     	
     	
@@ -412,6 +415,13 @@ AUI().use('aui-io-request', 'aui-autocomplete','liferay-portlet-url' ,'aui-base'
     	}
     }
     
+    A.one(".export-report").on('click', function(){
+		exportStudents();
+	});
+    
+    function exportStudents(){
+		window.location.href=createSearchStudentResourceURL('/export_students');
+	}
     
 });
 </aui:script> 

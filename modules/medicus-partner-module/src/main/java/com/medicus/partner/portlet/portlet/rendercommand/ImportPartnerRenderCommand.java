@@ -9,6 +9,7 @@ import javax.portlet.RenderResponse;
 import org.osgi.service.component.annotations.Component;
 
 import com.medicus.common.service.model.Partner;
+import com.medicus.common.service.service.MedicusCommonLocalServiceUtil;
 import com.medicus.partner.portlet.portlet.util.PartnerModuleContstant;
 import com.liferay.portal.kernel.cache.MultiVMPoolUtil;
 import com.liferay.portal.kernel.cache.PortalCache;
@@ -38,7 +39,9 @@ public class ImportPartnerRenderCommand implements MVCRenderCommand{
 			List<String> unsuccessfullPartnerList = (List<String>)portalCache.get("unsuccessfullPartnerList");
 			renderRequest.setAttribute("unsuccessfullPartnerList", unsuccessfullPartnerList);
 			portalCache.remove("unsuccessfullPartnerList");
+			
 		}
+		renderRequest.setAttribute("import_partner_file_url", MedicusCommonLocalServiceUtil.getPartnerImportFileURL());
 		return "/partner/import_partner.jsp";
 	}
 
