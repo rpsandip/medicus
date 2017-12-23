@@ -98,7 +98,7 @@
           <div >
           	<h3 class="graph-search-detail"></h3>
           </div>
-          <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="col-md-6 col-sm-6 col-xs-12">
 					<div class="x_content">
 						<table class="" style="width: 100%">
 							<tr>
@@ -114,7 +114,7 @@
 						<div class="x_content">
 							<table class="" style="width: 100%">
 								<tr>
-									<td>
+									<td class="pi-chart-detail">
 										<canvas id="stident-pi-chart"></canvas>
 									</td>
 								</tr>
@@ -360,6 +360,12 @@ AUI().use('aui-io-request', 'aui-autocomplete','liferay-portlet-url' ,'aui-base'
     }
     
     function preparePieChart(graphResponse, groupByColumnName){
+    	
+    	if(A.one(".pi-chart-detail iframe")){
+    		A.one(".pi-chart-detail iframe").remove();
+    		A.one(".pi-chart-detail canvas").remove();
+    		A.one(".pi-chart-detail").append('<canvas id="stident-pi-chart"></canvas>');
+    	}
     	
     	var ctx = document.getElementById("stident-pi-chart");
 		  var countArray=[];

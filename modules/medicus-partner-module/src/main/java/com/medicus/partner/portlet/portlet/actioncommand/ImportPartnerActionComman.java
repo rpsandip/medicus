@@ -100,6 +100,7 @@ public class ImportPartnerActionComman extends BaseMVCActionCommand{
 	    		 if(!isEmptyRow){
 	    		 
 	    		 boolean validRow = validateRow(nextRow);
+	    		 
 	    		 if(validRow){
 	    			 User partnerUser = MedicusCommonLocalServiceUtil.isUserExist(nextRow.getCell(1).toString());
 	    			 if(Validator.isNull(partnerUser)){
@@ -132,9 +133,9 @@ public class ImportPartnerActionComman extends BaseMVCActionCommand{
 	    		 }else{
 	    			 unsuccessfullPartnerList.add(nextRow.getCell(1).toString());
 	    		 }
+	    	   }else{
+	    		   totalPartnerCount--;
 	    	   }
-	    	 }else{
-	    		 unsuccessfullPartnerList.add(nextRow.getCell(1).toString());
 	    	 }
 	     }
 	     

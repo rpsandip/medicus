@@ -86,6 +86,19 @@ public class RegistrationLocalServiceWrapper implements RegistrationLocalService
 	}
 
 	@Override
+	public void updateSchoolUserProfile(long userId,
+		java.lang.String firstName, java.lang.String lastName,
+		java.lang.String contactNumber, java.lang.String password,
+		java.lang.String password1, java.lang.String profilePicName,
+		java.io.File profilePic)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			java.io.IOException {
+		_registrationLocalService.updateSchoolUserProfile(userId, firstName,
+			lastName, contactNumber, password, password1, profilePicName,
+			profilePic);
+	}
+
+	@Override
 	public RegistrationLocalService getWrappedService() {
 		return _registrationLocalService;
 	}

@@ -14,6 +14,8 @@
 
 package com.medicus.common.service.service.impl;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -33,6 +35,7 @@ import com.liferay.portal.kernel.service.RoleLocalServiceUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -284,5 +287,36 @@ public class RegistrationLocalServiceImpl extends RegistrationLocalServiceBaseIm
 			
 			return user;
 	}
+	
+	public void updateSchoolUserProfile(long userId, String firstName, String lastName, String contactNumber, String password,
+			String password1, String profilePicName, File profilePic) throws PortalException, IOException{
+		User user = UserLocalServiceUtil.getUser(userId);
+		
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		
+		UserLocalServiceUtil.updateUser(user);
+		
+	    // Update passsword
+		if(Validator.isNotNull(password1) && Validator.isNotNull(password) && Validator.equals(password1,password1)){
+			UserLocalServiceUtil.updatePassword(userId, password1, password1, false);
+		}
+		
+		// Update phone number
+		if(user.getPhones().size()>0){
+			Phone phone = user.getPhones().get(0);
+			phone.setNumber(contactNumber);
+			PhoneLocalServiceUtil.updatePhone(phone);
+		}
+		
+		// Update portrait
+		
+		if(Validator.isNotNull(profilePic) && Validator.isNotNull(profilePicName)){
+			UserLocalServiceUtil.updatePortrait(userId, FileUtil.getBytes(profilePic));
+			
+		}
+		
+	}
+	
 	
 }

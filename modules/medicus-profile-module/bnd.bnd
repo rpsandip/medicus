@@ -1,0 +1,4 @@
+Bundle-Name: medicus-profile-module
+Bundle-SymbolicName: com.medicus.profile.portlet
+Bundle-Version: 1.0.0
+Export-Package: com.medicus.profile.portlet.constants

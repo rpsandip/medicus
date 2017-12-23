@@ -16,6 +16,8 @@ package com.medicus.common.service.service.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 
 import com.liferay.portal.kernel.exception.PortalException;
@@ -23,6 +25,8 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
+import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.medicus.common.service.exception.NoSuchPartnerException;
 import com.medicus.common.service.model.Partner;
 import com.medicus.common.service.service.PartnerLocalServiceUtil;
@@ -53,15 +57,27 @@ public class PartnerLocalServiceImpl extends PartnerLocalServiceBaseImpl {
 	
 	public Partner editPartner(long partnerId, String fName,
 			String address1, String city, String zipcode, String state, String country, String contactPersonName,
-			String contactPersonEmail, String contactPersonPhoneNumber, String websiteLink,long modifiedUserId) throws PortalException{
+			String contactPersonEmail, String contactPersonPhoneNumber, String websiteLink, String password, String password1,
+			File profilePic, String profilePicName,
+			long modifiedUserId) throws PortalException, IOException{
 		
 			Partner partner = PartnerLocalServiceUtil.getPartner(partnerId);
 			User user = UserLocalServiceUtil.getUser(partner.getUserId());
 			
 			user.setFirstName(fName);
 			
+			 // Update passsword
+			if(Validator.isNotNull(password1) && Validator.isNotNull(password) && Validator.equals(password1,password1)){
+				UserLocalServiceUtil.updatePassword(user.getUserId(), password1, password1, false);
+			}
+			
 			// Update user
 			user = UserLocalServiceUtil.updateUser(user);
+			
+			// Update profilepic
+			if(Validator.isNotNull(profilePic) && Validator.isNotNull(profilePicName)){
+				UserLocalServiceUtil.updatePortrait(user.getUserId(), FileUtil.getBytes(profilePic));
+			}
 			
 			// Update Partner Detail
 			

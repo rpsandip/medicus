@@ -39,9 +39,7 @@ public class PartnerModulePortlet extends MVCPortlet {
 		List<PartnerBean> partnerBeanList = new ArrayList<PartnerBean>();
 		for(Partner partner : partnerList){
 			PartnerBean partnerBean = new PartnerBean(partner);
-			if(partnerBean.getUser().isActive()){
-				partnerBeanList.add(partnerBean);
-			}
+			partnerBeanList.add(partnerBean);
 		}
 		renderRequest.setAttribute("partnerBeanList", partnerBeanList);
 		include(viewTemplate, renderRequest, renderResponse);

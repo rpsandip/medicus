@@ -122,12 +122,15 @@ public class PartnerLocalServiceWrapper implements PartnerLocalService,
 		java.lang.String contactPersonName,
 		java.lang.String contactPersonEmail,
 		java.lang.String contactPersonPhoneNumber,
-		java.lang.String websiteLink, long modifiedUserId)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		java.lang.String websiteLink, java.lang.String password,
+		java.lang.String password1, java.io.File profilePic,
+		java.lang.String profilePicName, long modifiedUserId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			java.io.IOException {
 		return _partnerLocalService.editPartner(partnerId, fName, address1,
 			city, zipcode, state, country, contactPersonName,
 			contactPersonEmail, contactPersonPhoneNumber, websiteLink,
-			modifiedUserId);
+			password, password1, profilePic, profilePicName, modifiedUserId);
 	}
 
 	@Override

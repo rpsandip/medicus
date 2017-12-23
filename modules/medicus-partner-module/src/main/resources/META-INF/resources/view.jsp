@@ -35,6 +35,7 @@
 			                <th>Contact Person Email</th>
 			                <th>Contact Person Phone No.</th>
 			                <th>Website Link</th>
+			                <th>Status</th>
 			                <th>Action</th>
 			            </tr>
      			   </thead>
@@ -48,6 +49,7 @@
 			                <td>${partnerBean.contactPersonName }</td>
 			                <td>${partnerBean.contactPersonEmail }</td>
 			                <td>${partnerBean.contactPersonPhoneNumber }</td>
+			                <td>${partnerBean.user.status eq 0 ? "Active" : "Inactive" }</td>
 			                <c:choose>
 				                <c:when test='${fn:indexOf(partnerBean.websiteLink, "http") lt 0}'>
 				               		<td><a href="http://${partnerBean.websiteLink }" target="_blank"> ${partnerBean.websiteLink }</a></td>
@@ -63,7 +65,7 @@
        							 <portlet:param name="partnerId" value="${ partnerBean.partnerId}" />
 							</portlet:renderURL>
 							<a href="${editPartnerURL }" class="btn btn-block btn-primary">Edit</a>	
-							<a class="btn btn-primary" data-partnerId="${partnerBean.partnerId }"  data-toggle="modal" data-target="#delete-partner">Delete</a>
+							<a class="btn btn-primary" data-partnerId="${partnerBean.partnerId }" data-partnerName="${ partnerBean.firstName}"  data-toggle="modal" data-target="#delete-partner">Delete</a>
 			               	</td>
         			    </tr>
            			</c:forEach>
@@ -88,12 +90,13 @@
       <div class="modal-body">
        	<div class="form-group">
        	   <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-       	   		Are you sure you want to Delete Partner?
+       	   		Are you sure you want to Delete <span class="partner-name"></span> Partner?
        	   </div>
        	   <br/>
        	   <aui:form name="deletePartner" action="${deletePartnerURL}" cssClass="form-horizontal form-label-left">
 	       	   <div class="col-md-8 col-sm-6 col-xs-12 col-md-offset-3 approve-request-box">
 	       	   		<aui:input type="hidden" name="partnerId"/>
+	       	   		<aui:input type="hidden" name="partnerName"/>
 	       	   </div>
 	           <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 	           		<aui:button type="submit" value="Yes"  cssClass="btn btn-success"/>
@@ -115,8 +118,10 @@
     		  $('#delete-partner').on('show.bs.modal', function(e) {
     			  //get data-id attribute of the clicked element
     			  var partnerId = $(e.relatedTarget).data('partnerid');
-    			  console.log("partnerId->" + partnerId);
-                  $(e.currentTarget).find('#<portlet:namespace />partnerId').val(partnerId);
+    			  var partnerName = $(e.relatedTarget).data('partnername');
+
+    			  $(e.currentTarget).find('#<portlet:namespace />partnerId').val(partnerId);
+    			  $(e.currentTarget).find('.partner-name').text(partnerName);
               });
     		    		  
     	  });

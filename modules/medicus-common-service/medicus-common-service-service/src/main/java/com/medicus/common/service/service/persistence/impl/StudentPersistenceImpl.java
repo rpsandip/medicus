@@ -1836,7 +1836,7 @@ public class StudentPersistenceImpl extends BasePersistenceImpl<Student>
 		studentImpl.setZipcode(student.getZipcode());
 		studentImpl.setState(student.getState());
 		studentImpl.setPace(student.getPace());
-		studentImpl.setRaceDesc(student.getRaceDesc());
+		studentImpl.setEthnicityDesc(student.getEthnicityDesc());
 		studentImpl.setGpa(student.getGpa());
 		studentImpl.setResumeFileEntryId(student.getResumeFileEntryId());
 		studentImpl.setProfession(student.getProfession());

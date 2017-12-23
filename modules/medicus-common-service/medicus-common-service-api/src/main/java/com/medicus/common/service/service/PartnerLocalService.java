@@ -35,6 +35,8 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.medicus.common.service.exception.NoSuchPartnerException;
 import com.medicus.common.service.model.Partner;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 
 import java.util.List;
@@ -123,8 +125,10 @@ public interface PartnerLocalService extends BaseLocalService,
 		java.lang.String country, java.lang.String contactPersonName,
 		java.lang.String contactPersonEmail,
 		java.lang.String contactPersonPhoneNumber,
-		java.lang.String websiteLink, long modifiedUserId)
-		throws PortalException;
+		java.lang.String websiteLink, java.lang.String password,
+		java.lang.String password1, File profilePic,
+		java.lang.String profilePicName, long modifiedUserId)
+		throws PortalException, IOException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Partner fetchPartner(long partnerId);

@@ -37,6 +37,13 @@ public class SchoolUserBean {
 	private long campusId;
 	private User user;
 	
+	public SchoolUserBean(User user){
+		this.firstName = user.getFirstName();
+		this.lastName = user.getLastName();
+		this.emailAddress = user.getEmailAddress();
+		this.contactNum = user.getPhones().size()>0 ? user.getPhones().get(0).getNumber() : StringPool.BLANK;
+	}
+	
 	public SchoolUserBean(User user, List<Long> schoolRoleList, List<Long> campusRoleList, long medicusOrgGroupId){
 		if(Validator.isNotNull(user)){
 			this.firstName = user.getFirstName();

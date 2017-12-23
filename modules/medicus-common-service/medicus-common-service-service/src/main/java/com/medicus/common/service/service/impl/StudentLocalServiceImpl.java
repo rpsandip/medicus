@@ -95,7 +95,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 			Date dob, String gender, String contactNumber, String homePhoneNumber,String primaryLang, String secondaryLangs, String address, String city, String zipcode, String state, String pace,
 			float gpa, String profession, String practices, boolean hired, Date graduationDate, boolean activelySeekingEmployment, boolean haveExternship,
 			long employerId, long partnerId, int externshipStatus, String partnerZipCode, String partnerWebSiteLink,Date externshipStartDate, Date externshipEndDate, int noOfHoursPerWeek,
-			Date midPointReviewDate,String midPointReviewComment,Date finalReviewDate, String finalPointReviewComment, String raceDesc, String shiftDesc,
+			Date midPointReviewDate,String midPointReviewComment,Date finalReviewDate, String finalPointReviewComment, String ethnicityDesc, String shiftDesc,
 			File profileImage, String profileImageFileName,File resume, String resumeFileName, Map<String, File> agreementFileMap, Map<String, File> othersFileMap, Map<String, File> timeSheetsFileMap,long createdBy ){
 		
 		// Check Student is Exist with studentCampusId
@@ -130,7 +130,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 		student.setGraduationDate(graduationDate);
 		student.setActivelySeekingEmployment(activelySeekingEmployment);
 		student.setHaveExternship(haveExternship);
-		student.setRaceDesc(raceDesc);
+		student.setEthnicityDesc(ethnicityDesc);
 		student.setCompanyId(PortalUtil.getDefaultCompanyId());
 		student.setCreatedBy(createdBy);
 		student.setModifiedBy(createdBy);
@@ -237,7 +237,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 			Date dob, String gender, String contactNumber, String homePhoneNumber,String primaryLang, String secondaryLangs, String address, String city, String zipcode, String state, String pace,
 			float gpa, String profession, String practices, boolean hired, Date graduationDate, boolean activelySeekingEmployment, boolean haveExternship,
 			long employerId,long partnerId, int externshipStatus,String partnerZipCode, String partnerWebSiteLink,Date externshipStartDate, Date externshipEndDate, int noOfHoursPerWeek,
-			Date midPointReviewDate,String midPointReviewComment,Date finalReviewDate, String finalPointReviewComment,String raceDesc, String shiftDesc,
+			Date midPointReviewDate,String midPointReviewComment,Date finalReviewDate, String finalPointReviewComment,String ethnicityDesc, String shiftDesc,
 			File profileImage, String profileImageFileName,File resume, String resumeFileName,Map<String, File> agreementFileMap, Map<String, File> othersFileMap,  Map<String,File> timeSheetsFileMap,boolean isApprovedInterviewRequest,long modifiedBy) throws PortalException{
 		
 			Student student = null;
@@ -270,7 +270,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 			student.setGraduationDate(graduationDate);
 			student.setActivelySeekingEmployment(activelySeekingEmployment);
 			student.setHaveExternship(haveExternship);
-			student.setRaceDesc(raceDesc);
+			student.setEthnicityDesc(ethnicityDesc);
 			student.setModifiedBy(modifiedBy);
 			student.setModifiedDate(new Date());
 			
@@ -450,7 +450,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 	 */
 	public Student importStudent(String firstName, String middleName, String lastName, String emailAddress, Date dob,
 			String studentCampusId, String address, String city, String zipcode, String state,String mobilePhone,
-			String homePhone, String gender, String primaryLangs, String secondaryLangs, float gpa, String pace,String raceDesc,
+			String homePhone, String gender, String primaryLangs, String secondaryLangs, float gpa, String pace,String ethnicityDesc,
 			String shiftDesc, Date externshipStartDate,Date graduationDate,
 			long schoolId, long campusId, String profession,long createdBy){
 		
@@ -476,7 +476,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 		student.setStatus(0);
 		student.setPace(pace);
 		student.setGraduationDate(graduationDate);
-		student.setRaceDesc(raceDesc);
+		student.setEthnicityDesc(ethnicityDesc);
 		student.setSchoolId(schoolId);
 		student.setCampusId(campusId);
 		student.setProfession(profession);

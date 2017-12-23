@@ -394,19 +394,19 @@ public interface StudentModel extends BaseModel<Student>, ShardedModel,
 	public void setPace(String pace);
 
 	/**
-	 * Returns the race desc of this student.
+	 * Returns the ethnicity desc of this student.
 	 *
-	 * @return the race desc of this student
+	 * @return the ethnicity desc of this student
 	 */
 	@AutoEscape
-	public String getRaceDesc();
+	public String getEthnicityDesc();
 
 	/**
-	 * Sets the race desc of this student.
+	 * Sets the ethnicity desc of this student.
 	 *
-	 * @param raceDesc the race desc of this student
+	 * @param ethnicityDesc the ethnicity desc of this student
 	 */
-	public void setRaceDesc(String raceDesc);
+	public void setEthnicityDesc(String ethnicityDesc);
 
 	/**
 	 * Returns the gpa of this student.

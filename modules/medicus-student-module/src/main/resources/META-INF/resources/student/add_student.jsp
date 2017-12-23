@@ -256,7 +256,7 @@
 			  			</div>
 			  			<div class="form-group">
                		   	 	<div class="col-md-10 col-sm-6 col-xs-12">
-	               				<aui:input name="raceDesc" label="raceDesc"  cssClass="form-control col-md-7 col-xs-12" value="${studentBean.raceDesc }">
+	               				<aui:input name="ethnicityDesc" label="ethnicityDesc"  cssClass="form-control col-md-7 col-xs-12" value="${studentBean.ethnicityDesc }">
 						     		<aui:validator name="maxLength">75</aui:validator>
 							 	</aui:input>
 							</div>

@@ -90,6 +90,18 @@ public class RegistrationLocalServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
+	public static void updateSchoolUserProfile(long userId,
+		java.lang.String firstName, java.lang.String lastName,
+		java.lang.String contactNumber, java.lang.String password,
+		java.lang.String password1, java.lang.String profilePicName,
+		java.io.File profilePic)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			java.io.IOException {
+		getService()
+			.updateSchoolUserProfile(userId, firstName, lastName,
+			contactNumber, password, password1, profilePicName, profilePic);
+	}
+
 	public static RegistrationLocalService getService() {
 		return _serviceTracker.getService();
 	}

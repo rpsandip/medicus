@@ -121,12 +121,16 @@ public class PartnerLocalServiceUtil {
 		java.lang.String contactPersonName,
 		java.lang.String contactPersonEmail,
 		java.lang.String contactPersonPhoneNumber,
-		java.lang.String websiteLink, long modifiedUserId)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		java.lang.String websiteLink, java.lang.String password,
+		java.lang.String password1, java.io.File profilePic,
+		java.lang.String profilePicName, long modifiedUserId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			java.io.IOException {
 		return getService()
 				   .editPartner(partnerId, fName, address1, city, zipcode,
 			state, country, contactPersonName, contactPersonEmail,
-			contactPersonPhoneNumber, websiteLink, modifiedUserId);
+			contactPersonPhoneNumber, websiteLink, password, password1,
+			profilePic, profilePicName, modifiedUserId);
 	}
 
 	public static com.medicus.common.service.model.Partner fetchPartner(

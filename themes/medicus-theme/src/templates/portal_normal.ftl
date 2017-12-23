@@ -198,7 +198,8 @@
 		            <!-- menu profile quick info -->
 		            <div class="profile clearfix">
 		              <div class="profile_pic">
-		                <img src="${images_folder}/img.jpg" alt="..." class="img-circle profile_img">
+		              	<#assign profilePic = user.getPortraitURL(theme_display) />
+		                <img src="${profilePic}" alt="..." class="img-circle profile_img">
 		              </div>
 		              <div class="profile_info">
 		                <span>Welcome</span>

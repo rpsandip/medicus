@@ -81,7 +81,7 @@ public class AddStudentActionCommand extends BaseMVCActionCommand{
 			String partnerWebSiteLink = ParamUtil.getString(actionRequest, "partnerWebSiteLink");
 			int externshipStatus = ParamUtil.getInteger(actionRequest, "externshipStatus");
 			boolean isApproveInterviewRequest = ParamUtil.getBoolean(actionRequest, "isApproveInterviewRequest");
-			String raceDesc  = ParamUtil.getString(actionRequest, "raceDesc");
+			String ethnicityDesc  = ParamUtil.getString(actionRequest, "ethnicityDesc");
 			String shiftDesc = ParamUtil.getString(actionRequest, "shiftDesc");
 			
 			Date externshipStartDate = null;
@@ -184,7 +184,7 @@ public class AddStudentActionCommand extends BaseMVCActionCommand{
 							practices, isHired, graduationDate, activelySeekingEmployment, haveExternship, employerId,partnerId,externshipStatus,
 							partnerZipCode, partnerWebSiteLink, externshipStartDate, externshipEndDate, 
 							noOfHoursPerWeek, midPointReviewDate, midPointReviewComment, finalReviewDate,
-							finalPointReviewComment, raceDesc, shiftDesc,profilePic, profilePicFileName,resume, resumeFileName,agreementsFileMap,
+							finalPointReviewComment, ethnicityDesc, shiftDesc,profilePic, profilePicFileName,resume, resumeFileName,agreementsFileMap,
 							othersFileMap, timeSheetsMap,themeDisplay.getUserId());
 					
 					if(Validator.isNotNull(student)){
@@ -206,7 +206,7 @@ public class AddStudentActionCommand extends BaseMVCActionCommand{
 								practices, isHired, graduationDate, activelySeekingEmployment, haveExternship, employerId,partnerId,externshipStatus,
 								partnerZipCode, partnerWebSiteLink, externshipStartDate, externshipEndDate, 
 								noOfHoursPerWeek, midPointReviewDate, midPointReviewComment, finalReviewDate,
-								finalPointReviewComment, raceDesc, shiftDesc,profilePic, profilePicFileName,resume, resumeFileName,agreementsFileMap,
+								finalPointReviewComment, ethnicityDesc, shiftDesc,profilePic, profilePicFileName,resume, resumeFileName,agreementsFileMap,
 								othersFileMap, timeSheetsMap,isApproveInterviewRequest, themeDisplay.getUserId());
 						SessionMessages.add(actionRequest, "student-update-success");
 					} catch (PortalException e) {

@@ -23,6 +23,9 @@ import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
+import java.io.File;
+import java.io.IOException;
+
 /**
  * Provides the local service interface for Registration. Methods of this
  * service will not have security checks based on the propagated JAAS
@@ -73,4 +76,10 @@ public interface RegistrationLocalService extends BaseLocalService {
 	* @return the OSGi service identifier
 	*/
 	public java.lang.String getOSGiServiceIdentifier();
+
+	public void updateSchoolUserProfile(long userId,
+		java.lang.String firstName, java.lang.String lastName,
+		java.lang.String contactNumber, java.lang.String password,
+		java.lang.String password1, java.lang.String profilePicName,
+		File profilePic) throws PortalException, IOException;
 }

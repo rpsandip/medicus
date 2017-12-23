@@ -118,10 +118,10 @@ public class StudentLocalServiceUtil {
 		java.util.Date externshipStartDate, java.util.Date externshipEndDate,
 		int noOfHoursPerWeek, java.util.Date midPointReviewDate,
 		java.lang.String midPointReviewComment, java.util.Date finalReviewDate,
-		java.lang.String finalPointReviewComment, java.lang.String raceDesc,
-		java.lang.String shiftDesc, java.io.File profileImage,
-		java.lang.String profileImageFileName, java.io.File resume,
-		java.lang.String resumeFileName,
+		java.lang.String finalPointReviewComment,
+		java.lang.String ethnicityDesc, java.lang.String shiftDesc,
+		java.io.File profileImage, java.lang.String profileImageFileName,
+		java.io.File resume, java.lang.String resumeFileName,
 		java.util.Map<java.lang.String, java.io.File> agreementFileMap,
 		java.util.Map<java.lang.String, java.io.File> othersFileMap,
 		java.util.Map<java.lang.String, java.io.File> timeSheetsFileMap,
@@ -135,7 +135,7 @@ public class StudentLocalServiceUtil {
 			employerId, partnerId, externshipStatus, partnerZipCode,
 			partnerWebSiteLink, externshipStartDate, externshipEndDate,
 			noOfHoursPerWeek, midPointReviewDate, midPointReviewComment,
-			finalReviewDate, finalPointReviewComment, raceDesc, shiftDesc,
+			finalReviewDate, finalPointReviewComment, ethnicityDesc, shiftDesc,
 			profileImage, profileImageFileName, resume, resumeFileName,
 			agreementFileMap, othersFileMap, timeSheetsFileMap, createdBy);
 	}
@@ -233,7 +233,7 @@ public class StudentLocalServiceUtil {
 		java.lang.String mobilePhone, java.lang.String homePhone,
 		java.lang.String gender, java.lang.String primaryLangs,
 		java.lang.String secondaryLangs, float gpa, java.lang.String pace,
-		java.lang.String raceDesc, java.lang.String shiftDesc,
+		java.lang.String ethnicityDesc, java.lang.String shiftDesc,
 		java.util.Date externshipStartDate, java.util.Date graduationDate,
 		long schoolId, long campusId, java.lang.String profession,
 		long createdBy) {
@@ -241,8 +241,8 @@ public class StudentLocalServiceUtil {
 				   .importStudent(firstName, middleName, lastName,
 			emailAddress, dob, studentCampusId, address, city, zipcode, state,
 			mobilePhone, homePhone, gender, primaryLangs, secondaryLangs, gpa,
-			pace, raceDesc, shiftDesc, externshipStartDate, graduationDate,
-			schoolId, campusId, profession, createdBy);
+			pace, ethnicityDesc, shiftDesc, externshipStartDate,
+			graduationDate, schoolId, campusId, profession, createdBy);
 	}
 
 	/**
@@ -274,10 +274,10 @@ public class StudentLocalServiceUtil {
 		java.util.Date externshipStartDate, java.util.Date externshipEndDate,
 		int noOfHoursPerWeek, java.util.Date midPointReviewDate,
 		java.lang.String midPointReviewComment, java.util.Date finalReviewDate,
-		java.lang.String finalPointReviewComment, java.lang.String raceDesc,
-		java.lang.String shiftDesc, java.io.File profileImage,
-		java.lang.String profileImageFileName, java.io.File resume,
-		java.lang.String resumeFileName,
+		java.lang.String finalPointReviewComment,
+		java.lang.String ethnicityDesc, java.lang.String shiftDesc,
+		java.io.File profileImage, java.lang.String profileImageFileName,
+		java.io.File resume, java.lang.String resumeFileName,
 		java.util.Map<java.lang.String, java.io.File> agreementFileMap,
 		java.util.Map<java.lang.String, java.io.File> othersFileMap,
 		java.util.Map<java.lang.String, java.io.File> timeSheetsFileMap,
@@ -293,7 +293,7 @@ public class StudentLocalServiceUtil {
 			externshipStatus, partnerZipCode, partnerWebSiteLink,
 			externshipStartDate, externshipEndDate, noOfHoursPerWeek,
 			midPointReviewDate, midPointReviewComment, finalReviewDate,
-			finalPointReviewComment, raceDesc, shiftDesc, profileImage,
+			finalPointReviewComment, ethnicityDesc, shiftDesc, profileImage,
 			profileImageFileName, resume, resumeFileName, agreementFileMap,
 			othersFileMap, timeSheetsFileMap, isApprovedInterviewRequest,
 			modifiedBy);

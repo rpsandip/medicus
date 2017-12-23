@@ -114,7 +114,7 @@ create table Medicus_Student (
 	zipcode VARCHAR(10) null,
 	state_ VARCHAR(15) null,
 	pace VARCHAR(15) null,
-	raceDesc VARCHAR(75) null,
+	ethnicityDesc VARCHAR(75) null,
 	gpa DOUBLE,
 	resumeFileEntryId LONG,
 	profession VARCHAR(100) null,

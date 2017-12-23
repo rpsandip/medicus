@@ -201,7 +201,7 @@
 		<field name="pace" type="String">
 			<hint name="max-length">15</hint>
 		</field>
-		<field name="raceDesc" type="String" />
+		<field name="ethnicityDesc" type="String" />
 		<field name="gpa" type="float" />
 		<field name="resumeFileEntryId" type="long" />
 		<field name="profession" type="String">

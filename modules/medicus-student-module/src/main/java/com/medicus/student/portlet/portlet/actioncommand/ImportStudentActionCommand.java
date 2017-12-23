@@ -121,72 +121,78 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 	    		 _log.error(e.getMessage());
 	    	 }
 	    	 
-	    	 
-	    	 if(nextRow.getRowNum()!=0 && Validator.isNotNull(nextRow.getCell(0).toString()) && schoolId!=0 && campusId !=0){
-	    		 
-	    		 boolean isEmptyRow = checkIfRowIsEmpty(nextRow);;
-
-	    		 if(!isEmptyRow){
-	    		 
-	    		 boolean validRow = validateRow(nextRow);
-	    		 if(validRow){
-	    			 
-	    			 Student student = StudentLocalServiceUtil.getStudentByStudentCampusId(nextRow.getCell(3).toString());
-	    			 
-	    			 Cell zipCodeCell = nextRow.getCell(8);
-	    			 zipCodeCell.setCellType(Cell.CELL_TYPE_STRING);
-	    			 
-	    			 Cell mobileCell = nextRow.getCell(10);
-	    			 mobileCell.setCellType(Cell.CELL_TYPE_STRING);
-	    			 
-	    			 Cell homeCell = nextRow.getCell(11);
-	    			 homeCell.setCellType(Cell.CELL_TYPE_STRING);
-	    			 
-	    			 Cell studentIdCell = nextRow.getCell(3);
-	    			 studentIdCell.setCellType(Cell.CELL_TYPE_STRING);
-	    			 
-	    			 if(Validator.isNull(student)){
-		    		 student = StudentLocalServiceUtil.importStudent(
-		    				 nextRow.getCell(0).toString() /*First Name*/, 
-		    				 nextRow.getCell(1).toString() /*Middle Name*/, 
-		    				 nextRow.getCell(2).toString() /*Last Name*/, 
-		    				 nextRow.getCell(4).toString() /*Email Address*/,
-		    				 dob/*DOB*/,
-		    				 nextRow.getCell(3).getStringCellValue() /*Student Id*/,
-		    				 nextRow.getCell(6).toString() /*Address*/, 
-		    				 nextRow.getCell(7).toString() /*City*/, 
-		    				 zipCodeCell.toString() /*Zipcode*/,
-		    				 nextRow.getCell(9).toString() /*State*/, 
-		    				 mobileCell.toString() /*Mobile Phone*/, 
-		    				 homeCell.toString() /*Home Phone*/,
-		    				 nextRow.getCell(12).toString() /*Gender*/,
-		    				 nextRow.getCell(13).toString() /*primaryLangs*/,
-		    				 nextRow.getCell(14).toString() /*Secondary Languages*/, 
-		    				 Float.parseFloat(nextRow.getCell(15).toString()) /*GPA*/,
-		    				 nextRow.getCell(16).toString() /* Pace*/,
-		    				 nextRow.getCell(20).toString(),/*shift*/
-		    				 nextRow.getCell(21).toString(),/*Race*/
-		    				 externshipStartDate,
-		    				 graduationDate,
-		    				 schoolId,
-		    				 campusId,
-		    				 nextRow.getCell(19).toString() /*Profession*/, 
-		    				 themeDisplay.getUserId());
+	    	 if(Validator.isNotNull(nextRow.getCell(0).toString())){
+		    	 if(nextRow.getRowNum()!=0  && schoolId!=0 && campusId !=0){
 		    		 
-			    		 if(Validator.isNotNull(student)){
-			    			 successImportedStudentCount++;
-			    		 }else{
-			    			 unsuccessfullStudentList.add(nextRow.getCell(3).toString()+StringPool.COMMA+nextRow.getCell(4).toString());
-			    		 }
-	    			 }else{
-	    				 unsuccessfullStudentList.add(nextRow.getCell(3).toString()+StringPool.COMMA+nextRow.getCell(4).toString());
-	    			 }
-	    		 }else{
-	    			 unsuccessfullStudentList.add(nextRow.getCell(3).toString()+StringPool.COMMA+nextRow.getCell(4).toString());
-	    		 }
-	    	   }
+		    		 boolean isEmptyRow = checkIfRowIsEmpty(nextRow);;
+	
+		    		 if(!isEmptyRow){
+		    		 
+		    		 boolean validRow = validateRow(nextRow);
+		    		 if(validRow){
+		    			 
+		    			 Cell studentCampusIdCell = nextRow.getCell(3);
+		    			 studentCampusIdCell.setCellType(Cell.CELL_TYPE_STRING);
+		    			 
+		    			 Student student = StudentLocalServiceUtil.getStudentByStudentCampusId(studentCampusIdCell.toString());
+		    			 
+		    			 Cell zipCodeCell = nextRow.getCell(8);
+		    			 zipCodeCell.setCellType(Cell.CELL_TYPE_STRING);
+		    			 
+		    			 Cell mobileCell = nextRow.getCell(10);
+		    			 mobileCell.setCellType(Cell.CELL_TYPE_STRING);
+		    			 
+		    			 Cell homeCell = nextRow.getCell(11);
+		    			 homeCell.setCellType(Cell.CELL_TYPE_STRING);
+		    			 
+		    			 Cell studentIdCell = nextRow.getCell(3);
+		    			 studentIdCell.setCellType(Cell.CELL_TYPE_STRING);
+		    			 
+		    			 if(Validator.isNull(student)){
+			    		 student = StudentLocalServiceUtil.importStudent(
+			    				 nextRow.getCell(0).toString() /*First Name*/, 
+			    				 nextRow.getCell(1).toString() /*Middle Name*/, 
+			    				 nextRow.getCell(2).toString() /*Last Name*/, 
+			    				 nextRow.getCell(4).toString() /*Email Address*/,
+			    				 dob/*DOB*/,
+			    				 nextRow.getCell(3).getStringCellValue() /*Student Id*/,
+			    				 nextRow.getCell(6).toString() /*Address*/, 
+			    				 nextRow.getCell(7).toString() /*City*/, 
+			    				 zipCodeCell.toString() /*Zipcode*/,
+			    				 nextRow.getCell(9).toString() /*State*/, 
+			    				 mobileCell.toString() /*Mobile Phone*/, 
+			    				 homeCell.toString() /*Home Phone*/,
+			    				 nextRow.getCell(12).toString() /*Gender*/,
+			    				 nextRow.getCell(13).toString() /*primaryLangs*/,
+			    				 nextRow.getCell(14).toString() /*Secondary Languages*/, 
+			    				 Float.parseFloat(nextRow.getCell(15).toString()) /*GPA*/,
+			    				 nextRow.getCell(16).toString() /* Pace*/,
+			    				 nextRow.getCell(20).toString(),/*shift*/
+			    				 nextRow.getCell(21).toString(),/*Race*/
+			    				 externshipStartDate,
+			    				 graduationDate,
+			    				 schoolId,
+			    				 campusId,
+			    				 nextRow.getCell(19).toString() /*Profession*/, 
+			    				 themeDisplay.getUserId());
+			    		 
+				    		 if(Validator.isNotNull(student)){
+				    			 successImportedStudentCount++;
+				    		 }else{
+				    			 unsuccessfullStudentList.add(nextRow.getCell(3).toString()+StringPool.COMMA+nextRow.getCell(4).toString());
+				    		 }
+		    			 }else{
+		    				 unsuccessfullStudentList.add(nextRow.getCell(3).toString()+StringPool.COMMA+nextRow.getCell(4).toString());
+		    			 }
+		    		 }else{
+		    			 unsuccessfullStudentList.add(nextRow.getCell(3).toString()+StringPool.COMMA+nextRow.getCell(4).toString());
+		    		 }
+		    	   }
+		    	 }else{
+		    		 unsuccessfullStudentList.add(nextRow.getCell(3).toString()+StringPool.COMMA+nextRow.getCell(4).toString());
+		    	 }
 	    	 }else{
-	    		 unsuccessfullStudentList.add(nextRow.getCell(3).toString()+StringPool.COMMA+nextRow.getCell(4).toString());
+	    		 totalStudentCount--;
 	    	 }
 	     }
 	     
@@ -243,7 +249,7 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 			 return false;
 		 }else if(!firstRow.getCell(20).toString().trim().equalsIgnoreCase("Shift")){
 			 return false;
-		 }else if(!firstRow.getCell(21).toString().trim().equalsIgnoreCase("Race")){
+		 }else if(!firstRow.getCell(21).toString().trim().equalsIgnoreCase("Ethnicity")){
 			 return false;
 		 }else if(!firstRow.getCell(22).toString().trim().equalsIgnoreCase("Graduation Date")){
 			 return false;

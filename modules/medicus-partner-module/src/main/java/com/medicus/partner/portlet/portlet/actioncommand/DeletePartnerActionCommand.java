@@ -47,7 +47,8 @@ public class DeletePartnerActionCommand extends BaseMVCActionCommand{
 				SessionErrors.add(actionRequest, "partner-delete-error");
 				_log.error(e);
 			}
-			
+		}else{
+			SessionErrors.add(actionRequest, "partner-delete-error");
 		}
 		
 	}

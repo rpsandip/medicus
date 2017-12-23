@@ -1,6 +1,7 @@
 package com.medicus.partner.portlet.portlet.actioncommand;
 
 import java.awt.Label;
+import java.io.IOException;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -16,6 +17,7 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.medicus.common.service.model.Partner;
 import com.medicus.common.service.service.PartnerLocalServiceUtil;
@@ -52,10 +54,10 @@ public class EditPartnerActionCommand extends BaseMVCActionCommand{
 		try {
 			Partner partner = PartnerLocalServiceUtil.editPartner(partnerId, firstName,
 					address1, city, zipcode, state, country, contactPersonName, contactPersonEmail, 
-					contactPersonPhoneNumber, websiteLink, themeDisplay.getUserId());
+					contactPersonPhoneNumber, websiteLink, StringPool.BLANK , StringPool.BLANK, null , null,themeDisplay.getUserId());
 			
 			SessionMessages.add(actionRequest, "partner-update-success");
-		} catch (PortalException e) {
+		} catch (PortalException | IOException e) {
 			SessionErrors.add(actionRequest, "partner-update-err");
 			actionResponse.setRenderParameter("mvcRenderCommandName", "/edit_partner");
 			actionResponse.setRenderParameter("partnerId", String.valueOf(partnerId));

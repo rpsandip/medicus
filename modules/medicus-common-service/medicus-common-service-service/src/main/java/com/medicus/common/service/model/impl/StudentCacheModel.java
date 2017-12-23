@@ -111,8 +111,8 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
 		sb.append(state);
 		sb.append(", pace=");
 		sb.append(pace);
-		sb.append(", raceDesc=");
-		sb.append(raceDesc);
+		sb.append(", ethnicityDesc=");
+		sb.append(ethnicityDesc);
 		sb.append(", gpa=");
 		sb.append(gpa);
 		sb.append(", resumeFileEntryId=");
@@ -275,11 +275,11 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
 			studentImpl.setPace(pace);
 		}
 
-		if (raceDesc == null) {
-			studentImpl.setRaceDesc(StringPool.BLANK);
+		if (ethnicityDesc == null) {
+			studentImpl.setEthnicityDesc(StringPool.BLANK);
 		}
 		else {
-			studentImpl.setRaceDesc(raceDesc);
+			studentImpl.setEthnicityDesc(ethnicityDesc);
 		}
 
 		studentImpl.setGpa(gpa);
@@ -364,7 +364,7 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
 		zipcode = objectInput.readUTF();
 		state = objectInput.readUTF();
 		pace = objectInput.readUTF();
-		raceDesc = objectInput.readUTF();
+		ethnicityDesc = objectInput.readUTF();
 
 		gpa = objectInput.readFloat();
 
@@ -514,11 +514,11 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
 			objectOutput.writeUTF(pace);
 		}
 
-		if (raceDesc == null) {
+		if (ethnicityDesc == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
 		else {
-			objectOutput.writeUTF(raceDesc);
+			objectOutput.writeUTF(ethnicityDesc);
 		}
 
 		objectOutput.writeFloat(gpa);
@@ -577,7 +577,7 @@ public class StudentCacheModel implements CacheModel<Student>, Externalizable {
 	public String zipcode;
 	public String state;
 	public String pace;
-	public String raceDesc;
+	public String ethnicityDesc;
 	public float gpa;
 	public long resumeFileEntryId;
 	public String profession;
