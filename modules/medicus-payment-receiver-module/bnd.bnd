@@ -1,0 +1,4 @@
+Bundle-Name: medicus-payment-receiver-module
+Bundle-SymbolicName: com.medicus.payment.receive.module.portlet
+Bundle-Version: 1.0.0
+Export-Package: com.medicus.payment.receive.module.portlet.constants

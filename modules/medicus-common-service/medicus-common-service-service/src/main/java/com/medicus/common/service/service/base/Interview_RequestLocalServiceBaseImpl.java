@@ -52,6 +52,8 @@ import com.medicus.common.service.service.persistence.SchoolPersistence;
 import com.medicus.common.service.service.persistence.StudentFinder;
 import com.medicus.common.service.service.persistence.StudentPersistence;
 import com.medicus.common.service.service.persistence.Student_ExternshipPersistence;
+import com.medicus.common.service.service.persistence.SubscriptionPersistence;
+import com.medicus.common.service.service.persistence.User_SubscriptionPersistence;
 
 import java.io.Serializable;
 
@@ -645,6 +647,82 @@ public abstract class Interview_RequestLocalServiceBaseImpl
 	}
 
 	/**
+	 * Returns the subscription local service.
+	 *
+	 * @return the subscription local service
+	 */
+	public com.medicus.common.service.service.SubscriptionLocalService getSubscriptionLocalService() {
+		return subscriptionLocalService;
+	}
+
+	/**
+	 * Sets the subscription local service.
+	 *
+	 * @param subscriptionLocalService the subscription local service
+	 */
+	public void setSubscriptionLocalService(
+		com.medicus.common.service.service.SubscriptionLocalService subscriptionLocalService) {
+		this.subscriptionLocalService = subscriptionLocalService;
+	}
+
+	/**
+	 * Returns the subscription persistence.
+	 *
+	 * @return the subscription persistence
+	 */
+	public SubscriptionPersistence getSubscriptionPersistence() {
+		return subscriptionPersistence;
+	}
+
+	/**
+	 * Sets the subscription persistence.
+	 *
+	 * @param subscriptionPersistence the subscription persistence
+	 */
+	public void setSubscriptionPersistence(
+		SubscriptionPersistence subscriptionPersistence) {
+		this.subscriptionPersistence = subscriptionPersistence;
+	}
+
+	/**
+	 * Returns the user_ subscription local service.
+	 *
+	 * @return the user_ subscription local service
+	 */
+	public com.medicus.common.service.service.User_SubscriptionLocalService getUser_SubscriptionLocalService() {
+		return user_SubscriptionLocalService;
+	}
+
+	/**
+	 * Sets the user_ subscription local service.
+	 *
+	 * @param user_SubscriptionLocalService the user_ subscription local service
+	 */
+	public void setUser_SubscriptionLocalService(
+		com.medicus.common.service.service.User_SubscriptionLocalService user_SubscriptionLocalService) {
+		this.user_SubscriptionLocalService = user_SubscriptionLocalService;
+	}
+
+	/**
+	 * Returns the user_ subscription persistence.
+	 *
+	 * @return the user_ subscription persistence
+	 */
+	public User_SubscriptionPersistence getUser_SubscriptionPersistence() {
+		return user_SubscriptionPersistence;
+	}
+
+	/**
+	 * Sets the user_ subscription persistence.
+	 *
+	 * @param user_SubscriptionPersistence the user_ subscription persistence
+	 */
+	public void setUser_SubscriptionPersistence(
+		User_SubscriptionPersistence user_SubscriptionPersistence) {
+		this.user_SubscriptionPersistence = user_SubscriptionPersistence;
+	}
+
+	/**
 	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
@@ -843,6 +921,14 @@ public abstract class Interview_RequestLocalServiceBaseImpl
 	protected com.medicus.common.service.service.Student_ExternshipLocalService student_ExternshipLocalService;
 	@BeanReference(type = Student_ExternshipPersistence.class)
 	protected Student_ExternshipPersistence student_ExternshipPersistence;
+	@BeanReference(type = com.medicus.common.service.service.SubscriptionLocalService.class)
+	protected com.medicus.common.service.service.SubscriptionLocalService subscriptionLocalService;
+	@BeanReference(type = SubscriptionPersistence.class)
+	protected SubscriptionPersistence subscriptionPersistence;
+	@BeanReference(type = com.medicus.common.service.service.User_SubscriptionLocalService.class)
+	protected com.medicus.common.service.service.User_SubscriptionLocalService user_SubscriptionLocalService;
+	@BeanReference(type = User_SubscriptionPersistence.class)
+	protected User_SubscriptionPersistence user_SubscriptionPersistence;
 	@ServiceReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
 	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
 	@ServiceReference(type = com.liferay.portal.kernel.service.ClassNameLocalService.class)

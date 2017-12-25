@@ -1,0 +1,4 @@
+Bundle-Name: medicus-subscription-module
+Bundle-SymbolicName: com.medicus.subscription.portlet
+Bundle-Version: 1.0.0
+Export-Package: com.medicus.subscription.portlet.constants

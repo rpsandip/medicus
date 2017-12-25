@@ -149,3 +149,21 @@ create table Medicus_Student_Externship (
 	modifiedDate DATE null,
 	modifiedBy LONG
 );
+
+create table Medicus_Subscription (
+	subscriptionId LONG not null primary key,
+	name VARCHAR(75) null,
+	price DOUBLE,
+	noOfStudents INTEGER,
+	createDate DATE null,
+	createdBy LONG,
+	modifiedDate DATE null,
+	modifiedBy LONG
+);
+
+create table Medicus_User_Subscription (
+	userId LONG not null primary key,
+	subscriptionId LONG,
+	txnId VARCHAR(75) null,
+	subscriptionDate DATE null
+);

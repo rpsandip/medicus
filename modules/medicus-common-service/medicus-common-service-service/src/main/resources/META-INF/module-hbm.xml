@@ -11,6 +11,8 @@
 	<import class="com.medicus.common.service.model.School" />
 	<import class="com.medicus.common.service.model.Student" />
 	<import class="com.medicus.common.service.model.Student_Externship" />
+	<import class="com.medicus.common.service.model.Subscription" />
+	<import class="com.medicus.common.service.model.User_Subscription" />
 	<class name="com.medicus.common.service.model.impl.CampusImpl" table="Medicus_Campus">
 		<id name="campusId" type="long">
 			<generator class="assigned" />
@@ -168,5 +170,25 @@
 		<property name="createdBy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 		<property name="modifiedBy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.medicus.common.service.model.impl.SubscriptionImpl" table="Medicus_Subscription">
+		<id name="subscriptionId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="price" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="noOfStudents" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="createdBy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedBy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.medicus.common.service.model.impl.User_SubscriptionImpl" table="Medicus_User_Subscription">
+		<id name="userId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="subscriptionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="txnId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="subscriptionDate" type="org.hibernate.type.TimestampType" />
 	</class>
 </hibernate-mapping>

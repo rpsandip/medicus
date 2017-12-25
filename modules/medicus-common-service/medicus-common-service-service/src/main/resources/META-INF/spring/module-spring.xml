@@ -18,4 +18,8 @@
 	<bean class="com.medicus.common.service.service.persistence.impl.StudentFinderImpl" id="com.medicus.common.service.service.persistence.StudentFinder" parent="basePersistence" />
 	<bean class="com.medicus.common.service.service.impl.Student_ExternshipLocalServiceImpl" id="com.medicus.common.service.service.Student_ExternshipLocalService" />
 	<bean class="com.medicus.common.service.service.persistence.impl.Student_ExternshipPersistenceImpl" id="com.medicus.common.service.service.persistence.Student_ExternshipPersistence" parent="basePersistence" />
+	<bean class="com.medicus.common.service.service.impl.SubscriptionLocalServiceImpl" id="com.medicus.common.service.service.SubscriptionLocalService" />
+	<bean class="com.medicus.common.service.service.persistence.impl.SubscriptionPersistenceImpl" id="com.medicus.common.service.service.persistence.SubscriptionPersistence" parent="basePersistence" />
+	<bean class="com.medicus.common.service.service.impl.User_SubscriptionLocalServiceImpl" id="com.medicus.common.service.service.User_SubscriptionLocalService" />
+	<bean class="com.medicus.common.service.service.persistence.impl.User_SubscriptionPersistenceImpl" id="com.medicus.common.service.service.persistence.User_SubscriptionPersistence" parent="basePersistence" />
 </beans>

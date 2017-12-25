@@ -243,4 +243,20 @@
 		<field name="modifiedDate" type="Date" />
 		<field name="modifiedBy" type="long" />
 	</model>
+	<model name="com.medicus.common.service.model.Subscription">
+		<field name="subscriptionId" type="long" />
+		<field name="name" type="String" />
+		<field name="price" type="double" />
+		<field name="noOfStudents" type="int" />
+		<field name="createDate" type="Date" />
+		<field name="createdBy" type="long" />
+		<field name="modifiedDate" type="Date" />
+		<field name="modifiedBy" type="long" />
+	</model>
+	<model name="com.medicus.common.service.model.User_Subscription">
+		<field name="userId" type="long" />
+		<field name="subscriptionId" type="long" />
+		<field name="txnId" type="String" />
+		<field name="subscriptionDate" type="Date" />
+	</model>
 </model-hints>

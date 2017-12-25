@@ -13,3 +13,5 @@ create index IX_735B8E3D on Medicus_Student (stundetCampusId[$COLUMN_LENGTH:75$]
 create index IX_825E51FA on Medicus_Student (uuid_[$COLUMN_LENGTH:75$], companyId);
 
 create index IX_280B4965 on Medicus_Student_Externship (studentId);
+
+create index IX_7B05F4F6 on Medicus_User_Subscription (userId);

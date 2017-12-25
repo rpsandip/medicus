@@ -224,4 +224,28 @@
 		
 	</entity>
 	
+	<entity name="Subscription" local-service="true"  remote-service="false">
+		<column name="subscriptionId" primary="true" type="long"></column>
+		<column name="name" type="String"></column>
+		<column name="price" type="double"></column>
+		<column name="noOfStudents" type="int"></column>
+		
+		<column name="createDate" type="Date"></column>
+		<column name="createdBy" type="long"></column>
+		<column name="modifiedDate" type="Date"></column>
+		<column name="modifiedBy" type="long"></column>
+
+	</entity>
+	
+	<entity name="User_Subscription" local-service="true"  remote-service="false">
+		<column name="userId" primary="true" type="long"></column>
+		<column name="subscriptionId" type="long"></column>
+		<column name="txnId" type="String"></column>
+		<column name="subscriptionDate" type="Date"></column>
+		
+		<finder return-type="User_Subscription" name="userId">
+			<finder-column name="userId"></finder-column>
+		</finder>
+	</entity>
+	
 </service-builder>
