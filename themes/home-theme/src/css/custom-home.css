@@ -1,0 +1,62 @@
+
+/* Liferay CSS : START*/
+
+.login-signup-btn .portlet-boundary {
+    display: inline-block;
+    float: right;
+}
+
+.login-signup-btn .portlet-boundary .portlet-content {
+    padding: 0;
+}
+
+.form-group .control-label{
+	display: inline-block;
+    float: left;
+    width: 22%;
+    margin-right: 3%;
+}
+
+.form-group input.form-control, .form-group select.form-control, .form-group textarea.form-control  {
+	display: inline-block;
+    float: left;
+    width: 75%;
+}
+
+.add-student-fm .form-group input.form-control, .add-student-fm .form-group select.form-control, .add-student-fm .form-group textarea.form-control  {
+	display: inline-block;
+    float: left;
+    width: 50%;
+}
+
+.form-group .form-validator-stack{
+	margin: 0 0 0 25%;
+    clear: both;
+}
+
+.form-group .text-warning{
+	color: #7387A5!important;
+    font-size: 7px;
+    vertical-align: text-top;
+}
+
+#p_p_id_com_example_portlet_MedicusRegistrationModulemvcportletPortlet_ .lfr-alert-wrapper{
+	position: absolute;
+    top: 5%;
+    right: 400%;
+    width: 500px;
+}
+
+.input-group-addon {
+	position: absolute;
+    width: 40px;
+    height: 34px;
+    right: 21%;
+    z-index: 99999;
+    top: 0;
+}
+
+.approve-request-box label{
+			text-align: left !important;
+		}
+/* Liferay CSS : END */

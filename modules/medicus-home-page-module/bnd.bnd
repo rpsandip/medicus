@@ -1,0 +1,4 @@
+Bundle-Name: medicus-home-page-module
+Bundle-SymbolicName: com.medicus.home.page.portlet
+Bundle-Version: 1.0.0
+Export-Package: com.medicus.home.page.portlet.constants
