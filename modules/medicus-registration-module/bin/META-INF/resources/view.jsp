@@ -159,8 +159,49 @@
 		  </div>
 		</div> 
          
+         
+         <div id="forgotpassform" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Forgot Password</h4>
+					</div>
+
+					<div class="modal-body">
+						<div class="form-group">
+							<div class="col-md-10 col-sm-6 col-xs-12 success-forgot-msg"
+								style="color: green;"></div>
+							<div class="col-md-10 col-sm-6 col-xs-12 error-forgot-msg"
+								style="color: red;"></div>
+						</div>
+						<aui:form name="forgotpassfm" action=""
+							cssClass="form-horizontal form-label-left">
+							<div class="form-group">
+								<div class="col-md-10 col-sm-6 col-xs-12">
+									<aui:input name="email" label="Email Address"
+										cssClass="form-control col-md-7 col-xs-12">
+										<aui:validator name="required" />
+										<aui:validator name="email" />
+									</aui:input>
+								</div>
+							</div>
+							<div class="ln_solid"></div>
+							<div class="form-group">
+								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+									<button type="button" class="btn btn-primary forgotpassBtn">Submit</button>
+								</div>
+							</div>
+						</aui:form>
+					</div>
+				</div>
+			</div>
+		</div>
+         
 <aui:script>
 var userModuleNameSpace =  '<portlet:namespace/>';
+console.log("<portlet:namespace/> registration :" + userModuleNameSpace);
 AUI().use('aui-base','aui-form-validator', function(A) {
 	var registerUserBtn= A.one(".registerUserBtn");
 	registerUserBtn.on('click', function(e) {

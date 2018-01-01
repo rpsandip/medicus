@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 
+import org.apache.xmlbeans.impl.tool.Extension.Param;
 import org.osgi.service.component.annotations.Component;
 
 import com.liferay.portal.kernel.exception.PortalException;
@@ -21,6 +22,8 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.medicus.common.service.model.Partner;
 import com.medicus.common.service.service.PartnerLocalServiceUtil;
+import com.medicus.common.service.service.RegistrationLocalServiceUtil;
+import com.medicus.common.service.util.MedicusConstant;
 import com.medicus.partner.portlet.portlet.util.PartnerModuleContstant;
 
 @Component(
@@ -50,18 +53,34 @@ public class EditPartnerActionCommand extends BaseMVCActionCommand{
 		String contactPersonEmail = ParamUtil.getString(actionRequest, "contactPersonEmail");
 		String contactPersonPhoneNumber = ParamUtil.getString(actionRequest, "contactPersonPhoneNumber");
 		String websiteLink = ParamUtil.getString(actionRequest, "websiteLink");
+		String emailAddress = ParamUtil.getString(actionRequest, "emailAddress");
 		
-		try {
-			Partner partner = PartnerLocalServiceUtil.editPartner(partnerId, firstName,
-					address1, city, zipcode, state, country, contactPersonName, contactPersonEmail, 
-					contactPersonPhoneNumber, websiteLink, StringPool.BLANK , StringPool.BLANK, null , null,themeDisplay.getUserId());
-			
-			SessionMessages.add(actionRequest, "partner-update-success");
-		} catch (PortalException | IOException e) {
-			SessionErrors.add(actionRequest, "partner-update-err");
-			actionResponse.setRenderParameter("mvcRenderCommandName", "/edit_partner");
-			actionResponse.setRenderParameter("partnerId", String.valueOf(partnerId));
-			_log.error(e);
+		if(partnerId>0){
+			try {
+				Partner partner = PartnerLocalServiceUtil.editPartner(partnerId, firstName,
+						address1, city, zipcode, state, country, contactPersonName, contactPersonEmail, 
+						contactPersonPhoneNumber, websiteLink, StringPool.BLANK , StringPool.BLANK, null , null,themeDisplay.getUserId());
+				
+				SessionMessages.add(actionRequest, "partner-update-success");
+			} catch (PortalException | IOException e) {
+				SessionErrors.add(actionRequest, "partner-update-err");
+				actionResponse.setRenderParameter("mvcRenderCommandName", "/edit_partner");
+				actionResponse.setRenderParameter("partnerId", String.valueOf(partnerId));
+				_log.error(e);
+			}
+		}else{
+			try {
+				RegistrationLocalServiceUtil.registerPartner(firstName, MedicusConstant.PARTNER_DEFAULT_LAST_NAME, emailAddress,
+						StringPool.BLANK, StringPool.BLANK, address1, city, zipcode, state, country, 
+						contactPersonName, contactPersonEmail, contactPersonPhoneNumber,
+						websiteLink, themeDisplay.getUserId(), themeDisplay.getScopeGroupId());
+				SessionMessages.add(actionRequest, "partner-add-success");
+			} catch (PortalException e) {
+				SessionErrors.add(actionRequest, "partner-add-err");
+				actionResponse.setRenderParameter("mvcRenderCommandName", "/edit_partner");
+				actionResponse.setRenderParameter("partnerId", String.valueOf(partnerId));
+				_log.error(e);
+			}
 		}
 	}
 

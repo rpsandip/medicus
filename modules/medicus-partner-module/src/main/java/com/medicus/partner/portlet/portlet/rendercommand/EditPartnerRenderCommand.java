@@ -41,8 +41,6 @@ public class EditPartnerRenderCommand implements MVCRenderCommand{
 			} catch (PortalException e) {
 				_log.error(e.getMessage());
 			}
-		}else{
-			return "/view.jsp";
 		}
 		renderRequest.setAttribute("partnerId", partnerId);
 		renderRequest.setAttribute("usStateList", MedicusCommonLocalServiceUtil.getUSStateList());

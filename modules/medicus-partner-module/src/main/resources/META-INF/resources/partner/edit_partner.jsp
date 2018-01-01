@@ -3,6 +3,7 @@
 </portlet:actionURL>
 
 <liferay-ui:error key="partner-update-err" message="partner-update-err"/>
+<liferay-ui:error key="partner-add-err" message="partner-add-err"/>
 
 
 <div class="page-title">
@@ -29,12 +30,22 @@
 					</div>
 					<div class="form-group">
 						<div class="col-md-10 col-sm-6 col-xs-12">
-							<aui:input name="emailAddress" label="emailAddress"
-								value="${partnerBean.emailAddress }"
-								cssClass="form-control col-md-7 col-xs-12" readonly="true">
-								<aui:validator name="required" />
-								<aui:validator name="maxLength">50</aui:validator>
-							</aui:input>
+							<c:if test="${partnerId gt 0 }">
+								<aui:input name="emailAddress" label="emailAddress"
+									value="${partnerBean.emailAddress }"
+									cssClass="form-control col-md-7 col-xs-12" readonly="true">
+									<aui:validator name="required" />
+									<aui:validator name="maxLength">50</aui:validator>
+								</aui:input>
+							</c:if>
+							<c:if test="${partnerId eq 0 }">
+								<aui:input name="emailAddress" label="emailAddress"
+									value="${partnerBean.emailAddress }"
+									cssClass="form-control col-md-7 col-xs-12">
+									<aui:validator name="required" />
+									<aui:validator name="maxLength">50</aui:validator>
+								</aui:input>
+							</c:if>
 						</div>
 					</div>
 					<div class="form-group">

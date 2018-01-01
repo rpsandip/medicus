@@ -86,6 +86,7 @@ public class MedicusProfilePortlet extends MVCPortlet {
 					}
 				}
 				
+				renderRequest.setAttribute("usStateList", MedicusCommonLocalServiceUtil.getUSStateList());
 				renderRequest.setAttribute("isPartner", isPartner);
 				include(viewTemplate, renderRequest, renderResponse);
 		}

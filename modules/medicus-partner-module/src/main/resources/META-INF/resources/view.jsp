@@ -4,17 +4,23 @@
         <portlet:param name="mvcRenderCommandName" value="/import_partner" />
 </portlet:renderURL>
 
+<portlet:renderURL var="addPartnerURL">
+        <portlet:param name="mvcRenderCommandName" value="/edit_partner" />
+</portlet:renderURL>
+
 <portlet:actionURL var="deletePartnerURL" name="/delete_partner">
 </portlet:actionURL>
 
 <liferay-ui:success key="partner-update-success" message="partner-update-success"/>
 <liferay-ui:success key="partner-delete-success" message="partner-delete-success"/>
+<liferay-ui:success key="partner-add-success" message="partner-add-success"/>
 <liferay-ui:error key="partner-delete-error" message="partner-delete-error"/>
 
 
 <div class="page-title">
   <div class="title_left">
     <h2>Partners</h2>
+    	<a href="${addPartnerURL}" class="btn btn-primary">Add Partner</a>
     	<a href="${importPartnerURL }" class="btn btn-primary">Import Partners</a>
   </div>
 </div>
