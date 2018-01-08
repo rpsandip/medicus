@@ -42,6 +42,11 @@ public class MedicusCommonLocalServiceWrapper
 	}
 
 	@Override
+	public boolean isPartner(long userId) {
+		return _medicusCommonLocalService.isPartner(userId);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.model.User getCampusAdminName(
 		long campusId) {
 		return _medicusCommonLocalService.getCampusAdminName(campusId);

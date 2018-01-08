@@ -696,17 +696,26 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 	    Hits hits = IndexSearcherHelperUtil.search(searchContext, searchQuery);
 		
 	    Document[] documents = hits.getDocs();
-	    
+	    int totalHits = hits.getLength();
 	    for(Document document : documents){
 	    	try{
 	    		Student student = StudentLocalServiceUtil.getStudent(Long.parseLong(document.get(Field.ENTRY_CLASS_PK)));
-	    		studentList.add(student);
+	    		if(Validator.isNotNull(profession)){
+	    			if(document.get(MedicusConstant.STUDENT_IDNEX_PROFESSION).equals(profession)){
+	    				studentList.add(student);
+	    			}else{
+	    				totalHits--;
+	    			}
+	    		}else{
+	    			studentList.add(student);
+	    		}
 	    	}catch(Exception e){
+	    		totalHits--;
 	    		_log.debug(e.getMessage());
 	    	}
 	    }
 	    	
-	    jsonObject.put("totalHits", hits.getLength());
+	    jsonObject.put("totalHits", totalHits);
 	    
 		}catch(Exception e){
 			_log.error(e);
@@ -731,6 +740,10 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 	
 	public List<GrooupByEntityBean> searchByXAxis(String groupByColumnName, String searchColumnName, String searchColumnValue,long schoolId, long campusId){
 		return studentFinder.searchByXAxis(groupByColumnName, searchColumnName, searchColumnValue,schoolId,campusId);
+	}
+	
+	public int getActiveStudentCount(){
+		return studentPersistence.findBystatus(0).size();
 	}
 	
 }

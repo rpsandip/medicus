@@ -121,6 +121,10 @@
 			<finder-column name="stundetCampusId"></finder-column>
 		</finder>
 		
+		<finder return-type="Collection" name="status">
+			<finder-column name="status"></finder-column>
+		</finder>
+		
 	</entity>
 	
 	<entity name="Student_Externship" local-service="true"  remote-service="false">

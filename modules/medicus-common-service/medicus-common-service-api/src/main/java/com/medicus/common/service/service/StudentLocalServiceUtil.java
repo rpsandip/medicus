@@ -299,6 +299,10 @@ public class StudentLocalServiceUtil {
 			modifiedBy);
 	}
 
+	public static int getActiveStudentCount() {
+		return getService().getActiveStudentCount();
+	}
+
 	/**
 	* Returns the number of students.
 	*

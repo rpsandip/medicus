@@ -105,7 +105,7 @@
 	       	   		<aui:input type="hidden" name="partnerName"/>
 	       	   </div>
 	           <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-	           		<aui:button type="submit" value="Yes"  cssClass="btn btn-success"/>
+	           		<aui:button type="submit" value="Yes"  cssClass="btn btn-success" onClick="javascript: jQuery('.modal-backdrop').remove()"/>
 	                <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
 	           </div>
            </aui:form>

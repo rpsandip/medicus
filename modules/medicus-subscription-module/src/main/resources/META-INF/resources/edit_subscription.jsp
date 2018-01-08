@@ -33,14 +33,14 @@
 							 </aui:input>
 						</div>	 
        				</div>
-       				<div class="form-group">	
+       				<%-- <div class="form-group">	
 	       				 <div class="col-md-10 col-sm-6 col-xs-12">
        						 <aui:input name="noOfStudents" label="No. Of Students" cssClass="form-control col-md-7 col-xs-12" value="${subscription.noOfStudents }">
 					     		<aui:validator name="required" />
 					     		<aui:validator name="number" />
 						 	</aui:input>
 						</div>
-					</div>
+					</div> --%>
        				<div class="ln_solid"></div>
 					 <div class="form-group">
 				         <div class="col-md-10 col-sm-6 col-xs-12 col-md-offset-3">

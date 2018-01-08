@@ -497,6 +497,160 @@ public class StudentUtil {
 	}
 
 	/**
+	* Returns all the students where status = &#63;.
+	*
+	* @param status the status
+	* @return the matching students
+	*/
+	public static List<Student> findBystatus(int status) {
+		return getPersistence().findBystatus(status);
+	}
+
+	/**
+	* Returns a range of all the students where status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link StudentModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param status the status
+	* @param start the lower bound of the range of students
+	* @param end the upper bound of the range of students (not inclusive)
+	* @return the range of matching students
+	*/
+	public static List<Student> findBystatus(int status, int start, int end) {
+		return getPersistence().findBystatus(status, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the students where status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link StudentModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param status the status
+	* @param start the lower bound of the range of students
+	* @param end the upper bound of the range of students (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching students
+	*/
+	public static List<Student> findBystatus(int status, int start, int end,
+		OrderByComparator<Student> orderByComparator) {
+		return getPersistence()
+				   .findBystatus(status, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the students where status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link StudentModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param status the status
+	* @param start the lower bound of the range of students
+	* @param end the upper bound of the range of students (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching students
+	*/
+	public static List<Student> findBystatus(int status, int start, int end,
+		OrderByComparator<Student> orderByComparator, boolean retrieveFromCache) {
+		return getPersistence()
+				   .findBystatus(status, start, end, orderByComparator,
+			retrieveFromCache);
+	}
+
+	/**
+	* Returns the first student in the ordered set where status = &#63;.
+	*
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching student
+	* @throws NoSuchStudentException if a matching student could not be found
+	*/
+	public static Student findBystatus_First(int status,
+		OrderByComparator<Student> orderByComparator)
+		throws com.medicus.common.service.exception.NoSuchStudentException {
+		return getPersistence().findBystatus_First(status, orderByComparator);
+	}
+
+	/**
+	* Returns the first student in the ordered set where status = &#63;.
+	*
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching student, or <code>null</code> if a matching student could not be found
+	*/
+	public static Student fetchBystatus_First(int status,
+		OrderByComparator<Student> orderByComparator) {
+		return getPersistence().fetchBystatus_First(status, orderByComparator);
+	}
+
+	/**
+	* Returns the last student in the ordered set where status = &#63;.
+	*
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching student
+	* @throws NoSuchStudentException if a matching student could not be found
+	*/
+	public static Student findBystatus_Last(int status,
+		OrderByComparator<Student> orderByComparator)
+		throws com.medicus.common.service.exception.NoSuchStudentException {
+		return getPersistence().findBystatus_Last(status, orderByComparator);
+	}
+
+	/**
+	* Returns the last student in the ordered set where status = &#63;.
+	*
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching student, or <code>null</code> if a matching student could not be found
+	*/
+	public static Student fetchBystatus_Last(int status,
+		OrderByComparator<Student> orderByComparator) {
+		return getPersistence().fetchBystatus_Last(status, orderByComparator);
+	}
+
+	/**
+	* Returns the students before and after the current student in the ordered set where status = &#63;.
+	*
+	* @param studentId the primary key of the current student
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next student
+	* @throws NoSuchStudentException if a student with the primary key could not be found
+	*/
+	public static Student[] findBystatus_PrevAndNext(long studentId,
+		int status, OrderByComparator<Student> orderByComparator)
+		throws com.medicus.common.service.exception.NoSuchStudentException {
+		return getPersistence()
+				   .findBystatus_PrevAndNext(studentId, status,
+			orderByComparator);
+	}
+
+	/**
+	* Removes all the students where status = &#63; from the database.
+	*
+	* @param status the status
+	*/
+	public static void removeBystatus(int status) {
+		getPersistence().removeBystatus(status);
+	}
+
+	/**
+	* Returns the number of students where status = &#63;.
+	*
+	* @param status the status
+	* @return the number of matching students
+	*/
+	public static int countBystatus(int status) {
+		return getPersistence().countBystatus(status);
+	}
+
+	/**
 	* Caches the student in the entity cache if it is enabled.
 	*
 	* @param student the student

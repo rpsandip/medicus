@@ -363,6 +363,134 @@ public interface StudentPersistence extends BasePersistence<Student> {
 	public int countBystudentCampusId(java.lang.String stundetCampusId);
 
 	/**
+	* Returns all the students where status = &#63;.
+	*
+	* @param status the status
+	* @return the matching students
+	*/
+	public java.util.List<Student> findBystatus(int status);
+
+	/**
+	* Returns a range of all the students where status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link StudentModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param status the status
+	* @param start the lower bound of the range of students
+	* @param end the upper bound of the range of students (not inclusive)
+	* @return the range of matching students
+	*/
+	public java.util.List<Student> findBystatus(int status, int start, int end);
+
+	/**
+	* Returns an ordered range of all the students where status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link StudentModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param status the status
+	* @param start the lower bound of the range of students
+	* @param end the upper bound of the range of students (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching students
+	*/
+	public java.util.List<Student> findBystatus(int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Student> orderByComparator);
+
+	/**
+	* Returns an ordered range of all the students where status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link StudentModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param status the status
+	* @param start the lower bound of the range of students
+	* @param end the upper bound of the range of students (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching students
+	*/
+	public java.util.List<Student> findBystatus(int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Student> orderByComparator,
+		boolean retrieveFromCache);
+
+	/**
+	* Returns the first student in the ordered set where status = &#63;.
+	*
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching student
+	* @throws NoSuchStudentException if a matching student could not be found
+	*/
+	public Student findBystatus_First(int status,
+		com.liferay.portal.kernel.util.OrderByComparator<Student> orderByComparator)
+		throws NoSuchStudentException;
+
+	/**
+	* Returns the first student in the ordered set where status = &#63;.
+	*
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching student, or <code>null</code> if a matching student could not be found
+	*/
+	public Student fetchBystatus_First(int status,
+		com.liferay.portal.kernel.util.OrderByComparator<Student> orderByComparator);
+
+	/**
+	* Returns the last student in the ordered set where status = &#63;.
+	*
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching student
+	* @throws NoSuchStudentException if a matching student could not be found
+	*/
+	public Student findBystatus_Last(int status,
+		com.liferay.portal.kernel.util.OrderByComparator<Student> orderByComparator)
+		throws NoSuchStudentException;
+
+	/**
+	* Returns the last student in the ordered set where status = &#63;.
+	*
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching student, or <code>null</code> if a matching student could not be found
+	*/
+	public Student fetchBystatus_Last(int status,
+		com.liferay.portal.kernel.util.OrderByComparator<Student> orderByComparator);
+
+	/**
+	* Returns the students before and after the current student in the ordered set where status = &#63;.
+	*
+	* @param studentId the primary key of the current student
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next student
+	* @throws NoSuchStudentException if a student with the primary key could not be found
+	*/
+	public Student[] findBystatus_PrevAndNext(long studentId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator<Student> orderByComparator)
+		throws NoSuchStudentException;
+
+	/**
+	* Removes all the students where status = &#63; from the database.
+	*
+	* @param status the status
+	*/
+	public void removeBystatus(int status);
+
+	/**
+	* Returns the number of students where status = &#63;.
+	*
+	* @param status the status
+	* @return the number of matching students
+	*/
+	public int countBystatus(int status);
+
+	/**
 	* Caches the student in the entity cache if it is enabled.
 	*
 	* @param student the student

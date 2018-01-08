@@ -453,5 +453,22 @@ public class MedicusCommonLocalServiceImpl
 		}
 		
 		return StringPool.BLANK;
-}
+    }
+	
+	public boolean isPartner(long userId){
+		boolean isPartner = false;
+		long partnerRoleId = MedicusCommonLocalServiceUtil.getPartnerOrgRoleId();
+		long medicusGroupId = MedicusCommonLocalServiceUtil.getMedicusGroupId();
+		if(partnerRoleId>0){
+			List<UserGroupRole> userGroupRoleList = UserGroupRoleLocalServiceUtil.getUserGroupRoles(userId, medicusGroupId);
+			for(UserGroupRole userGroupRole : userGroupRoleList){
+				if(userGroupRole.getRoleId()==partnerRoleId){
+					isPartner = true;
+					break;
+				}
+			}
+		}
+		
+		return isPartner;
+	}
 }

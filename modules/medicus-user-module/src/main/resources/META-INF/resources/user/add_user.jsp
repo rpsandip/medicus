@@ -7,7 +7,7 @@
 
 <div class="page-title">
   <div class="title_left">
-    		<liferay-ui:message key="add.user"/> 
+    		<h2><liferay-ui:message key="add.user"/></h2> 
   </div>
 </div>
 <div class="clearfix"></div>
@@ -55,7 +55,7 @@
 				</div>
 				<div class="form-group">
    					 <div class="col-md-10 col-sm-6 col-xs-12">
-   					 	<aui:select name="school" label="school">
+   					 	<aui:select name="school" label="school *">
    					 		<aui:option value=""> Please Select School</aui:option>
    					 		<c:forEach items="${schoolList }" var="school">
    					 			<aui:option value="${school.schoolId }"> ${school.name }</aui:option>
@@ -65,7 +65,7 @@
       			</div>
       			<div class="form-group">
    					 <div class="col-md-10 col-sm-6 col-xs-12">
-   					 	<aui:select name="campus" label="campus">
+   					 	<aui:select name="campus" label="campus *">
    					 		<aui:option value=""> Please Select Campus</aui:option>
    					 	</aui:select>
    					 </div>

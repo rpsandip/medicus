@@ -160,9 +160,10 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 				"value.object.column.bitmask.enabled.com.medicus.common.service.model.Student"),
 			true);
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
-	public static final long STUNDETCAMPUSID_COLUMN_BITMASK = 2L;
-	public static final long UUID_COLUMN_BITMASK = 4L;
-	public static final long STUDENTID_COLUMN_BITMASK = 8L;
+	public static final long STATUS_COLUMN_BITMASK = 2L;
+	public static final long STUNDETCAMPUSID_COLUMN_BITMASK = 4L;
+	public static final long UUID_COLUMN_BITMASK = 8L;
+	public static final long STUDENTID_COLUMN_BITMASK = 16L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.medicus.common.service.service.util.PropsUtil.get(
 				"lock.expiration.time.com.medicus.common.service.model.Student"));
 
@@ -924,7 +925,19 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 
 	@Override
 	public void setStatus(int status) {
+		_columnBitmask |= STATUS_COLUMN_BITMASK;
+
+		if (!_setOriginalStatus) {
+			_setOriginalStatus = true;
+
+			_originalStatus = _status;
+		}
+
 		_status = status;
+	}
+
+	public int getOriginalStatus() {
+		return _originalStatus;
 	}
 
 	@Override
@@ -1115,6 +1128,10 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 		studentModelImpl._setOriginalCompanyId = false;
 
 		studentModelImpl._originalStundetCampusId = studentModelImpl._stundetCampusId;
+
+		studentModelImpl._originalStatus = studentModelImpl._status;
+
+		studentModelImpl._setOriginalStatus = false;
 
 		studentModelImpl._setModifiedDate = false;
 
@@ -1621,6 +1638,8 @@ public class StudentModelImpl extends BaseModelImpl<Student>
 	private boolean _activelySeekingEmployment;
 	private boolean _haveExternship;
 	private int _status;
+	private int _originalStatus;
+	private boolean _setOriginalStatus;
 	private Date _createDate;
 	private long _createdBy;
 	private Date _modifiedDate;

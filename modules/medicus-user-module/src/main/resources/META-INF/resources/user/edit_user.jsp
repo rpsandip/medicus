@@ -7,7 +7,7 @@
 
 <div class="page-title">
   <div class="title_left">
-    		<liferay-ui:message key="update.user"/> 
+    		<h2><liferay-ui:message key="update.user"/> </h2>
   </div>
 </div>
 <div class="clearfix"></div>

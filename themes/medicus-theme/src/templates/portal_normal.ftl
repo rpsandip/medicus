@@ -28,7 +28,9 @@
   	 <link rel="stylesheet" href="${css_folder}/bootstrap-datetimepicker.css">
   	 <link rel="stylesheet" href="${css_folder}/green.css">
   	 <link rel="stylesheet" href="${css_folder}/nprogress.css">
-  	 <link rel="stylesheet" href="${css_folder}/custom.css">
+  	 <link rel="stylesheet" href="${css_folder}/medicus_custom.css">
+  	 <link rel="stylesheet" href="${css_folder}/newtheme.css">
+  	 
   	 
   	     <script>
 		   		 define._amd = define.amd;
@@ -48,132 +50,13 @@
 					<script src="${javascript_folder}/jquery.smartWizard.js"></script>
 					<script src="${javascript_folder}/nprogress.js"></script>
 					<script src="${javascript_folder}/jquery.formatter.js"></script>
-					<script src="${javascript_folder}/common.js"></script>
 			<script>
 						define.amd = define._amd;
 			</script>
   	
 </head>
  <#if !is_signed_in>
-	 <body class="nav-md">
-	  <div class="welcomepage">
-      	<div class="main_container">
-	    	<!-- top navigation -->
-	        <div class="top_nav col-md-12">
-	          <div class="nav_menu">
-	          	<div class="welcome-logo"><a href="/web/guest" class="site_title"><i class="fa fa-paw"></i> <span>Medicus</span></a></div>
-	            <nav class="login-signup-btn">
-	              <ul class="nav navbar-nav navbar-right">
-	                <@liferay_portlet["runtime"]
-							portletName="com_example_portlet_MedicusRegistrationModulemvcportletPortlet"
-						/>
-					<div class="portlet-boundary">
-	                 	<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#loginform">LogIn</button>
-	                </div>
-	              </ul>
-	              
-	            </nav>
-	          </div>
-	        </div>
-	    	
-	    	<div class="right_col col-md-12" role="main">
-	    		<@liferay_ui["quick-access"] contentId="#main-content" />
-			    <@liferay_util["include"] page=body_top_include />
-        		<div class="">
-	        		<#if selectable>
-						<@liferay_util["include"] page=content_include />
-					<#else>
-						${portletDisplay.recycle()}
-	
-						${portletDisplay.setTitle(the_title)}
-	
-						<@liferay_theme["wrap-portlet"] page="portlet.ftl">
-						<@liferay_util["include"] page=content_include />
-						</@>
-					</#if>
-				</div>
-			</div>
-			<!-- footer content -->
-        	   <!-- footer content -->
-        	<footer>
-        		<div class="col-md-6 col-sm-6 col-xs-12">
-        			<div class="welcome-logo text-center">
-        				<a href="welcome.html" class="site_title"><i class="fa fa-paw"></i> <span>Medicus</span></a>
-        				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-        			</div>
-        		</div>
-        		<div class="col-md-3 col-sm-3 col-xs-12">
-        			<h4>Quick Links</h4><hr />
-        			<p><a href="##">About Us</a></p>
-        			<p><a href="##">Contact Us</a></p>
-        			<p><a href="##">News and Updates</a></p>
-        		</div>
-        		<div class="col-md-3 col-sm-3 col-xs-12">
-        			<h4>Know More</h4><hr />
-        			<p><a href="##">Schools</a></p>
-        			<p><a href="##">Campuses</a></p>
-        			<p><a href="##">Students</a></p>
-        		</div>
-        		<div class="clearfix"></div>
-        		<hr />
-          		<div class="text-center">
-            		&copy;2017 All Rights Reserved by Medicus
-          		</div>
-          		<div class="clearfix"></div>
-        	</footer>
-		<div id="loginform" class="modal fade" role="dialog">
-		  <div class="modal-dialog">
-		    <!-- Modal content-->
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal">&times;</button>
-		        <h4 class="modal-title">Login</h4>
-		      </div>
-		      <div class="modal-body">
-		        	<@liferay_portlet["runtime"]
-						portletName="com_liferay_login_web_portlet_LoginPortlet"
-					/>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-		
-		<@liferay_util["include"] page=body_bottom_include />
-		<@liferay_util["include"] page=bottom_include />
-		
-			<script>
-		   		 define._amd = define.amd;
-		    	define.amd = false;
-			</script>
-		
-					<script src="${javascript_folder}/jquery.min.js"></script>
-					<script src="${javascript_folder}/bootstrap.min.js"></script>
-					<script src="${javascript_folder}/moment.min.js"></script>
-					<script src="${javascript_folder}/jquery.dataTables.min.js"></script>
-					<script src="${javascript_folder}/jquery.easing.js"></script>
-					<script src="${javascript_folder}/jquery.flexslider.js"></script>
-					<script src="${javascript_folder}/dataTables.bootstrap.min.js"></script>
-					<script src="${javascript_folder}/bootstrap-datetimepicker.min.js"></script>
-					<script src="${javascript_folder}/Chart.min.js"></script>
-					<script src="${javascript_folder}/icheck.min.js"></script>
-					<script src="${javascript_folder}/jquery.smartWizard.js"></script>
-					<script src="${javascript_folder}/nprogress.js"></script>
-					<script src="${javascript_folder}/jquery.formatter.js"></script>
-					<script src="${javascript_folder}/common.js"></script>
-		
-		     <script type="text/javascript">
-			    $(window).load(function() {
-			    	  $('.flexslider').flexslider({
-			    	    animation: "slide",
-			    	    directionNav: false
-			    	  });
-			    	});
-		    </script>
-		<script>
-			define.amd = define._amd;
-		</script>
-					
-	  </body>
+	 
  <#else>
 	<body class="nav-md">
 		<div class="container body">
@@ -203,7 +86,13 @@
 		              </div>
 		              <div class="profile_info">
 		                <span>Welcome</span>
-		                <h2>${user.getFirstName()} ${user.getLastName()}</h2>
+		                <h2>${user.getFirstName()} 
+		                <#if user.getLastName() != "~">
+		                	${user.getLastName()}</h2>
+		                </#if>	
+		              </div>
+		              <div class="profile_info">
+		                <h4><a href="/c/portal/logout">Logout</a></h4>
 		              </div>
 		            </div>
 		            <!-- /menu profile quick info -->
@@ -229,7 +118,35 @@
 								/>
 							</#if>
 							<li ${nav_item_attr_selected} class="${nav_item_css_class}" id="layout_${nav_item.getLayoutId()}" role="presentation">
-								<a aria-labelledby="layout_${nav_item.getLayoutId()}" ${nav_item_attr_has_popup} href="${nav_item.getURL()}" ${nav_item.getTarget()} role="menuitem"><span><@liferay_theme["layout-icon"] layout=nav_item_layout /><i class="fa fa-graduation-cap"></i> ${nav_item.getName()}</span></a>
+								<a aria-labelledby="layout_${nav_item.getLayoutId()}" ${nav_item_attr_has_popup} href="${nav_item.getURL()}" ${nav_item.getTarget()} role="menuitem">
+									<#if nav_item.getLayout().getFriendlyURL()=='/dashboard'>
+										<i class="fa fa-fw fa-home"></i> ${nav_item.getName()}
+									<#elseif nav_item.getLayout().getFriendlyURL()=='/schools'>
+										<i class="fa fa-fw fa-graduation-cap"></i> ${nav_item.getName()}
+									<#elseif nav_item.getLayout().getFriendlyURL()=='/campuses'>
+										<i class="fa fa-fw fa-institution"></i> ${nav_item.getName()}
+									<#elseif nav_item.getLayout().getFriendlyURL()=='/users'>
+										<i class="fa fa-fw fa-group"></i> ${nav_item.getName()}
+									<#elseif nav_item.getLayout().getFriendlyURL()=='/partners'>
+										<i class="fa fa-fw fa-american-sign-language-interpreting"></i> ${nav_item.getName()}
+									<#elseif nav_item.getLayout().getFriendlyURL()=='/employer'>
+										<i class="fa fa-fw fa-trello"></i> ${nav_item.getName()}
+									<#elseif nav_item.getLayout().getFriendlyURL()=='/student'>
+										<i class="fa fa-fw fa-group"></i> ${nav_item.getName()}
+									<#elseif nav_item.getLayout().getFriendlyURL()=='/interview-request'>
+										<i class="fa fa-fw fa-question"></i> ${nav_item.getName()}
+									<#elseif nav_item.getLayout().getFriendlyURL()=='/report'>
+										<i class="fa fa-fw fa-table"></i> ${nav_item.getName()}
+									<#elseif nav_item.getLayout().getFriendlyURL()=='/graph'>
+										<i class="fa fa-fw fa-bar-chart"></i> ${nav_item.getName()}
+									<#elseif nav_item.getLayout().getFriendlyURL()=='/profile'>
+										<i class="fa fa-fw fa-user-md"></i> ${nav_item.getName()}
+									<#elseif nav_item.getLayout().getFriendlyURL()=='/subscription'>
+										<i class="fa fa-fw fa-object-group"></i> ${nav_item.getName()}
+									<#else>	
+										${nav_item.getName()}
+									</#if>
+								</a>
 							</li>
 		                  </#list>
 		                </ul>
@@ -245,21 +162,7 @@
 			            <nav>
 			              <div class="nav toggle">
 			                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-			              </div>
-			
-			              <ul class="nav navbar-nav navbar-right">
-			                <li class="">
-			                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-			                    <img src="images/img.jpg" alt="">${user.getFirstName()} ${user.getLastName()}
-			                    <span class=" fa fa-angle-down"></span>
-			                  </a>
-			                  <ul class="dropdown-menu dropdown-usermenu pull-right">
-			                    <li><a href="javascript:;"> Profile</a></li>
-			                    <li><a href="/c/portal/logout"><i class="fa fa-sign-out pull-right"></i>Log Out</a></li>
-			                  </ul>
-			                </li>
-			              </ul>
-			              
+			              </div>			
 			            </nav>
 			          </div>
 			        </div>
@@ -305,6 +208,7 @@
 					<script src="${javascript_folder}/jquery.flexslider.js"></script>
 					<script src="${javascript_folder}/dataTables.bootstrap.min.js"></script>
 					<script src="${javascript_folder}/bootstrap-datetimepicker.min.js"></script>
+					<script src="${javascript_folder}/common.js"></script>
 			<script>
 						define.amd = define._amd;
 			</script>

@@ -30,8 +30,12 @@
 <div class="page-title">
   <div class="title_left">
 	<h2>Students</h2>
-		<a href="${addStudnetURL }" class="btn btn-primary">Add New Student</a>
-		<a href="${importStudentURL }" class="btn btn-primary">Import Students</a>
+		<c:if test="${hasStudentAddPermission }">
+			<a href="${addStudnetURL }" class="btn btn-primary">Add New Student</a>
+		</c:if>
+		<c:if test="${hasStudentImportPermission }">
+			<a href="${importStudentURL }" class="btn btn-primary">Import Students</a>
+		</c:if>
   </div>
 </div>
 <div class="clearfix"></div>
@@ -39,94 +43,101 @@
   <div class="col-md-12">
 	<div class="x_panel">
 	  <div class="x_content">
-		<div class="row student-list">
-		  <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-		  	<form id="search-user-form" data-parsley-validate class="form-horizontal form-label-left">
-                  <div class="col-md-3 col-sm-3 col-xs-12">
-                    <input type="text" id="keyword" placeholder="Search keyword..." class="form-control col-md-7 col-xs-12">
-                  </div>
-                  <div class="col-md-2 col-sm-2 col-xs-12">
-                    <input type="text" id="zipcode" placeholder="Zipcode"  class="form-control col-md-7 col-xs-12">
-                  </div>
-                  <div class="col-md-2 col-sm-2 col-xs-12">
-                    <select class="form-control" name="schoolName"  id="gender">
-                      <option value="">Select Gender</option>
-                      <option value="Male">Male</option>
-                      <option value="Female">Female</option>
-                      <option value="LBGT">LGBT</option>
-                    </select>
-                  </div>
-                  <div class="col-md-3 col-sm-3 col-xs-12">
-                    <select class="form-control" name="profession" id="profession">
-                      <option value="">Select Profession</option>
-                      <option value="Dental Assistant">Dental Assistant</option>
-                      <option value="Medical Assistant">Medical Assistant</option>
-                      <option value="Medical Administrative Assistance">Medical Administrative Assistance</option>
-                      <option value="Phlebotomy">Phlebotomy</option>
-                      <option value="Pharmacy Technician">Pharmacy Technician</option>
-                      <option value="Patient Care Technician">Patient Care Technician</option>
-                      <option value="Veterinary Assistant">Veterinary Assistant</option>
-                      <option value="Sonography">Sonography </option>
-                    </select>
-                  </div>
-                  <div>
-                  <select name="language" id = "language"  cssClass="form-control col-md-7 col-xs-12" multiple="true">
-						<option value="">Select Language</option>
-						<option value="English">English</option>
-						<option value="French" >French</option>
-						<option value="Spanish" >Spanish</option>
-						<option value="Chinese - Mandarin" >Chinese - Mandarin</option>
-						<option value="Chinese -Cantonese" >Chinese -Cantonese</option>
-						<option value="Tagalog" >Tagalog</option>
-						<option value="Vietnamese" >Vietnamese</option>
-						<option value="Korean" >Korean</option>
-						<option value="German" >German</option>
-						<option value="Arabic" >Arabic</option>
-						<option value="Russian" >Russian</option>
-						<option value="Italian" >Italian</option>
-						<option value="Portuguese">Portuguese</option>
-						<option value="Hindi" >Hindi</option>
-						<option value="Polish" >Polish</option>
-						<option value="Japanese" >Japanese</option>
-						<option value="Urdu" >Urdu</option>
-						<option value="Persian" >Persian</option>
-						<option value="Gujarati" >Gujarati</option>
-						<option value="Greek" >Greek</option>
-						<option value="Bengali" >Bengali</option>
-						<option value="Panjabi" >Panjabi</option>
-						<option value="Telugu" >Telugu</option>
-						<option value="Armenian" >Armenian</option>
-						<option value="Hmong" >Hmong</option>
-				      </select>
-                  </div>
-                  <div class="col-md-3 col-sm-3 col-xs-12">
-                  	   <select class="form-control" name="schoolId" id="schoolId">
-                			<option value=""> Select School</option>
-                			<c:forEach items="${schoolList }" var="school">
- 					 			<option value="${school.schoolId }"> ${school.name }</option>
- 					 		</c:forEach>
- 					 	</select>
- 				  </div>
- 				  <div class="col-md-3 col-sm-3 col-xs-12">
-                  	   <select class="form-control" name="campusId" id="campusId">
-                  	   		<option value=""> Select Campus</option>
-                  	   </select>
-                 </div> 	   	 				
-                  <div class="col-md-2 col-sm-2 col-xs-12 text-left">
-                    <button type="button" class="btn btn-success search-student">Submit</button>
-                  </div>
-                  <input type="hidden" id="userSchoolId" name="userSchoolId" value="${ userSchoolId}"/>
-                  <input type="hidden" id="userCampusId" name="userCampusId" value="${userCampusId }"/>
-         		</form>
-             	<br>
-		  </div>
-		  <div class="clearfix"></div>
-		  <div class="studentList"></div>
-		  <div class="clearfix"></div>
-		  <div class="col-m-12 text-center load-more">
-			<button class="btn btn-primary load-more-students" >Load More</button>
-		  </div>
-		</div>
+		<c:choose>
+			<c:when test="${isPartner and ! isPartnerSubscried}">
+				<h3>You have not eligible to view students detail as you not subscribed plan. Please  subscribe <a href="/group/medicus/subscription">here</a>  </h3>
+			</c:when>
+			<c:otherwise>
+				<div class="row student-list">
+				  <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+				  	<form id="search-user-form" data-parsley-validate class="form-horizontal form-label-left">
+		                  <div class="col-md-3 col-sm-3 col-xs-12">
+		                    <input type="text" id="keyword" placeholder="Search keyword..." class="form-control col-md-7 col-xs-12">
+		                  </div>
+		                  <div class="col-md-2 col-sm-2 col-xs-12">
+		                    <input type="text" id="zipcode" placeholder="Zipcode"  class="form-control col-md-7 col-xs-12">
+		                  </div>
+		                  <div class="col-md-2 col-sm-2 col-xs-12">
+		                    <select class="form-control" name="schoolName"  id="gender">
+		                      <option value="">Select Gender</option>
+		                      <option value="Male">Male</option>
+		                      <option value="Female">Female</option>
+		                      <option value="LBGT">LGBT</option>
+		                    </select>
+		                  </div>
+		                  <div class="col-md-3 col-sm-3 col-xs-12">
+		                    <select class="form-control" name="profession" id="profession">
+		                      <option value="">Select Profession</option>
+		                      <option value="Dental Assistant">Dental Assistant</option>
+		                      <option value="Medical Assistant">Medical Assistant</option>
+		                      <option value="Medical Administrative Assistance">Medical Administrative Assistance</option>
+		                      <option value="Phlebotomy">Phlebotomy</option>
+		                      <option value="Pharmacy Technician">Pharmacy Technician</option>
+		                      <option value="Patient Care Technician">Patient Care Technician</option>
+		                      <option value="Veterinary Assistant">Veterinary Assistant</option>
+		                      <option value="Sonography">Sonography </option>
+		                    </select>
+		                  </div>
+		                  <div>
+		                  <select name="language" id = "language"  cssClass="form-control col-md-7 col-xs-12" multiple="true">
+								<option value="">Select Language</option>
+								<option value="English">English</option>
+								<option value="French" >French</option>
+								<option value="Spanish" >Spanish</option>
+								<option value="Chinese - Mandarin" >Chinese - Mandarin</option>
+								<option value="Chinese -Cantonese" >Chinese -Cantonese</option>
+								<option value="Tagalog" >Tagalog</option>
+								<option value="Vietnamese" >Vietnamese</option>
+								<option value="Korean" >Korean</option>
+								<option value="German" >German</option>
+								<option value="Arabic" >Arabic</option>
+								<option value="Russian" >Russian</option>
+								<option value="Italian" >Italian</option>
+								<option value="Portuguese">Portuguese</option>
+								<option value="Hindi" >Hindi</option>
+								<option value="Polish" >Polish</option>
+								<option value="Japanese" >Japanese</option>
+								<option value="Urdu" >Urdu</option>
+								<option value="Persian" >Persian</option>
+								<option value="Gujarati" >Gujarati</option>
+								<option value="Greek" >Greek</option>
+								<option value="Bengali" >Bengali</option>
+								<option value="Panjabi" >Panjabi</option>
+								<option value="Telugu" >Telugu</option>
+								<option value="Armenian" >Armenian</option>
+								<option value="Hmong" >Hmong</option>
+						      </select>
+		                  </div>
+		                  <div class="col-md-3 col-sm-3 col-xs-12">
+		                  	   <select class="form-control" name="schoolId" id="schoolId">
+		                			<option value=""> Select School</option>
+		                			<c:forEach items="${schoolList }" var="school">
+		 					 			<option value="${school.schoolId }"> ${school.name }</option>
+		 					 		</c:forEach>
+		 					 	</select>
+		 				  </div>
+		 				  <div class="col-md-3 col-sm-3 col-xs-12">
+		                  	   <select class="form-control" name="campusId" id="campusId">
+		                  	   		<option value=""> Select Campus</option>
+		                  	   </select>
+		                 </div> 	   	 				
+		                  <div class="col-md-2 col-sm-2 col-xs-12 text-left">
+		                    <button type="button" class="btn btn-success search-student">Submit</button>
+		                  </div>
+		                  <input type="hidden" id="userSchoolId" name="userSchoolId" value="${ userSchoolId}"/>
+		                  <input type="hidden" id="userCampusId" name="userCampusId" value="${userCampusId }"/>
+		         		</form>
+		             	<br>
+				  </div>
+				  <div class="clearfix"></div>
+				  <div class="studentList"></div>
+				  <div class="clearfix"></div>
+				  <div class="col-m-12 text-center load-more">
+					<button class="btn btn-primary load-more-students" >Load More</button>
+				  </div>
+				</div>
+		</c:otherwise>
+		</c:choose>
 	  </div>
 	</div>
   </div>
@@ -148,7 +159,7 @@
        	   		Are you sure you want to sent Interview Request?
        	   </div>
               <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                <button type="button" class="btn btn-primary sent-interview-request">Yes</button>
+                <button type="button" class="btn btn-primary sent-interview-request" onClick="javascript: jQuery('.modal-backdrop').remove()">Yes</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
               </div>
          </div>
@@ -227,13 +238,15 @@ AUI().use('aui-io-request', 'aui-autocomplete','liferay-portlet-url' ,'aui-base'
 
 		 
 		 var languages = "";
-		 A.all('#language option:selected').each(
-		  function (node) {
-		    console.log("value->" + node.get('value'));
-		    languages = languages + node.get('value') + ",";
-		  }
-		);
-		 
+		 var langNodes = A.all('#language option')._nodes;
+		 for(var i=0;i<langNodes.length;i++){
+			 console.log(langNodes[i].selected + " " + langNodes[i].text);
+			 if(langNodes[i].selected){
+			    	languages = languages + langNodes[i].text + ",";
+			 }
+		 }
+
+		console.log("languages ->" + languages); 
 		languages = languages.substring(0,languages.lastIndexOf(",")); 
 		resourceURL.setParameter("languages",languages); 
 		 

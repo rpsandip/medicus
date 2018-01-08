@@ -65,6 +65,9 @@ public interface MedicusCommonLocalService extends BaseLocalService {
 		java.lang.String folderName);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public boolean isPartner(long userId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public User getCampusAdminName(long campusId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

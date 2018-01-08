@@ -308,6 +308,11 @@ public class StudentLocalServiceWrapper implements StudentLocalService,
 			modifiedBy);
 	}
 
+	@Override
+	public int getActiveStudentCount() {
+		return _studentLocalService.getActiveStudentCount();
+	}
+
 	/**
 	* Returns the number of students.
 	*

@@ -55,18 +55,7 @@ public class MedicusProfilePortlet extends MVCPortlet {
 				
 				ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
-				boolean isPartner = false;
-				long partnerRoleId = MedicusCommonLocalServiceUtil.getPartnerOrgRoleId();
-				long medicusGroupId = MedicusCommonLocalServiceUtil.getMedicusGroupId();
-				if(partnerRoleId>0){
-					List<UserGroupRole> userGroupRoleList = UserGroupRoleLocalServiceUtil.getUserGroupRoles(themeDisplay.getUserId(), medicusGroupId);
-					for(UserGroupRole userGroupRole : userGroupRoleList){
-						if(userGroupRole.getRoleId()==partnerRoleId){
-							isPartner = true;
-							break;
-						}
-					}
-				}
+				boolean isPartner = MedicusCommonLocalServiceUtil.isPartner(themeDisplay.getUserId());
 					
 				if(isPartner){
 					try {

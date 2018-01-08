@@ -40,9 +40,8 @@ input[type="submit"],.w3l_header_left ul li a,.related-post-right h4 a,.comments
 }
 /*--/model--*/
 .modal-header h4 {
-    font-size: 2em;
+    font-size: 1.3em !important;
     text-align: center;
-    text-transform: uppercase;
     letter-spacing: 1px;
 	color:#0c0d0d;
 }
@@ -1215,7 +1214,7 @@ button.btn1:hover i.fa.fa-paper-plane-o{
 	height: 35px;
 	border: none;
 	text-indent: 100%;
-	background: url(../images/top-arrow.png) no-repeat 0px 0px;
+	background: url(/o/com.medicus.home.page.portlet/top-arrow.png) no-repeat 0px 0px;
 	border-radius: 50%;
 	-webkit-border-radius: 50%;
 	-o-border-radius: 50%;
@@ -1919,3 +1918,11 @@ button.btn1:hover i.fa.fa-paper-plane-o{
 .lightbox{width:80%;left: 15%!important;}
 .lb-outerContainer{float:left}
 .lb-dataContainer{    margin-left: 70px!important; float:left}
+
+
+#senna_surface1 .right_col {background: #fff;
+    padding: 0;
+    margin: 0;}
+
+#senna_surface1 .right_col .portlet-content{padding:0}
+#senna_surface1 .portlet-layout{    margin: 0;}

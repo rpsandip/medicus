@@ -31,26 +31,27 @@
   	 <link href="//fonts.googleapis.com/css?family=Josefin+Sans:100,100i,300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
 	 <link href="//fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i" rel="stylesheet">
   	 
-  	 <script>
+  	     <script>
 		   		 define._amd = define.amd;
 		    	define.amd = false;
-			</script>
+		  </script>
 			
 			<script src="${javascript_folder}/easyResponsiveTabs.js"></script>
 			<script src="${javascript_folder}/owl.carousel.js"></script> 
 			<script src="${javascript_folder}/jquery.flexslider.js"></script>
-			<script src="${javascript_folder}/numscroller-1.0.js"></script>
+			<script src="${javascript_folder}/jquery.formatter.js"></script>
+	
 		<script>
 				define.amd = define._amd;
-			</script>
+		</script>
 </head>
 <body>
 	    	<div class="w3_agilits_banner_bootm">
 			     <div class="w3_agilits_inner_bottom">
 			            <div class="wthree_agile_login pull-left">
 						     <ul>
-								<li><i class="fa fa-phone" aria-hidden="true"></i> (+000) 123 456 7890</li>
-								<li><i class="fa fa-envelope-o list-icon" aria-hidden="true"></i><a href="mailto:info@example.com">info@medicusgroup.com</a></li>
+								<li><i class="fa fa-phone" aria-hidden="true"></i> (+1) 281 866 1505</li>
+								<li><i class="fa fa-envelope-o list-icon" aria-hidden="true"></i><a href="mailto:techsupport@medicusgroupllc.com">TechSupport@MedicusGroupLLC.com</a></li>
 							</ul>
 						</div>
 						<div class="wthree_agile_login">
@@ -67,7 +68,7 @@
 						</div>
 				</div>
 			</div>
-	    	<div class="right_col col-md-12" role="main">
+	    	<div class="right_col col-md-12" id="demo-1" role="main">
 	    		<@liferay_ui["quick-access"] contentId="#main-content" />
 			    <@liferay_util["include"] page=body_top_include />
         		<div class="">
@@ -88,7 +89,9 @@
 	        	<!-- footer -->
 			<div class="agileits_w3layouts-footer">
 			<div class="col-md-6 col-sm-8 agileinfo-copyright">
-				<p>&copy; 2017 Medicus Group. All rights reserved  </p>
+				<p>&copy; 2017 Medicus Group. All rights reserved  
+				<a href="/web/guest/terms-of-service" target="_blank">Terms Of Service</a>
+				</p>
 			</div>
 			<div class="col-md-6 col-sm-4 agileinfo-icons">
 				<ul>
@@ -130,14 +133,13 @@
 					<script src="${javascript_folder}/lightbox-plus-jquery.min.js"> </script>
 					
 		     		<script src="${javascript_folder}/owl.carousel.js"></script> 
-		     		<script src="${javascript_folder}/move-top.js"></script>
 					<script src="${javascript_folder}/easing.js"></script>
 					
 					<script src="${javascript_folder}/SmoothScroll.min.js"></script>
 					<script src="${javascript_folder}/jquery.flexslider.js"></script>
 					<script src="${javascript_folder}/jquery.formatter.js"></script>
 					<script src="${javascript_folder}/jquery.zoomslider.min.js"></script>
-					<script src="${javascript_folder}/jquery.formatter.js"></script>
+				
 			<script>
 				define.amd = define._amd;
 			</script>

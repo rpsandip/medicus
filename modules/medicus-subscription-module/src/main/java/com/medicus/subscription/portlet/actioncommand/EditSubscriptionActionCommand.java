@@ -45,10 +45,10 @@ public class EditSubscriptionActionCommand extends BaseMVCActionCommand{
 				subscription = SubscriptionLocalServiceUtil.getSubscription(subscriptionId);
 				
 				double price = ParamUtil.getDouble(actionRequest, "price");
-				int noOfStudents = ParamUtil.getInteger(actionRequest, "noOfStudents");
+				//int noOfStudents = ParamUtil.getInteger(actionRequest, "noOfStudents");
 				
 				subscription.setPrice(price);
-				subscription.setNoOfStudents(noOfStudents);
+				//subscription.setNoOfStudents(noOfStudents);
 				subscription.setModifiedBy(themeDisplay.getUserId());
 				subscription.setModifiedDate(new Date());
 				

@@ -248,6 +248,9 @@ public interface StudentLocalService extends BaseLocalService,
 		boolean isApprovedInterviewRequest, long modifiedBy)
 		throws PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getActiveStudentCount();
+
 	/**
 	* Returns the number of students.
 	*

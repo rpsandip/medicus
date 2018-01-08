@@ -7,7 +7,7 @@
 
  <div class="page-title">
    <div class="title_left">
-     <h2>Subscription Plans</h2>
+     <h2>Subscription</h2>
    </div>
  </div>
  <div class="clearfix"></div>
@@ -18,18 +18,27 @@
           <div class="row">
             <div class="col-md-12">
               <!-- price element -->
-              <div class="col-md-4 col-sm-6 col-xs-12">
+              <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="pricing">
                   <div class="title">
-                    <h2>${silverSub.name }</h2>
-                    <h1>$${silverSub.price }</h1>
+                    <h2>${subsciptionPlan.name }</h2>
+                    <h1>$${subsciptionPlan.price }</h1>
                      <span>Yearly</span>
                   </div>
                   <div class="x_content">
                     <div class="">
                       <div class="pricing_features">
                         <ul class="list-unstyled text-left">
-                          <li><i class="fa fa-check text-success"></i> ${silverSub.noOfStudents } search results for each filter</li>
+                          <div>We have one plan to meet your every internship need.</div>
+                          <div>Our plan includes the following advantages:</div>
+                          <li><i class="fa fa-check text-success"></i>Real time access to students available to intern</li>
+                          <li><i class="fa fa-check text-success"></i>Unlimited searches</li>
+                          <li><i class="fa fa-check text-success"></i>Customization of your search by Zip code, Gender, Language, Profession, just to name a few criteria</li>
+                          <li><i class="fa fa-check text-success"></i>Selection of Schools and campus nearest to you</li>
+                          <li><i class="fa fa-check text-success"></i>Ability to work with the school to interview students before acceptance</li>
+                          <li><i class="fa fa-check text-success"></i>Liability insurance of the student</li>
+                          <li><i class="fa fa-check text-success"></i>Streamline process to select and obtain interns</li>
+                          <li><i class="fa fa-check text-success"></i>Your return on investment is at least 300% in financial and positive impact</li>
                         </ul>
                       </div>
                     </div>
@@ -46,10 +55,10 @@
                        <c:if test="${isSuperAdmin }">
                         <portlet:renderURL var="editSilverSubcriptionURL">
        							 <portlet:param name="mvcRenderCommandName" value="/edit_subscription" />
-       							 <portlet:param name="subscriptionId" value="${ silverSub.subscriptionId}" />
+       							 <portlet:param name="subscriptionId" value="${ subsciptionPlan.subscriptionId}" />
 					    </portlet:renderURL>
                       	<a href="${editSilverSubcriptionURL }" class="btn btn-success btn-block" >Edit</a>
-                      </c:if>
+                      </c:if> 
                      </div>
                     <div class="silver-plan" style="display: none;">
                       <form action="${paypalURL }" method="post" target="_top" id="silverFrm">
@@ -58,113 +67,8 @@
 						<input type="hidden" name="hosted_button_id" value="${hostedButtonId }">
 						<input type="image" src="https://www.sandbox.paypal.com/en_GB/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
 						<img alt="" border="0" src="https://www.sandbox.paypal.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-						<input type="hidden" name="amount" value="${silverSub.price }">
-						<input type="hidden" name="custom" value="${userId },${silverSub.subscriptionId }">
-						<input type="hidden" name="return" value="${returnURL }">
-						<input type="hidden" name="cancel_return" value="${cancelURL }">
-					   </form> 
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- price element -->
-
-              <!-- price element -->
-              <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="pricing ui-ribbon-container">
-                  <div class="title">
-                    <h2>${goldSub.name }</h2>
-                    <h1>$${goldSub.price }</h1>
-                     <span>Yearly</span>
-                  </div>
-                  <div class="x_content">
-                    <div class="">
-                      <div class="pricing_features">
-                        <ul class="list-unstyled text-left">
-                          <li><i class="fa fa-check text-success"></i> ${goldSub.noOfStudents } search results for each filter</li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="pricing_footer">
-                      <c:choose>
-                      	<c:when test="${ not empty userSubscription and (userSubscription.subscriptionId eq goldSub.subscriptionId)}">
-                      		<a class="btn btn-success btn-block" >Subscribed</a>
-                      	</c:when>
-                      	<c:otherwise>
-                      		<a href="javascript:void(0);" class="btn btn-success btn-block" role="button"
-                      data-toggle="modal" data-formName="goldFrm" data-target="#confirmplan">Buy Plan</a>
-                      	</c:otherwise>
-                      </c:choose>
-                      
-                      <c:if test="${isSuperAdmin }">
-                      	<portlet:renderURL var="editGoldSubcriptionURL">
-       							 <portlet:param name="mvcRenderCommandName" value="/edit_subscription" />
-       							 <portlet:param name="subscriptionId" value="${ goldSub.subscriptionId}" />
-					    </portlet:renderURL>
-                      	<a href="j${editGoldSubcriptionURL }" class="btn btn-success btn-block" >Edit</a>
-                      </c:if>
-                    </div>
-                    <div class="gold-plan" style="display: none;">
-                      <form action="${paypalURL }" method="post" target="_top" id="goldFrm">
-						<input type="hidden" name="cmd" value="_xclick">
-						<input type="hidden" name="business" value="${businessEmail }">
-						<<input type="hidden" name="hosted_button_id" value="${hostedButtonId }">
-						<input type="image" src="https://www.sandbox.paypal.com/en_GB/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
-						<img alt="" border="0" src="https://www.sandbox.paypal.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-						<input type="hidden" name="amount" value="${goldSub.price }">
-						<input type="hidden" name="custom" value="${userId },${goldSub.subscriptionId }">
-						<input type="hidden" name="return" value="${returnURL }">
-						<input type="hidden" name="cancel_return" value="${cancelURL }">
-					   </form> 
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- price element -->
-
-              <!-- price element -->
-              <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="pricing">
-                  <div class="title">
-                    <h2>${platinumSub.name }</h2>
-                    <h1>$${platinumSub.price }</h1>
-                    <span>Yearly</span>
-                  </div>
-                  <div class="x_content">
-                    <div class="">
-                      <div class="pricing_features">
-                        <ul class="list-unstyled text-left">
-                          <li><i class="fa fa-check text-success"></i> ${platinumSub.noOfStudents } search results for each filter</li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="pricing_footer">
-                    	<c:choose>
-                    		<c:when test="${ not empty userSubscription and (userSubscription.subscriptionId eq platinumSub.subscriptionId)}">
-                      			<a class="btn btn-success btn-block" >Subscribed</a>
-                    		</c:when>
-                    		<c:otherwise>
-                    			 <a href="javascript:void(0);" class="btn btn-success btn-block" role="button"
-                      data-toggle="modal" data-formName="platinumFrm"  data-target="#confirmplan">Buy Plan</a>
-                    		</c:otherwise>
-                    	</c:choose>
-                      <c:if test="${isSuperAdmin }">
-                      	<portlet:renderURL var="editPlatinumSubcriptionURL">
-       							 <portlet:param name="mvcRenderCommandName" value="/edit_subscription" />
-       							 <portlet:param name="subscriptionId" value="${ platinumSub.subscriptionId}" />
-					    </portlet:renderURL>
-                      	<a href="${editPlatinumSubcriptionURL }" class="btn btn-success btn-block" >Edit</a>
-                      </c:if>
-                    </div>
-                    <div class="platinum-plan" style="display: none;">
-                      <form action="${paypalURL }" method="post" target="_top" id="platinumFrm">
-						<input type="hidden" name="cmd" value="_xclick">
-						<input type="hidden" name="business" value="${businessEmail }">
-						<<input type="hidden" name="hosted_button_id" value="${hostedButtonId }">
-						<input type="image" src="https://www.sandbox.paypal.com/en_GB/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
-						<img alt="" border="0" src="https://www.sandbox.paypal.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-						<input type="hidden" name="amount" value="${platinumSub.price }">
-						<input type="hidden" name="custom" value="${userId },${platinumSub.subscriptionId }">
+						<input type="hidden" name="amount" value="${subsciptionPlan.price }">
+						<input type="hidden" name="custom" value="${userId },${subsciptionPlan.subscriptionId }">
 						<input type="hidden" name="return" value="${returnURL }">
 						<input type="hidden" name="cancel_return" value="${cancelURL }">
 					   </form> 

@@ -9,6 +9,7 @@ create index IX_E9EAA60D on Medicus_Partner (userId);
 
 create index IX_74A92F54 on Medicus_School (name[$COLUMN_LENGTH:100$]);
 
+create index IX_F45F3E6C on Medicus_Student (status);
 create index IX_735B8E3D on Medicus_Student (stundetCampusId[$COLUMN_LENGTH:75$]);
 create index IX_825E51FA on Medicus_Student (uuid_[$COLUMN_LENGTH:75$], companyId);
 

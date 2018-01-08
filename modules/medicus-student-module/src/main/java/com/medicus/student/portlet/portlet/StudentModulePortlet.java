@@ -8,6 +8,7 @@ import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.RoleLocalServiceUtil;
 import com.liferay.portal.kernel.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -15,6 +16,7 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.medicus.common.service.bean.StudentBean;
+import com.medicus.common.service.exception.NoSuchUser_SubscriptionException;
 import com.medicus.common.service.model.Campus;
 import com.medicus.common.service.model.School;
 import com.medicus.common.service.model.Student;
@@ -22,6 +24,7 @@ import com.medicus.common.service.service.CampusLocalServiceUtil;
 import com.medicus.common.service.service.MedicusCommonLocalServiceUtil;
 import com.medicus.common.service.service.SchoolLocalServiceUtil;
 import com.medicus.common.service.service.StudentLocalServiceUtil;
+import com.medicus.common.service.service.User_SubscriptionLocalServiceUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,6 +37,7 @@ import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
+import org.apache.xmlbeans.impl.tool.Extension.Param;
 import org.osgi.service.component.annotations.Component;
 
 @Component(
@@ -63,6 +67,21 @@ public class StudentModulePortlet extends MVCPortlet {
 		long medicusOrgGroupId = MedicusCommonLocalServiceUtil.getOrganizationGroupIdFromOrgId(medicusOrgId);
 		
 		renderRequest.setAttribute("schoolList", SchoolLocalServiceUtil.getSchools(-1, -1));	
+		
+		// Check login user is parner and has subscribed or not
+		
+		boolean isPartner = MedicusCommonLocalServiceUtil.isPartner(themeDisplay.getUserId());
+		boolean isPartnerSubscried = false;
+		if(isPartner){
+			try {
+				User_SubscriptionLocalServiceUtil.getUserSubcriptionByUserId(themeDisplay.getUserId());
+				isPartnerSubscried = true;
+			} catch (NoSuchUser_SubscriptionException e1) {
+				_log.debug("login user -> "+ themeDisplay.getUserId() +" has not suscribed ");
+			}
+		}
+		renderRequest.setAttribute("isPartnerSubscried", isPartnerSubscried);
+		renderRequest.setAttribute("isPartner", isPartner);
 		
 		// Check users role from CampusAdmin, Campus Super Admin, School Admin, School Super Admin
 		// and set it as default search of users.
@@ -121,6 +140,17 @@ public class StudentModulePortlet extends MVCPortlet {
 			_log.error(e);
 		}
 		
+		// Check Add student and import student permission
+		
+		PermissionChecker pc = themeDisplay.getPermissionChecker();
+	    boolean hasStudentAddPermission  = pc.hasPermission(MedicusCommonLocalServiceUtil.getOrganizationGroupIdFromOrgId(MedicusCommonLocalServiceUtil.getMedicusOrganizationId()),
+	    		Student.class.getName(), Student.class.getName(), "ADD_STUDENT");
+	    renderRequest.setAttribute("hasStudentAddPermission", hasStudentAddPermission);
+	    
+	    boolean hasStudentImportPermission  = pc.hasPermission(MedicusCommonLocalServiceUtil.getOrganizationGroupIdFromOrgId(MedicusCommonLocalServiceUtil.getMedicusOrganizationId()),
+	    		Student.class.getName(), Student.class.getName(), "IMPORT_STUDENT");
+	    renderRequest.setAttribute("hasStudentImportPermission", hasStudentImportPermission);
+	    
 		
 		
 		include(viewTemplate, renderRequest, renderResponse);

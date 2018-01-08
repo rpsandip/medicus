@@ -46,6 +46,10 @@ public class MedicusCommonLocalServiceUtil {
 		return getService().isFolderExist(groupId, parentFolderId, folderName);
 	}
 
+	public static boolean isPartner(long userId) {
+		return getService().isPartner(userId);
+	}
+
 	public static com.liferay.portal.kernel.model.User getCampusAdminName(
 		long campusId) {
 		return getService().getCampusAdminName(campusId);

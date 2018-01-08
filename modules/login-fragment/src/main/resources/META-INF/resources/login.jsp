@@ -49,6 +49,9 @@
 
 		<liferay-ui:message arguments="<%=signedInAs%>"
 			key="you-are-signed-in-as-x" translateArguments="<%=false%>" />
+		<%	
+				PortalUtil.getHttpServletResponse(renderResponse).sendRedirect("/group/medicus/");
+		%>
 	</c:when>
 	<c:otherwise>
 
