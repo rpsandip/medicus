@@ -1,5 +1,5 @@
 <%@ include file="/init.jsp" %>
-
+<portlet:resourceURL id="/getSchoolDetail" var="getSchoolDetailURL"></portlet:resourceURL>
 <div class="page-title">
   <div class="title_left">
 	<h2>Reports</h2>
@@ -127,11 +127,13 @@ AUI().use('aui-io-request', 'aui-autocomplete','liferay-portlet-url' ,'aui-base'
 
 		 
 		 var languages = "";
-		 A.all('#language option:selected').each(
-		  function (node) {
-		    languages = languages + node.get('value') + ",";
-		  }
-		);
+		 var langNodes = A.all('#language option')._nodes;
+		 for(var i=0;i<langNodes.length;i++){
+			 console.log(langNodes[i].selected + " " + langNodes[i].text);
+			 if(langNodes[i].selected){
+			    	languages = languages + langNodes[i].text + ",";
+			 }
+		 }
 		 
 		languages = languages.substring(0,languages.lastIndexOf(",")); 
 		resourceURL.setParameter("languages",languages); 
@@ -201,11 +203,22 @@ AUI().use('aui-io-request', 'aui-autocomplete','liferay-portlet-url' ,'aui-base'
 						A.one("#campusId").val(userCampusId);
 					}
 					
-					loadStudents(pagetIndex,false);
+					searchStudents();
 				}
 			  }
 			
 			});
 		});
+		
+		var userSchoolId= A.one("#userSchoolId").get('value');
+		var userCampusId = A.one("#userCampusId").get('value');
+		if(parseInt(userSchoolId)>0){
+			console.log("simulate");
+			A.one("#schoolId").val(userSchoolId);
+			A.one("#schoolId").simulate('change');
+		}else{
+			A.one("#schoolId").val("");
+			searchStudents();
+		}
    });
 </aui:script>              
