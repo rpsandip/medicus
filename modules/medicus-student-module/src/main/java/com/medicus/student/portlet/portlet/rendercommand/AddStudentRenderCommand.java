@@ -21,6 +21,7 @@ import com.medicus.common.service.bean.StudentBean;
 import com.medicus.common.service.bean.Student_ExternshipBean;
 import com.medicus.common.service.model.Employer;
 import com.medicus.common.service.model.Partner;
+import com.medicus.common.service.model.School;
 import com.medicus.common.service.model.Student;
 import com.medicus.common.service.model.Student_Externship;
 import com.medicus.common.service.service.EmployerLocalServiceUtil;
@@ -45,8 +46,12 @@ public class AddStudentRenderCommand implements MVCRenderCommand{
 	
 	@Override
 	public String render(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException {
+		
+		List<School> schoolListForSchoolAdmin = new ArrayList<School>();
+		MedicusCommonLocalServiceUtil.setUserSchoolIdCampusIdInRequest(renderRequest, schoolListForSchoolAdmin);
+		
 		renderRequest.setAttribute("usStateList", MedicusCommonLocalServiceUtil.getUSStateList());
-		renderRequest.setAttribute("schoolList", SchoolLocalServiceUtil.getSchools(-1, -1));
+		renderRequest.setAttribute("schoolList", schoolListForSchoolAdmin);
 		
 		// Get Partner List
 		List<PartnerBean> partnerBeanList = new ArrayList<PartnerBean>();

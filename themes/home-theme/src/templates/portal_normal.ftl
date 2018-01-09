@@ -61,14 +61,14 @@
 								portletName="com_example_portlet_MedicusRegistrationModulemvcportletPortlet"
 								/>
 								<div class="portlet-boundary">
-		                 			<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#loginform">LogIn</button>
+		                 			<a class="hvr-rectangle-out w3_play_icon1" href="##" data-toggle="modal" data-target="#loginform">LogIn</a>
 		               			</div>
 							</ul>
 						   </nav>	
 						</div>
 				</div>
 			</div>
-	    	<div class="right_col col-md-12" id="demo-1" role="main">
+	    	<div class="right_col col-md-12"  role="main">
 	    		<@liferay_ui["quick-access"] contentId="#main-content" />
 			    <@liferay_util["include"] page=body_top_include />
         		<div class="">

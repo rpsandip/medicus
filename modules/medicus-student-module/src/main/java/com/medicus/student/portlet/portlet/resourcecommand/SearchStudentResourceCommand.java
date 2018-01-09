@@ -66,7 +66,7 @@ public class SearchStudentResourceCommand implements MVCResourceCommand{
 			schoolId = userSchoolId;
 		}
 		
-		if(userCampusId>0){
+		if(userCampusId>0 && campusId==0){
 			campusId = userCampusId;
 		}
 		

@@ -4,7 +4,7 @@
 %>
 <portlet:resourceURL id="/contact-us" var="contactUSReqeustURL"></portlet:resourceURL>
 <!--/banner-section-->
-	<div data-zs-src='["<%=imagePath %>/b1.jpg","<%=imagePath %>/6.jpg","<%=imagePath %>/b2.jpg","<%=imagePath %>/b3.jpg","<%=imagePath %>/b4.jpg"]' data-zs-overlay="dots">
+	<div d="demo-1" data-zs-src='["<%=imagePath %>/b1.jpg","<%=imagePath %>/6.jpg","<%=imagePath %>/b2.jpg","<%=imagePath %>/b3.jpg","<%=imagePath %>/b4.jpg"]' data-zs-overlay="dots" style="min-height: 570px;">
 		<div class="demo-inner-content">
 		<!--/header-w3l-->
 			   <div class="header-w3-agileits" id="home">
@@ -56,10 +56,10 @@
 			</div>
 			<div class="col-md-5 w3ls-row">
 				<div class="col-md-6 col-sm-6 wthree-about-left">
-					<img src="<%=imagePath %>/about2.jpg" class="img-responsive" alt=""/>
+					<img src="<%=imagePath %>/about2.jpeg" class="img-responsive" alt=""/>
 				</div>
 				<div class="col-md-6 col-sm-6 w3ls-row alert wthree-about-right">
-					<img src="<%=imagePath %>/about3.jpg" class="img-responsive" alt=""/>
+					<img src="<%=imagePath %>/about3.jpeg" class="img-responsive" alt=""/>
 				</div>
 				<div class="clearfix"> </div>
 			</div>
@@ -222,21 +222,25 @@
 		<div class="container">
 			<h3 class="w3ls-title">services </h3>
 			<div class="agileits-services-row">
-				<div class="col-md-3 col-sm-6 agileits-services-grids">
+				<div class="col-md-6 col-sm-6 agileits-services-grids">
 					<span class="glyphicon glyphicon-stats effect-1" aria-hidden="true"></span>
 					<h4>Analytics</h4>
 					<p>See sample reports and search functions to customize your internship selection and search.</p>
 				</div>
-				<div class="col-md-3 col-sm-6 agileits-services-grids">
+				<div class="col-md-6 col-sm-6 agileits-services-grids">
 					<span class="glyphicon glyphicon-user effect-1" aria-hidden="true"></span>
 					<h4>Custom Plans</h4>
 					<p>We have three flexible plans to meet your every internship need.</p>
-				</div>
-				<div class="col-md-3 col-sm-6 agileits-services-grids">
-					<span class="glyphicon glyphicon-list-alt effect-1" aria-hidden="true"></span>
-					<h4>Monitoring</h4>
-					<p>Itaque earum rerum hic tenetur a sapiente delectus 
-						reiciendis maiores alias consequatur aut</p>
+					<p>Our plan includes the following advantages:</p><p class="text-left">
+-	Real time access to students available to intern<br>
+-	Unlimited searches<br>
+-	Customization of your search by Zip code, Gender, Language, Profession, just to name a few criteria<br>
+-	Selection of Schools and campus nearest to you<br>
+-	Ability to work with the school to interview students before acceptance<br>
+-	Liability insurance of the student<br>
+-	Streamline process to select and obtain interns<br>
+-	Your return on investment is at least 300% in financial and positive impact<br>
+					</p>
 				</div>
 				<div class="clearfix"> </div>
 			</div>
@@ -256,7 +260,8 @@
 				<div class="resp-tabs-container">
 					<div class="tab-1 resp-tab-content">
 						<div class="col-md-3 portfolio-grids">
-							<a href="<%=imagePath %>/g1.jpg" data-lightbox="example-set" data-title="Lorem Ipsum is simply dummy the when an unknown galley of type and scrambled it to make a type specimen.">
+							<a href="<%=imagePath %>/g1.jpg" data-lightbox="example-set" data-title="<h3>Dental Assistant</h3>Our colleges teach a wide span of job skills that ensure success in our students career as a dental assistant.  Our colleges' accredited training program offers courses that teach chair-side assisting and help students gain hands on experience.
+							<ul><li>Prepare patients for examination and treatment</li><li>Take x-ry examinations (Radiography)</li><li>Sterilize and disinfect instruments and equipment</li><li>Prepare tray setups for dental procedures</li><li>Prepare materials for making impressions and restoration</li></ul>">
 								<img src="<%=imagePath %>/g1.jpg" class="img-responsive zoom-img" alt=""/>
 								<div class="b-wrapper">
 									<h5>Dental Assistant</h5>
@@ -264,7 +269,14 @@
 							</a>
 						</div>
 						<div class="col-md-3 portfolio-grids">
-							<a href="<%=imagePath %>/g2.jpg" data-lightbox="example-set" data-title="Lorem Ipsum is simply dummy the when an unknown galley of type and scrambled it to make a type specimen.">
+							<a href="<%=imagePath %>/g2.jpg" data-lightbox="example-set" 
+							data-title="<h3>Medical Assistant</h3>Our colleges' Medical Assistant program teaches our students to assist physicians in the examination and treatment of patients, as well as perform routine office tasks.
+							<ul><li>Perform all aspect of front office</li>
+							<li>Take Medical Histories and record Vital Signs</li>
+							<li>Explain Treatment Procedures to Patients</li>
+							<li>Prepare Patients for Examination</li>
+							</ul>
+							">
 								<img src="<%=imagePath %>/g2.jpg" class="img-responsive zoom-img" alt=""/>
 								<div class="b-wrapper">
 									<h5>Medical Assistant</h5>
@@ -272,7 +284,7 @@
 							</a>
 						</div>
 						<div class="col-md-3 portfolio-grids">
-							<a href="<%=imagePath %>/g3.jpg" data-lightbox="example-set" data-title="Lorem Ipsum is simply dummy the when an unknown galley of type and scrambled it to make a type specimen.">
+							<a href="<%=imagePath %>/g3.jpg" data-lightbox="example-set" data-title="<h3>Phlebotomy</h3>Our colleges' program provides training in obtaining blood specimens by venipuncture and micro-collection techniques.  Phlebotomy technician classes also teach students to collect and process other clinical specimens, along with Point of Care procedures.">
 								<img src="<%=imagePath %>/g3.jpg" class="img-responsive zoom-img" alt=""/>
 								<div class="b-wrapper">
 									<h5>Phlebotomy</h5>
@@ -280,7 +292,9 @@
 							</a>
 						</div>
 						<div class="col-md-3 portfolio-grids">
-							<a href="<%=imagePath %>/g8.jpg" data-lightbox="example-set" data-title="Lorem Ipsum is simply dummy the when an unknown galley of type and scrambled it to make a type specimen.">
+							<a href="<%=imagePath %>/g8.jpg" data-lightbox="example-set" data-title="<h3>Patient Care Technician</h3>As Patient Care Technicians, our students learn how to handle daily hands-on experiences with patients by helping them with procedures such as taking vital signs, performing electrocardiography (ECG), blood draws, hemodialysis and other needs.
+							<ul><li>Performing catheterizations</li><li>Removing sutures and staples</li>
+<li>Managing wound care</li><li>Administering ECGs</li><li>Inserting intravenous saline locks</li></ul>">
 								<img src="<%=imagePath %>/g8.jpg" class="img-responsive zoom-img" alt=""/>
 								<div class="b-wrapper">
 									<h5>Patient Care Technician</h5>
@@ -288,7 +302,10 @@
 							</a>
 						</div>
 						<div class="col-md-3 portfolio-grids">
-							<a href="<%=imagePath %>/g5.jpg" data-lightbox="example-set" data-title="Lorem Ipsum is simply dummy the when an unknown galley of type and scrambled it to make a type specimen.">
+							<a href="<%=imagePath %>/g5.jpg" data-lightbox="example-set" data-title="<h3>Medical Administrative Assistant</h3>Our Medical Administrative Assistant provides a strong background in office skills as well as business communication and customer service.  This combination of and hard skills prepares our students for a career in office administration, both in the health care field and in other industries as well.
+							<ul><li>Electronic health records</li><li>Verifying medical insurance</li>
+<li>Performing medical billing and coding tasks</li><li>Assisting physicians with reports an articles</li><li>Bookkeeping and banking procedures</li></ul>
+							">
 								<img src="<%=imagePath %>/g5.jpg" class="img-responsive zoom-img" alt=""/>
 								<div class="b-wrapper">
 									<h5>Medical Administrative Assistant</h5>
@@ -296,7 +313,13 @@
 							</a>
 						</div>
 						<div class="col-md-3 portfolio-grids">
-							<a href="<%=imagePath %>/g6.jpg" data-lightbox="example-set" data-title="Lorem Ipsum is simply dummy the when an unknown galley of type and scrambled it to make a type specimen.">
+							<a href="<%=imagePath %>/g6.jpg" data-lightbox="example-set" data-title="<h3>Veterinary Assistant</h3>Our Veterinary Assistant students obtain the necessary skills to work in a variety of practices from animal emergency medicine and lab  procedures to nursing skills and more, with a special emphasis on small animal techniques.
+							<ul><li>Sterilize lab and surgical equipment</li>
+							<li>Assist in surgeries</li>
+							<li>Provide routine post-operative care</li>
+							<li>Draw blood and collect other lab specimens</li>
+							<li>Prepare samples for lab examination under supervision</li>
+							</ul>">
 								<img src="<%=imagePath %>/g6.jpg" class="img-responsive zoom-img" alt=""/>
 								<div class="b-wrapper">
 									<h5>Veterinary Assistant</h5>
@@ -304,7 +327,7 @@
 							</a>
 						</div>
 						<div class="col-md-3 portfolio-grids">
-							<a href="<%=imagePath %>/g4.jpg" data-lightbox="example-set" data-title="Lorem Ipsum is simply dummy the when an unknown galley of type and scrambled it to make a type specimen.">
+							<a href="<%=imagePath %>/g4.jpg" data-lightbox="example-set" data-title="<h3>Sonography</h3>Our Sonographer, student perform and interpret ultrasound scans to help physicians diagnose a range of diseases, assist surgeons with biopsies, and track the health and growth of developing fetuses.  Our program teaches students sophisticated sonographic procedures and technology, as well as the interpersonal skills necessary to work directly with patients in a range of settings, from physician’s offices and OB/GYN clinics, to hospitals and diagnostic laboratories.">
 								<img src="<%=imagePath %>/g4.jpg" class="img-responsive zoom-img" alt=""/>
 								<div class="b-wrapper">
 									<h5>Sonography</h5>
@@ -314,114 +337,6 @@
 					
 						<div class="clearfix"> </div>
 					</div>		
-					<div class="tab-1 resp-tab-content">
-						<div class="col-md-3 portfolio-grids">
-							<a href="<%=imagePath %>/g8.jpg" data-lightbox="example-set" data-title="Lorem Ipsum is simply dummy the when an unknown galley of type and scrambled it to make a type specimen.">
-								<img src="<%=imagePath %>/g8.jpg" class="img-responsive zoom-img" alt=""/>
-								<div class="b-wrapper">
-									<h5>TechEdu</h5>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-3 portfolio-grids">
-							<a href="<%=imagePath %>/g4.jpg" data-lightbox="example-set" data-title="Lorem Ipsum is simply dummy the when an unknown galley of type and scrambled it to make a type specimen.">
-								<img src="<%=imagePath %>/g4.jpg" class="img-responsive zoom-img" alt=""/>
-								<div class="b-wrapper">
-									<h5>TechEdu</h5>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-3 portfolio-grids">
-							<a href="<%=imagePath %>/g5.jpg" data-lightbox="example-set" data-title="Lorem Ipsum is simply dummy the when an unknown galley of type and scrambled it to make a type specimen.">
-								<img src="<%=imagePath %>/g5.jpg" class="img-responsive zoom-img" alt=""/>
-								<div class="b-wrapper">
-									<h5>TechEdu</h5>
-								</div>
-							</a>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-					<div class="tab-1 resp-tab-content">
-						<div class="col-md-3 portfolio-grids">
-							<a href="<%=imagePath %>/g3.jpg" data-lightbox="example-set" data-title="Lorem Ipsum is simply dummy the when an unknown galley of type and scrambled it to make a type specimen.">
-								<img src="<%=imagePath %>/g3.jpg" class="img-responsive zoom-img" alt=""/>
-								<div class="b-wrapper">
-									<h5>TechEdu</h5>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-3 portfolio-grids">
-							<a href="<%=imagePath %>/g1.jpg" data-lightbox="example-set" data-title="Lorem Ipsum is simply dummy the when an unknown galley of type and scrambled it to make a type specimen.">
-								<img src="<%=imagePath %>/g1.jpg" class="img-responsive zoom-img" alt=""/>
-								<div class="b-wrapper">
-									<h5>TechEdu</h5>
-								</div>
-							</a>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-					<div class="tab-1 resp-tab-content">
-						<div class="col-md-3 portfolio-grids">
-							<a href="<%=imagePath %>/g5.jpg" data-lightbox="example-set" data-title="Lorem Ipsum is simply dummy the when an unknown galley of type and scrambled it to make a type specimen.">
-								<img src="<%=imagePath %>/g5.jpg" class="img-responsive zoom-img" alt=""/>
-								<div class="b-wrapper">
-									<h5>TechEdu</h5>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-3 portfolio-grids">
-							<a href="<%=imagePath %>/g6.jpg" data-lightbox="example-set" data-title="Lorem Ipsum is simply dummy the when an unknown galley of type and scrambled it to make a type specimen.">
-								<img src="<%=imagePath %>/g6.jpg" class="img-responsive zoom-img" alt=""/>
-								<div class="b-wrapper">
-									<h5>TechEdu</h5>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-3 portfolio-grids">
-							<a href="<%=imagePath %>/g4.jpg" data-lightbox="example-set" data-title="Lorem Ipsum is simply dummy the when an unknown galley of type and scrambled it to make a type specimen.">
-								<img src="<%=imagePath %>/g4.jpg" class="img-responsive zoom-img" alt=""/>
-								<div class="b-wrapper">
-									<h5>TechEdu</h5>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-3 portfolio-grids">
-							<a href="<%=imagePath %>/g7.jpg" data-lightbox="example-set" data-title="Lorem Ipsum is simply dummy the when an unknown galley of type and scrambled it to make a type specimen.">
-								<img src="<%=imagePath %>/g7.jpg" class="img-responsive zoom-img" alt=""/>
-								<div class="b-wrapper">
-									<h5>TechEdu</h5>
-								</div>
-							</a>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-					<div class="tab-1 resp-tab-content">
-						<div class="col-md-3 portfolio-grids">
-							<a href="<%=imagePath %>/g2.jpg" data-lightbox="example-set" data-title="Lorem Ipsum is simply dummy the when an unknown galley of type and scrambled it to make a type specimen.">
-								<img src="<%=imagePath %>/g2.jpg" class="img-responsive zoom-img" alt=""/>
-								<div class="b-wrapper">
-									<h5>TechEdu</h5>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-3 portfolio-grids">
-							<a href="<%=imagePath %>/g5.jpg" data-lightbox="example-set" data-title="Lorem Ipsum is simply dummy the when an unknown galley of type and scrambled it to make a type specimen.">
-								<img src="<%=imagePath %>/g5.jpg" class="img-responsive zoom-img" alt=""/>
-								<div class="b-wrapper">
-									<h5>TechEdu</h5>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-3 portfolio-grids">
-							<a href="<%=imagePath %>/g6.jpg" data-lightbox="example-set" data-title="Lorem Ipsum is simply dummy the when an unknown galley of type and scrambled it to make a type specimen.">
-								<img src="<%=imagePath %>/g6.jpg" class="img-responsive zoom-img" alt=""/>
-								<div class="b-wrapper">
-									<h5>TechEdu</h5>
-								</div>
-							</a>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
 				</div>						
 			</div>
 		</div>
@@ -509,12 +424,66 @@
 	</div>
 	</div>
 <!-- //team -->
+
+<!-- Faqs -->
+
+<div class="faqs-section w3ls-section" id="faqs">
+		<div class="container">
+		<h3 class="w3ls-title">FAQs</h3>
+			<div class="panel-group" id="accordion">
+			    <div class="panel panel-default">
+			      <div class="panel-heading">
+			        <h4 class="panel-title">
+			          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">What is an internship program?</a>
+			        </h4>
+			      </div>
+			      <div id="collapse1" class="panel-collapse collapse in">
+			        <div class="panel-body">An internship is an opportunity offered by an employer to potential employees, called interns, to work at a firm for a fixed, limited period of time. Interns are usually undergraduates or students, and most internships last for any length of time between one week and 12 months.</div>
+			      </div>
+			    </div>
+			    <div class="panel panel-default">
+			      <div class="panel-heading">
+			        <h4 class="panel-title">
+			          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">What is the purpose of doing an internship?</a>
+			        </h4>
+			      </div>
+			      <div id="collapse2" class="panel-collapse collapse">
+			        <div class="panel-body">Internships are formal programs within organizations whose primary purpose is to offer practical work experience in a particular occupation to people who are new to that field.</div>
+			      </div>
+			    </div>
+			    <div class="panel panel-default">
+			      <div class="panel-heading">
+			        <h4 class="panel-title">
+			          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Paid and Unpaid interns.</a>
+			        </h4>
+			      </div>
+			      <div id="collapse3" class="panel-collapse collapse">
+			        <div class="panel-body">Paid interns are company employees, even if they're trainees. As employees, they're entitled to at least a minimum wage and to overtime pay if they work more than 40 hours a week. Unpaid interns aren't employees. They aren't paid and there are no hour requirements.</div>
+			      </div>
+			    </div>
+			    <div class="panel panel-default">
+			      <div class="panel-heading">
+			        <h4 class="panel-title">
+			          <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">How Many Hours Are Interns Supposed to Work?</a>
+			        </h4>
+			      </div>
+			      <div id="collapse4" class="panel-collapse collapse">
+			        <div class="panel-body">The federal government sets rules for interns, but they don't include minimum or maximum hours. If the internship is for college credit, the college may lay down some rules. At California University of Pennsylvania, for example, an internship equal to one course credit should represent 40 hours of work, at about 10 to 12 hours a week. If interns are paid or should be paid, they're protected by the same wage and hour laws as other employees</div>
+			      </div>
+			    </div>
+			  </div> 
+		</div>
+</div>
+
+
+<!--  //faqs -->
+
 	<!-- contact -->
 	<div class="contact-bottom w3ls-section" id="contact">
 		<div class="container">
 			<h3 class="w3ls-title">contact</h3>
 			<div class="w3layouts-list">
-					<div class="col-md-4 li"><span class="fa fa-map-marker" aria-hidden="true"></span><h6>New York, USA</h6></div>
+					<div class="col-md-4 li"><span class="fa fa-map-marker" aria-hidden="true"></span><h6>Houston, TX USA</h6></div>
 					<div class="col-md-4 li"><span class="fa fa-phone" aria-hidden="true"></span><h6>(+1) 281 866 1505</h6></div>
 					<div class="col-md-4 li"><span class="fa fa-location-arrow" aria-hidden="true"></span><a href="mailto:techsupport@medicusgroupLLC.com">TechSupport@MedicusGroupLLC.com</a></div>
 					<div class="clearfix"></div>

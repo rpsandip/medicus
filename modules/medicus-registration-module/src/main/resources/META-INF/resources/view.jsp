@@ -8,7 +8,7 @@
 <liferay-ui:success key="user-register-success" message="user-register-success"/>
 <liferay-ui:error key="medicus-organization-not-exist" message="medicus-organization-not-exist"/>
 
- <button class="btn btn-success" type="button" data-toggle="modal" data-target="#registrationform">Partner Registration</button>
+ <a class="hvr-rectangle-out w3_play_icon1" href="##" data-toggle="modal" data-target="#registrationform">Partner Registration</a>
  	<style>
    		.portlet-title-default, .portlet-title-text {
 			display: none;

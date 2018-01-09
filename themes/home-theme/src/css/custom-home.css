@@ -4,6 +4,7 @@
 .login-signup-btn .portlet-boundary {
     display: inline-block;
     float: right;
+    padding-left: 15px;
 }
 
 .login-signup-btn .portlet-boundary .portlet-content {

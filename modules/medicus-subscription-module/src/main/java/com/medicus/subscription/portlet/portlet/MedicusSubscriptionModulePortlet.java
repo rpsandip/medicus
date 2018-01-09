@@ -56,7 +56,7 @@ public class MedicusSubscriptionModulePortlet extends MVCPortlet {
 			
 			
 			for(Subscription subscription : subscirptionList){
-				if(subscription.getName().equals("Subscirption Plan")){
+				if(subscription.getName().equals("Subscription Plan")){
 					renderRequest.setAttribute("subsciptionPlan", subscription);
 				}
 			}
