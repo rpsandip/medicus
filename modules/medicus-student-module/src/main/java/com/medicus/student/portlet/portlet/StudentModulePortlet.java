@@ -129,9 +129,14 @@ public class StudentModulePortlet extends MVCPortlet {
 					_log.debug(e.getMessage());
 				}
 			}
-			renderRequest.setAttribute("userCampusId", campusId);
+			
 			renderRequest.setAttribute("userSchoolId", schoolId);
-	
+			if(hasCampusAdminRole || hasCampusSuperAdminRole){
+				renderRequest.setAttribute("userCampusId", campusId);
+			}
+			
+			
+			
 			// Update request attribure for school admin/ super admin.
 			if(schoolListForSchoolAdmin.size()>0){
 				renderRequest.setAttribute("schoolList", schoolListForSchoolAdmin);

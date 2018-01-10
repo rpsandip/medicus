@@ -90,7 +90,15 @@ public class InterviewRequestModulePortlet extends MVCPortlet {
 				_log.error(e);
 			}
 		}else if(hasCampusAdminRoleId || hasCampusSuperAdminRoleId){
-			long campusId = MedicusCommonLocalServiceUtil.getCampusOrgIdFromRoleIdAndUserId(themeDisplay.getUserId(), campusAdminRoleId);
+			long campusId = 0;
+			if(hasCampusAdminRoleId){
+				campusId = MedicusCommonLocalServiceUtil.getCampusOrgIdFromRoleIdAndUserId(themeDisplay.getUserId(), campusAdminRoleId);
+			}
+				
+			if(hasCampusSuperAdminRoleId){
+				campusId = MedicusCommonLocalServiceUtil.getCampusOrgIdFromRoleIdAndUserId(themeDisplay.getUserId(), campusSuperAdminRoleId);
+			}
+					
 			if(campusId>0){
 				List<Interview_Request> interviewRequestList = Interview_RequestLocalServiceUtil.getInterviewRequestsByCampusId(campusId);
 				interviewRequestBeanList = getInterivew_RequestBeanList(interviewRequestList);

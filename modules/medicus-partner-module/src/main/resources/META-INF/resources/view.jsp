@@ -40,8 +40,8 @@
 			                <th>Contact Person Name</th>
 			                <th>Contact Person Email</th>
 			                <th>Contact Person Phone No.</th>
-			                <th>Website Link</th>
 			                <th>Status</th>
+			                <th>Website Link</th>
 			                <th>Action</th>
 			            </tr>
      			   </thead>

@@ -3,7 +3,6 @@ package com.medicus.student.portlet.portlet.resourcecommand;
 import java.io.IOException;
 
 import javax.mail.internet.AddressException;
-import javax.portlet.PortletException;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
@@ -14,20 +13,22 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.model.Theme;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCResourceCommand;
-import com.liferay.portal.kernel.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.kernel.webcache.WebCacheException;
 import com.medicus.common.service.exception.NoSuchPartnerException;
+import com.medicus.common.service.model.Campus;
 import com.medicus.common.service.model.Interview_Request;
 import com.medicus.common.service.model.Partner;
+import com.medicus.common.service.model.Student;
+import com.medicus.common.service.service.CampusLocalServiceUtil;
 import com.medicus.common.service.service.Interview_RequestLocalServiceUtil;
 import com.medicus.common.service.service.MedicusCommonLocalServiceUtil;
 import com.medicus.common.service.service.PartnerLocalServiceUtil;
+import com.medicus.common.service.service.StudentLocalServiceUtil;
 import com.medicus.common.service.service.persistence.Interview_RequestPK;
 import com.medicus.common.service.util.Interview_RequestStatus;
 import com.medicus.student.portlet.portlet.StudentPortletConstant;
@@ -52,13 +53,13 @@ public class InterviewRequestResourceCommand implements MVCResourceCommand{
 		long studentId = ParamUtil.getLong(resourceRequest, "studentId");
 		Partner partner = null;
 		
-		// Check log in user has Partner Role
-		long medicusOrgId = MedicusCommonLocalServiceUtil.getMedicusOrganizationId();
-		long medicusOrgGroupId = MedicusCommonLocalServiceUtil.getOrganizationGroupIdFromOrgId(medicusOrgId);
-		long partnerRoleId = MedicusCommonLocalServiceUtil.getPartnerOrgRoleId();
-		boolean hasPartnerRole = UserGroupRoleLocalServiceUtil.hasUserGroupRole(themeDisplay.getUserId(), medicusOrgGroupId, partnerRoleId);
+		boolean isPartner = MedicusCommonLocalServiceUtil.isPartner(themeDisplay.getUserId());
+		boolean isCampusSuperAdminExist = checkCampusSuerAdminExist(studentId);		
 		
-		if(hasPartnerRole){
+		if(!isCampusSuperAdminExist){
+			responseObj.put("status", "err");
+			 responseObj.put("msg", "Campus Super Admin User does not exist, Please contact to Administrator");
+		} else if(isPartner){
 			
 			long partnerId = 0;
 			try{
@@ -101,6 +102,26 @@ public class InterviewRequestResourceCommand implements MVCResourceCommand{
 			_log.error(e);
 		}
 		return true;
+	}
+	
+	private boolean checkCampusSuerAdminExist(long studentId){
+		boolean isCampusSuperAdminExist  = false;
+		Student student = null;
+		Partner partner = null;
+		Campus campus = null;
+		User campusAdmin = null;
+		try {
+			student = StudentLocalServiceUtil.getStudent(studentId);
+			campus = CampusLocalServiceUtil.getCampus(student.getCampusId());
+			campusAdmin = MedicusCommonLocalServiceUtil.getCampusAdminName(campus.getCampusId());
+			if(Validator.isNotNull(campusAdmin)){
+				isCampusSuperAdminExist =true;
+			}
+		} catch (PortalException e) {
+			_log.error(e.getMessage());
+		}
+		
+		return isCampusSuperAdminExist;
 	}
 
 }

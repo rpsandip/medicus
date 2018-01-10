@@ -246,7 +246,14 @@
 							</c:choose>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">Mid Point Review Comment</label>${studentExternshipBean.midPointReviewComment?studentExternshipBean.midPointReviewComment:"-" }
+						     <c:choose>
+								<c:when test="${not empty studentExternshipBean.midPointReviewComment }">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12">Mid Point Review Comment</label>${studentExternshipBean.midPointReviewComment}
+								</c:when>
+								<c:otherwise>
+									<label class="control-label col-md-3 col-sm-3 col-xs-12">Mid Point Review Comment</label>-
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="form-group">
 							<c:choose>
@@ -256,6 +263,16 @@
 								</c:when>
 								<c:otherwise>
 									<label class="control-label col-md-3 col-sm-3 col-xs-12">Final Review Date:</label>-
+								</c:otherwise>
+							</c:choose>
+						</div>
+						<div class="form-group">
+						     <c:choose>
+								<c:when test="${not empty studentExternshipBean.finalReviewComment }">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12">Final Review Comment</label>${studentExternshipBean.finalReviewComment}
+								</c:when>
+								<c:otherwise>
+									<label class="control-label col-md-3 col-sm-3 col-xs-12">Final Review Comment</label>-
 								</c:otherwise>
 							</c:choose>
 						</div>

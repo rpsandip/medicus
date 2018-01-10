@@ -240,9 +240,9 @@ AUI().use('aui-io-request', 'aui-autocomplete','liferay-portlet-url' ,'aui-base'
 		 var languages = "";
 		 var langNodes = A.all('#language option')._nodes;
 		 for(var i=0;i<langNodes.length;i++){
-			 console.log(langNodes[i].selected + " " + langNodes[i].text);
-			 if(langNodes[i].selected){
-			    	languages = languages + langNodes[i].text + ",";
+			 console.log(langNodes[i].selected + " " + langNodes[i].value);
+			 if(langNodes[i].selected && langNodes[i].value != ""){
+			    	languages = languages + langNodes[i].value + ",";
 			 }
 		 }
 

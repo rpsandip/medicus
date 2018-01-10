@@ -48,7 +48,7 @@ public class AddStudentRenderCommand implements MVCRenderCommand{
 	public String render(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException {
 		
 		List<School> schoolListForSchoolAdmin = new ArrayList<School>();
-		MedicusCommonLocalServiceUtil.setUserSchoolIdCampusIdInRequest(renderRequest, schoolListForSchoolAdmin);
+		schoolListForSchoolAdmin = MedicusCommonLocalServiceUtil.setUserSchoolIdCampusIdInRequest(renderRequest, schoolListForSchoolAdmin);
 		
 		renderRequest.setAttribute("usStateList", MedicusCommonLocalServiceUtil.getUSStateList());
 		renderRequest.setAttribute("schoolList", schoolListForSchoolAdmin);

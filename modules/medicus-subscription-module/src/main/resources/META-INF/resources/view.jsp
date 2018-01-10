@@ -44,7 +44,7 @@
                     </div>
                     <div class="pricing_footer">
                        <c:choose>
-                       	<c:when test="${ not empty userSubscription and (userSubscription.subscriptionId eq silverSub.subscriptionId)}">
+                       	<c:when test="${ not empty userSubscription and (userSubscription.subscriptionId eq subsciptionPlan.subscriptionId)}">
                        		<a class="btn btn-success btn-block" >Subscribed</a>
                        	</c:when>
                        	<c:otherwise>
