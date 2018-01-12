@@ -20,6 +20,7 @@ import com.medicus.common.service.exception.NoSuchUser_SubscriptionException;
 import com.medicus.common.service.model.Campus;
 import com.medicus.common.service.model.School;
 import com.medicus.common.service.model.Student;
+import com.medicus.common.service.model.User_Subscription;
 import com.medicus.common.service.service.CampusLocalServiceUtil;
 import com.medicus.common.service.service.MedicusCommonLocalServiceUtil;
 import com.medicus.common.service.service.SchoolLocalServiceUtil;
@@ -28,8 +29,10 @@ import com.medicus.common.service.service.User_SubscriptionLocalServiceUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import javax.portlet.Portlet;
@@ -74,8 +77,13 @@ public class StudentModulePortlet extends MVCPortlet {
 		boolean isPartnerSubscried = false;
 		if(isPartner){
 			try {
-				User_SubscriptionLocalServiceUtil.getUserSubcriptionByUserId(themeDisplay.getUserId());
-				isPartnerSubscried = true;
+				User_Subscription userSubscription = User_SubscriptionLocalServiceUtil.getUserSubcriptionByUserId(themeDisplay.getUserId());
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(userSubscription.getSubscriptionDate());
+				cal.add(Calendar.YEAR, 1);
+				if(cal.getTime().after(new Date())){
+					isPartnerSubscried = true;
+				}
 			} catch (NoSuchUser_SubscriptionException e1) {
 				_log.debug("login user -> "+ themeDisplay.getUserId() +" has not suscribed ");
 			}

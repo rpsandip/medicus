@@ -93,6 +93,9 @@ public interface MedicusCommonLocalService extends BaseLocalService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getDLFileURL(FileEntry file);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.lang.String getLoginUserInfo(long userId);
+
 	/**
 	* Returns the OSGi service identifier.
 	*
@@ -111,6 +114,9 @@ public interface MedicusCommonLocalService extends BaseLocalService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<java.lang.String> getUSStateList();
+
+	public List<School> setUserSchoolIdCampusIdInRequest(
+		PortletRequest request, List<School> schoolListForSchoolAdmin);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long getCampusOrgIdFromRoleIdAndUserId(long userId, long roleId);
@@ -138,7 +144,4 @@ public interface MedicusCommonLocalService extends BaseLocalService {
 
 	public void sendApproveInterviewRequestMail(
 		Interview_Request interviewRequest);
-
-	public void setUserSchoolIdCampusIdInRequest(PortletRequest request,
-		List<School> schoolListForSchoolAdmin);
 }

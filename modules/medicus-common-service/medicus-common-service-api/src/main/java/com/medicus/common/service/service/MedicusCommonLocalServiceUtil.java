@@ -96,6 +96,10 @@ public class MedicusCommonLocalServiceUtil {
 		return getService().getDLFileURL(file);
 	}
 
+	public static java.lang.String getLoginUserInfo(long userId) {
+		return getService().getLoginUserInfo(userId);
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*
@@ -119,6 +123,14 @@ public class MedicusCommonLocalServiceUtil {
 
 	public static java.util.List<java.lang.String> getUSStateList() {
 		return getService().getUSStateList();
+	}
+
+	public static java.util.List<com.medicus.common.service.model.School> setUserSchoolIdCampusIdInRequest(
+		javax.portlet.PortletRequest request,
+		java.util.List<com.medicus.common.service.model.School> schoolListForSchoolAdmin) {
+		return getService()
+				   .setUserSchoolIdCampusIdInRequest(request,
+			schoolListForSchoolAdmin);
 	}
 
 	public static long getCampusOrgIdFromRoleIdAndUserId(long userId,
@@ -158,13 +170,6 @@ public class MedicusCommonLocalServiceUtil {
 	public static void sendApproveInterviewRequestMail(
 		com.medicus.common.service.model.Interview_Request interviewRequest) {
 		getService().sendApproveInterviewRequestMail(interviewRequest);
-	}
-
-	public static void setUserSchoolIdCampusIdInRequest(
-		javax.portlet.PortletRequest request,
-		java.util.List<com.medicus.common.service.model.School> schoolListForSchoolAdmin) {
-		getService()
-			.setUserSchoolIdCampusIdInRequest(request, schoolListForSchoolAdmin);
 	}
 
 	public static MedicusCommonLocalService getService() {

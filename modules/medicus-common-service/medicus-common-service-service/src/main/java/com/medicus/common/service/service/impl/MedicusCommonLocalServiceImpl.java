@@ -14,11 +14,7 @@
 
 package com.medicus.common.service.service.impl;
 
-import aQute.bnd.annotation.ProviderType;
-
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -28,7 +24,6 @@ import java.util.List;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.portlet.PortletRequest;
-import javax.sound.sampled.Port;
 
 import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
@@ -81,6 +76,8 @@ import com.medicus.common.service.service.SchoolLocalServiceUtil;
 import com.medicus.common.service.service.StudentLocalServiceUtil;
 import com.medicus.common.service.service.base.MedicusCommonLocalServiceBaseImpl;
 import com.medicus.common.service.util.MedicusConstant;
+
+import aQute.bnd.annotation.ProviderType;
 
 
 /**
@@ -274,9 +271,9 @@ public class MedicusCommonLocalServiceImpl
 				Organization campusOrg = OrganizationLocalServiceUtil.getOrganization(PortalUtil.getDefaultCompanyId(),
 						String.valueOf(campus.getCampusId()));
 				long orgGroupId = getOrganizationGroupIdFromOrgId(campusOrg.getOrganizationId());
-				List<UserGroupRole> userGroupRoleList = UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(orgGroupId, getRoleIdFromName(MedicusConstant.CAMPUS_ADMIN_ROLE));
-				if(userGroupRoleList.size()>0){
-					campusAdminUser = UserLocalServiceUtil.getUser(userGroupRoleList.get(0).getUserId());
+				List<UserGroupRole> campusSuperAdminRoleList = UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(orgGroupId, getRoleIdFromName(MedicusConstant.CAMPUS_SUPER_ADMIN_ROLE));
+				if(campusSuperAdminRoleList.size()>0){
+					campusAdminUser = UserLocalServiceUtil.getUser(campusSuperAdminRoleList.get(0).getUserId());
 					return campusAdminUser;
 				}
 			} catch (PortalException e) {
@@ -369,7 +366,7 @@ public class MedicusCommonLocalServiceImpl
 		}
 	}
 	
-	public void setUserSchoolIdCampusIdInRequest(PortletRequest request, List<School> schoolListForSchoolAdmin){
+	public List<School> setUserSchoolIdCampusIdInRequest(PortletRequest request, List<School> schoolListForSchoolAdmin){
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(WebKeys.THEME_DISPLAY);
 		long medicusOrgId = MedicusCommonLocalServiceUtil.getMedicusOrganizationId();
 		long medicusOrgGroupId = MedicusCommonLocalServiceUtil.getOrganizationGroupIdFromOrgId(medicusOrgId);
@@ -419,12 +416,20 @@ public class MedicusCommonLocalServiceImpl
 					_log.debug(e.getMessage());
 				}
 			}
+			
+			if(themeDisplay.getPermissionChecker().isOmniadmin() || isPartner(themeDisplay.getUserId())){
+				schoolListForSchoolAdmin = SchoolLocalServiceUtil.getSchools(-1, -1);
+			}
+			
 			request.setAttribute("userCampusId", campusId);
 			request.setAttribute("userSchoolId", schoolId);
+			
+			return schoolListForSchoolAdmin;
 			
 		} catch (PortalException e) {
 			_log.error(e);
 		}
+		return new ArrayList<School>();
 	}
 	
 	public String getPartnerImportFileURL(){
@@ -470,5 +475,83 @@ public class MedicusCommonLocalServiceImpl
 		}
 		
 		return isPartner;
+	}
+	
+	public String getLoginUserInfo(long userId){
+		long campusId=0;
+		long schoolId=0;
+		School school=null;
+		Campus campus = null;
+		try {
+			
+			long medicusOrgId = MedicusCommonLocalServiceUtil.getMedicusOrganizationId();
+			long medicusOrgGroupId = MedicusCommonLocalServiceUtil.getOrganizationGroupIdFromOrgId(medicusOrgId);
+			
+			
+			Role schoolSupreAdminRole = RoleLocalServiceUtil.getRole(PortalUtil.getDefaultCompanyId(), PropsUtil.get("medicus.school.super.admin.role"));
+			Role schoolAdminRole = RoleLocalServiceUtil.getRole(PortalUtil.getDefaultCompanyId(), PropsUtil.get("medicus.school.admin.role"));
+			Role campusSuperAdminRole = RoleLocalServiceUtil.getRole(PortalUtil.getDefaultCompanyId(), PropsUtil.get("medicus.campus.super.admin.role"));
+			Role campusAdminRole = RoleLocalServiceUtil.getRole(PortalUtil.getDefaultCompanyId(), PropsUtil.get("medicus.campus.admin.role"));
+	
+			boolean hasSchoolAdminRole = UserGroupRoleLocalServiceUtil.hasUserGroupRole(userId, medicusOrgGroupId, schoolAdminRole.getRoleId());
+			boolean hasSchoolSuperAdminRole = UserGroupRoleLocalServiceUtil.hasUserGroupRole(userId, medicusOrgGroupId, schoolSupreAdminRole.getRoleId());
+			boolean hasCampusAdminRole = UserGroupRoleLocalServiceUtil.hasUserGroupRole(userId, medicusOrgGroupId, campusAdminRole.getRoleId());
+			boolean hasCampusSuperAdminRole = UserGroupRoleLocalServiceUtil.hasUserGroupRole(userId, medicusOrgGroupId, campusSuperAdminRole.getRoleId());
+			
+			if(hasCampusAdminRole){
+				 campusId = MedicusCommonLocalServiceUtil.getCampusOrgIdFromRoleIdAndUserId(userId, campusAdminRole.getRoleId());
+			}
+			if(hasCampusSuperAdminRole){
+				 campusId = MedicusCommonLocalServiceUtil.getCampusOrgIdFromRoleIdAndUserId(userId, campusSuperAdminRole.getRoleId());
+			}
+			if(hasSchoolAdminRole){
+				 campusId = MedicusCommonLocalServiceUtil.getCampusOrgIdFromRoleIdAndUserId(userId, schoolAdminRole.getRoleId());
+			}
+			if(hasSchoolSuperAdminRole){
+				 campusId = MedicusCommonLocalServiceUtil.getCampusOrgIdFromRoleIdAndUserId(userId, schoolSupreAdminRole.getRoleId());
+			}
+			
+			if(campusId>0){
+				try{
+					 campus = CampusLocalServiceUtil.getCampus(campusId);
+					schoolId = campus.getSchoolId();
+				}catch(PortalException e){
+					_log.debug(e.getMessage());
+				}
+			}
+			if(schoolId>0){
+				try{
+					 school = SchoolLocalServiceUtil.getSchool(schoolId);
+				}catch(PortalException e){
+					_log.debug(e.getMessage());
+				}
+			}
+			
+			if(hasSchoolAdminRole && Validator.isNotNull(school)){
+				return "You are login as " + "School Admin of " + school.getName() + " School"; 
+			}
+			if(hasSchoolSuperAdminRole && Validator.isNotNull(school)){
+				return "You are login as " + "School Super Admin of " + school.getName() +" School";
+			}
+			if(hasCampusAdminRole && Validator.isNotNull(campus)){
+				return "You are login as " + "Campus Admin of " + campus.getName() + " Campus";
+			}
+			if(hasCampusSuperAdminRole && Validator.isNotNull(campus)){
+				return "You are login as " + "Campus Super Admin of " + campus.getName() + " Campus";
+			}
+			
+			boolean isPartner = isPartner(userId);
+			
+			if(isPartner){
+				return "You are login as Partner";
+			}
+			
+			
+			
+		} catch (PortalException e) {
+			_log.error(e);
+		}
+		
+		return StringPool.BLANK;
 	}
 }

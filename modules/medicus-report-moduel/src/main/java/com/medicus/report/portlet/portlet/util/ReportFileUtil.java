@@ -61,36 +61,36 @@ public class ReportFileUtil {
 			style.setAlignment(HorizontalAlignment.CENTER);
 			style.setVerticalAlignment(VerticalAlignment.CENTER);
 			
-			XSSFCell cell1=  headerRow.createCell(1);
+			XSSFCell cell1=  headerRow.createCell(0);
 			cell1.setCellValue("Name");
 			cell1.setCellStyle(style);
 			
-			XSSFCell cell2=  headerRow.createCell(2);
+			XSSFCell cell2=  headerRow.createCell(1);
 			cell2.setCellValue("Student Id");
 			cell2.setCellStyle(style);
 			
-			XSSFCell cell3=  headerRow.createCell(3);
+			XSSFCell cell3=  headerRow.createCell(2);
 			cell3.setCellValue("Gender");
 			cell3.setCellStyle(style);
 			
-			XSSFCell cell4=  headerRow.createCell(4);
+			XSSFCell cell4=  headerRow.createCell(3);
 			cell4.setCellValue("Zipcode");
 			cell4.setCellStyle(style);
 			
-			XSSFCell cell5=  headerRow.createCell(5);
+			XSSFCell cell5=  headerRow.createCell(4);
 			cell5.setCellValue("Profession");
 			cell5.setCellStyle(style);
 			
 			
-			XSSFCell cell6=  headerRow.createCell(6);
+			XSSFCell cell6=  headerRow.createCell(5);
 			cell6.setCellValue("Languages");
 			cell6.setCellStyle(style);
 			
-			XSSFCell cell7=  headerRow.createCell(7);
+			XSSFCell cell7=  headerRow.createCell(6);
 			cell7.setCellValue("School");
 			cell7.setCellStyle(style);
 
-			XSSFCell cell8=  headerRow.createCell(8);
+			XSSFCell cell8=  headerRow.createCell(7);
 			cell8.setCellValue("Campus");
 			cell8.setCellStyle(style);
 			
@@ -105,36 +105,36 @@ public class ReportFileUtil {
 			XSSFCellStyle style = wb.createCellStyle();
 			style.setFont(normalFont);
 			
-			XSSFCell cell1=  studentRow.createCell(1);
+			XSSFCell cell1=  studentRow.createCell(0);
 			cell1.setCellValue(studentBean.getFirstName()+StringPool.SPACE+studentBean.getLastName());
 			cell1.setCellStyle(style);
 			
-			XSSFCell cell2=  studentRow.createCell(2);
+			XSSFCell cell2=  studentRow.createCell(1);
 			cell2.setCellValue(studentBean.getStundetCampusId());
 			cell2.setCellStyle(style);
 			
-			XSSFCell cell3=  studentRow.createCell(3);
+			XSSFCell cell3=  studentRow.createCell(2);
 			cell3.setCellValue(studentBean.getGender());
 			cell3.setCellStyle(style);
 			
 			
-			XSSFCell cell4=  studentRow.createCell(4);
+			XSSFCell cell4=  studentRow.createCell(3);
 			cell4.setCellValue(studentBean.getZipcode());
 			cell4.setCellStyle(style);
 			
-			XSSFCell cell5=  studentRow.createCell(5);
+			XSSFCell cell5=  studentRow.createCell(4);
 			cell5.setCellValue(studentBean.getProfession());
 			cell5.setCellStyle(style);
 			
-			XSSFCell cell6=  studentRow.createCell(6);
+			XSSFCell cell6=  studentRow.createCell(5);
 			cell6.setCellValue(studentBean.getPrimaryLanguages());
 			cell6.setCellStyle(style);
 			
-			XSSFCell cell7=  studentRow.createCell(7);
+			XSSFCell cell7=  studentRow.createCell(6);
 			cell7.setCellValue(studentBean.getSchoolName());
 			cell7.setCellStyle(style);
 			
-			XSSFCell cell8=  studentRow.createCell(8);
+			XSSFCell cell8=  studentRow.createCell(7);
 			cell8.setCellValue(studentBean.getCampusName());
 			cell8.setCellStyle(style);
 			

@@ -42,7 +42,7 @@ public class Student_ExternshipBean {
 			this.endDate = studentExternship.getEndDate();
 			this.noOfHoursPerWeek = studentExternship.getNoOfHoursPerWeek();
 			this.midPointReview = studentExternship.getMidPointReview();
-			this.midPointReviewComment = studentExternship.getFinalReviewComment();
+			this.midPointReviewComment = studentExternship.getMidPointReviewComment();
 			this.finalReview = studentExternship.getFinalReview();
 			this.finalReviewComment = studentExternship.getFinalReviewComment();
 			this.status = studentExternship.getStatus();

@@ -37,7 +37,7 @@ public class MedicusDashboardModulePortlet extends MVCPortlet {
 			throws IOException, PortletException {
 		
 	   List<School> schoolListForSchoolAdmin = new ArrayList<School>();
-	   MedicusCommonLocalServiceUtil.setUserSchoolIdCampusIdInRequest(renderRequest, schoolListForSchoolAdmin);
+	   schoolListForSchoolAdmin = MedicusCommonLocalServiceUtil.setUserSchoolIdCampusIdInRequest(renderRequest, schoolListForSchoolAdmin);
 		
 	   long userCampusId = (Long)renderRequest.getAttribute("userCampusId");
 	   long userSchoolId = 	(Long)renderRequest.getAttribute("userSchoolId");

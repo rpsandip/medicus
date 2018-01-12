@@ -277,9 +277,6 @@
 							</c:choose>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">Final Review Comment</label>${studentExternshipBean.finalReviewComment?studentExternshipBean.finalReviewComment:"-" }
-						</div>
-						<div class="form-group">
 							<c:choose>
 							<c:when test="${fn:length(studentBean.othetAttachments) > 0}">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12">Attachments:</label>

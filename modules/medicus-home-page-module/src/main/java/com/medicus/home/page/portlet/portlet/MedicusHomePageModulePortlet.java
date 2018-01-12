@@ -3,6 +3,7 @@ package com.medicus.home.page.portlet.portlet;
 import com.medicus.common.service.model.Student;
 import com.medicus.common.service.service.CampusLocalService;
 import com.medicus.common.service.service.CampusLocalServiceUtil;
+import com.medicus.common.service.service.PartnerLocalServiceUtil;
 import com.medicus.common.service.service.SchoolLocalServiceUtil;
 import com.medicus.common.service.service.StudentLocalServiceUtil;
 import com.medicus.home.page.portlet.constants.MedicusHomePageModulePortletKeys;
@@ -56,11 +57,12 @@ public class MedicusHomePageModulePortlet extends MVCPortlet {
 		    int schoolCount = SchoolLocalServiceUtil.getSchoolsCount();
 		    int campusCount = CampusLocalServiceUtil.getCampusesCount();
 		    int studentCount = StudentLocalServiceUtil.getActiveStudentCount();
+		    int partnerCount = PartnerLocalServiceUtil.getPartnersCount();
 		    
 		    renderRequest.setAttribute("schoolCount", schoolCount);
 		    renderRequest.setAttribute("campusCount", campusCount);
 		    renderRequest.setAttribute("studentCount", studentCount);
-		    
+		    renderRequest.setAttribute("partnerCount", partnerCount);
 		    
 			include(viewTemplate, renderRequest, renderResponse);
 	}

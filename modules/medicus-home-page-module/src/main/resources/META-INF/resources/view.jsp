@@ -26,7 +26,7 @@
 								<li><a href="#about" class="scroll">About</a></li>
 								<li><a href="#agileits-services" class="scroll">Services</a></li>
 								<li><a href="#blog" class="scroll">Articles</a></li>
-								<li><a href="#team" class="scroll">Team</a></li>
+								<li><a href="#faqs" class="scroll">Faqs</a></li>
 								<li><a href="#testimonials" class="scroll" >Testimonials</a></li>
 								<li><a href="#contact" class="scroll">contact</a></li>
 							</ul>
@@ -62,8 +62,48 @@
 					<img src="<%=imagePath %>/about3.jpeg" class="img-responsive" alt=""/>
 				</div>
 				<div class="clearfix"> </div>
-			</div>
+			</div>	
 			<div class="clearfix"> </div>
+				 <br>
+			</div>
+	</div>	
+	
+	<!--services-->
+  <div class="agileits-services w3ls-section" id="agileits-services" >
+		<div class="container">
+			<h3 class="w3ls-title">services </h3>
+			<div class="agileits-services-row">
+				<div class="col-md-6 col-sm-6 agileits-services-grids">
+					<a class="scroll" href="#analytics">
+					<span class="glyphicon glyphicon-stats effect-1" aria-hidden="true"></span>
+					<h4>Analytics</h4>
+					<p>See sample reports and search functions to customize your internship selection and search.</p>
+					</a>
+				</div>
+				<div class="col-md-6 col-sm-6 agileits-services-grids">
+					<span class="glyphicon glyphicon-user effect-1" aria-hidden="true"></span>
+					<h4>Custom Plans</h4>
+					<p>We have one flexible plans to meet your every internship need.</p>
+					<p>Our plan includes the following advantages:</p><p class="text-left">
+-	Real time access to students available to intern<br>
+-	Unlimited searches<br>
+-	Customization of your search by Zip code, Gender, Language, Profession, just to name a few criteria<br>
+-	Selection of Schools and campus nearest to you<br>
+-	Ability to work with the school to interview students before acceptance<br>
+-	Liability insurance of the student<br>
+-	Streamline process to select and obtain interns<br>
+-	Your return on investment is at least 300% in financial and positive impact<br>
+					</p>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<!--//agileits-services-->
+	<div id="analytics" class="w3ls-section">
+		
+		<div class="container">
+			<h3 class="w3ls-title">Analytics</h3>
 			<div class="stats-info agileits-w3layouts">
 				<div class="col-sm-3 col-xs-3 stats-grid">
 					<div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='45' data-delay='.5' data-increment="1">${schoolCount }</div>
@@ -83,30 +123,35 @@
 						<p>Students</p>
 					</div>
 				</div>
+				<div class="col-sm-3 col-xs-3 stats-grid stat1">
+					<div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='745' data-delay='.5' data-increment="1">${partnerCount }</div>
+					<div class="stats-img stat2">
+						<p>Partners</p>
+					</div>
+				</div>
 				<div class="clearfix"></div>
-		 </div>
-		 <br>
-		 <form id="add-new-school-form" data-parsley-validate="" class="form-horizontal form-label-left" style="text-align:center">
+		 </div><br>
+			 <form id="add-new-school-form" data-parsley-validate="" class="form-horizontal form-label-left" style="text-align:center">
                <div class="form-group" style="margin:0">
-                 <div class="col-md-3 col-sm-6 col-xs-12">
-                   <select class="form-control">
-                      <option>Select School</option>
+                 <div class="col-md-2 col-sm-6 col-xs-12">
+                   <select id="school" class="form-control">
+                      <option value="">Select School</option>
                       <option>School 1</option>
                       <option>School 2</option>
                       <option>School 3</option>
                     </select>
                  </div>
-                 <div class="col-md-3 col-sm-6 col-xs-12">
-                   <select class="form-control">
-                      <option>Select Campus</option>
+                 <div class="col-md-2 col-sm-6 col-xs-12">
+                   <select id="campus" class="form-control">
+                      <option value="">Select Campus</option>
                       <option>Campus 1</option>
                       <option>Campus 2</option>
                       <option>Campus 3</option>
                     </select>
                  </div>
-                 <div class="col-md-3 col-sm-6 col-xs-12">
-                   <select class="form-control">
-                      <option>Select Profession</option>
+                 <div class="col-md-2 col-sm-6 col-xs-12">
+                   <select id="profession" class="form-control">
+                      <option value="">Select Profession</option>
                       <option>Dental Assistant</option>
                       <option>Medical Assistant</option>
                       <option>Medical Administrative Assistance</option>
@@ -117,7 +162,27 @@
                       <option>Sonography </option>
                     </select>
                  </div>
-                 <div class="col-md-3 col-sm-6 col-xs-12">
+                 <div class="col-md-2 col-sm-6 col-xs-12">
+                   <select id="gender" class="form-control">
+                      <option value="">Select Gender</option>
+                      <option>Male</option>
+                      <option>Female</option>
+                    </select>
+                 </div>
+                 <div class="col-md-2 col-sm-6 col-xs-12">
+                   <select id="language" class="form-control">
+                      <option value="">Select Language</option>
+                      <option>English</option>
+                      <option>French</option>
+                      <option>Spanish</option>
+                      <option>Hindi</option>
+                      <option>Chinese</option>
+                    </select>
+                 </div>
+                 <div class="col-md-1 col-sm-6 col-xs-12">
+                   <input type="text" class="form-control" placeholder="Zipcode" id="zipcode" style="min-width: 75px;">
+                 </div>
+                 <div class="col-md-1 col-sm-6 col-xs-12">
                    <button type="button" class="btn btn-primary search-student">Submit</button>
                  </div>
                </div>
@@ -137,73 +202,91 @@
 	                          <th>Profession</th>
 	                          <th>Gender</th>
 	                          <th>School</th>
+	                          <th>Campus</th>
 	                          <th>Language</th>
+	                          <th>Zipcode</th>
 	                        </tr>
 	                      </thead>
 	                      <tbody>
 	                        <tr>
 	                          <td>1</td>
-	                          <td>Student Name</td>
-	                          <td> Web Designer </td>
+	                          <td>Harry Mate</td>
+	                          <td> Dental Assistant </td>
 	                          <td>Male</td>
 	                          <td>School 1</td>
+	                          <td>Campus 1</td>
 	                          <td>English</td>
+	                          <td>12345</td>
 	                        </tr>
 	                        <tr>
 	                          <td>2</td>
-	                          <td>Student Name</td>
-	                          <td> Web Designer </td>
-	                          <td>Male</td>
+	                          <td>John Smith</td>
+	                          <td> Medical Assistant </td>
+	                          <td>Female</td>
 	                          <td>School 2</td>
-	                          <td>English</td>
+	                          <td>Campus 2</td>
+	                          <td>French</td>
+	                          <td>67890</td>
 	                        </tr>
 	                        <tr>
 	                          <td>3</td>
-	                          <td>Student Name</td>
-	                          <td> Web Designer </td>
+	                          <td>Peter Berg</td>
+	                          <td> Medical Administrative Assistance </td>
 	                          <td>Male</td>
 	                          <td>School 3</td>
-	                          <td>English</td>
+	                          <td>Campus 3</td>
+	                          <td>Spanish</td>
+	                          <td>75336</td>
 	                        </tr>
 	                        <tr>
 	                          <td>4</td>
-	                          <td>Student Name</td>
-	                          <td> Web Designer </td>
+	                          <td>Michale Sket</td>
+	                          <td> Phlebotomy </td>
 	                          <td>Male</td>
-	                          <td>School 4</td>
-	                          <td>English</td>
+	                          <td>School 1</td>
+	                          <td>Campus 1</td>
+	                          <td>Hindi</td>
+	                          <td>95421</td>
 	                        </tr>
 	                        <tr>
 	                          <td>5</td>
-	                          <td>Student Name</td>
-	                          <td> Web Designer </td>
-	                          <td>Male</td>
-	                          <td>School 5</td>
-	                          <td>English</td>
+	                          <td>Scarlet Joe</td>
+	                          <td> Pharmacy Technician </td>
+	                          <td>Female</td>
+	                          <td>School 2</td>
+	                          <td>Campus 2</td>
+	                          <td>Chinese</td>
+	                          <td>55886</td>
 	                        </tr>
 	                        <tr>
 	                          <td>6</td>
-	                          <td>Student Name</td>
-	                          <td> Web Designer </td>
+	                          <td>Timberlake Sui</td>
+	                          <td> Patient Care Technician </td>
 	                          <td>Male</td>
-	                          <td>School 6</td>
+	                          <td>School 3</td>
+	                          <td>Campus 3</td>
 	                          <td>English</td>
+	                          <td>12345</td>
 	                        </tr>
 	                        <tr>
 	                          <td>7</td>
-	                          <td>Student Name</td>
-	                          <td> Web Designer </td>
+	                          <td>Joseph Passat</td>
+	                          <td> Veterinary Assistant </td>
 	                          <td>Male</td>
-	                          <td>School 7</td>
-	                          <td>English</td>
+	                          <td>School 1</td>
+	                          <td>Campus 1</td>
+	                          <td>French</td>
+	                          <td>66856</td>
 	                        </tr>
 	                        <tr>
 	                          <td>8</td>
-	                          <td>Student Name</td>
-	                          <td> Web Designer </td>
-	                          <td>Male</td>
-	                          <td>School 8</td>
-	                          <td>English</td>
+	                          <td>Gary Cruz</td>
+	                          <td> Sonography </td>
+	                          <td>Female</td>
+	                          <td>School 2</td>
+	                          <td>Campus 2</td>
+	                          <td>Hindi</td>
+	                          <td>41125</td>
 	                        </tr>
 	                      </tbody>
 	                    </table>
@@ -211,57 +294,22 @@
 	                </div>
 	              </div>
 	           	</div>
-		 
 		</div>
 	</div>
-	<!-- //about -->
-	<!-- Search Filter -->
-	
-  <!--services-->
-  <div class="agileits-services w3ls-section" id="agileits-services" >
-		<div class="container">
-			<h3 class="w3ls-title">services </h3>
-			<div class="agileits-services-row">
-				<div class="col-md-6 col-sm-6 agileits-services-grids">
-					<span class="glyphicon glyphicon-stats effect-1" aria-hidden="true"></span>
-					<h4>Analytics</h4>
-					<p>See sample reports and search functions to customize your internship selection and search.</p>
-				</div>
-				<div class="col-md-6 col-sm-6 agileits-services-grids">
-					<span class="glyphicon glyphicon-user effect-1" aria-hidden="true"></span>
-					<h4>Custom Plans</h4>
-					<p>We have three flexible plans to meet your every internship need.</p>
-					<p>Our plan includes the following advantages:</p><p class="text-left">
--	Real time access to students available to intern<br>
--	Unlimited searches<br>
--	Customization of your search by Zip code, Gender, Language, Profession, just to name a few criteria<br>
--	Selection of Schools and campus nearest to you<br>
--	Ability to work with the school to interview students before acceptance<br>
--	Liability insurance of the student<br>
--	Streamline process to select and obtain interns<br>
--	Your return on investment is at least 300% in financial and positive impact<br>
-					</p>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-	</div>
-	<!--//agileits-services-->
+  
 <!--blog-->
 	<div id="blog" class="portfolio w3ls-section">
 		<div class="container">
 			<h3 class="w3ls-title">Articles</h3>
 		<div class="sap_tabs">			
 			<div id="horizontalTab">
-				<ul class="resp-tabs-list">
-					<li class="resp-tab-item"><span>All</span></li>
-				</ul>	
 				<div class="clearfix"> </div>	
 				<div class="resp-tabs-container">
 					<div class="tab-1 resp-tab-content">
 						<div class="col-md-3 portfolio-grids">
 							<a href="<%=imagePath %>/g1.jpg" data-lightbox="example-set" data-title="<h3>Dental Assistant</h3>Our colleges teach a wide span of job skills that ensure success in our students career as a dental assistant.  Our colleges' accredited training program offers courses that teach chair-side assisting and help students gain hands on experience.
-							<ul><li>Prepare patients for examination and treatment</li><li>Take x-ry examinations (Radiography)</li><li>Sterilize and disinfect instruments and equipment</li><li>Prepare tray setups for dental procedures</li><li>Prepare materials for making impressions and restoration</li></ul>">
+							<ul><li>Prepare patients for examination and treatment</li><li>Take x-ry examinations (Radiography)</li><li>Sterilize and disinfect instruments and equipment</li><li>Prepare tray setups for dental procedures</li><li>Prepare materials for making impressions and restoration</li></ul>
+							<a target='_blank' href='http://slicecommunications.com/roi-of-an-unpaid-internship/'>http://slicecommunications.com/roi-of-an-unpaid-internship/</a>">
 								<img src="<%=imagePath %>/g1.jpg" class="img-responsive zoom-img" alt=""/>
 								<div class="b-wrapper">
 									<h5>Dental Assistant</h5>
@@ -276,6 +324,7 @@
 							<li>Explain Treatment Procedures to Patients</li>
 							<li>Prepare Patients for Examination</li>
 							</ul>
+							<a target='_blank' href='https://www.ellevatenetwork.com/articles/6617-invest-in-the-unpaid-intern-and-everyone-gets-a-roi'>https://www.ellevatenetwork.com/articles/6617-invest-in-the-unpaid-intern-and-everyone-gets-a-roi</a>
 							">
 								<img src="<%=imagePath %>/g2.jpg" class="img-responsive zoom-img" alt=""/>
 								<div class="b-wrapper">
@@ -284,7 +333,8 @@
 							</a>
 						</div>
 						<div class="col-md-3 portfolio-grids">
-							<a href="<%=imagePath %>/g3.jpg" data-lightbox="example-set" data-title="<h3>Phlebotomy</h3>Our colleges' program provides training in obtaining blood specimens by venipuncture and micro-collection techniques.  Phlebotomy technician classes also teach students to collect and process other clinical specimens, along with Point of Care procedures.">
+							<a href="<%=imagePath %>/g3.jpg" data-lightbox="example-set" data-title="<h3>Phlebotomy</h3>Our colleges' program provides training in obtaining blood specimens by venipuncture and micro-collection techniques.  Phlebotomy technician classes also teach students to collect and process other clinical specimens, along with Point of Care procedures.
+							<a target='_blank' href='https://www.linkedin.com/pulse/real-roi-internships-daniel-wright/'>https://www.linkedin.com/pulse/real-roi-internships-daniel-wright/</a>">
 								<img src="<%=imagePath %>/g3.jpg" class="img-responsive zoom-img" alt=""/>
 								<div class="b-wrapper">
 									<h5>Phlebotomy</h5>
@@ -294,7 +344,8 @@
 						<div class="col-md-3 portfolio-grids">
 							<a href="<%=imagePath %>/g8.jpg" data-lightbox="example-set" data-title="<h3>Patient Care Technician</h3>As Patient Care Technicians, our students learn how to handle daily hands-on experiences with patients by helping them with procedures such as taking vital signs, performing electrocardiography (ECG), blood draws, hemodialysis and other needs.
 							<ul><li>Performing catheterizations</li><li>Removing sutures and staples</li>
-<li>Managing wound care</li><li>Administering ECGs</li><li>Inserting intravenous saline locks</li></ul>">
+								<li>Managing wound care</li><li>Administering ECGs</li><li>Inserting intravenous saline locks</li></ul>
+								<a target='_blank' href='https://pubsonline.informs.org/doi/abs/10.1287/isre.1110.0382'>https://pubsonline.informs.org/doi/abs/10.1287/isre.1110.0382</a>">
 								<img src="<%=imagePath %>/g8.jpg" class="img-responsive zoom-img" alt=""/>
 								<div class="b-wrapper">
 									<h5>Patient Care Technician</h5>
@@ -305,7 +356,7 @@
 							<a href="<%=imagePath %>/g5.jpg" data-lightbox="example-set" data-title="<h3>Medical Administrative Assistant</h3>Our Medical Administrative Assistant provides a strong background in office skills as well as business communication and customer service.  This combination of and hard skills prepares our students for a career in office administration, both in the health care field and in other industries as well.
 							<ul><li>Electronic health records</li><li>Verifying medical insurance</li>
 <li>Performing medical billing and coding tasks</li><li>Assisting physicians with reports an articles</li><li>Bookkeeping and banking procedures</li></ul>
-							">
+							<a target='_blank' href='http://www.sciencedirect.com/science/article/pii/S0148296311000555'>http://www.sciencedirect.com/science/article/pii/S0148296311000555</a>">
 								<img src="<%=imagePath %>/g5.jpg" class="img-responsive zoom-img" alt=""/>
 								<div class="b-wrapper">
 									<h5>Medical Administrative Assistant</h5>
@@ -319,7 +370,9 @@
 							<li>Provide routine post-operative care</li>
 							<li>Draw blood and collect other lab specimens</li>
 							<li>Prepare samples for lab examination under supervision</li>
-							</ul>">
+							</ul>
+							<a target='_blank' href='https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3116776/'>https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3116776/</a>
+							">
 								<img src="<%=imagePath %>/g6.jpg" class="img-responsive zoom-img" alt=""/>
 								<div class="b-wrapper">
 									<h5>Veterinary Assistant</h5>
@@ -327,7 +380,8 @@
 							</a>
 						</div>
 						<div class="col-md-3 portfolio-grids">
-							<a href="<%=imagePath %>/g4.jpg" data-lightbox="example-set" data-title="<h3>Sonography</h3>Our Sonographer, student perform and interpret ultrasound scans to help physicians diagnose a range of diseases, assist surgeons with biopsies, and track the health and growth of developing fetuses.  Our program teaches students sophisticated sonographic procedures and technology, as well as the interpersonal skills necessary to work directly with patients in a range of settings, from physician’s offices and OB/GYN clinics, to hospitals and diagnostic laboratories.">
+							<a href="<%=imagePath %>/g4.jpg" data-lightbox="example-set" data-title="<h3>Sonography</h3>Our Sonographer, student perform and interpret ultrasound scans to help physicians diagnose a range of diseases, assist surgeons with biopsies, and track the health and growth of developing fetuses.  Our program teaches students sophisticated sonographic procedures and technology, as well as the interpersonal skills necessary to work directly with patients in a range of settings, from physician’s offices and OB/GYN clinics, to hospitals and diagnostic laboratories.
+							<a target='_blank' href='https://www.healthcatalyst.com/top-healthcare-trends-challenges'>https://www.healthcatalyst.com/top-healthcare-trends-challenges</a>">
 								<img src="<%=imagePath %>/g4.jpg" class="img-responsive zoom-img" alt=""/>
 								<div class="b-wrapper">
 									<h5>Sonography</h5>
@@ -388,42 +442,6 @@
 		</div>
 	</div>
 <!-- //testimonial --> 
-<!-- team -->
-	<div class="testimonials w3ls-section" id="team">
-		<div class="container">
-			<h3 class="w3ls-title">Our Staff</h3>
-		<div class="w3_testimonials_grids w3_testimonials_grids">
-			<div id="owl-demo" class="owl-carousel"> 
-				<div class="item w3_agileits_testimonials_grid">
-					<img src="<%=imagePath %>/t1.jpg" alt=" " class="img-responsive" />
-					<h4>J. Hobbs</h4>
-					<p>Donec quis turpis pellentesque justo pulvinar sceleris.</p>
-				</div>
-				<div class="item w3_agileits_testimonials_grid">
-					<img src="<%=imagePath %>/t2.jpg" alt=" " class="img-responsive" />
-					<h4>Paul</h4>
-					<p>Donec quis turpis pellentesque justo pulvinar sceleris.</p>
-				</div>
-				<div class="item w3_agileits_testimonials_grid">
-					<img src="<%=imagePath %>/t3.jpg" alt=" " class="img-responsive" />
-					<h4>John</h4>
-					<p>Donec quis turpis pellentesque justo pulvinar sceleris.</p>
-				</div>
-				<div class="item w3_agileits_testimonials_grid">
-					<img src="<%=imagePath %>/t1.jpg" alt=" " class="img-responsive" />
-					<h4>Michael </h4>
-					<p>Donec quis turpis pellentesque justo pulvinar sceleris.</p>
-				</div>
-				<div class="item w3_agileits_testimonials_grid">
-					<img src="<%=imagePath %>/t2.jpg" alt=" " class="img-responsive" />
-					<h4>Christopher</h4>
-					<p>Donec quis turpis pellentesque justo pulvinar sceleris.</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	</div>
-<!-- //team -->
 
 <!-- Faqs -->
 
@@ -562,6 +580,134 @@ jQuery.noConflict();
       
       $(".search-student").click(function(event){	
 			$(".search-data").slideDown();
+			var school, filter, table, tr, td, i, campus, profession, gender, language, zipcode;
+			  school = document.getElementById("school");
+			  schoolfilter = school.value.toUpperCase();
+			  
+			  campus = document.getElementById("campus");
+			  campusfilter = campus.value.toUpperCase();
+			  
+			  profession = document.getElementById("profession");
+			  professionfilter = profession.value.toUpperCase();
+			  
+			  gender = document.getElementById("gender");
+			  genderfilter = gender.value.toUpperCase();
+			  
+			  language = document.getElementById("language");
+			  languagefilter = language.value.toUpperCase();
+			  
+			  zipcode = document.getElementById("zipcode");
+			  zipcodefilter = zipcode.value.toUpperCase();
+			  
+			  
+			  table = document.getElementById("datatable");
+			  tr = table.getElementsByTagName("tr");
+
+			  
+			  for (i = 0; i < tr.length; i++) {
+			    
+				professiontd = tr[i].getElementsByTagName("td")[2];
+				gendertd = tr[i].getElementsByTagName("td")[3];
+				schooltd = tr[i].getElementsByTagName("td")[4];
+			  	campustd = tr[i].getElementsByTagName("td")[5];
+			  	languagetd = tr[i].getElementsByTagName("td")[6];
+			  	zipcodetd = tr[i].getElementsByTagName("td")[7];
+			  	
+			  	if (professiontd){
+			  		if( professiontd.innerHTML.toUpperCase().indexOf(professionfilter) > -1){
+				        tr[i].style.display = "";
+				      } else {
+				        tr[i].style.display = "none";
+				      }
+			  	}  
+			  	if (gendertd){
+			  		if( gendertd.innerHTML.toUpperCase().indexOf(genderfilter) > -1){
+				        tr[i].style.display = "";
+				      } else {
+				        tr[i].style.display = "none";
+				      }
+			  	}
+			  	if (schooltd){
+			  		if( schooltd.innerHTML.toUpperCase().indexOf(schoolfilter) > -1){
+				        tr[i].style.display = "";
+				      } else {
+				        tr[i].style.display = "none";
+				      }
+			  	}
+			  	if (campustd){
+			  		if( campustd.innerHTML.toUpperCase().indexOf(campusfilter) > -1){
+				        tr[i].style.display = "";
+				      } else {
+				        tr[i].style.display = "none";
+				      }
+			  	}
+			  	if (languagetd){
+			  		if( languagetd.innerHTML.toUpperCase().indexOf(languagefilter) > -1){
+				        tr[i].style.display = "";
+				      } else {
+				        tr[i].style.display = "none";
+				      }
+			  	}
+			  	if (zipcodetd){
+			  		if( zipcodetd.innerHTML.toUpperCase().indexOf(zipcodefilter) > -1){
+				        tr[i].style.display = "";
+				      } else {
+				        tr[i].style.display = "none";
+				      }
+			  	}
+			  	if (professiontd && gendertd){
+			  		if( professiontd.innerHTML.toUpperCase().indexOf(professionfilter) > -1 
+			  				&& gendertd.innerHTML.toUpperCase().indexOf(genderfilter) > -1){
+				        tr[i].style.display = "";
+				      } else {
+				        tr[i].style.display = "none";
+				      }
+			  	}
+			  	if (professiontd && gendertd && schooltd ){
+			  		if( schooltd.innerHTML.toUpperCase().indexOf(schoolfilter) > -1
+				  			&& professiontd.innerHTML.toUpperCase().indexOf(professionfilter) > -1
+				  			&& gendertd.innerHTML.toUpperCase().indexOf(genderfilter) > -1){
+				        tr[i].style.display = "";
+				      } else {
+				        tr[i].style.display = "none";
+				      }
+			  	}
+			  	if (professiontd && gendertd && schooltd && campustd){
+			  		if( schooltd.innerHTML.toUpperCase().indexOf(schoolfilter) > -1
+				  			&& 	campustd.innerHTML.toUpperCase().indexOf(campusfilter) > -1
+				  			&& professiontd.innerHTML.toUpperCase().indexOf(professionfilter) > -1
+				  			&& gendertd.innerHTML.toUpperCase().indexOf(genderfilter) > -1){
+				        tr[i].style.display = "";
+				      } else {
+				        tr[i].style.display = "none";
+				      }
+			  	}
+			  	if (professiontd && gendertd && schooltd && campustd && languagetd){
+			  		if( schooltd.innerHTML.toUpperCase().indexOf(schoolfilter) > -1
+				  			&& 	campustd.innerHTML.toUpperCase().indexOf(campusfilter) > -1
+				  			&& professiontd.innerHTML.toUpperCase().indexOf(professionfilter) > -1
+				  			&& languagetd.innerHTML.toUpperCase().indexOf(languagefilter) > -1
+				  			&& gendertd.innerHTML.toUpperCase().indexOf(genderfilter) > -1){
+				        tr[i].style.display = "";
+				      } else {
+				        tr[i].style.display = "none";
+				      }
+			  	}
+			  	if (professiontd && gendertd && schooltd && campustd && languagetd && zipcodetd){
+			  		if( schooltd.innerHTML.toUpperCase().indexOf(schoolfilter) > -1
+				  			&& 	campustd.innerHTML.toUpperCase().indexOf(campusfilter) > -1
+				  			&& professiontd.innerHTML.toUpperCase().indexOf(professionfilter) > -1
+				  			&& languagetd.innerHTML.toUpperCase().indexOf(languagefilter) > -1
+				  			&& gendertd.innerHTML.toUpperCase().indexOf(genderfilter) > -1
+				  			&& zipcodetd.innerHTML.toUpperCase().indexOf(zipcodefilter) > -1){
+				        tr[i].style.display = "";
+				      } else {
+				        tr[i].style.display = "none";
+				      }
+			  	}
+			  	
+			  
+			  }
 	  });
       
      });

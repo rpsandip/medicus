@@ -58,6 +58,9 @@
  <#if !is_signed_in>
 	 
  <#else>
+ 	<#assign medicusCommonService = serviceLocator.findService("com.medicus.common.service.service.MedicusCommonLocalService")>
+	<#assign userInfo=medicusCommonService.getLoginUserInfo(user_id) >
+	
 	<body class="nav-md">
 		<div class="container body">
 			<@liferay_ui["quick-access"] contentId="#main-content" />
@@ -164,6 +167,9 @@
 			                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
 			              </div>			
 			            </nav>
+			            <div style="padding-top:5px;">
+			            	<h4>${userInfo}</h4>
+			            </div>
 			          </div>
 			        </div>
 			        

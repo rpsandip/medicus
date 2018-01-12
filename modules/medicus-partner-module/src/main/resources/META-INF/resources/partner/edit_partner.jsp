@@ -154,6 +154,7 @@
 						<div class="col-md-10 col-sm-6 col-xs-12 col-md-offset-3">
 							<aui:button type="button" value="Submit"
 								cssClass="registerUserBtn btn btn-success" />
+							<a href="/group/medicus/partners" class="btn btn-primary btn-xs">  Cancel </a>	
 						</div>
 					</div>
 					<aui:input name="partnerId" value="${partnerId }" type="hidden"></aui:input>

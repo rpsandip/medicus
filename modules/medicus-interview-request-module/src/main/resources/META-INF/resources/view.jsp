@@ -29,9 +29,10 @@
 			            	<th>Student Name</th>
 			                <th>Student Id</th>
 			                <th>Partner</th>
+			                <th>Status</th>
 			                <th>Requested Date</th>
 			                <th>Action Date</th>
-			                <th>Status</th>
+			               
 			                <c:if test="${hasStudentInterviewRequestUpdatePermission }">
 			               <th style="width: 20%;">Action</th>
 			                </c:if>

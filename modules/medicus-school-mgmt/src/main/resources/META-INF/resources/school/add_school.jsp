@@ -122,6 +122,7 @@
     				 <div class="form-group">
 				        <div class="col-md-10 col-sm-6 col-xs-12 col-md-offset-3">
 							<aui:button type="button" value="Submit"  cssClass="addSchoolBtn btn btn-success"/>
+							<a href="/group/medicus/schools" class="btn btn-primary btn-xs">  Cancel </a>
 						</div>
 					</div>	
 					<aui:input type="hidden"  name="schoolId" value="${school.schoolId }"/>

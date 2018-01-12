@@ -21,9 +21,10 @@
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="pricing">
                   <div class="title">
+                  <c:set var="subscriptionPrice"><fmt:formatNumber type="number" minFractionDigits="0" maxFractionDigits="2" value="${subsciptionPlan.price/12}" /></c:set>
                     <h2>${subsciptionPlan.name }</h2>
-                    <h1>$${subsciptionPlan.price }</h1>
-                     <span>Yearly</span>
+                    <h1>$${subscriptionPrice }/Month</h1>
+                     <span>$${subsciptionPlan.price}/Year</span>
                   </div>
                   <div class="x_content">
                     <div class="">

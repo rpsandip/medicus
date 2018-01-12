@@ -19,6 +19,7 @@ import aQute.bnd.annotation.ProviderType;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
@@ -98,4 +99,5 @@ public class PartnerLocalServiceImpl extends PartnerLocalServiceBaseImpl {
 		
 			return partner;
 	}
+	
 }

@@ -329,52 +329,6 @@
                		   	 		</aui:select>
                		   	 	</div>
                		   	 </div>	
-               		   	 <div class="form-group">
-               		   	 	<div class="col-md-10 col-sm-6 col-xs-12">
-               		   	 		<aui:select name="practices" label="practice">
-               		   	 			<aui:option value="">Select Practices</aui:option>
-               		   	 			<aui:option value="Athletic trainer">Athletic trainer</aui:option>
-               		   	 			<aui:option value="Audiologist">Audiologist</aui:option>
-               		   	 			<aui:option value="Chiropractor">Chiropractor</aui:option>
-               		   	 			<aui:option value="Clinical coder">Clinical coder</aui:option>
-               		   	 			<aui:option value="Clinical nurse specialist">Clinical nurse specialist</aui:option>
-               		   	 			<aui:option value="Clinical officer">Clinical officer</aui:option>
-               		   	 			<aui:option value="Community health worker">Community health worker</aui:option>
-               		   	 			<aui:option value="Dentist">Dentist</aui:option>
-               		   	 			<aui:option value="Dietitian and nutritionist">Dietitian and nutritionist</aui:option>
-               		   	 			<aui:option value="Emergency medical technician">Emergency medical technician</aui:option>
-               		   	 			<aui:option value="Feldsher">Feldsher</aui:option>
-               		   	 			<aui:option value="Health administrator">Health administrator</aui:option>
-               		   	 			<aui:option value="Medical assistant">Medical assistant</aui:option>
-               		   	 			<aui:option value="Medical laboratory scientist">Medical laboratory scientist</aui:option>
-               		   	 			<aui:option value="Medical transcriptionist">Medical transcriptionist</aui:option>
-               		   	 			<aui:option value="Nurse anesthetist">Nurse anesthetist</aui:option>
-               		   	 			<aui:option value="Nurse practitioner">Nurse practitioner</aui:option>
-               		   	 			<aui:option value="Nurse midwives">Nurse midwives</aui:option>
-               		   	 			<aui:option value="Nurse">Nurse</aui:option>
-               		   	 			<aui:option value="Occupational Therapist">Occupational Therapist</aui:option>
-               		   	 			<aui:option value="Optometrist">Optometrist</aui:option>
-               		   	 			<aui:option value="Paramedic">Paramedic</aui:option>
-               		   	 			<aui:option value="Pharmacist">Pharmacist</aui:option>
-               		   	 			<aui:option value="Pharmaconomist">Pharmaconomist</aui:option>
-               		   	 			<aui:option value="Pharmacy technician">Pharmacy technician</aui:option>
-               		   	 			<aui:option value="Phlebotomist">Phlebotomist</aui:option>
-               		   	 			<aui:option value="Physician">Physician</aui:option>
-               		   	 			<aui:option value="Podiatrist">Podiatrist</aui:option>
-               		   	 			<aui:option value="Physician assistant">Physician assistant</aui:option>
-               		   	 			<aui:option value="Psychologist">Psychologist</aui:option>
-               		   	 			<aui:option value="Physical therapist">Physical therapist</aui:option>
-               		   	 			<aui:option value="Psychotherapist">Psychotherapist</aui:option>
-               		   	 			<aui:option value="Radiographer">Radiographer</aui:option>
-               		   	 			<aui:option value="Radiotherapist">Radiotherapist</aui:option>
-               		   	 			<aui:option value="Respiratory therapist">Respiratory therapist</aui:option>
-               		   	 			<aui:option value="Speech-language pathologist">Speech-language pathologist</aui:option>
-               		   	 			<aui:option value="Surgeon">Surgeon</aui:option>
-               		   	 			<aui:option value="Surgeon's assistant">Surgeon's assistant</aui:option>
-               		   	 			<aui:option value="Surgical technologist">Surgical technologist</aui:option>
-               		   	 		</aui:select>
-               		   	 	</div>
-               		   	 </div>	
 	               </div>
 	               <div id="step-3" class="stepContent">
 	                 <h2 class="StepTitle">Externship details</h2>
@@ -564,6 +518,7 @@
     				 	<div class="form-group">
 				        	<div class="col-md-10 col-sm-6 col-xs-12 col-md-offset-3">
 								<aui:button type="button" value="Submit"  cssClass="addUserBtn btn btn-success"/>
+								<a href="/group/medicus/student" class="btn btn-primary btn-xs">  Cancel </a>
 							</div>
 						</div>	
 	               </div>
