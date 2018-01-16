@@ -89,7 +89,7 @@
 	        	<!-- footer -->
 			<div class="agileits_w3layouts-footer">
 			<div class="col-md-6 col-sm-8 agileinfo-copyright">
-				<p>&copy; 2017 Medicus Group. All rights reserved  
+				<p>&copy; 2018 Medicus Group. All rights reserved  
 				<a href="/web/guest/terms-of-service" target="_blank">Terms Of Service</a>
 				</p>
 			</div>

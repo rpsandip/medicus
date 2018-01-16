@@ -1,4 +1,3 @@
-
 /*--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -40,8 +39,9 @@ input[type="submit"],.w3l_header_left ul li a,.related-post-right h4 a,.comments
 }
 /*--/model--*/
 .modal-header h4 {
-    font-size: 1.3em !important;
+    font-size: 1.5em;
     text-align: center;
+    text-transform: uppercase;
     letter-spacing: 1px;
 	color:#0c0d0d;
 }
@@ -91,7 +91,8 @@ span.letter {
 }
 h1 span {
     color: #fff;
-    font-size: 1.5em;
+    font-size: 1.3em;
+    vertical-align:middle
 }
 /*-- //logo --*/
 /*-- top-nav --*/
@@ -393,7 +394,7 @@ ul.dropdown-menu.multi-column ul li a:hover{
 }
 .baner-info h3 {
     text-align: center;
-    font-size: 3.5em;
+    font-size: 2.5em;
     color: #fff;
     text-transform:capitalize;
     letter-spacing: 4px;
@@ -780,7 +781,7 @@ div#agileits-services {
     background-size: cover;
 }  
 .wthree-testi  h3,div#agileits-services h3 ,.subscribe h3{
-    color: #fff;
+    color: #2954a2;
 }
 .wthree-testi  h3.w3ls-title:after,div#agileits-services  h3.w3ls-title:after{
     background: rgba(226, 223, 223, 0.2);
@@ -821,11 +822,11 @@ div#agileits-services {
     color: #a9bbda;
     line-height: 1.9em;
     width: 79%;
-    margin: 2em auto 1em;
+    margin: 1em auto 1em;
     font-size: 1em;
 }
 .wthree-testi_grid .testimonial-left {
-    width: 50px;
+    width: 95px;
     background: #2954a2;
     margin: 0 auto;
     border: 2px solid #2954a2;
@@ -834,8 +835,12 @@ div#agileits-services {
     -o-border-radius: 50%;
     -ms-border-radius: 50%;
     border-radius: 50%;
-    padding: 1em;
     line-height: 1em;
+}
+.wthree-testi_grid .testimonial-left img{
+	width: 100%;
+    height: 100%;
+    border-radius: 50%;
 }
 .wthree .flex-direction-nav a.flex-next:before,.wthree .flex-direction-nav a:before {
     font-size: 25px;
@@ -1926,7 +1931,11 @@ button.btn1:hover i.fa.fa-paper-plane-o{
 .lightbox{width:80%;left: 15%!important;}
 .lb-outerContainer{float:left}
 .lb-dataContainer{    margin-left: 70px!important; float:left}
-
+#other-pages{min-height:50px}
+.lb-data .lb-details{margin-top: 1em!important;}
+.lb-data .lb-details h3{    text-decoration: underline;}
+.agileinfo-copyright a{margin-left:50px; color:#f4792c;font-weight: 600;text-decoration: underline;}
+.resp-tabs-list, .lb-data .lb-number{display:none!important}
 
 #senna_surface1 .right_col {background: #fff;
     padding: 0;
@@ -1934,3 +1943,8 @@ button.btn1:hover i.fa.fa-paper-plane-o{
 
 #senna_surface1 .right_col .portlet-content{padding:0}
 #senna_surface1 .portlet-layout{    margin: 0;}
+
+#testimonials .w3_wthree-testi_grids{width:100%}
+#testimonials h3.w3ls-title{margin-bottom:15px}
+#testimonials .wthree-testi_grid p{font-size: 18px;color: #fff;}
+#testimonials .wthree-testi_grid h5{color: #a9bbda;font-size: 16px;}

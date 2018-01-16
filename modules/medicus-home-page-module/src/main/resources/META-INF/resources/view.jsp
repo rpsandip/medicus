@@ -4,7 +4,7 @@
 %>
 <portlet:resourceURL id="/contact-us" var="contactUSReqeustURL"></portlet:resourceURL>
 <!--/banner-section-->
-	<div d="demo-1" data-zs-src='["<%=imagePath %>/b1.jpg","<%=imagePath %>/6.jpg","<%=imagePath %>/b2.jpg","<%=imagePath %>/b3.jpg","<%=imagePath %>/b4.jpg"]' data-zs-overlay="dots" style="min-height: 570px;">
+	<div d="demo-1" data-zs-src='["<%=imagePath %>/b1.jpg","<%=imagePath %>/6.jpg","<%=imagePath %>/b2.jpg","<%=imagePath %>/b3.jpg","<%=imagePath %>/b4.jpg"]'  style="min-height: 570px;">
 		<div class="demo-inner-content">
 		<!--/header-w3l-->
 			   <div class="header-w3-agileits" id="home">
@@ -17,7 +17,8 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<h1><a  onclick="window.location.reload(true);" href="#"><span class="letter">M</span>edicus <span>G</span>roup</a></h1>
+						<h1><a  onclick="window.location.reload(true);" href="#">
+						<span class="letter">M</span>edicus <span>G</span>roup</a></h1>
 					</div>
 					<!-- navbar-header -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -25,7 +26,7 @@
 								<li class="active"><a href="index.html">Home</a></li>
 								<li><a href="#about" class="scroll">About</a></li>
 								<li><a href="#agileits-services" class="scroll">Services</a></li>
-								<li><a href="#blog" class="scroll">Articles</a></li>
+								<li><a href="#blog" class="scroll">Professions</a></li>
 								<li><a href="#faqs" class="scroll">Faqs</a></li>
 								<li><a href="#testimonials" class="scroll" >Testimonials</a></li>
 								<li><a href="#contact" class="scroll">contact</a></li>
@@ -82,8 +83,8 @@
 				</div>
 				<div class="col-md-6 col-sm-6 agileits-services-grids">
 					<span class="glyphicon glyphicon-user effect-1" aria-hidden="true"></span>
-					<h4>Custom Plans</h4>
-					<p>We have one flexible plans to meet your every internship need.</p>
+					<h4>Custom Plan</h4>
+					<p>We have one flexible plan to meet your every internship need.</p>
 					<p>Our plan includes the following advantages:</p><p class="text-left">
 -	Real time access to students available to intern<br>
 -	Unlimited searches<br>
@@ -300,16 +301,19 @@
 <!--blog-->
 	<div id="blog" class="portfolio w3ls-section">
 		<div class="container">
-			<h3 class="w3ls-title">Articles</h3>
+			<h3 class="w3ls-title">Professions</h3>
 		<div class="sap_tabs">			
 			<div id="horizontalTab">
+				<ul class="resp-tabs-list">
+     <li class="resp-tab-item"><span>All</span></li>
+    </ul>
 				<div class="clearfix"> </div>	
 				<div class="resp-tabs-container">
 					<div class="tab-1 resp-tab-content">
 						<div class="col-md-3 portfolio-grids">
 							<a href="<%=imagePath %>/g1.jpg" data-lightbox="example-set" data-title="<h3>Dental Assistant</h3>Our colleges teach a wide span of job skills that ensure success in our students career as a dental assistant.  Our colleges' accredited training program offers courses that teach chair-side assisting and help students gain hands on experience.
 							<ul><li>Prepare patients for examination and treatment</li><li>Take x-ry examinations (Radiography)</li><li>Sterilize and disinfect instruments and equipment</li><li>Prepare tray setups for dental procedures</li><li>Prepare materials for making impressions and restoration</li></ul>
-							<a target='_blank' href='http://slicecommunications.com/roi-of-an-unpaid-internship/'>http://slicecommunications.com/roi-of-an-unpaid-internship/</a>">
+							">
 								<img src="<%=imagePath %>/g1.jpg" class="img-responsive zoom-img" alt=""/>
 								<div class="b-wrapper">
 									<h5>Dental Assistant</h5>
@@ -324,7 +328,6 @@
 							<li>Explain Treatment Procedures to Patients</li>
 							<li>Prepare Patients for Examination</li>
 							</ul>
-							<a target='_blank' href='https://www.ellevatenetwork.com/articles/6617-invest-in-the-unpaid-intern-and-everyone-gets-a-roi'>https://www.ellevatenetwork.com/articles/6617-invest-in-the-unpaid-intern-and-everyone-gets-a-roi</a>
 							">
 								<img src="<%=imagePath %>/g2.jpg" class="img-responsive zoom-img" alt=""/>
 								<div class="b-wrapper">
@@ -334,7 +337,7 @@
 						</div>
 						<div class="col-md-3 portfolio-grids">
 							<a href="<%=imagePath %>/g3.jpg" data-lightbox="example-set" data-title="<h3>Phlebotomy</h3>Our colleges' program provides training in obtaining blood specimens by venipuncture and micro-collection techniques.  Phlebotomy technician classes also teach students to collect and process other clinical specimens, along with Point of Care procedures.
-							<a target='_blank' href='https://www.linkedin.com/pulse/real-roi-internships-daniel-wright/'>https://www.linkedin.com/pulse/real-roi-internships-daniel-wright/</a>">
+							">
 								<img src="<%=imagePath %>/g3.jpg" class="img-responsive zoom-img" alt=""/>
 								<div class="b-wrapper">
 									<h5>Phlebotomy</h5>
@@ -345,7 +348,7 @@
 							<a href="<%=imagePath %>/g8.jpg" data-lightbox="example-set" data-title="<h3>Patient Care Technician</h3>As Patient Care Technicians, our students learn how to handle daily hands-on experiences with patients by helping them with procedures such as taking vital signs, performing electrocardiography (ECG), blood draws, hemodialysis and other needs.
 							<ul><li>Performing catheterizations</li><li>Removing sutures and staples</li>
 								<li>Managing wound care</li><li>Administering ECGs</li><li>Inserting intravenous saline locks</li></ul>
-								<a target='_blank' href='https://pubsonline.informs.org/doi/abs/10.1287/isre.1110.0382'>https://pubsonline.informs.org/doi/abs/10.1287/isre.1110.0382</a>">
+								">
 								<img src="<%=imagePath %>/g8.jpg" class="img-responsive zoom-img" alt=""/>
 								<div class="b-wrapper">
 									<h5>Patient Care Technician</h5>
@@ -356,7 +359,7 @@
 							<a href="<%=imagePath %>/g5.jpg" data-lightbox="example-set" data-title="<h3>Medical Administrative Assistant</h3>Our Medical Administrative Assistant provides a strong background in office skills as well as business communication and customer service.  This combination of and hard skills prepares our students for a career in office administration, both in the health care field and in other industries as well.
 							<ul><li>Electronic health records</li><li>Verifying medical insurance</li>
 <li>Performing medical billing and coding tasks</li><li>Assisting physicians with reports an articles</li><li>Bookkeeping and banking procedures</li></ul>
-							<a target='_blank' href='http://www.sciencedirect.com/science/article/pii/S0148296311000555'>http://www.sciencedirect.com/science/article/pii/S0148296311000555</a>">
+							">
 								<img src="<%=imagePath %>/g5.jpg" class="img-responsive zoom-img" alt=""/>
 								<div class="b-wrapper">
 									<h5>Medical Administrative Assistant</h5>
@@ -371,7 +374,6 @@
 							<li>Draw blood and collect other lab specimens</li>
 							<li>Prepare samples for lab examination under supervision</li>
 							</ul>
-							<a target='_blank' href='https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3116776/'>https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3116776/</a>
 							">
 								<img src="<%=imagePath %>/g6.jpg" class="img-responsive zoom-img" alt=""/>
 								<div class="b-wrapper">
@@ -381,7 +383,7 @@
 						</div>
 						<div class="col-md-3 portfolio-grids">
 							<a href="<%=imagePath %>/g4.jpg" data-lightbox="example-set" data-title="<h3>Sonography</h3>Our Sonographer, student perform and interpret ultrasound scans to help physicians diagnose a range of diseases, assist surgeons with biopsies, and track the health and growth of developing fetuses.  Our program teaches students sophisticated sonographic procedures and technology, as well as the interpersonal skills necessary to work directly with patients in a range of settings, from physician’s offices and OB/GYN clinics, to hospitals and diagnostic laboratories.
-							<a target='_blank' href='https://www.healthcatalyst.com/top-healthcare-trends-challenges'>https://www.healthcatalyst.com/top-healthcare-trends-challenges</a>">
+							">
 								<img src="<%=imagePath %>/g4.jpg" class="img-responsive zoom-img" alt=""/>
 								<div class="b-wrapper">
 									<h5>Sonography</h5>
@@ -397,6 +399,32 @@
 		</div>	
 	</div>
 	<!--//portfolio-->
+	
+	<!-- Articles -->
+	<div id="articles" class="portfolio w3ls-section">
+		<div class="container">
+			<h3 class="w3ls-title">Articles</h3>
+			<ul class="list-group"style="padding-left:20px">
+			<li><a  target="_blank" href="http://slicecommunications.com/roi-of-an-unpaid-internship/">ROI OF AN UNPAID INTERNSHIP</a></li>
+			<li><a  target="_blank" href="https://www.ellevatenetwork.com/articles/6617-invest-in-the-unpaid-intern-and-everyone-gets-a-roi">Invest In The Unpaid Intern And Everyone Gets A ROI</a></li>
+			<li><a  target="_blank" href="https://www.linkedin.com/pulse/real-roi-internships-daniel-wright/">The Real ROI of Internships</a></li>
+			<li><a  target="_blank" href="https://pubsonline.informs.org/doi/abs/10.1287/isre.1110.0382">Editorial Overview—The Role of Information Systems in Healthcare: Current Research and Future Trends</a></li>
+			<li><a  target="_blank" href="http://www.sciencedirect.com/science/article/pii/S0148296311000555">Innovation in healthcare: Issues and future trends</a></li>
+			<li><a  target="_blank" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3116776/">Ten 10-Year Trends for the Future of Healthcare: Implications for Academic Health Centers</a></li>
+			<li><a  target="_blank" href="https://www.healthcatalyst.com/top-healthcare-trends-challenges">Top 7 Healthcare Trends and Challenges from Our Financial Expert</a></li>
+			<li><a  target="_blank" href="http://managedhealthcareexecutive.modernmedicine.com/managed-healthcare-executive/news/four-tech-trends-healthcare-2017">Four tech trends in healthcare in 2017</a></li>
+			<li><a  target="_blank" href="https://money.usnews.com/money/blogs/outside-voices-careers/2011/04/29/why-you-should-get-a-summer-internship">Why You Should Get a Summer Internship</a></li>
+			<li><a  target="_blank" href="https://theundercoverrecruiter.com/7-reasons-take-internship/">7 Reasons You Should Take an Internship</a></li>
+			<li><a  target="_blank" href="https://www.collegemagazine.com/why-get-internship/">Why Get An Internship?</a></li>
+			<li><a  target="_blank" href="http://hitconsultant.net/2017/12/18/defining-healthcare-trends-to-watch-2018/">12 Defining Healthcare Trends to Watch in 2018</a></li>
+			<li><a  target="_blank" href="https://www.pwc.com/us/en/health-industries/health-research-institute/behind-the-numbers.html">Medical cost trend - Behind the numbers 2018</a></li>
+			</ul>
+			
+		</div>
+	</div>
+	<!--  //Articles -->
+	
+	
   <!--//main-header-->
 	<!-- testimonial -->
 	<div class="wthree-testi w3ls-section" id="testimonials">
@@ -410,7 +438,7 @@
 							<li>	
 								<div class="wthree-testi_grid">
 									<div class="testimonial-left">
-										<i class="fa fa-user" aria-hidden="true"></i> 
+										<img src="<%=imagePath %>/t1.jpg" />
 									</div>
 									<p>After obtaining the patient care experience I needed, I was accepted into a Physician Assistance program. I have recently graduated and have secured my first job as a PA in an Emergency Department, where I not only use my skills as a Physician Assistant, but also as a Phlebotomist. Thank you PMI!</p>
 									<h5>Christopher Sessions - East Valley Campus Phlebotomy Program</h5>
@@ -419,7 +447,7 @@
 							<li>	
 								<div class="wthree-testi_grid">
 									<div class="testimonial-left">
-										<i class="fa fa-user" aria-hidden="true"></i> 
+										<img src="<%=imagePath %>/t2.jpg" /> 
 									</div>
 									<p>I am so appreciative of my PMI education. It has make a true difference in my life, and I will be forever grateful.</p>
 									<h5>Anotella Tartufol - Aurora Campus Dental Assistant Program</h5>
@@ -428,7 +456,7 @@
 							<li>	
 								<div class="wthree-testi_grid">
 									<div class="testimonial-left">
-										<i class="fa fa-user" aria-hidden="true"></i> 
+										<img src="<%=imagePath %>/t3.jpg" /> 
 									</div>
 									<p>PIMA Medical Institute has become a family affair for me and my sisters. It all started when my sister, Miranda, began researching colleges. She was felling discouraged on her visits to some of the larger institutions. But walking into PMI felt like just the right atmosphere. They made her feel like she was important and she signed up for the Medical Assistant program. Upon graduation, she was offered a position working for an ENT specialist.</p>
 									<h5>Claudia Silguero Garza - Houston Campus Medical Administrative Program</h5>

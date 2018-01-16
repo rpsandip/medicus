@@ -60,4 +60,8 @@
 .approve-request-box label{
 			text-align: left !important;
 		}
+		
+.col-md-12.portlet-column.portlet-column-only {
+    padding: 0;
+}		
 /* Liferay CSS : END */

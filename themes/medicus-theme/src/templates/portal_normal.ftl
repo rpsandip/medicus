@@ -95,7 +95,7 @@
 		                </#if>	
 		              </div>
 		              <div class="profile_info">
-		                <h4><a href="/c/portal/logout">Logout</a></h4>
+		                <h2><a href="/c/portal/logout" style="color:#E7E7E7;">Logout</a></h2>
 		              </div>
 		            </div>
 		            <!-- /menu profile quick info -->
@@ -192,7 +192,7 @@
 				    	<!-- footer content -->
 		        	<footer>
 		          		<div class="pull-right">
-		            		&copy;2017 All Rights Reserved by Medicus
+		            		&copy;2018 All Rights Reserved by Medicus
 		          		</div>
 		          		<div class="clearfix"></div>
 		        	</footer>
