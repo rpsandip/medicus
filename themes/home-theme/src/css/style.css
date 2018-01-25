@@ -558,7 +558,7 @@ span.banner-icon {
 }
 /*-- //banner-bottom --*/
 .w3ls-section{
-	padding:4em 0;
+	padding:8em 0;
 }
 h3.w3ls-title {
     margin-bottom: 1em;
@@ -588,8 +588,7 @@ h3.w3ls-title:after {
 }
 /*-- about --*/
 div#about {
-    padding-top: 5em;
-    position: relative;
+    padding-top: 10em;
 }
 .wthree-about-w3left, .wthree-about-w3right {
     padding: 0;
@@ -1948,3 +1947,13 @@ button.btn1:hover i.fa.fa-paper-plane-o{
 #testimonials h3.w3ls-title{margin-bottom:15px}
 #testimonials .wthree-testi_grid p{font-size: 18px;color: #fff;}
 #testimonials .wthree-testi_grid h5{color: #a9bbda;font-size: 16px;}
+
+.affix {
+      top: 0;
+      width: 100%;
+      z-index: 9999 !important;
+  }
+.w3_agilits_banner_bootm.affix{padding:1em 0 1.1em 0}
+  .affix + #demo-1 {
+      padding-top: 50px;
+  }

@@ -47,6 +47,7 @@
                        <c:choose>
                        	<c:when test="${ not empty userSubscription and (userSubscription.subscriptionId eq subsciptionPlan.subscriptionId)}">
                        		<a class="btn btn-success btn-block" >Subscribed</a>
+                       		<b>Next Renewal Subscription Date : ${nextSubDate }</b>
                        	</c:when>
                        	<c:otherwise>
                        		<a href="javascript:void(0);" class="btn btn-success btn-block" role="button"

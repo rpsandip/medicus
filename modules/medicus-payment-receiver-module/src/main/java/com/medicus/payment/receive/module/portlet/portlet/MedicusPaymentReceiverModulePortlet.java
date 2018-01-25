@@ -75,7 +75,7 @@ public class MedicusPaymentReceiverModulePortlet extends MVCPortlet {
 			str = str + "&" + paramName + "=" + URLEncoder.encode(paramValue, "UTF-8");
 			}
 
-			System.out.println("----------------------------------------------------------");
+			_log.info("----------------------------------------------------------");
 			
 			// post back to PayPal system to validate
 			// NOTE: change http: to https: in the following URL to verify using SSL (for increased security).

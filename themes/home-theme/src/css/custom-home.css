@@ -44,7 +44,7 @@
 #p_p_id_com_example_portlet_MedicusRegistrationModulemvcportletPortlet_ .lfr-alert-wrapper{
 	position: absolute;
     top: 5%;
-    right: 400%;
+    right: 150%;
     width: 500px;
 }
 
@@ -63,5 +63,7 @@
 		
 .col-md-12.portlet-column.portlet-column-only {
     padding: 0;
-}		
+}	
+
+	
 /* Liferay CSS : END */

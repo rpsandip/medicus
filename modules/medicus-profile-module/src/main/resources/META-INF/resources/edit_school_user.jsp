@@ -36,7 +36,7 @@
       					 <div class="col-md-10 col-sm-6 col-xs-12">
        					 <aui:input name="emailAddress" label="emailAddress"  cssClass="form-control col-md-7 col-xs-12" value="${schoolUserBean.emailAddress }" readonly="true">
 					     	<aui:validator name="required" />
-					     	<aui:validator name="maxLength">30</aui:validator>
+					     	<aui:validator name="maxLength">50</aui:validator>
 						 </aui:input>
 					 </div>
 				</div>	
@@ -76,7 +76,7 @@
               </div>
               <div class="form-group">
                 <div class="col-md-10 col-sm-6 col-xs-12">
-                  <aui:input name="profilePic" type="file" label="Profile Picture" cssClass="form-control col-md-7 col-xs-12">
+                  <aui:input name="profilePic" type="file" label="Profile Picture (Max Size 1 MB)" cssClass="form-control col-md-7 col-xs-12">
                   		<aui:validator name="acceptFiles">'jpg,png,jpeg'</aui:validator>
                   </aui:input>
                 </div>

@@ -1,0 +1,4 @@
+Bundle-Name: medicus-index-update-module
+Bundle-SymbolicName: medicus.index.update.module
+Bundle-Version: 1.0.0
+Export-Package: medicus.index.update.module.constants

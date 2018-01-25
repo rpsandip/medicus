@@ -53,17 +53,6 @@ public class MedicusHomePageModulePortlet extends MVCPortlet {
 				PortalUtil.getHttpServletResponse(renderResponse).sendRedirect("/group/medicus/");
 			}
 		
-			// get school count
-		    int schoolCount = SchoolLocalServiceUtil.getSchoolsCount();
-		    int campusCount = CampusLocalServiceUtil.getCampusesCount();
-		    int studentCount = StudentLocalServiceUtil.getActiveStudentCount();
-		    int partnerCount = PartnerLocalServiceUtil.getPartnersCount();
-		    
-		    renderRequest.setAttribute("schoolCount", schoolCount);
-		    renderRequest.setAttribute("campusCount", campusCount);
-		    renderRequest.setAttribute("studentCount", studentCount);
-		    renderRequest.setAttribute("partnerCount", partnerCount);
-		    
 			include(viewTemplate, renderRequest, renderResponse);
 	}
 }

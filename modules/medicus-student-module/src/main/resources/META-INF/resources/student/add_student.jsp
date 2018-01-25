@@ -321,11 +321,12 @@
                		   	 			<aui:option value="Dental Assistant" selected='${studentBean.profession eq "Dental Assistant" ? true : false }'>Dental Assistant</aui:option>
                		   	 			<aui:option value="Medical Assistant" selected='${studentBean.profession eq "Medical Assistant" ? true : false }'>Medical Assistant</aui:option>
                		   	 			<aui:option value="Medical Administrative Assistance" selected='${studentBean.profession eq "Medical Administrative Assistance" ? true : false }'>Medical Administrative Assistance</aui:option>
-               		   	 			<aui:option value="Phlebotomy" selected='${studentBean.profession eq "Phlebotomy" ? true : false }'>Phlebotomy</aui:option>
+               		   	 			<aui:option value="Phlebotomy Technician" selected='${studentBean.profession eq "Phlebotomy Technician" ? true : false }'>Phlebotomy Technician</aui:option>
                		   	 			<aui:option value="Pharmacy Technician" selected='${studentBean.profession eq "Pharmacy Technician" ? true : false }'>Pharmacy Technician</aui:option>
                		   	 			<aui:option value="Patient Care Technician" selected='${studentBean.profession eq "Patient Care Technician" ? true : false }'>Patient Care Technician</aui:option>
                		   	 			<aui:option value="Veterinary Assistant" selected='${studentBean.profession eq "Veterinary Assistant" ? true : false }'>Veterinary Assistant</aui:option>
                		   	 			<aui:option value="Sonography" selected='${studentBean.profession eq "Sonography" ? true : false }'>Sonography</aui:option>
+               		   	 			<aui:option value="Nursing Assistant" selected='${studentBean.profession eq "Nursing Assistant" ? true : false }'>Nursing Assistant</aui:option>
                		   	 		</aui:select>
                		   	 	</div>
                		   	 </div>	
@@ -416,6 +417,7 @@
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
 	       					 <aui:input name="midPointReviewComment" type="textarea" label="mid.point.review.comment"  cssClass="form-control col-md-7 col-xs-12" value="${studentExternShipBean.midPointReviewComment }">
+							 	<aui:validator name="maxLength">200</aui:validator>
 							 </aui:input>
 					   	  </div>
 					   </div>
@@ -439,6 +441,7 @@
 					   <div class="form-group">
 	                   	  <div class="col-md-10 col-sm-6 col-xs-12">
 	       					 <aui:input name="finalPointReviewComment" type="textarea" label="final.point.review.comment"  cssClass="form-control col-md-7 col-xs-12" value="${ studentExternShipBean.finalReviewComment}">
+							 	<aui:validator name="maxLength">200</aui:validator>
 							 </aui:input>
 					   	  </div>
 					   </div>

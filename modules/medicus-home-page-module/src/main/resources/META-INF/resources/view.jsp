@@ -23,7 +23,7 @@
 					<!-- navbar-header -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
-								<li class="active"><a href="index.html">Home</a></li>
+								<li class="active"><a href="/">Home</a></li>
 								<li><a href="#about" class="scroll">About</a></li>
 								<li><a href="#agileits-services" class="scroll">Services</a></li>
 								<li><a href="#blog" class="scroll">Professions</a></li>
@@ -86,14 +86,16 @@
 					<h4>Custom Plan</h4>
 					<p>We have one flexible plan to meet your every internship need.</p>
 					<p>Our plan includes the following advantages:</p><p class="text-left">
--	Real time access to students available to intern<br>
--	Unlimited searches<br>
--	Customization of your search by Zip code, Gender, Language, Profession, just to name a few criteria<br>
--	Selection of Schools and campus nearest to you<br>
--	Ability to work with the school to interview students before acceptance<br>
--	Liability insurance of the student<br>
--	Streamline process to select and obtain interns<br>
--	Your return on investment is at least 300% in financial and positive impact<br>
+						<ul class="text-left " style="color: #fff;">
+							<li>Real time access to students available to intern</li>
+							<li>Unlimited searches</li>
+							<li>Customization of your search by Zip code, Gender, Language, Profession, just to name a few criteria</li>
+							<li>Selection of Schools and campus nearest to you</li>
+							<li>Ability to work with the school to interview students before acceptance</li>
+							<li>Liability insurance of the student</li>
+							<li>treamline process to select and obtain interns</li>
+							<li>Your return on investment (ROI) is more than 300% in financial and social impact</li>
+						</ul>
 					</p>
 				</div>
 				<div class="clearfix"> </div>
@@ -104,28 +106,30 @@
 	<div id="analytics" class="w3ls-section">
 		
 		<div class="container">
-			<h3 class="w3ls-title">Analytics</h3>
+			<div>
+				<h3 class="w3ls-title">Analytics</h3>
+			</div>
 			<div class="stats-info agileits-w3layouts">
 				<div class="col-sm-3 col-xs-3 stats-grid">
-					<div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='45' data-delay='.5' data-increment="1">${schoolCount }</div>
+					<div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='45' data-delay='.5' data-increment="1">15 </div>
 					<div class="stats-img stat2">
 							<p>Schools</p>
 					</div>
 				</div>
 				<div class="col-sm-3 col-xs-3 stats-grid">
-					<div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='75' data-delay='.5' data-increment="1">${campusCount }</div>
+					<div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='75' data-delay='.5' data-increment="1">45</div>
 					<div class="stats-img stat2">
 						<p>Campuses</p>
 					</div>
 				</div>
 				<div class="col-sm-3 col-xs-3 stats-grid stat1">
-					<div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='745' data-delay='.5' data-increment="1">${studentCount }</div>
+					<div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='745' data-delay='.5' data-increment="1">1745</div>
 					<div class="stats-img stat2">
 						<p>Students</p>
 					</div>
 				</div>
 				<div class="col-sm-3 col-xs-3 stats-grid stat1">
-					<div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='745' data-delay='.5' data-increment="1">${partnerCount }</div>
+					<div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='745' data-delay='.5' data-increment="1">750</div>
 					<div class="stats-img stat2">
 						<p>Partners</p>
 					</div>
@@ -140,33 +144,36 @@
                       <option>School 1</option>
                       <option>School 2</option>
                       <option>School 3</option>
+                      <option>School 4</option>
                     </select>
                  </div>
                  <div class="col-md-2 col-sm-6 col-xs-12">
                    <select id="campus" class="form-control">
                       <option value="">Select Campus</option>
-                      <option>Campus 1</option>
-                      <option>Campus 2</option>
-                      <option>Campus 3</option>
+                      <option>Main Campus 1</option>
+                      <option>Main Campus 2</option>
+                      <option>Main Campus 3</option>
+                      <option>Main Campus 4</option>
                     </select>
                  </div>
                  <div class="col-md-2 col-sm-6 col-xs-12">
                    <select id="profession" class="form-control">
                       <option value="">Select Profession</option>
-                      <option>Dental Assistant</option>
-                      <option>Medical Assistant</option>
+                      <option>Dental Assistance</option>
+                      <option>Medical Assistance</option>
                       <option>Medical Administrative Assistance</option>
                       <option>Phlebotomy</option>
-                      <option>Pharmacy Technician</option>
-                      <option>Patient Care Technician</option>
+                      <option>Pharmacy Technician </option>
+                      <option>Patient Care Technician </option>
                       <option>Veterinary Assistant</option>
-                      <option>Sonography </option>
+                      <option>Sonography</option>
                     </select>
                  </div>
                  <div class="col-md-2 col-sm-6 col-xs-12">
                    <select id="gender" class="form-control">
                       <option value="">Select Gender</option>
-                      <option>Male</option>
+                      <option value=" Male">Male</option>
+                      <option>LGBT</option>
                       <option>Female</option>
                     </select>
                  </div>
@@ -174,10 +181,9 @@
                    <select id="language" class="form-control">
                       <option value="">Select Language</option>
                       <option>English</option>
+                      <option>German</option>
+                      <option>Japanese</option>
                       <option>French</option>
-                      <option>Spanish</option>
-                      <option>Hindi</option>
-                      <option>Chinese</option>
                     </select>
                  </div>
                  <div class="col-md-1 col-sm-6 col-xs-12">
@@ -189,6 +195,7 @@
                </div>
              </form>
              
+             
              <br>
              
              <div class="row search-data">
@@ -198,7 +205,7 @@
 	                    <table id="datatable" class="table table-striped ">
 	                      <thead>
 	                        <tr>
-	                          <th>Sr. No.</th>
+	                          <th>St. No.</th>
 	                          <th>Name</th>
 	                          <th>Profession</th>
 	                          <th>Gender</th>
@@ -210,85 +217,168 @@
 	                      </thead>
 	                      <tbody>
 	                        <tr>
-	                          <td>1</td>
-	                          <td>Harry Mate</td>
-	                          <td> Dental Assistant </td>
-	                          <td>Male</td>
+	                          <td>11111</td>
+	                          <td>Student 1</td>
+	                          <td>Dental Assistance</td>
+	                          <td> Female</td>
 	                          <td>School 1</td>
-	                          <td>Campus 1</td>
+	                          <td>Main Campus 1</td>
 	                          <td>English</td>
-	                          <td>12345</td>
+	                          <td>77001</td>
 	                        </tr>
 	                        <tr>
-	                          <td>2</td>
-	                          <td>John Smith</td>
-	                          <td> Medical Assistant </td>
-	                          <td>Female</td>
-	                          <td>School 2</td>
-	                          <td>Campus 2</td>
-	                          <td>French</td>
-	                          <td>67890</td>
+	                          <td>11112</td>
+	                          <td>Student 2</td>
+	                          <td> Medical Assistance </td>
+	                          <td> Female</td>
+	                          <td>School 1</td>
+	                          <td>Main Campus 2</td>
+	                          <td>English</td>
+	                          <td>77002</td>
 	                        </tr>
 	                        <tr>
-	                          <td>3</td>
-	                          <td>Peter Berg</td>
+	                          <td>11113</td>
+	                          <td>Student 3</td>
 	                          <td> Medical Administrative Assistance </td>
-	                          <td>Male</td>
-	                          <td>School 3</td>
-	                          <td>Campus 3</td>
-	                          <td>Spanish</td>
-	                          <td>75336</td>
-	                        </tr>
-	                        <tr>
-	                          <td>4</td>
-	                          <td>Michale Sket</td>
-	                          <td> Phlebotomy </td>
-	                          <td>Male</td>
+	                          <td> LGBT</td>
 	                          <td>School 1</td>
-	                          <td>Campus 1</td>
-	                          <td>Hindi</td>
-	                          <td>95421</td>
-	                        </tr>
-	                        <tr>
-	                          <td>5</td>
-	                          <td>Scarlet Joe</td>
-	                          <td> Pharmacy Technician </td>
-	                          <td>Female</td>
-	                          <td>School 2</td>
-	                          <td>Campus 2</td>
-	                          <td>Chinese</td>
-	                          <td>55886</td>
-	                        </tr>
-	                        <tr>
-	                          <td>6</td>
-	                          <td>Timberlake Sui</td>
-	                          <td> Patient Care Technician </td>
-	                          <td>Male</td>
-	                          <td>School 3</td>
-	                          <td>Campus 3</td>
+	                          <td>Main Campus 3</td>
 	                          <td>English</td>
-	                          <td>12345</td>
+	                          <td>77003</td>
 	                        </tr>
 	                        <tr>
-	                          <td>7</td>
-	                          <td>Joseph Passat</td>
-	                          <td> Veterinary Assistant </td>
-	                          <td>Male</td>
+	                          <td>11114</td>
+	                          <td>Student 4</td>
+	                          <td> Phlebotomy </td>
+	                          <td> Female</td>
 	                          <td>School 1</td>
-	                          <td>Campus 1</td>
-	                          <td>French</td>
-	                          <td>66856</td>
+	                          <td>Main Campus 4</td>
+	                          <td>German</td>
+	                          <td>77004</td>
 	                        </tr>
 	                        <tr>
-	                          <td>8</td>
-	                          <td>Gary Cruz</td>
-	                          <td> Sonography </td>
-	                          <td>Female</td>
+	                          <td>11115</td>
+	                          <td>Student 5</td>
+	                          <td> Pharmacy Technician </td>
+	                          <td> Male</td>
 	                          <td>School 2</td>
-	                          <td>Campus 2</td>
-	                          <td>Hindi</td>
-	                          <td>41125</td>
+	                          <td>Main Campus 1</td>
+	                          <td>German</td>
+	                          <td>77005</td>
 	                        </tr>
+	                        <tr>
+	                          <td>11116</td>
+	                          <td>Student 6</td>
+	                          <td> Patient Care Technician </td>
+	                          <td> Male</td>
+	                          <td>School 2</td>
+	                          <td>Main Campus 2</td>
+	                          <td>German</td>
+	                          <td>77006</td>
+	                        </tr>
+	                        <tr>
+	                          <td>11117</td>
+	                          <td>Student 7</td>
+	                          <td> Veterinary Assistant </td>
+	                          <td> Male</td>
+	                          <td>School 2</td>
+	                          <td>Main Campus 3</td>
+	                          <td>English</td>
+	                          <td>77007</td>
+	                        </tr>
+	                        <tr>
+	                          <td>11118</td>
+	                          <td>Student 8</td>
+	                          <td> Sonography </td>
+	                          <td> Female</td>
+	                          <td>School 2</td>
+	                          <td>Main Campus 4</td>
+	                          <td>English</td>
+	                          <td>77008</td>
+	                        </tr>
+	                      
+	                      
+	                      <tr>
+	                          <td>11119</td>
+	                          <td>Student 9</td>
+	                          <td>Dental Assistance</td>
+	                          <td> Female</td>
+	                          <td>School 3</td>
+	                          <td>Main Campus 1</td>
+	                          <td>French</td>
+	                          <td>77009</td>
+	                        </tr>
+	                        <tr>
+	                          <td>11120</td>
+	                          <td>Student 10</td>
+	                          <td> Medical Assistance </td>
+	                          <td> LGBT</td>
+	                          <td>School 3</td>
+	                          <td>Main Campus 2</td>
+	                          <td>French</td>
+	                          <td>77010</td>
+	                        </tr>
+	                        <tr>
+	                          <td>11121</td>
+	                          <td>Student 11</td>
+	                          <td> Medical Administrative Assistance </td>
+	                          <td> Female</td>
+	                          <td>School 3</td>
+	                          <td>Main Campus 3</td>
+	                          <td>French</td>
+	                          <td>77011</td>
+	                        </tr>
+	                        <tr>
+	                          <td>11122</td>
+	                          <td>Student 12</td>
+	                          <td> Phlebotomy </td>
+	                          <td> Female</td>
+	                          <td>School 3</td>
+	                          <td>Main Campus 4</td>
+	                          <td>French</td>
+	                          <td>77012</td>
+	                        </tr>
+	                        <tr>
+	                          <td>11123</td>
+	                          <td>Student 13</td>
+	                          <td> Pharmacy Technician </td>
+	                          <td> Male</td>
+	                          <td>School 4</td>
+	                          <td>Main Campus 1</td>
+	                          <td>Japanese</td>
+	                          <td>77013</td>
+	                        </tr>
+	                        <tr>
+	                          <td>11124</td>
+	                          <td>Student 14</td>
+	                          <td> Patient Care Technician </td>
+	                          <td> Male</td>
+	                          <td>School 4</td>
+	                          <td>Main Campus 2</td>
+	                          <td>Japanese</td>
+	                          <td>77014</td>
+	                        </tr>
+	                        <tr>
+	                          <td>11125</td>
+	                          <td>Student 15</td>
+	                          <td> Veterinary Assistant </td>
+	                          <td> LGBT</td>
+	                          <td>School 4</td>
+	                          <td>Main Campus 3</td>
+	                          <td>Japanese</td>
+	                          <td>77015</td>
+	                        </tr>
+	                        <tr>
+	                          <td>11126</td>
+	                          <td>Student 16</td>
+	                          <td> Sonography </td>
+	                          <td> Female</td>
+	                          <td>School 4</td>
+	                          <td>Main Campus 4</td>
+	                          <td>Japanese</td>
+	                          <td>77016</td>
+	                        </tr>
+	                      
 	                      </tbody>
 	                    </table>
 	                  </div>
@@ -438,7 +528,7 @@
 							<li>	
 								<div class="wthree-testi_grid">
 									<div class="testimonial-left">
-										<img src="<%=imagePath %>/t1.jpg" />
+										<img src="<%=imagePath %>/t1.png" />
 									</div>
 									<p>After obtaining the patient care experience I needed, I was accepted into a Physician Assistance program. I have recently graduated and have secured my first job as a PA in an Emergency Department, where I not only use my skills as a Physician Assistant, but also as a Phlebotomist. Thank you PMI!</p>
 									<h5>Christopher Sessions - East Valley Campus Phlebotomy Program</h5>
@@ -447,7 +537,7 @@
 							<li>	
 								<div class="wthree-testi_grid">
 									<div class="testimonial-left">
-										<img src="<%=imagePath %>/t2.jpg" /> 
+										<img src="<%=imagePath %>/t2.png" /> 
 									</div>
 									<p>I am so appreciative of my PMI education. It has make a true difference in my life, and I will be forever grateful.</p>
 									<h5>Anotella Tartufol - Aurora Campus Dental Assistant Program</h5>
@@ -456,7 +546,7 @@
 							<li>	
 								<div class="wthree-testi_grid">
 									<div class="testimonial-left">
-										<img src="<%=imagePath %>/t3.jpg" /> 
+										<img src="<%=imagePath %>/t3.png" /> 
 									</div>
 									<p>PIMA Medical Institute has become a family affair for me and my sisters. It all started when my sister, Miranda, began researching colleges. She was felling discouraged on her visits to some of the larger institutions. But walking into PMI felt like just the right atmosphere. They made her feel like she was important and she signed up for the Medical Assistant program. Upon graduation, she was offered a position working for an ENT specialist.</p>
 									<h5>Claudia Silguero Garza - Houston Campus Medical Administrative Program</h5>
@@ -475,7 +565,7 @@
 
 <div class="faqs-section w3ls-section" id="faqs">
 		<div class="container">
-		<h3 class="w3ls-title">FAQs</h3>
+		<h3 class="w3ls-title">Frequently Asked Questions</h3>
 			<div class="panel-group" id="accordion">
 			    <div class="panel panel-default">
 			      <div class="panel-heading">
@@ -607,135 +697,136 @@ jQuery.noConflict();
 		});
       
       $(".search-student").click(function(event){	
-			$(".search-data").slideDown();
-			var school, filter, table, tr, td, i, campus, profession, gender, language, zipcode;
-			  school = document.getElementById("school");
-			  schoolfilter = school.value.toUpperCase();
-			  
-			  campus = document.getElementById("campus");
-			  campusfilter = campus.value.toUpperCase();
-			  
-			  profession = document.getElementById("profession");
-			  professionfilter = profession.value.toUpperCase();
-			  
-			  gender = document.getElementById("gender");
-			  genderfilter = gender.value.toUpperCase();
-			  
-			  language = document.getElementById("language");
-			  languagefilter = language.value.toUpperCase();
-			  
-			  zipcode = document.getElementById("zipcode");
-			  zipcodefilter = zipcode.value.toUpperCase();
-			  
-			  
-			  table = document.getElementById("datatable");
-			  tr = table.getElementsByTagName("tr");
+    	  jQuery(".search-data").slideDown();
+			
+		  var school, filter, table, tr, td, i, campus, profession, gender, language, zipcode;
+		  school = document.getElementById("school");
+		  schoolfilter = school.value.toUpperCase();
+		  
+		  campus = document.getElementById("campus");
+		  campusfilter = campus.value.toUpperCase();
+		  
+		  profession = document.getElementById("profession");
+		  professionfilter = profession.value.toUpperCase();
+		  
+		  gender = document.getElementById("gender");
+		  genderfilter = gender.value.toUpperCase();
+		  
+		  language = document.getElementById("language");
+		  languagefilter = language.value.toUpperCase();
+		  
+		  zipcode = document.getElementById("zipcode");
+		  zipcodefilter = zipcode.value.toUpperCase();
+		  
+		  
+		  table = document.getElementById("datatable");
+		  tr = table.getElementsByTagName("tr");
 
-			  
-			  for (i = 0; i < tr.length; i++) {
-			    
-				professiontd = tr[i].getElementsByTagName("td")[2];
-				gendertd = tr[i].getElementsByTagName("td")[3];
-				schooltd = tr[i].getElementsByTagName("td")[4];
-			  	campustd = tr[i].getElementsByTagName("td")[5];
-			  	languagetd = tr[i].getElementsByTagName("td")[6];
-			  	zipcodetd = tr[i].getElementsByTagName("td")[7];
-			  	
-			  	if (professiontd){
-			  		if( professiontd.innerHTML.toUpperCase().indexOf(professionfilter) > -1){
-				        tr[i].style.display = "";
-				      } else {
-				        tr[i].style.display = "none";
-				      }
-			  	}  
-			  	if (gendertd){
-			  		if( gendertd.innerHTML.toUpperCase().indexOf(genderfilter) > -1){
-				        tr[i].style.display = "";
-				      } else {
-				        tr[i].style.display = "none";
-				      }
-			  	}
-			  	if (schooltd){
-			  		if( schooltd.innerHTML.toUpperCase().indexOf(schoolfilter) > -1){
-				        tr[i].style.display = "";
-				      } else {
-				        tr[i].style.display = "none";
-				      }
-			  	}
-			  	if (campustd){
-			  		if( campustd.innerHTML.toUpperCase().indexOf(campusfilter) > -1){
-				        tr[i].style.display = "";
-				      } else {
-				        tr[i].style.display = "none";
-				      }
-			  	}
-			  	if (languagetd){
-			  		if( languagetd.innerHTML.toUpperCase().indexOf(languagefilter) > -1){
-				        tr[i].style.display = "";
-				      } else {
-				        tr[i].style.display = "none";
-				      }
-			  	}
-			  	if (zipcodetd){
-			  		if( zipcodetd.innerHTML.toUpperCase().indexOf(zipcodefilter) > -1){
-				        tr[i].style.display = "";
-				      } else {
-				        tr[i].style.display = "none";
-				      }
-			  	}
-			  	if (professiontd && gendertd){
-			  		if( professiontd.innerHTML.toUpperCase().indexOf(professionfilter) > -1 
-			  				&& gendertd.innerHTML.toUpperCase().indexOf(genderfilter) > -1){
-				        tr[i].style.display = "";
-				      } else {
-				        tr[i].style.display = "none";
-				      }
-			  	}
-			  	if (professiontd && gendertd && schooltd ){
-			  		if( schooltd.innerHTML.toUpperCase().indexOf(schoolfilter) > -1
-				  			&& professiontd.innerHTML.toUpperCase().indexOf(professionfilter) > -1
-				  			&& gendertd.innerHTML.toUpperCase().indexOf(genderfilter) > -1){
-				        tr[i].style.display = "";
-				      } else {
-				        tr[i].style.display = "none";
-				      }
-			  	}
-			  	if (professiontd && gendertd && schooltd && campustd){
-			  		if( schooltd.innerHTML.toUpperCase().indexOf(schoolfilter) > -1
-				  			&& 	campustd.innerHTML.toUpperCase().indexOf(campusfilter) > -1
-				  			&& professiontd.innerHTML.toUpperCase().indexOf(professionfilter) > -1
-				  			&& gendertd.innerHTML.toUpperCase().indexOf(genderfilter) > -1){
-				        tr[i].style.display = "";
-				      } else {
-				        tr[i].style.display = "none";
-				      }
-			  	}
-			  	if (professiontd && gendertd && schooltd && campustd && languagetd){
-			  		if( schooltd.innerHTML.toUpperCase().indexOf(schoolfilter) > -1
-				  			&& 	campustd.innerHTML.toUpperCase().indexOf(campusfilter) > -1
-				  			&& professiontd.innerHTML.toUpperCase().indexOf(professionfilter) > -1
-				  			&& languagetd.innerHTML.toUpperCase().indexOf(languagefilter) > -1
-				  			&& gendertd.innerHTML.toUpperCase().indexOf(genderfilter) > -1){
-				        tr[i].style.display = "";
-				      } else {
-				        tr[i].style.display = "none";
-				      }
-			  	}
-			  	if (professiontd && gendertd && schooltd && campustd && languagetd && zipcodetd){
-			  		if( schooltd.innerHTML.toUpperCase().indexOf(schoolfilter) > -1
-				  			&& 	campustd.innerHTML.toUpperCase().indexOf(campusfilter) > -1
-				  			&& professiontd.innerHTML.toUpperCase().indexOf(professionfilter) > -1
-				  			&& languagetd.innerHTML.toUpperCase().indexOf(languagefilter) > -1
-				  			&& gendertd.innerHTML.toUpperCase().indexOf(genderfilter) > -1
-				  			&& zipcodetd.innerHTML.toUpperCase().indexOf(zipcodefilter) > -1){
-				        tr[i].style.display = "";
-				      } else {
-				        tr[i].style.display = "none";
-				      }
-			  	}
-			  	
-			  
-			  }
+		  
+		  for (i = 0; i < tr.length; i++) {
+		    
+			professiontd = tr[i].getElementsByTagName("td")[2];
+			gendertd = tr[i].getElementsByTagName("td")[3];
+			schooltd = tr[i].getElementsByTagName("td")[4];
+		  	campustd = tr[i].getElementsByTagName("td")[5];
+		  	languagetd = tr[i].getElementsByTagName("td")[6];
+		  	zipcodetd = tr[i].getElementsByTagName("td")[7];
+		  	
+		  	if (professiontd){
+		  		if( professiontd.innerHTML.toUpperCase().indexOf(professionfilter) > -1){
+			        tr[i].style.display = "";
+			      } else {
+			        tr[i].style.display = "none";
+			      }
+		  	}  
+		  	if (gendertd){
+		  		if( gendertd.innerHTML.toUpperCase().indexOf(genderfilter) > -1){
+			        tr[i].style.display = "";
+			      } else {
+			        tr[i].style.display = "none";
+			      }
+		  	}
+		  	if (schooltd){
+		  		if( schooltd.innerHTML.toUpperCase().indexOf(schoolfilter) > -1){
+			        tr[i].style.display = "";
+			      } else {
+			        tr[i].style.display = "none";
+			      }
+		  	}
+		  	if (campustd){
+		  		if( campustd.innerHTML.toUpperCase().indexOf(campusfilter) > -1){
+			        tr[i].style.display = "";
+			      } else {
+			        tr[i].style.display = "none";
+			      }
+		  	}
+		  	if (languagetd){
+		  		if( languagetd.innerHTML.toUpperCase().indexOf(languagefilter) > -1){
+			        tr[i].style.display = "";
+			      } else {
+			        tr[i].style.display = "none";
+			      }
+		  	}
+		  	if (zipcodetd){
+		  		if( zipcodetd.innerHTML.toUpperCase().indexOf(zipcodefilter) > -1){
+			        tr[i].style.display = "";
+			      } else {
+			        tr[i].style.display = "none";
+			      }
+		  	}
+		  	if (professiontd && gendertd){
+		  		if( professiontd.innerHTML.toUpperCase().indexOf(professionfilter) > -1 
+		  				&& gendertd.innerHTML.toUpperCase().indexOf(genderfilter) > -1){
+			        tr[i].style.display = "";
+			      } else {
+			        tr[i].style.display = "none";
+			      }
+		  	}
+		  	if (professiontd && gendertd && schooltd ){
+		  		if( schooltd.innerHTML.toUpperCase().indexOf(schoolfilter) > -1
+			  			&& professiontd.innerHTML.toUpperCase().indexOf(professionfilter) > -1
+			  			&& gendertd.innerHTML.toUpperCase().indexOf(genderfilter) > -1){
+			        tr[i].style.display = "";
+			      } else {
+			        tr[i].style.display = "none";
+			      }
+		  	}
+		  	if (professiontd && gendertd && schooltd && campustd){
+		  		if( schooltd.innerHTML.toUpperCase().indexOf(schoolfilter) > -1
+			  			&& 	campustd.innerHTML.toUpperCase().indexOf(campusfilter) > -1
+			  			&& professiontd.innerHTML.toUpperCase().indexOf(professionfilter) > -1
+			  			&& gendertd.innerHTML.toUpperCase().indexOf(genderfilter) > -1){
+			        tr[i].style.display = "";
+			      } else {
+			        tr[i].style.display = "none";
+			      }
+		  	}
+		  	if (professiontd && gendertd && schooltd && campustd && languagetd){
+		  		if( schooltd.innerHTML.toUpperCase().indexOf(schoolfilter) > -1
+			  			&& 	campustd.innerHTML.toUpperCase().indexOf(campusfilter) > -1
+			  			&& professiontd.innerHTML.toUpperCase().indexOf(professionfilter) > -1
+			  			&& languagetd.innerHTML.toUpperCase().indexOf(languagefilter) > -1
+			  			&& gendertd.innerHTML.toUpperCase().indexOf(genderfilter) > -1){
+			        tr[i].style.display = "";
+			      } else {
+			        tr[i].style.display = "none";
+			      }
+		  	}
+		  	if (professiontd && gendertd && schooltd && campustd && languagetd && zipcodetd){
+		  		if( schooltd.innerHTML.toUpperCase().indexOf(schoolfilter) > -1
+			  			&& 	campustd.innerHTML.toUpperCase().indexOf(campusfilter) > -1
+			  			&& professiontd.innerHTML.toUpperCase().indexOf(professionfilter) > -1
+			  			&& languagetd.innerHTML.toUpperCase().indexOf(languagefilter) > -1
+			  			&& gendertd.innerHTML.toUpperCase().indexOf(genderfilter) > -1
+			  			&& zipcodetd.innerHTML.toUpperCase().indexOf(zipcodefilter) > -1){
+			        tr[i].style.display = "";
+			      } else {
+			        tr[i].style.display = "none";
+			      }
+		  	}
+		  	
+		  
+		  }
 	  });
       
      });

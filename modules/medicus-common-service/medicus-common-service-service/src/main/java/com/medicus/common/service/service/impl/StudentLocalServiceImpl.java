@@ -96,7 +96,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 			float gpa, String profession, String practices, boolean hired, Date graduationDate, boolean activelySeekingEmployment, boolean haveExternship,
 			long employerId, long partnerId, int externshipStatus, String partnerZipCode, String partnerWebSiteLink,Date externshipStartDate, Date externshipEndDate, int noOfHoursPerWeek,
 			Date midPointReviewDate,String midPointReviewComment,Date finalReviewDate, String finalPointReviewComment, String ethnicityDesc, String shiftDesc,
-			File profileImage, String profileImageFileName,File resume, String resumeFileName, Map<String, File> agreementFileMap, Map<String, File> othersFileMap, Map<String, File> timeSheetsFileMap,long createdBy ){
+			File profileImage, String profileImageFileName,File resume, String resumeFileName, Map<String, File> agreementFileMap, Map<String, File> othersFileMap, Map<String, File> timeSheetsFileMap,long createdBy ) throws SearchException{
 		
 		// Check Student is Exist with studentCampusId
 		Student student = getStudentByStudentCampusId(studentCampusId);
@@ -217,13 +217,8 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 		
 		// Index Student detail
 		Indexer<Student> studentIndexer = IndexerRegistryUtil.getIndexer(Student.class);
-		try {
-			studentIndexer.reindex(student);
-			_log.info("Student Index created ->" + student.getStudentId());
-		} catch (SearchException e) {
-			_log.error("Erro while index student -> "+ student.getStudentId() + " MSG:: " + e.getMessage());
-		}
-
+		studentIndexer.reindex(student);
+		_log.info("Student Index created ->" + student.getStudentId());
 	
 	  }
 		
@@ -435,12 +430,9 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 			
 			// Index Student detail
 			Indexer<Student> studentIndexer = IndexerRegistryUtil.getIndexer(Student.class);
-			try {
-				studentIndexer.reindex(student);
-				_log.info("Student Index updated ->" + student.getStudentId());
-			} catch (SearchException e) {
-				_log.error("Erro while update index student -> "+ student.getStudentId() + " MSG:: " + e.getMessage());
-			}
+			studentIndexer.reindex(student);
+			_log.info("Student Index updated ->" + student.getStudentId());
+			
 	   }
 		return student;
 	}
@@ -452,7 +444,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 			String studentCampusId, String address, String city, String zipcode, String state,String mobilePhone,
 			String homePhone, String gender, String primaryLangs, String secondaryLangs, float gpa, String pace,String ethnicityDesc,
 			String shiftDesc, Date externshipStartDate,Date graduationDate,
-			long schoolId, long campusId, String profession,long createdBy){
+			long schoolId, long campusId, String profession,long createdBy) throws PortalException{
 		
 		// Add student record
 		Student student = StudentLocalServiceUtil.createStudent(counterLocalService.increment());
@@ -545,11 +537,8 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 		 if(Validator.isNotNull(student) && isDeleted){
 			// Index Student detail
 				Indexer<Student> studentIndexer = IndexerRegistryUtil.getIndexer(Student.class);
-				try {
-					studentIndexer.delete(PortalUtil.getDefaultCompanyId(), student.getUuid());
-				} catch (SearchException e) {
-					_log.error("Erro while delte index student -> "+ student.getStudentId() + " MSG:: " + e.getMessage());
-				}
+				studentIndexer.delete(PortalUtil.getDefaultCompanyId(), student.getUuid());
+				
 		 }
 		return isDeleted;
 	}

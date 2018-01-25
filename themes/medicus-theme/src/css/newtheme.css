@@ -52,3 +52,7 @@ button.btn-primary, button.btn-primary:hover{
 .wizard_verticle ul.wizard_steps li a.selected:before, .step_no, .wizard_horizontal ul.wizard_steps li a.selected:before, .step_no{
 	background:#2954a2
 }
+
+#portlet_new-password div.form-group{
+	padding-bottom: 20px;
+}

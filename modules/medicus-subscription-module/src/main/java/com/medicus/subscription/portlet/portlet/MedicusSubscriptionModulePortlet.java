@@ -17,6 +17,9 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -63,7 +66,7 @@ public class MedicusSubscriptionModulePortlet extends MVCPortlet {
 			
 			renderRequest.setAttribute("isSuperAdmin", themeDisplay.getPermissionChecker().isOmniadmin());
 			renderRequest.setAttribute("userId", themeDisplay.getUserId());
-			renderRequest.setAttribute("userSubscription", getUserSubscrption(themeDisplay.getUserId()));
+			renderRequest.setAttribute("userSubscription", getUserSubscrption(renderRequest,themeDisplay.getUserId()));
 			
 			renderRequest.setAttribute("paypalURL", PropsUtil.get("paypal.url"));
 			renderRequest.setAttribute("businessEmail", PropsUtil.get("paypal.bussiness.email"));
@@ -81,12 +84,24 @@ public class MedicusSubscriptionModulePortlet extends MVCPortlet {
 			include(viewTemplate, renderRequest, renderResponse);
 		}
 		
-		private User_Subscription getUserSubscrption(long userId){
+		private User_Subscription getUserSubscrption(RenderRequest renderRequest, long userId){
+			
 			User_Subscription userSubscription = null;
 			try {
 				userSubscription = User_SubscriptionLocalServiceUtil.getUserSubcriptionByUserId(userId);
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(userSubscription.getSubscriptionDate());
+				cal.add(Calendar.YEAR, 1);
+				if(cal.getTime().after(new Date())){
+					SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+					Date nextRenewalDate  = cal.getTime();
+					renderRequest.setAttribute("nextSubDate", format1.format(nextRenewalDate));
+					return userSubscription;
+				}else{
+					return null;
+				}
 			} catch (NoSuchUser_SubscriptionException e) {
-				
+
 			}
 			return userSubscription;
 		}

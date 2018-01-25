@@ -69,7 +69,7 @@ jQuery.noConflict();
     $(function() {
     		
     	  // Pie chart
-		  if ($('#languageChart').length ){
+		  if ($('#genderChart').length ){
 			  
 			  var ctx = document.getElementById("genderChart");
 			  var countArray=[];
@@ -156,7 +156,7 @@ jQuery.noConflict();
 				data: {
 				  labels: labelArray,
 				  datasets: [{
-					label: 'Lanugage ',
+					label: 'Language ',
 					backgroundColor: "#03586A",
 					data: countArray
 				  }]

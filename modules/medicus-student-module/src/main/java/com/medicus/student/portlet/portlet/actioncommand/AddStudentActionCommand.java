@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -179,13 +180,17 @@ public class AddStudentActionCommand extends BaseMVCActionCommand{
 				Student student = StudentLocalServiceUtil.getStudentByStudentCampusId(studentCampusId);
 				
 				if(Validator.isNull(student) && Validator.isNotNull(studentCampusId)){
-					 student = StudentLocalServiceUtil.addStudent(schoolId, campusId, studentCampusId, firstName, middleName,lastName,
-							emailAddress, dob, gender, contactNo, homePhoneNumber,primaryLanguage, secondaryLanugage, address, city,zipcode, state, pace, gpa,profession,
-							practices, isHired, graduationDate, activelySeekingEmployment, haveExternship, employerId,partnerId,externshipStatus,
-							partnerZipCode, partnerWebSiteLink, externshipStartDate, externshipEndDate, 
-							noOfHoursPerWeek, midPointReviewDate, midPointReviewComment, finalReviewDate,
-							finalPointReviewComment, ethnicityDesc, shiftDesc,profilePic, profilePicFileName,resume, resumeFileName,agreementsFileMap,
-							othersFileMap, timeSheetsMap,themeDisplay.getUserId());
+					 try {
+						student = StudentLocalServiceUtil.addStudent(schoolId, campusId, studentCampusId, firstName, middleName,lastName,
+								emailAddress, dob, gender, contactNo, homePhoneNumber,primaryLanguage, secondaryLanugage, address, city,zipcode, state, pace, gpa,profession,
+								practices, isHired, graduationDate, activelySeekingEmployment, haveExternship, employerId,partnerId,externshipStatus,
+								partnerZipCode, partnerWebSiteLink, externshipStartDate, externshipEndDate, 
+								noOfHoursPerWeek, midPointReviewDate, midPointReviewComment, finalReviewDate,
+								finalPointReviewComment, ethnicityDesc, shiftDesc,profilePic, profilePicFileName,resume, resumeFileName,agreementsFileMap,
+								othersFileMap, timeSheetsMap,themeDisplay.getUserId());
+					} catch (SearchException e) {
+						_log.error(e);
+					}
 					
 					if(Validator.isNotNull(student)){
 						SessionMessages.add(actionRequest, "student-add-success");

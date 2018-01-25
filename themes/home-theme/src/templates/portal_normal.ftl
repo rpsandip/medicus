@@ -46,7 +46,7 @@
 		</script>
 </head>
 <body>
-	    	<div class="w3_agilits_banner_bootm">
+	    	<div class="w3_agilits_banner_bootm"  data-spy="affix" data-offset-top="150">
 			     <div class="w3_agilits_inner_bottom">
 			            <div class="wthree_agile_login pull-left">
 						     <ul>
@@ -54,7 +54,7 @@
 								<li><i class="fa fa-envelope-o list-icon" aria-hidden="true"></i><a href="mailto:techsupport@medicusgroupllc.com">TechSupport@MedicusGroupLLC.com</a></li>
 							</ul>
 						</div>
-						<div class="wthree_agile_login">
+			 			<div class="wthree_agile_login">
 						  <nav class="login-signup-btn">
 						     <ul>
 									<@liferay_portlet["runtime"]
@@ -95,10 +95,8 @@
 			</div>
 			<div class="col-md-6 col-sm-4 agileinfo-icons">
 				<ul>
-					<li><a class="icon fb" href="#"><i class="fa fa-facebook"></i></a></li>
-					<li><a class="icon tw" href="#"><i class="fa fa-twitter"></i></a></li>
-					<li><a class="icon pin" href="#"><i class="fa fa-pinterest"></i></a></li>
-					<li><a class="icon db" href="#"><i class="fa fa-dribbble"></i></a></li>
+					<li><a class="icon fb" target="_blank" href="https://www.facebook.com/Medicus-Group-LLC-195275977717837/"><i class="fa fa-facebook"></i></a></li>
+					<li><a class="icon tw" target="_blank" href="https://twitter.com/MedicusGroupLLC"><i class="fa fa-twitter"></i></a></li>
 					<li><a class="icon gp" href="#"><i class="fa fa-google-plus"></i></a></li>
 				</ul>
 			</div>

@@ -67,26 +67,30 @@
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">Gender:</label>${studentBean.gender}
 						</div>
-						<div class="form-group">
-							<c:choose>
-								<c:when test="${not empty studentBean.contactNumber}">
-									<label class="control-label col-md-3 col-sm-3 col-xs-12">Contact No:</label>${studentBean.contactNumber}
+						<c:if test="${!isPartner}">
+							<div class="form-group">
+								<c:choose>
+									<c:when test="${not empty studentBean.contactNumber}">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Contact No:</label>${studentBean.contactNumber}
+									</c:when>
+									<c:otherwise>
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Contact No:</label> - 
+									</c:otherwise>
+								</c:choose>
+							</div>
+						</c:if>
+						<c:if test="${!isPartner}">
+							<div class="form-group">
+								<c:choose>
+								<c:when test="${not empty studentBean.homeNumber}">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12">Home No:</label>${studentBean.homeNumber}								
 								</c:when>
 								<c:otherwise>
-									<label class="control-label col-md-3 col-sm-3 col-xs-12">Contact No:</label> - 
-								</c:otherwise>
-							</c:choose>
-						</div>
-						<div class="form-group">
-							<c:choose>
-							<c:when test="${not empty studentBean.homeNumber}">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Home No:</label>${studentBean.homeNumber}								
-							</c:when>
-							<c:otherwise>
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Home No:</label> -
-							</c:otherwise>	
-							</c:choose>
-						</div>
+									<label class="control-label col-md-3 col-sm-3 col-xs-12">Home No:</label> -
+								</c:otherwise>	
+								</c:choose>
+							</div>
+						</c:if>
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">Email Id:</label>${studentBean.emailAddress}
 						</div>
@@ -103,9 +107,11 @@
 							</c:otherwise>	
 							</c:choose>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">Address:</label>${studentBean.address}
-						</div>
+						<c:if test="${!isPartner}">
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Address:</label>${studentBean.address}
+							</div>
+						</c:if>
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">City:</label>${studentBean.city}
 						</div>

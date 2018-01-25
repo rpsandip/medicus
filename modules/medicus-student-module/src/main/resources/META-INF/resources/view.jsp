@@ -45,7 +45,7 @@
 	  <div class="x_content">
 		<c:choose>
 			<c:when test="${isPartner and ! isPartnerSubscried}">
-				<h3>You have not eligible to view students detail as you not subscribed plan. Please  subscribe <a href="/group/medicus/subscription">here</a>  </h3>
+				<h3> You are not eligible to view students at this time because either you have not subscribed or subscription expired.  Please subscribe to a <a href="/group/medicus/subscription"><h4>Subscription Plan</h4></a>  </h3>
 			</c:when>
 			<c:otherwise>
 				<div class="row student-list">
@@ -55,7 +55,7 @@
 		                    <input type="text" id="keyword" placeholder="Search keyword..." class="form-control col-md-7 col-xs-12">
 		                  </div>
 		                  <div class="col-md-2 col-sm-2 col-xs-12">
-		                    <input type="text" id="zipcode" placeholder="Zipcode"  class="form-control col-md-7 col-xs-12">
+		                    <input type="text" id="zipcode" placeholder="Zip Code"  class="form-control col-md-7 col-xs-12">
 		                  </div>
 		                  <div class="col-md-2 col-sm-2 col-xs-12">
 		                    <select class="form-control" name="schoolName"  id="gender">
@@ -71,11 +71,12 @@
 		                      <option value="Dental Assistant">Dental Assistant</option>
 		                      <option value="Medical Assistant">Medical Assistant</option>
 		                      <option value="Medical Administrative Assistance">Medical Administrative Assistance</option>
-		                      <option value="Phlebotomy">Phlebotomy</option>
+		                      <option value="Phlebotomy Technician">Phlebotomy Technician</option>
 		                      <option value="Pharmacy Technician">Pharmacy Technician</option>
 		                      <option value="Patient Care Technician">Patient Care Technician</option>
 		                      <option value="Veterinary Assistant">Veterinary Assistant</option>
 		                      <option value="Sonography">Sonography </option>
+		                      <option value="Nursing Assistant">Nursing Assistant</option>
 		                    </select>
 		                  </div>
 		                  <div>

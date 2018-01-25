@@ -102,7 +102,7 @@ public class Student_ExternshipModelImpl extends BaseModelImpl<Student_Externshi
 		TABLE_COLUMNS_MAP.put("modifiedBy", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table Medicus_Student_Externship (studentExternshipId LONG not null primary key,studentId LONG,partnerId LONG,employerId LONG,startDate DATE null,endDate DATE null,noOfHoursPerWeek INTEGER,status INTEGER,midPointReview DATE null,midPointReviewComment VARCHAR(200) null,finalReview DATE null,finalReviewComment VARCHAR(200) null,shiftDesc VARCHAR(75) null,createDate DATE null,createdBy LONG,modifiedDate DATE null,modifiedBy LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Medicus_Student_Externship (studentExternshipId LONG not null primary key,studentId LONG,partnerId LONG,employerId LONG,startDate DATE null,endDate DATE null,noOfHoursPerWeek INTEGER,status INTEGER,midPointReview DATE null,midPointReviewComment VARCHAR(75) null,finalReview DATE null,finalReviewComment VARCHAR(75) null,shiftDesc VARCHAR(75) null,createDate DATE null,createdBy LONG,modifiedDate DATE null,modifiedBy LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Medicus_Student_Externship";
 	public static final String ORDER_BY_JPQL = " ORDER BY student_Externship.studentExternshipId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Medicus_Student_Externship.studentExternshipId ASC";

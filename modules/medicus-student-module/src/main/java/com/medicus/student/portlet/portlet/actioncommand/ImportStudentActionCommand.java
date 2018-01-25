@@ -22,6 +22,7 @@ import org.osgi.service.component.annotations.Component;
 
 import com.liferay.portal.kernel.cache.MultiVMPoolUtil;
 import com.liferay.portal.kernel.cache.PortalCache;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
@@ -149,32 +150,38 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 		    			 studentIdCell.setCellType(Cell.CELL_TYPE_STRING);
 		    			 
 		    			 if(Validator.isNull(student)){
-			    		 student = StudentLocalServiceUtil.importStudent(
-			    				 nextRow.getCell(0).toString() /*First Name*/, 
-			    				 nextRow.getCell(1).toString() /*Middle Name*/, 
-			    				 nextRow.getCell(2).toString() /*Last Name*/, 
-			    				 nextRow.getCell(4).toString() /*Email Address*/,
-			    				 dob/*DOB*/,
-			    				 nextRow.getCell(3).getStringCellValue() /*Student Id*/,
-			    				 nextRow.getCell(6).toString() /*Address*/, 
-			    				 nextRow.getCell(7).toString() /*City*/, 
-			    				 zipCodeCell.toString() /*Zipcode*/,
-			    				 nextRow.getCell(9).toString() /*State*/, 
-			    				 mobileCell.toString() /*Mobile Phone*/, 
-			    				 homeCell.toString() /*Home Phone*/,
-			    				 nextRow.getCell(12).toString() /*Gender*/,
-			    				 nextRow.getCell(13).toString() /*primaryLangs*/,
-			    				 nextRow.getCell(14).toString() /*Secondary Languages*/, 
-			    				 Float.parseFloat(nextRow.getCell(15).toString()) /*GPA*/,
-			    				 nextRow.getCell(16).toString() /* Pace*/,
-			    				 nextRow.getCell(20).toString(),/*shift*/
-			    				 nextRow.getCell(21).toString(),/*Race*/
-			    				 externshipStartDate,
-			    				 graduationDate,
-			    				 schoolId,
-			    				 campusId,
-			    				 nextRow.getCell(19).toString() /*Profession*/, 
-			    				 themeDisplay.getUserId());
+			    		 try {
+							student = StudentLocalServiceUtil.importStudent(
+									 nextRow.getCell(0).toString() /*First Name*/, 
+									 nextRow.getCell(1).toString() /*Middle Name*/, 
+									 nextRow.getCell(2).toString() /*Last Name*/, 
+									 nextRow.getCell(4).toString() /*Email Address*/,
+									 dob/*DOB*/,
+									 nextRow.getCell(3).getStringCellValue() /*Student Id*/,
+									 nextRow.getCell(6).toString() /*Address*/, 
+									 nextRow.getCell(7).toString() /*City*/, 
+									 zipCodeCell.toString() /*Zipcode*/,
+									 nextRow.getCell(9).toString() /*State*/, 
+									 mobileCell.toString() /*Mobile Phone*/, 
+									 homeCell.toString() /*Home Phone*/,
+									 nextRow.getCell(12).toString() /*Gender*/,
+									 nextRow.getCell(13).toString() /*primaryLangs*/,
+									 nextRow.getCell(14).toString() /*Secondary Languages*/, 
+									 Float.parseFloat(nextRow.getCell(15).toString()) /*GPA*/,
+									 nextRow.getCell(16).toString() /* Pace*/,
+									 nextRow.getCell(20).toString(),/*shift*/
+									 nextRow.getCell(21).toString(),/*Race*/
+									 externshipStartDate,
+									 graduationDate,
+									 schoolId,
+									 campusId,
+									 nextRow.getCell(19).toString() /*Profession*/, 
+									 themeDisplay.getUserId());
+						} catch (NumberFormatException e) {
+							_log.error(e);
+						} catch (PortalException e) {
+							_log.error(e);
+						}
 			    		 
 				    		 if(Validator.isNotNull(student)){
 				    			 successImportedStudentCount++;

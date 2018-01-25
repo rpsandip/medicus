@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.model.PersistedModel;
 import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.search.SearchContext;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.service.PersistedModelLocalService;
 import com.liferay.portal.kernel.transaction.Isolation;
@@ -133,7 +134,8 @@ public interface StudentLocalService extends BaseLocalService,
 		java.lang.String resumeFileName,
 		Map<java.lang.String, File> agreementFileMap,
 		Map<java.lang.String, File> othersFileMap,
-		Map<java.lang.String, File> timeSheetsFileMap, long createdBy);
+		Map<java.lang.String, File> timeSheetsFileMap, long createdBy)
+		throws SearchException;
 
 	/**
 	* Creates a new student with the primary key. Does not add the student to the database.
@@ -212,7 +214,7 @@ public interface StudentLocalService extends BaseLocalService,
 		float gpa, java.lang.String pace, java.lang.String ethnicityDesc,
 		java.lang.String shiftDesc, Date externshipStartDate,
 		Date graduationDate, long schoolId, long campusId,
-		java.lang.String profession, long createdBy);
+		java.lang.String profession, long createdBy) throws PortalException;
 
 	/**
 	* Updates the student in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

@@ -11,11 +11,14 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.WebKeys;
 import com.medicus.common.service.bean.StudentBean;
 import com.medicus.common.service.bean.Student_ExternshipBean;
 import com.medicus.common.service.model.Student;
 import com.medicus.common.service.model.Student_Externship;
+import com.medicus.common.service.service.MedicusCommonLocalServiceUtil;
 import com.medicus.common.service.service.StudentLocalServiceUtil;
 import com.medicus.common.service.service.Student_ExternshipLocalService;
 import com.medicus.common.service.service.Student_ExternshipLocalServiceUtil;
@@ -35,6 +38,7 @@ public class StudentDetailRenderCommand implements MVCRenderCommand{
 	@Override
 	public String render(RenderRequest renderRequest, RenderResponse renderResponse) throws PortletException {
 		long studentId = ParamUtil.getLong(renderRequest, "studentId");
+		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
 		if(studentId>0){
 			try {
 				// Get Student 
@@ -55,6 +59,7 @@ public class StudentDetailRenderCommand implements MVCRenderCommand{
 				_log.error(e.getMessage());
 			}	
 			
+			renderRequest.setAttribute("isPartner", MedicusCommonLocalServiceUtil.isPartner(themeDisplay.getUserId()));
 		}else{
 			SessionErrors.add(renderRequest, "student-detail-err");
 			return "/view.jsp";

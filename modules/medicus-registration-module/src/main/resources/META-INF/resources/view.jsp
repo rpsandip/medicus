@@ -104,7 +104,7 @@
                	 <div class="col-md-10 col-sm-6 col-xs-12">
 	               	<aui:input name="country" label="country" cssClass="form-control col-md-7 col-xs-12" value="US" readonly="true">
 				     	<aui:validator name="required" />
-				     	<aui:validator name="maxLength">20</aui:validator>
+				     	<aui:validator name="maxLength">50</aui:validator>
 					 </aui:input>
 				</div>
 			  </div>
@@ -122,7 +122,7 @@
 			  <div class="form-group">
                	 <div class="col-md-10 col-sm-6 col-xs-12">
 	               	<aui:input name="contactPersonEmail" label="contactPersonEmail" cssClass="form-control col-md-7 col-xs-12">
-				     	<aui:validator name="maxLength">20</aui:validator>
+				     	<aui:validator name="maxLength">50</aui:validator>
 					 	<aui:validator name="email"></aui:validator>
 					 </aui:input>
 				</div>

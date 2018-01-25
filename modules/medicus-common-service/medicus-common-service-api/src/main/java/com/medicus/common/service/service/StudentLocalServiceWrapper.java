@@ -125,7 +125,7 @@ public class StudentLocalServiceWrapper implements StudentLocalService,
 		java.util.Map<java.lang.String, java.io.File> agreementFileMap,
 		java.util.Map<java.lang.String, java.io.File> othersFileMap,
 		java.util.Map<java.lang.String, java.io.File> timeSheetsFileMap,
-		long createdBy) {
+		long createdBy) throws com.liferay.portal.kernel.search.SearchException {
 		return _studentLocalService.addStudent(schoolId, campusId,
 			studentCampusId, firstName, middleName, lastName, emailAddress,
 			dob, gender, contactNumber, homePhoneNumber, primaryLang,
@@ -244,7 +244,8 @@ public class StudentLocalServiceWrapper implements StudentLocalService,
 		java.lang.String ethnicityDesc, java.lang.String shiftDesc,
 		java.util.Date externshipStartDate, java.util.Date graduationDate,
 		long schoolId, long campusId, java.lang.String profession,
-		long createdBy) {
+		long createdBy)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _studentLocalService.importStudent(firstName, middleName,
 			lastName, emailAddress, dob, studentCampusId, address, city,
 			zipcode, state, mobilePhone, homePhone, gender, primaryLangs,

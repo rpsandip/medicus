@@ -64,7 +64,7 @@
 								 value="${partnerBean.zipcode }"
 								cssClass="form-control col-md-7 col-xs-12">
 								<aui:validator name="required" />
-								<aui:validator name="maxLength">8</aui:validator>
+								<aui:validator name="maxLength">6</aui:validator>
 							</aui:input>
 						</div>
 					</div>
@@ -74,7 +74,7 @@
 								 value="${partnerBean.city }"
 								cssClass="form-control col-md-7 col-xs-12">
 								<aui:validator name="required" />
-								<aui:validator name="maxLength">20</aui:validator>
+								<aui:validator name="maxLength">50</aui:validator>
 							</aui:input>
 						</div>
 					</div>
@@ -97,7 +97,7 @@
 								cssClass="form-control col-md-7 col-xs-12" value="US" 
 								readonly="true">
 								<aui:validator name="required" />
-								<aui:validator name="maxLength">20</aui:validator>
+								<aui:validator name="maxLength">50</aui:validator>
 							</aui:input>
 						</div>
 					</div>
@@ -120,7 +120,7 @@
 								value="${partnerBean.contactPersonEmail }"
 								cssClass="form-control col-md-7 col-xs-12">
 								<aui:validator name="email"></aui:validator>
-								<aui:validator name="maxLength">20</aui:validator>
+								<aui:validator name="maxLength">50</aui:validator>
 							</aui:input>
 						</div>
 					</div>
@@ -144,7 +144,7 @@
 							<aui:input name="websiteLink" label="websiteLink"
 								value="${partnerBean.websiteLink }"
 								cssClass="form-control col-md-7 col-xs-12">
-								<aui:validator name="maxLength">50</aui:validator>
+								<aui:validator name="maxLength">200</aui:validator>
 							</aui:input>
 						</div>
 					</div>

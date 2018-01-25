@@ -68,11 +68,12 @@
 	   	 			<aui:option value="Dental Assistant" >Dental Assistant</aui:option>
 	   	 			<aui:option value="Medical Assistant">Medical Assistant</aui:option>
 	   	 			<aui:option value="Medical Administrative Assistance" >Medical Administrative Assistance</aui:option>
-	   	 			<aui:option value="Phlebotomy" selected='${studentBean.profession eq "Phlebotomy" ? true : false }'>Phlebotomy</aui:option>
+	   	 			<aui:option value="Phlebotomy Technician">Phlebotomy Technician</aui:option>
 	   	 			<aui:option value="Pharmacy Technician" >Pharmacy Technician</aui:option>
 	   	 			<aui:option value="Patient Care Technician">Patient Care Technician</aui:option>
 	   	 			<aui:option value="Veterinary Assistant">Veterinary Assistant</aui:option>
 	   	 			<aui:option value="Sonography">Sonography</aui:option>
+	   	 			<aui:option value="Nursing Assistant" >Nursing Assistant</aui:option>
 	   	 			</aui:select>
 		  		</div>
 		  		</div>
