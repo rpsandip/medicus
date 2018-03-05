@@ -529,7 +529,7 @@
 							<li>	
 								<div class="wthree-testi_grid">
 									<div class="testimonial-left">
-										<img src="<%=imagePath %>/t1.png" />
+										<img src="<%=imagePath %>/t1.jpg" />
 									</div>
 									<p>After obtaining the patient care experience I needed, I was accepted into a Physician Assistance program. I have recently graduated and have secured my first job as a PA in an Emergency Department, where I not only use my skills as a Physician Assistant, but also as a Phlebotomist. Thank you PMI!</p>
 									<h5>Christopher Sessions - East Valley Campus Phlebotomy Program</h5>
@@ -538,7 +538,7 @@
 							<li>	
 								<div class="wthree-testi_grid">
 									<div class="testimonial-left">
-										<img src="<%=imagePath %>/t2.png" /> 
+										<img src="<%=imagePath %>/t2.jpg" /> 
 									</div>
 									<p>I am so appreciative of my PMI education. It has make a true difference in my life, and I will be forever grateful.</p>
 									<h5>Anotella Tartufol - Aurora Campus Dental Assistant Program</h5>
@@ -547,7 +547,7 @@
 							<li>	
 								<div class="wthree-testi_grid">
 									<div class="testimonial-left">
-										<img src="<%=imagePath %>/t3.png" /> 
+										<img src="<%=imagePath %>/t3.jpg" /> 
 									</div>
 									<p>PIMA Medical Institute has become a family affair for me and my sisters. It all started when my sister, Miranda, began researching colleges. She was felling discouraged on her visits to some of the larger institutions. But walking into PMI felt like just the right atmosphere. They made her feel like she was important and she signed up for the Medical Assistant program. Upon graduation, she was offered a position working for an ENT specialist.</p>
 									<h5>Claudia Silguero Garza - Houston Campus Medical Administrative Program</h5>
