@@ -57,7 +57,7 @@
               </div>
               <div class="form-group">
               		<div class="col-md-10 col-sm-6 col-xs-12">
-		              	<aui:input  name="password2" type="password" label="confirm.password">
+		              	<aui:input  name="password2" type="password" label="confirm.password" placeholder="Min 8 chars(1 Num 1 UC, 1 LC)">
 		                 	<aui:validator name="required"></aui:validator>
 							<aui:validator name="equalTo" errorMessage="err-valid-confirm-pw">'#<portlet:namespace />password'</aui:validator>
 		                 </aui:input>

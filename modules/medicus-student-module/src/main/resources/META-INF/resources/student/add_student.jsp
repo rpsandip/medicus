@@ -320,7 +320,7 @@
                		   	 			<aui:option value="">Select Profession</aui:option>
                		   	 			<aui:option value="Dental Assistant" selected='${studentBean.profession eq "Dental Assistant" ? true : false }'>Dental Assistant</aui:option>
                		   	 			<aui:option value="Medical Assistant" selected='${studentBean.profession eq "Medical Assistant" ? true : false }'>Medical Assistant</aui:option>
-               		   	 			<aui:option value="Medical Administrative Assistance" selected='${studentBean.profession eq "Medical Administrative Assistance" ? true : false }'>Medical Administrative Assistance</aui:option>
+               		   	 			<aui:option value="Medical Administrative Assistant" selected='${studentBean.profession eq "Medical Administrative Assistant" ? true : false }'>Medical Administrative Assistant</aui:option>
                		   	 			<aui:option value="Phlebotomy Technician" selected='${studentBean.profession eq "Phlebotomy Technician" ? true : false }'>Phlebotomy Technician</aui:option>
                		   	 			<aui:option value="Pharmacy Technician" selected='${studentBean.profession eq "Pharmacy Technician" ? true : false }'>Pharmacy Technician</aui:option>
                		   	 			<aui:option value="Patient Care Technician" selected='${studentBean.profession eq "Patient Care Technician" ? true : false }'>Patient Care Technician</aui:option>

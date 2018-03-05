@@ -654,7 +654,9 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 	    
 	    if(Validator.isNotNull(profession)){
 	    	BooleanQuery professionQuery = new BooleanQueryImpl();
-	    	professionQuery.addRequiredTerm(MedicusConstant.STUDENT_IDNEX_PROFESSION, profession);
+	    	// TODO: Need to improve
+	    	String updatedProfession = getUpdatedProfession(profession);
+	    	professionQuery.addRequiredTerm(MedicusConstant.STUDENT_IDNEX_PROFESSION, updatedProfession);
 	    	searchQuery.add(professionQuery, BooleanClauseOccur.MUST);
 	    }
 	    
@@ -686,18 +688,23 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 		
 	    Document[] documents = hits.getDocs();
 	    int totalHits = hits.getLength();
+	    
 	    for(Document document : documents){
 	    	try{
 	    		Student student = StudentLocalServiceUtil.getStudent(Long.parseLong(document.get(Field.ENTRY_CLASS_PK)));
-	    		if(Validator.isNotNull(profession)){
+	    		/*if(Validator.isNotNull(profession)){
+	    			_log.info("idnex value->" + document.get(MedicusConstant.STUDENT_IDNEX_PROFESSION) + " profession ->" + profession);
 	    			if(document.get(MedicusConstant.STUDENT_IDNEX_PROFESSION).equals(profession)){
+	    				_log.info("added to valid profession");
 	    				studentList.add(student);
 	    			}else{
 	    				totalHits--;
 	    			}
 	    		}else{
 	    			studentList.add(student);
-	    		}
+	    		}*/
+	    		
+	    		studentList.add(student);
 	    	}catch(Exception e){
 	    		totalHits--;
 	    		_log.debug(e.getMessage());
@@ -705,7 +712,7 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 	    }
 	    	
 	    jsonObject.put("totalHits", totalHits);
-	    
+	    	    
 		}catch(Exception e){
 			_log.error(e);
 		}
@@ -713,6 +720,33 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 		jsonObject.put("studentList", studentList);
 		
 		return jsonObject;
+	}
+	
+	private String getUpdatedProfession(String profession){
+		String updatedProfession = profession;
+		
+		if(profession.equals("Dental Assistant")){
+			return "Dental";
+		}else if(profession.equals("Medical Assistant")){
+			return "Medical";
+		}else if(profession.equals("Medical Administrative Assistant")){
+			return "Administrative";
+		}else if(profession.equals("Phlebotomy Technician")){
+			return "Phlebotomy";
+		}else if(profession.equals("Pharmacy Technician")){
+			return "Pharmacy";
+		}else if(profession.equals("Patient Care Technician")){
+			return "Patient Care";
+		}else if(profession.equals("Veterinary Assistant")){
+			return "Veterinary";
+		}else if(profession.equals("Sonography")){
+			return "Sonography";
+		}else if(profession.equals("Nursing Assistant")){
+			return "Nursing";
+		}
+		
+		
+		return updatedProfession;
 	}
 	
 	public List<GrooupByEntityBean> groupByGender(long schoolId, long campusId){

@@ -7,7 +7,7 @@
 
  <div class="page-title">
    <div class="title_left">
-     <h2>Subscription</h2>
+     <h2>Your Subscription</h2>
    </div>
  </div>
  <div class="clearfix"></div>
@@ -34,8 +34,8 @@
                           <div>Our plan includes the following advantages:</div>
                           <li><i class="fa fa-check text-success"></i>Real time access to students available to intern</li>
                           <li><i class="fa fa-check text-success"></i>Unlimited searches</li>
-                          <li><i class="fa fa-check text-success"></i>Customization of your search by Zip code, Gender, Language, Profession, just to name a few criteria</li>
-                          <li><i class="fa fa-check text-success"></i>Selection of Schools and campus nearest to you</li>
+                          <li><i class="fa fa-check text-success"></i>Customization of your search by Zip Code, Gender, Language, Profession, etc.</li>
+                          <li><i class="fa fa-check text-success"></i>Selection of schools and campuses near you</li>
                           <li><i class="fa fa-check text-success"></i>Ability to work with the school to interview students before acceptance</li>
                           <li><i class="fa fa-check text-success"></i>Liability insurance of the student</li>
                           <li><i class="fa fa-check text-success"></i>Streamline process to select and obtain interns</li>
@@ -64,9 +64,9 @@
                      </div>
                     <div class="silver-plan" style="display: none;">
                       <form action="${paypalURL }" method="post" target="_top" id="silverFrm">
-						<input type="hidden" name="cmd" value="_xclick">
+						<input type="hidden" name="cmd" value="_s-xclick">
 						<input type="hidden" name="business" value="${businessEmail }">
-						<input type="hidden" name="hosted_button_id" value="${hostedButtonId }">
+						<input type="hidden" name="hosted_button_id" value="${hostedButtonId} ">
 						<input type="image" src="https://www.sandbox.paypal.com/en_GB/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
 						<img alt="" border="0" src="https://www.sandbox.paypal.com/en_GB/i/scr/pixel.gif" width="1" height="1">
 						<input type="hidden" name="amount" value="${subsciptionPlan.price }">

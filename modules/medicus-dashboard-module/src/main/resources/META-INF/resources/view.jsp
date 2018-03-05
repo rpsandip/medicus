@@ -10,7 +10,7 @@
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="x_panel">
 			<div class="x_content">
-				 <div class="col-md-6 col-sm-6 col-xs-12">
+				 <div class="col-md-12 col-sm-6 col-xs-12">
 	                <div class="x_panel">
 	                  <div class="x_title">
 	                    <h3>Profession By Student Count </h3>
@@ -22,7 +22,7 @@
                   	</div>
                   </div>
 
-				<div class="col-md-6 col-sm-6 col-xs-12">
+				<!-- <div class="col-md-6 col-sm-6 col-xs-12">
 					<div class="x_panel">
 						<div class="x_title">
 							<h3>Gender By Student Count</h3>
@@ -38,7 +38,7 @@
 							</table>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<div class="x_panel">
@@ -68,6 +68,7 @@ jQuery.noConflict();
 (function($) {
     $(function() {
     		
+    	/*
     	  // Pie chart
 		  if ($('#genderChart').length ){
 			  
@@ -103,6 +104,7 @@ jQuery.noConflict();
 			  });
 			  
 		  }
+    	*/
     	
 		  if ($('#professionChart').length ){ 
 			  

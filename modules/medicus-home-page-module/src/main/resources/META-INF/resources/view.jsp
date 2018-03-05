@@ -41,7 +41,7 @@
 			<!--/banner-info-->
 			   <div class="baner-info">
 			       <h4>The best learning institution</h4>
-				   <h3><span>W</span>elcome To Your Premier <span>H</span>ealth <span>I</span>nternship <span>P</span>ortal</h3><br>
+				   <h3><span>W</span>elcome <span>T</span>o <span>Y</span>our <span>P</span>remier <span>H</span>ealth <span>I</span>nternship <span>P</span>ortal</h3><br>
 			   </div>
 			<!--/banner-ingo-->		
 		</div> 
@@ -52,8 +52,9 @@
 		<div class="container">
 			<h2 class="w3ls-title">about us</h2>
 			<div class="col-md-7  w3ls-about-left">
-				<p>At Medicus Group, providing interns with real work is number one to ensuring our program’s success. Interns do work related to their major, that is challenging, that is recognized by the organization as valuable, and that fills the entire work term.</p><br>
-				<p>We work closely with our partner schools and our growing list of healthcare partners to guarantee that hiring managers provide real work assignments by checking job descriptions, emphasizing the importance of real work assignments during a manager/mentor orientation sessions, and communicating with interns frequently throughout the work term to determine who they perceive what they are doing.</p>
+				<p>At Medicus Group LLC, providing interns with real work is crucial to ensure success to our program.  Interns have the opportunity to work in jobs that are related to their focus.  These jobs are full-filling, as well as being recognized by the organization as valuable.</p><br>
+				<p>We work closely with our partner schools and our growing list of healthcare partners to make the internship process easy, fast and effective.  Our customizable matching-analytics provides increased confidence that you have selected the best candidate.  Our partnership with schools reduces the stress and frustration to contact multiple institutions.  Most importantly, our process will increase your ROI by at least 300% in financial and social impact. </p><br/>
+				<p>Let Medicus Group LLC be your primary “Search Engine” to select your next promising intern.</p>
 			</div>
 			<div class="col-md-5 w3ls-row">
 				<div class="col-md-6 col-sm-6 wthree-about-left">

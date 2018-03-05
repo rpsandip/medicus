@@ -528,16 +528,16 @@ public class MedicusCommonLocalServiceImpl
 			}
 			
 			if(hasSchoolAdminRole && Validator.isNotNull(school)){
-				return "You are login as " + "School Admin of " + school.getName() + " School"; 
+				return "You are logged in as a " + "School Admin of " + school.getName() + " School"; 
 			}
 			if(hasSchoolSuperAdminRole && Validator.isNotNull(school)){
-				return "You are login as " + "School Super Admin of " + school.getName() +" School";
+				return "You are logged in as a  " + "School Super Admin of " + school.getName() +" School";
 			}
 			if(hasCampusAdminRole && Validator.isNotNull(campus)){
-				return "You are login as " + "Campus Admin of " + campus.getName() + " Campus";
+				return "You are logged in as a " + "Campus Admin of " + campus.getName() + " Campus";
 			}
 			if(hasCampusSuperAdminRole && Validator.isNotNull(campus)){
-				return "You are login as " + "Campus Super Admin of " + campus.getName() + " Campus";
+				return "You are logged in as a " + "Campus Super Admin of " + campus.getName() + " Campus";
 			}
 			
 			boolean isPartner = isPartner(userId);

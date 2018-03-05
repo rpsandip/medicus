@@ -67,7 +67,7 @@
 		  			<aui:option value="">Select Profession</aui:option>
 	   	 			<aui:option value="Dental Assistant" >Dental Assistant</aui:option>
 	   	 			<aui:option value="Medical Assistant">Medical Assistant</aui:option>
-	   	 			<aui:option value="Medical Administrative Assistance" >Medical Administrative Assistance</aui:option>
+	   	 			<aui:option value="Medical Administrative Assistant" >Medical Administrative Assistant</aui:option>
 	   	 			<aui:option value="Phlebotomy Technician">Phlebotomy Technician</aui:option>
 	   	 			<aui:option value="Pharmacy Technician" >Pharmacy Technician</aui:option>
 	   	 			<aui:option value="Patient Care Technician">Patient Care Technician</aui:option>

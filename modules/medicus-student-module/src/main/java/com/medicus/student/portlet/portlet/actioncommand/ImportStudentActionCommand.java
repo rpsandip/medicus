@@ -244,9 +244,9 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 			 return false;
 		 }else if(!firstRow.getCell(14).toString().trim().equalsIgnoreCase("Secondary Language")){
 			 return false;
-		 }else if(!firstRow.getCell(15).toString().trim().equalsIgnoreCase("GPA")){
+		 }else if(!firstRow.getCell(15).toString().trim().equalsIgnoreCase("GPA (0.00 to 4.00)")){
 			 return false;
-		 }else if(!firstRow.getCell(16).toString().trim().equalsIgnoreCase("Pace")){
+		 }else if(!firstRow.getCell(16).toString().trim().equalsIgnoreCase("Pace (Slow/Mid/Quick)")){
 			 return false;
 		 }else if(!firstRow.getCell(17).toString().trim().equalsIgnoreCase("School")){
 			 return false;
@@ -279,8 +279,6 @@ public class ImportStudentActionCommand extends BaseMVCActionCommand{
 		 }else if(Validator.isNull(row.getCell(5).toString().trim())){
 			 return false;
 		 }else if(Validator.isNull(row.getCell(6).toString().trim())){
-			 return false;
-		 }else if(Validator.isNull(row.getCell(7).toString().trim())){
 			 return false;
 		 }else if(Validator.isNull(row.getCell(8).toString().trim())){
 			 return false;

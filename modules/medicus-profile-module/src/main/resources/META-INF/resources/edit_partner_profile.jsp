@@ -19,7 +19,7 @@
             <aui:form name="editprofilefm" action="${editProfileURL}" cssClass="form-horizontal form-label-left"  enctype="multipart/form-data">
               <div class="form-group">
                	 <div class="col-md-10 col-sm-6 col-xs-12">
-	               	<aui:input name="firstName" label="Facility" value="${partnerBean.firstName }" cssClass="form-control col-md-7 col-xs-12">
+	               	<aui:input name="firstName" label="Name of Company" value="${partnerBean.firstName }" cssClass="form-control col-md-7 col-xs-12">
 				     	<aui:validator name="required" />
 				     	<aui:validator name="maxLength">60</aui:validator>
 					 </aui:input>
@@ -48,14 +48,14 @@
               </div>
               <div class="form-group">
               		<div class="col-md-10 col-sm-6 col-xs-12">
-		              	<aui:input  name="password2" type="password" label="confirm.password">
+		              	<aui:input  name="password2" type="password" label="confirm.password" placeholder="Min 8 chars(1 Num 1 UC, 1 LC)">
 							<aui:validator name="equalTo" errorMessage="err-valid-confirm-pw">'#<portlet:namespace />password'</aui:validator>
 		                 </aui:input>
                  	</div>
               </div>
               <div class="form-group">
                 <div class="col-md-10 col-sm-6 col-xs-12">
-                  <aui:input name="profilePic" type="file" label="Profile Picture (Max Size 1 MB )" cssClass="form-control col-md-7 col-xs-12">
+                  <aui:input name="profilePic" type="file" label="Profile Picture/Logo (Max Size 1 MB )" cssClass="form-control col-md-7 col-xs-12">
                   		<aui:validator name="acceptFiles">'jpg,png,jpeg'</aui:validator>
                   </aui:input>
                 </div>

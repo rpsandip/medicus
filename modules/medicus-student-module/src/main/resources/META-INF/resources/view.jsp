@@ -70,7 +70,7 @@
 		                      <option value="">Select Profession</option>
 		                      <option value="Dental Assistant">Dental Assistant</option>
 		                      <option value="Medical Assistant">Medical Assistant</option>
-		                      <option value="Medical Administrative Assistance">Medical Administrative Assistance</option>
+		                      <option value="Medical Administrative Assistant">Medical Administrative Assistant</option>
 		                      <option value="Phlebotomy Technician">Phlebotomy Technician</option>
 		                      <option value="Pharmacy Technician">Pharmacy Technician</option>
 		                      <option value="Patient Care Technician">Patient Care Technician</option>
@@ -157,7 +157,7 @@
       <div class="modal-body">
        	<div class="form-group">
        	   <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-       	   		Are you sure you want to sent Interview Request?
+       	   		Are you sure you want to send an Interview Request?
        	   </div>
               <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                 <button type="button" class="btn btn-primary sent-interview-request" onClick="javascript: jQuery('.modal-backdrop').remove()">Yes</button>

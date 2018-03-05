@@ -79,12 +79,16 @@ public class SearchStudentResourceCommand implements MVCResourceCommand{
 	    SearchContext searchContext = SearchContextFactory.getInstance(request);
 		
 		List<StudentBean> studentBeanList = new ArrayList<StudentBean>();
+		
+		_log.info("Start " +start + " end ->" + end );
+		
 		JSONObject jsonObject = StudentLocalServiceUtil.searchStudents(keyword, zipcode, gender, profession,
 				languageList,schoolId, campusId, start, end,searchContext);
 		
 		List<Student> studentList = (List<Student>)jsonObject.get("studentList");
 		long totalHits = jsonObject.getLong("totalHits");
 		
+		_log.info("studentList ->" + totalHits);
 		
 		for(Student student : studentList){
 			StudentBean studentBean = new StudentBean(student,true);

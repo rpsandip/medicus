@@ -25,7 +25,7 @@
 				  		<c:set var = "middleName" value = "" />
 				  	</c:otherwise>
 				  </c:choose>
-				  <h3>${student.lastName } ${middleName } ${student.firstName } </h3>
+				  <h3>${student.lastName }, ${middleName } ${student.firstName } </h3>
 				  <p><strong>Profession: </strong> ${student.profession } </p>
 				  <ul class="list-unstyled">
 					<li><i class="fa fa-child"></i> Gender: ${student.gender }</li>
