@@ -29,7 +29,8 @@
 				  <p><strong>Profession: </strong> ${student.profession } </p>
 				  <ul class="list-unstyled">
 					<li><i class="fa fa-child"></i> Gender: ${student.gender }</li>
-					<li><i class="fa fa-university"></i> School / Campus: ${student.campusName }</li>
+					<li><i class="fa fa-fw fa-graduation-cap"></i> School: ${student.schoolName }</li>
+					<li><i class="fa fa-university"></i>Campus: ${student.campusName }</li>
 					<li><i class="fa fa-language"></i> Language: ${ student.primaryLanguages}</li>
 				  </ul>
 				</div>
@@ -72,9 +73,19 @@
 						   </a>
 					   </c:if>
 					   <c:if test="${hasStudentInterviewRequestPermission }">
-						   <a class="btn btn-primary btn-xs inter-view-request" data-studentId="${ student.studentId}" data-toggle="modal" data-target="#interivew-request-modal">
-							<i class="fa fa-user"> </i> Interview Request
-						   </a>
+						   <c:choose>
+						   		<c:when test="${student.activelySeekingEmployment}">
+						   			<a class="btn btn-primary btn-xs inter-view-request" data-studentId="${ student.studentId}" data-toggle="modal" data-target="#interivew-request-modal">
+							  			<i class="fa fa-user"> </i> Interview Request
+						  			 </a>
+						   		</c:when>
+						   		<c:otherwise>
+						   			<a class="btn btn-primary btn-xs inter-view-request" style="background:#92999a !important; cursor: none;">
+							  			<i class="fa fa-user"> </i> Interview Request
+						  			 </a>
+						   		</c:otherwise>
+						   </c:choose>
+						   
 					   </c:if>
 				  </div>
 				</div>

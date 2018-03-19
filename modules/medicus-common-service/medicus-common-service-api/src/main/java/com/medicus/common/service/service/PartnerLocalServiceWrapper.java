@@ -260,6 +260,11 @@ public class PartnerLocalServiceWrapper implements PartnerLocalService,
 		return _partnerLocalService.getPartners(start, end);
 	}
 
+	@Override
+	public java.util.List<com.medicus.common.service.model.Partner> getUnSubscribePartners() {
+		return _partnerLocalService.getUnSubscribePartners();
+	}
+
 	/**
 	* Returns the number of rows matching the dynamic query.
 	*

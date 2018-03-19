@@ -252,6 +252,10 @@ public class PartnerLocalServiceUtil {
 		return getService().getPartners(start, end);
 	}
 
+	public static java.util.List<com.medicus.common.service.model.Partner> getUnSubscribePartners() {
+		return getService().getUnSubscribePartners();
+	}
+
 	/**
 	* Returns the number of rows matching the dynamic query.
 	*

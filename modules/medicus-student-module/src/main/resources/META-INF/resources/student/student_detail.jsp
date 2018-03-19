@@ -123,16 +123,18 @@
 						</div>
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="academin_info_content" aria-labelledby="academic-info-tab">
-						<div class="form-group">
-							<c:choose>
-							<c:when test="${not empty studentBean.pace}">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Pace Of Student:</label>${studentBean.pace}								
-							</c:when>
-							<c:otherwise>
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Pace Of Student:</label> -
-							</c:otherwise>	
-							</c:choose>
-						</div>
+						 <c:if test="${!isPartner }">
+							 <div class="form-group">
+								<c:choose>
+								<c:when test="${not empty studentBean.pace}">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12">Pace Of Student:</label>${studentBean.pace}								
+								</c:when>
+								<c:otherwise>
+									<label class="control-label col-md-3 col-sm-3 col-xs-12">Pace Of Student:</label> -
+								</c:otherwise>	
+								</c:choose>
+							</div> 
+						</c:if>
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">School:</label>${studentBean.schoolName}
 						</div>
@@ -323,9 +325,9 @@
 							</c:otherwise>
 							</c:choose> 
 						</div>
-						<div class="form-group">
+						<%-- <div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">Hire:</label> ${studentBean.hired? "YES" : "No"}
-						</div>
+						</div> --%>
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="graduation_details_content" aria-labelledby="graduation-details-tab">
 						<div class="form-group">

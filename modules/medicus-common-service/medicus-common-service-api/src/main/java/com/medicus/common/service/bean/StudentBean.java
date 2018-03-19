@@ -217,6 +217,7 @@ public class StudentBean {
 			this.schoolId = student.getSchoolId();
 			this.firstName = student.getFirstName();
 			this.lastName = student.getLastName();
+			this.activelySeekingEmployment = student.getActivelySeekingEmployment();
 			if(Validator.isNotNull(student.getMiddleName())){
 				this.middleName = student.getMiddleName();
 			}

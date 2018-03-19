@@ -18,9 +18,13 @@ import aQute.bnd.annotation.ProviderType;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -31,6 +35,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.medicus.common.service.exception.NoSuchPartnerException;
 import com.medicus.common.service.model.Partner;
 import com.medicus.common.service.service.PartnerLocalServiceUtil;
+import com.medicus.common.service.service.User_SubscriptionLocalServiceUtil;
 import com.medicus.common.service.service.base.PartnerLocalServiceBaseImpl;
 
 /**
@@ -98,6 +103,21 @@ public class PartnerLocalServiceImpl extends PartnerLocalServiceBaseImpl {
 			partner = PartnerLocalServiceUtil.updatePartner(partner);
 		
 			return partner;
+	}
+	
+	public List<Partner> getUnSubscribePartners(){
+		List<Partner> unsubsubscribePartnerList = new ArrayList<Partner>();
+		
+		DynamicQuery userSubsribedQuery = User_SubscriptionLocalServiceUtil.dynamicQuery();
+		userSubsribedQuery.setProjection(ProjectionFactoryUtil.property("userId"));
+		
+		
+		DynamicQuery partnerQuery = PartnerLocalServiceUtil.dynamicQuery();
+		partnerQuery.add(PropertyFactoryUtil.forName("userId").notIn(userSubsribedQuery));
+		
+		unsubsubscribePartnerList = PartnerLocalServiceUtil.dynamicQuery(partnerQuery);		
+		
+		return unsubsubscribePartnerList;
 	}
 	
 }

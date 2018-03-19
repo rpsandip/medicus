@@ -41,6 +41,11 @@ public class RegistrationLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.medicus.common.service.service.impl.RegistrationLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static boolean checkUserExistWithRoleAndGroup(long groupId,
+		long roleId) {
+		return getService().checkUserExistWithRoleAndGroup(groupId, roleId);
+	}
+
 	public static com.liferay.portal.kernel.model.User createSchoolUser(
 		java.lang.String firstName, java.lang.String lastName,
 		java.lang.String emailAddress, java.lang.String contactNumber,

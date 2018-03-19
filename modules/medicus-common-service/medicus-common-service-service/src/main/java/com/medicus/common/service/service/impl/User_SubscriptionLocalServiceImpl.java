@@ -16,8 +16,13 @@ package com.medicus.common.service.service.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
+import java.util.Date;
+
+import com.liferay.counter.kernel.service.CounterLocalServiceUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.medicus.common.service.exception.NoSuchUser_SubscriptionException;
 import com.medicus.common.service.model.User_Subscription;
+import com.medicus.common.service.service.User_SubscriptionLocalServiceUtil;
 import com.medicus.common.service.service.base.User_SubscriptionLocalServiceBaseImpl;
 
 /**
@@ -40,6 +45,16 @@ public class User_SubscriptionLocalServiceImpl
 	
 	public User_Subscription getUserSubcriptionByUserId(long userId) throws NoSuchUser_SubscriptionException{
 		return user_SubscriptionPersistence.findByuserId(userId);
+	}
+	
+	public User_Subscription addUserSubscription(long userId, String txnId, long subscriptionId){
+		User_Subscription userSubscription = User_SubscriptionLocalServiceUtil.createUser_Subscription(CounterLocalServiceUtil.increment());
+		userSubscription.setUserId(userId);
+		userSubscription.setSubscriptionId(subscriptionId);
+		userSubscription.setTxnId(txnId);
+		userSubscription.setSubscriptionDate(new Date());
+		userSubscription = User_SubscriptionLocalServiceUtil.addUser_Subscription(userSubscription);
+		return userSubscription;
 	}
 	
 }

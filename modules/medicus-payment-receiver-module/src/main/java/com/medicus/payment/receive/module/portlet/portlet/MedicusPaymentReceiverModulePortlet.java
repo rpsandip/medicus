@@ -6,6 +6,7 @@ import com.medicus.common.service.model.User_Subscription;
 import com.medicus.common.service.service.User_SubscriptionLocalServiceUtil;
 import com.medicus.common.service.service.persistence.User_SubscriptionPK;
 import com.medicus.payment.receive.module.portlet.constants.MedicusPaymentReceiverModulePortletKeys;
+import com.liferay.counter.kernel.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -138,7 +139,7 @@ public class MedicusPaymentReceiverModulePortlet extends MVCPortlet {
 						}
 						
 						if(Validator.isNull(userSubscription)){
-							userSubscription = User_SubscriptionLocalServiceUtil.createUser_Subscription(userId);
+							userSubscription = User_SubscriptionLocalServiceUtil.createUser_Subscription(CounterLocalServiceUtil.increment());
 							userSubscription.setSubscriptionId(subscriptionId);
 							userSubscription.setTxnId(txnId);
 							userSubscription.setUserId(userId);

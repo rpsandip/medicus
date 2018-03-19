@@ -216,6 +216,18 @@ public interface StudentLocalService extends BaseLocalService,
 		Date graduationDate, long schoolId, long campusId,
 		java.lang.String profession, long createdBy) throws PortalException;
 
+	public Student updateImportStudent(Student student,
+		java.lang.String firstName, java.lang.String middleName,
+		java.lang.String lastName, java.lang.String emailAddress, Date dob,
+		java.lang.String gender, java.lang.String profession,
+		java.lang.String address, java.lang.String city,
+		java.lang.String zipcode, java.lang.String state,
+		java.lang.String mobilePHone, java.lang.String homePhone,
+		java.lang.String primaryLang, java.lang.String secodLang, float gpa,
+		java.lang.String pace, java.lang.String shift,
+		java.lang.String ethnicity, Date graduationDate,
+		Date externshipStartDate) throws SearchException;
+
 	/**
 	* Updates the student in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*

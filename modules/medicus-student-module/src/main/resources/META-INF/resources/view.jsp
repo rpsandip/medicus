@@ -186,6 +186,7 @@
        	   <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
        	   		Are you sure you want to delete student?
        	   </div>
+       	   <br/>
               <aui:form name="deletePartner" action="${deleteStudentURL}" cssClass="form-horizontal form-label-left">
 	       	   <div class="col-md-8 col-sm-6 col-xs-12 col-md-offset-3 approve-request-box">
 	       	   		<aui:input type="hidden" name="deletestudentId"/>
@@ -356,6 +357,8 @@ AUI().use('aui-io-request', 'aui-autocomplete','liferay-portlet-url' ,'aui-base'
     		  A.one(".sent-interview-request").on('click', function(){
     				
     			  var studentId = A.one("#<portlet:namespace />studentId").get('value');
+    			  
+    			  A.one(".sent-interview-request").setAttribute("disabled");
     				
     			  var resourceURL= Liferay.PortletURL.createResourceURL();
        			  resourceURL.setPortletId('com_medicus_student_portlet_portlet_StudentModulePortlet');
@@ -376,6 +379,7 @@ AUI().use('aui-io-request', 'aui-autocomplete','liferay-portlet-url' ,'aui-base'
     						$(".msg").text(response.msg);
     						if(status==='err'){
     							$(".msg").addClass('red');
+    							A.one(".sent-interview-request").removeAttribute("disabled");
     						}else{
     							$(".msg").addClass('green');
     						}

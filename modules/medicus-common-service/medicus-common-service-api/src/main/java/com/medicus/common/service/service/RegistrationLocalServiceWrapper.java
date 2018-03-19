@@ -34,6 +34,12 @@ public class RegistrationLocalServiceWrapper implements RegistrationLocalService
 	}
 
 	@Override
+	public boolean checkUserExistWithRoleAndGroup(long groupId, long roleId) {
+		return _registrationLocalService.checkUserExistWithRoleAndGroup(groupId,
+			roleId);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.model.User createSchoolUser(
 		java.lang.String firstName, java.lang.String lastName,
 		java.lang.String emailAddress, java.lang.String contactNumber,

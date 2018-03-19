@@ -122,8 +122,20 @@ jQuery.noConflict();
 				data: {
 				  labels: labelArray,
 				  datasets: [{
-					label: 'Profession ',
-					backgroundColor: "#26B99A",
+					label: '',
+					 backgroundColor: [
+						 "#455C73",
+							"#9B59B6",
+							"#BDC3C7",
+							"#26B99A",
+							"#3498DB",
+							"#3fb331",
+							"#b39131",
+							"#c5410e",
+							"#c50e52",
+							"#110ec5",
+							"#c2c50e"
+						  ],
 					data: countArray
 				  }]
 				},
@@ -158,8 +170,20 @@ jQuery.noConflict();
 				data: {
 				  labels: labelArray,
 				  datasets: [{
-					label: 'Language ',
-					backgroundColor: "#03586A",
+					  label: '',
+					 backgroundColor: [
+							"#9B59B6",
+							"#BDC3C7",
+							"#455C73",
+							"#3fb331",
+							"#3498DB",
+							"#c2c50e",
+							"#b39131",
+							"#c5410e",
+							"#26B99A",
+							"#c50e52",
+							"#110ec5"
+						  ],
 					data: countArray
 				  }]
 				},

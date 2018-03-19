@@ -499,6 +499,59 @@ public class StudentLocalServiceImpl extends StudentLocalServiceBaseImpl {
 		return student;
 	}
 	
+	public Student updateImportStudent(Student student,String firstName, String middleName,String lastName,  String emailAddress,
+			Date dob, String gender, String profession,String address,String city, String zipcode, String state, String mobilePHone,
+			String homePhone, String primaryLang, String secodLang, float gpa, String pace, String shift, String ethnicity, Date graduationDate,
+			Date externshipStartDate) throws SearchException{
+		if (Validator.isNotNull(student)){
+			
+			student.setFirstName(firstName);
+			student.setMiddleName(middleName);
+			student.setLastName(lastName);
+			student.setEmailAddress(emailAddress);
+			student.setDateOfBirth(dob);
+			student.setGender(gender);
+			student.setProfession(profession);
+			student.setAddress(address);
+			student.setCity(city);
+			student.setState(state);
+			student.setZipcode(zipcode);
+			student.setContactNumber(mobilePHone);
+			student.setHomePhoneNumber(homePhone);
+			student.setPrimaryLanguage(primaryLang);
+			student.setSecondaryLanguage(secodLang);
+			student.setGpa(gpa);
+			student.setPace(pace);
+			student.setEthnicityDesc(ethnicity);
+			student.setGraduationDate(graduationDate);
+			
+			student = StudentLocalServiceUtil.updateStudent(student);
+			
+			// Update Student_Externship
+			Student_Externship studentExternship = null;
+			try{
+				studentExternship = Student_ExternshipLocalServiceUtil.getStudentExternship(student.getStudentId());
+			}catch(PortalException e){
+				_log.error(e.getMessage());
+			}
+			
+			if(Validator.isNotNull(studentExternship)){
+				studentExternship.setShiftDesc(shift);
+				studentExternship.setStartDate(externshipStartDate);
+				Student_ExternshipLocalServiceUtil.updateStudent_Externship(studentExternship);
+			}
+			
+			// Update reindex
+			
+			// Index Student detail
+			Indexer<Student> studentIndexer = IndexerRegistryUtil.getIndexer(Student.class);
+			studentIndexer.reindex(student);
+			_log.info("Student Index updated ->" + student.getStudentId());
+				
+		}
+		return student;
+	}
+	
 	
 	public boolean deleteStudentDetail(long studentId) throws PortalException{
 		boolean isDeleted = false;

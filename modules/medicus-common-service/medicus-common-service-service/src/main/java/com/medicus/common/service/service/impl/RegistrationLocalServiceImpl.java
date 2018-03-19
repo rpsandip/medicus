@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.Phone;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.model.UserGroupRole;
 import com.liferay.portal.kernel.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.kernel.service.PhoneLocalServiceUtil;
 import com.liferay.portal.kernel.service.RoleLocalServiceUtil;
@@ -160,16 +161,23 @@ public class RegistrationLocalServiceImpl extends RegistrationLocalServiceBaseIm
 		Organization campusOrg = null;
 		Role role = null;
 		long[] organizationIds=null;
+		boolean isValidToAdd = true;
 		
 		// Get default Medicus Organization
 		long medicusOrganizationId = MedicusCommonLocalServiceUtil.getMedicusOrganizationId();
 				
 		
 		// Get Campus Organization
-		if(schoolId>0 && campusId>0){
+		if(schoolId>0 && campusId>0 && roleId>0){
 			try{
 				campusOrg = OrganizationLocalServiceUtil.getOrganization(PortalUtil.getDefaultCompanyId(), String.valueOf(campusId));
-				organizationIds = new long[]{campusOrg.getOrganizationId(),medicusOrganizationId};
+				long orgGroupId = MedicusCommonLocalServiceUtil.getOrganizationGroupIdFromOrgId(campusOrg.getOrganizationId());
+				boolean isUserExistWithSameRole = checkUserExistWithRoleAndGroup(orgGroupId, roleId);
+				if(!isUserExistWithSameRole){
+					organizationIds = new long[]{campusOrg.getOrganizationId(),medicusOrganizationId};
+				}else{
+					isValidToAdd = false;
+				}
 			}catch(PortalException e){
 				_log.error(e);
 			}
@@ -189,7 +197,8 @@ public class RegistrationLocalServiceImpl extends RegistrationLocalServiceBaseIm
 			}
 		}
 		
-		// Add LR User
+		   if(isValidToAdd){
+		   // Add LR User
 			
 			ServiceContext serviceContext = new ServiceContext();
 			serviceContext.setUuid(UUID.randomUUID().toString());
@@ -214,12 +223,23 @@ public class RegistrationLocalServiceImpl extends RegistrationLocalServiceBaseIm
 				 }
 			 }
 			 
+			 
+			 
 			 // Add user Phone Number
 			 long phoneTypId = MedicusCommonLocalServiceUtil.getUserPhoneTypeId();
 			 PhoneLocalServiceUtil.addPhone(user.getUserId(), Contact.class.getName(),
 					 user.getContactId(), contactNumber, StringPool.BLANK, phoneTypId, true, new ServiceContext());
+			 
+		   }else{
+			   throw new PortalException("User already exist with sane role for campus");
+		   }
 			
 		return user;
+	}
+	
+	public boolean checkUserExistWithRoleAndGroup(long groupId, long roleId){
+		List<UserGroupRole> userGroupRoleList = UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(groupId, roleId);
+		return (userGroupRoleList.size()>0 ? true : false);
 	}
 	
 	public User updateSchoolUser(long userId, String firstName, String lastName, String emailAddress, String contactNumber, long schoolId,

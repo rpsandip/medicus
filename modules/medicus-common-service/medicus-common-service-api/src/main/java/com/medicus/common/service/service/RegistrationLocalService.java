@@ -47,6 +47,8 @@ public interface RegistrationLocalService extends BaseLocalService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link RegistrationLocalServiceUtil} to access the registration local service. Add custom service methods to {@link com.medicus.common.service.service.impl.RegistrationLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public boolean checkUserExistWithRoleAndGroup(long groupId, long roleId);
+
 	public User createSchoolUser(java.lang.String firstName,
 		java.lang.String lastName, java.lang.String emailAddress,
 		java.lang.String contactNumber, long schoolId, long campusId,
