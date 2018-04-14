@@ -63,6 +63,9 @@
 				<div class="col-md-6 col-sm-6 w3ls-row alert wthree-about-right">
 					<img src="<%=imagePath %>/about3.jpeg" class="img-responsive" alt=""/>
 				</div>
+				<div class="col-md-12 home-yt-vid" >
+					<iframe width="460" height="230" src="https://www.youtube.com/embed/hieXFos3zyM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+				</div>
 				<div class="clearfix"> </div>
 			</div>	
 			<div class="clearfix"> </div>
@@ -612,6 +615,37 @@
 		</div>
 </div>
 
+<div id="sponsors" class="sponsors w3ls-section">
+		<div class="container">
+			<h3 class="w3ls-title">Sponsors, Partners, and Schools</h3>
+			<div class="col-md-12 first-row">
+				<div class="col-md-3">
+					<img src="<%=imagePath %>/concentra.png"/>
+				</div>
+				<div class="col-md-3">
+					<img src="<%=imagePath %>/anylabtest.png"/>
+				</div>
+				<div class="col-md-3">
+					<img src="<%=imagePath %>/ushealth.png"/>
+				</div>
+				<div class="col-md-3">
+					<img src="<%=imagePath %>/breeze.png"/>
+				</div>
+			</div>
+			<div class="col-md-12 second-row">
+				<div class="col-md-4">
+					<img src="<%=imagePath %>/pima.png"/>
+				</div>
+				<div class="col-md-4">
+					<img src="<%=imagePath %>/chiropractic.png"/>
+				</div>
+				<div class="col-md-4">
+					<img src="<%=imagePath %>/memorial.png"/>
+				</div>
+			</div>
+			
+		</div>
+	</div>
 
 <!--  //faqs -->
 
