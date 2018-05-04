@@ -52,9 +52,10 @@
 		<div class="container">
 			<h2 class="w3ls-title">about us</h2>
 			<div class="col-md-7  w3ls-about-left">
-				<p>At Medicus Group LLC, providing interns with real work is crucial to ensure success to our program.  Interns have the opportunity to work in jobs that are related to their focus.  These jobs are full-filling, as well as being recognized by the organization as valuable.</p><br>
-				<p>We work closely with our partner schools and our growing list of healthcare partners to make the internship process easy, fast and effective.  Our customizable matching-analytics provides increased confidence that you have selected the best candidate.  Our partnership with schools reduces the stress and frustration to contact multiple institutions.  Most importantly, our process will increase your ROI by at least 300% in financial and social impact. </p><br/>
-				<p>Let Medicus Group LLC be your primary “Search Engine” to select your next promising intern.</p>
+				<p>At Medicus Group LLC, our mission is to match non-paid healthcare interns with local healthcare partners. Our portal streamlines the intern process selection by consolidating multiple schools to upload 100s of qualify non-paid interns in one portal. This one-stop-selection portal eliminates the burdening process of contacting various schools, completing mountains of paperwork, and experiencing frustration of receiving non-qualify interns.</p><br>
+				<p>By using our proprietary analytics, you can personalize and request your perfect intern. You have the options to filter by gender, zip code, profession, school, preferred language, and campus. You can also view resumes before requesting the candidate for an interview. There is no obligation to hire, there is no limit to your request, and best of all the school carries the student's liability insurance. </p><br/>
+				<p>Take action now, start reducing your payroll expenses today to increase your bottom line. We guarantee that your Return On Investment with us will be at least 300%. </p><br/>
+				<p>Click on Partner Registration and subscribe to Medicus Group LLC to find your next non-paid intern.</p>
 			</div>
 			<div class="col-md-5 w3ls-row">
 				<div class="col-md-6 col-sm-6 wthree-about-left">
@@ -64,7 +65,7 @@
 					<img src="<%=imagePath %>/about3.jpeg" class="img-responsive" alt=""/>
 				</div>
 				<div class="col-md-12 home-yt-vid" >
-					<iframe width="460" height="230" src="https://www.youtube.com/embed/hieXFos3zyM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+					<iframe width="460" height="230" src="https://www.youtube.com/embed/hieXFos3zyM?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 				</div>
 				<div class="clearfix"> </div>
 			</div>	
@@ -570,6 +571,7 @@
 <div class="faqs-section w3ls-section" id="faqs">
 		<div class="container">
 		<h3 class="w3ls-title">Frequently Asked Questions</h3>
+			<div class="col-md-7" style="padding: 0;">
 			<div class="panel-group" id="accordion">
 			    <div class="panel panel-default">
 			      <div class="panel-heading">
@@ -612,6 +614,10 @@
 			      </div>
 			    </div>
 			  </div> 
+			  </div>
+			  <div class="col-md-5">
+			  	<iframe width="100%" height="280" src="https://www.youtube.com/embed/sz1ndY545ko?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+			  </div>
 		</div>
 </div>
 

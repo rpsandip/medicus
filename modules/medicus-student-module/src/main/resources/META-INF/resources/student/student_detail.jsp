@@ -141,9 +141,11 @@
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">Campus:</label>${studentBean.campusName}
 						</div>
+						<c:if test="${!isPartner }">
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">GPA:</label>${studentBean.gpa}
 						</div>
+						</c:if>
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">Resume:</label>
 							<c:choose>
