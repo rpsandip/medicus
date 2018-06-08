@@ -68,6 +68,9 @@
 					<iframe width="460" height="230" src="https://www.youtube.com/embed/hieXFos3zyM?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 				</div>
 				<div class="clearfix"> </div>
+				<div style="padding-top: 30px; float: right; margin-right: 15px;">
+					<a class="hvr-rectangle-out w3_play_icon1" href="##" data-toggle="modal" data-target="#registrationform">Partner Registration</a>
+				</div>
 			</div>	
 			<div class="clearfix"> </div>
 				 <br>
@@ -196,6 +199,9 @@
                  </div>
                  <div class="col-md-1 col-sm-6 col-xs-12">
                    <button type="button" class="btn btn-primary search-student">Submit</button>
+                 </div>
+                 <div style="padding-top: 34px;padding-right: 10 px !important;margin-right: 12px;float: right;">
+                 		<a class="hvr-rectangle-out w3_play_icon1" href="##" data-toggle="modal" data-target="#registrationform">Partner Registration</a>
                  </div>
                </div>
              </form>
@@ -514,7 +520,9 @@
 			<li><a  target="_blank" href="http://hitconsultant.net/2017/12/18/defining-healthcare-trends-to-watch-2018/">12 Defining Healthcare Trends to Watch in 2018</a></li>
 			<li><a  target="_blank" href="https://www.pwc.com/us/en/health-industries/health-research-institute/behind-the-numbers.html">Medical cost trend - Behind the numbers 2018</a></li>
 			</ul>
-			
+			<div style="padding-top: 34px;padding-right: 10 px !important;margin-right: 12px; float: right;">
+				<a class="hvr-rectangle-out w3_play_icon1" href="##" data-toggle="modal" data-target="#registrationform" style="">Partner Registration</a>
+			</div>
 		</div>
 	</div>
 	<!--  //Articles -->
@@ -618,6 +626,11 @@
 			  <div class="col-md-5">
 			  	<iframe width="100%" height="280" src="https://www.youtube.com/embed/sz1ndY545ko?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
 			  </div>
+			  <div style="padding-top: 34px;padding-right: 10 px !important;margin-right: 12px;float: right;">
+			  		<a class="hvr-rectangle-out w3_play_icon1" href="##" data-toggle="modal" data-target="#registrationform" style=>
+			  			Partner Registration
+			  		</a>
+			  </div>
 		</div>
 </div>
 
@@ -625,31 +638,8 @@
 		<div class="container">
 			<h3 class="w3ls-title">Sponsors, Partners, and Schools</h3>
 			<div class="col-md-12 first-row">
-				<div class="col-md-3">
-					<img src="<%=imagePath %>/concentra.png"/>
-				</div>
-				<div class="col-md-3">
-					<img src="<%=imagePath %>/anylabtest.png"/>
-				</div>
-				<div class="col-md-3">
-					<img src="<%=imagePath %>/ushealth.png"/>
-				</div>
-				<div class="col-md-3">
-					<img src="<%=imagePath %>/breeze.png"/>
-				</div>
+				<img src="<%=imagePath %>/all_partnets.png"/>
 			</div>
-			<div class="col-md-12 second-row">
-				<div class="col-md-4">
-					<img src="<%=imagePath %>/pima.png"/>
-				</div>
-				<div class="col-md-4">
-					<img src="<%=imagePath %>/chiropractic.png"/>
-				</div>
-				<div class="col-md-4">
-					<img src="<%=imagePath %>/memorial.png"/>
-				</div>
-			</div>
-			
 		</div>
 	</div>
 
@@ -658,10 +648,17 @@
 	<!-- contact -->
 	<div class="contact-bottom w3ls-section" id="contact">
 		<div class="container">
-			<h3 class="w3ls-title">contact</h3>
+			<div class="col-md-9">
+				<h3 class="w3ls-title">contact</h3>
+			</div>
+			<div class="col-md-3" style="padding: 0;">
+				<div style="float: right;">
+                 		<a class="hvr-rectangle-out w3_play_icon1" href="##" data-toggle="modal" data-target="#registrationform">Partner Registration</a>
+                 </div>
+			</div>
 			<div class="w3layouts-list">
 					<div class="col-md-4 li"><span class="fa fa-map-marker" aria-hidden="true"></span><h6>Houston, TX USA</h6></div>
-					<div class="col-md-4 li"><span class="fa fa-phone" aria-hidden="true"></span><h6>(+1) 281 866 1505</h6></div>
+					<div class="col-md-4 li"><span class="fa fa-phone" aria-hidden="true"></span><h6>(888) 380-3305</h6></div>
 					<div class="col-md-4 li"><span class="fa fa-location-arrow" aria-hidden="true"></span><a href="mailto:techsupport@medicusgroupLLC.com">TechSupport@MedicusGroupLLC.com</a></div>
 					<div class="clearfix"></div>
 			</div>

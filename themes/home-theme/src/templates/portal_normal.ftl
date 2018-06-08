@@ -5,6 +5,15 @@
 <html class="${root_css_class}" dir="<@liferay.language key="lang.dir" />" lang="${w3c_language_id}">
 
 <head>
+		
+	<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KHGMKR2');</script>
+<!-- End Google Tag Manager -->
+
 	<title>Medicus Group</title>
 
 	<meta content="initial-scale=1.0, width=device-width" name="viewport" />
@@ -46,11 +55,17 @@
 		</script>
 </head>
 <body>
+
+			<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KHGMKR2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 	    	<div class="w3_agilits_banner_bootm"  data-spy="affix" data-offset-top="150">
 			     <div class="w3_agilits_inner_bottom">
 			            <div class="wthree_agile_login pull-left">
 						     <ul>
-								<li><i class="fa fa-phone" aria-hidden="true"></i> (+1) 281 866 1505</li>
+								<li><i class="fa fa-phone" aria-hidden="true"></i> (888) 380-3305 </li>
 								<li><i class="fa fa-envelope-o list-icon" aria-hidden="true"></i><a href="mailto:techsupport@medicusgroupllc.com">TechSupport@MedicusGroupLLC.com</a></li>
 							</ul>
 						</div>

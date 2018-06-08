@@ -5,6 +5,15 @@
 <html class="${root_css_class}" dir="<@liferay.language key="lang.dir" />" lang="${w3c_language_id}">
 
 <head>
+
+		<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KHGMKR2');</script>
+<!-- End Google Tag Manager -->
+
 	<title>${the_title}</title>
 
 	<meta content="initial-scale=1.0, width=device-width" name="viewport" />
@@ -62,6 +71,12 @@
 	<#assign userInfo=medicusCommonService.getLoginUserInfo(user_id) >
 	
 	<body class="nav-md">
+	
+		<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KHGMKR2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+	
 		<div class="container body">
 			<@liferay_ui["quick-access"] contentId="#main-content" />
 			<@liferay_util["include"] page=body_top_include />
