@@ -88,7 +88,9 @@
 			  			</aui:select>
 			  		</div>
 		  		</div>
-		  		<div class="col-md-2 col-sm-2 col-xs-12 text-left">
+		  		<div class="col-md-1 col-sm-2 col-xs-12 text-left" style="margin-left: 27px;">
+		  		</div>
+		  		<div class="col-md-1 col-sm-2 col-xs-12 text-left">
                     <button type="button" class="btn btn-success search-student">Submit</button>
                 </div>
                 <div class="col-md-2 col-sm-2 col-xs-12 text-left">
@@ -111,7 +113,7 @@
 					</div>
 			</div>
 			<div class="col-md-6 col-sm-6 col-xs-12">
-					<div class="x_panel">
+					<div>
 						<div class="x_content">
 							<table class="" style="width: 100%">
 								<tr>

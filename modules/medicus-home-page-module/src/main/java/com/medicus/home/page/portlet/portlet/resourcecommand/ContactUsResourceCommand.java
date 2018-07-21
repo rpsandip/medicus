@@ -100,8 +100,9 @@ public class ContactUsResourceCommand implements MVCResourceCommand{
 				String mailSubject = "Constact Us Reqest from " + firstName + StringPool.SPACE + lastName;
 				String fromMail = MedicusConstant.FROM_EMAIL;
 				InternetAddress from = new InternetAddress(fromMail);
-				InternetAddress[] to =new InternetAddress[1];
+				InternetAddress[] to =new InternetAddress[2];
 				to[0] = new InternetAddress(PropsUtil.get("contact.us.email"));
+				to[1] = new InternetAddress(PropsUtil.get("casey.email"));
 				
 				MailMessage mailMessage = new MailMessage(from, mailSubject, body, true);
 				

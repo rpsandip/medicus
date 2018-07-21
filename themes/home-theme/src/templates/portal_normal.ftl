@@ -66,7 +66,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			            <div class="wthree_agile_login pull-left">
 						     <ul>
 								<li><i class="fa fa-phone" aria-hidden="true"></i> (888) 380-3305 </li>
-								<li><i class="fa fa-envelope-o list-icon" aria-hidden="true"></i><a href="mailto:techsupport@medicusgroupllc.com">TechSupport@MedicusGroupLLC.com</a></li>
+								<li><i class="fa fa-envelope-o list-icon" aria-hidden="true"></i>
+									<a href="#" onclick="javascript:window.location='mailto:techsupport@medicusgroupllc.com'">TechSupport@MedicusGroupLLC.com</a>
+								</li>
 							</ul>
 						</div>
 			 			<div class="wthree_agile_login">
@@ -103,16 +105,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			
 	        	<!-- footer -->
 			<div class="agileits_w3layouts-footer">
-			<div class="col-md-6 col-sm-8 agileinfo-copyright">
+			<div class="col-md-5 col-sm-8 agileinfo-copyright">
 				<p>&copy; 2018 Medicus Group. All rights reserved  
-				<a href="/web/guest/terms-of-service" target="_blank">Terms Of Service</a>
+				<a href="/web/guest/terms-of-service" target="_blank">Privacy Statement</a>
 				</p>
 			</div>
-			<div class="col-md-6 col-sm-4 agileinfo-icons">
+			<div class="col-md-7 col-sm-4 agileinfo-icons" style="width:14% !important;">
 				<ul>
-					<li><a class="icon fb" target="_blank" href="https://www.facebook.com/Medicus-Group-LLC-195275977717837/"><i class="fa fa-facebook"></i></a></li>
+					<li><a class="icon fb" target="_blank" href="https://www.facebook.com/Nonpaidinterns/"><i class="fa fa-facebook"></i></a></li>
+					<li><a class="icon ln" target="_blank" href="https://www.linkedin.com/company/medicus-group-llc/"><i class="fa fa-linkedin"></i></a></li>
 					<li><a class="icon tw" target="_blank" href="https://twitter.com/MedicusGroupLLC"><i class="fa fa-twitter"></i></a></li>
-					<li><a class="icon gp" href="#"><i class="fa fa-google-plus"></i></a></li>
 				</ul>
 			</div>
 			<div class="clearfix"></div>

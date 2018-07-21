@@ -40,8 +40,8 @@
 		<!--//header-w3l-->
 			<!--/banner-info-->
 			   <div class="baner-info">
-			       <h4>The best learning institution</h4>
-				   <h3><span>W</span>elcome <span>T</span>o <span>Y</span>our <span>P</span>remier <span>H</span>ealth <span>I</span>nternship <span>P</span>ortal</h3><br>
+			       <h4><span style="color: rgb(244, 121, 44);font-size: 20px;     padding-left: 8px; background: #f3eded; opacity: 0.8; padding-top: 8px; font-weight: 500;">The best learning institution</span></h4>
+				   <h3><span style="font-size: 44px;background: #f3eded; opacity: 0.8;     padding-left: 8px; padding-top: 8px;">Welcome To Your Premier Health Internship Portal</span></h3><br>
 			   </div>
 			<!--/banner-ingo-->		
 		</div> 
@@ -68,12 +68,12 @@
 					<iframe width="460" height="230" src="https://www.youtube.com/embed/hieXFos3zyM?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 				</div>
 				<div class="clearfix"> </div>
-				<div style="padding-top: 30px; float: right; margin-right: 15px;">
-					<a class="hvr-rectangle-out w3_play_icon1" href="##" data-toggle="modal" data-target="#registrationform">Partner Registration</a>
-				</div>
 			</div>	
 			<div class="clearfix"> </div>
 				 <br>
+			</div>
+			<div class="col-md-12" style="text-align: center;">
+				<a class="hvr-rectangle-out w3_play_icon1" href="##" data-toggle="modal" data-target="#registrationform">Find Your Next Non-Paid Intern Here</a>
 			</div>
 	</div>	
 	
@@ -110,8 +110,11 @@
 			</div>
 		</div>
 	</div>
+	<div class="col-md-12" style="text-align: center; padding-top: 20px;">
+				<a class="hvr-rectangle-out w3_play_icon1" href="##" data-toggle="modal" data-target="#registrationform">Click Here to Get 300% ROI</a>
+	</div>
 	<!--//agileits-services-->
-	<div id="analytics" class="w3ls-section">
+	<div id="analytics" style="    padding: 5em 0;">
 		
 		<div class="container">
 			<div>
@@ -199,9 +202,6 @@
                  </div>
                  <div class="col-md-1 col-sm-6 col-xs-12">
                    <button type="button" class="btn btn-primary search-student">Submit</button>
-                 </div>
-                 <div style="padding-top: 34px;padding-right: 10 px !important;margin-right: 12px;float: right;">
-                 		<a class="hvr-rectangle-out w3_play_icon1" href="##" data-toggle="modal" data-target="#registrationform">Partner Registration</a>
                  </div>
                </div>
              </form>
@@ -398,9 +398,12 @@
 	           	</div>
 		</div>
 	</div>
+	<div class="col-md-12" style="text-align: center; padding-top: 20px;">
+				<a class="hvr-rectangle-out w3_play_icon1" href="##" data-toggle="modal" data-target="#registrationform">Snap Your Ideal Intern Here</a>
+	</div>
   
 <!--blog-->
-	<div id="blog" class="portfolio w3ls-section">
+	<div id="blog" class="portfolio" style="padding: 5em 0;">
 		<div class="container">
 			<h3 class="w3ls-title">Professions</h3>
 		<div class="sap_tabs">			
@@ -491,6 +494,15 @@
 								</div>
 							</a>
 						</div>
+						<div class="col-md-3 portfolio-grids">
+							<a href="<%=imagePath %>/g9.jpeg" data-lightbox="example-set" data-title="<h3>Kinesiology</h3>
+							">
+								<img src="<%=imagePath %>/g9.jpeg" class="" alt="" width="300" height="285"/>
+								<div class="b-wrapper">
+									<h5>Kinesiology</h5>
+								</div>
+							</a>
+						</div>
 					
 						<div class="clearfix"> </div>
 					</div>		
@@ -499,10 +511,13 @@
 		</div>
 		</div>	
 	</div>
+	<div class="col-md-12" style="text-align: center; padding-top: 20px;">
+				<a class="hvr-rectangle-out w3_play_icon1" href="##" data-toggle="modal" data-target="#registrationform">Tap Here to Reduce Your Payroll Cost</a>
+	</div>
 	<!--//portfolio-->
 	
 	<!-- Articles -->
-	<div id="articles" class="portfolio w3ls-section">
+	<div id="articles" class="portfolio" style="padding: 5em 0;">
 		<div class="container">
 			<h3 class="w3ls-title">Articles</h3>
 			<ul class="list-group"style="padding-left:20px">
@@ -520,11 +535,13 @@
 			<li><a  target="_blank" href="http://hitconsultant.net/2017/12/18/defining-healthcare-trends-to-watch-2018/">12 Defining Healthcare Trends to Watch in 2018</a></li>
 			<li><a  target="_blank" href="https://www.pwc.com/us/en/health-industries/health-research-institute/behind-the-numbers.html">Medical cost trend - Behind the numbers 2018</a></li>
 			</ul>
-			<div style="padding-top: 34px;padding-right: 10 px !important;margin-right: 12px; float: right;">
-				<a class="hvr-rectangle-out w3_play_icon1" href="##" data-toggle="modal" data-target="#registrationform" style="">Partner Registration</a>
+			<div class="col-md-12" style="text-align: center; padding-top: 20px;">
+				<a class="hvr-rectangle-out w3_play_icon1" href="##" data-toggle="modal" data-target="#registrationform">Opt Here to Improve Your Profit</a>
 			</div>
 		</div>
+		
 	</div>
+	
 	<!--  //Articles -->
 	
 	
@@ -572,11 +589,14 @@
 			</div>
 		</div>
 	</div>
+	<div class="col-md-12" style="text-align: center;padding-top: 20px;">
+				<a class="hvr-rectangle-out w3_play_icon1" href="##" data-toggle="modal" data-target="#registrationform">Elect Here to Increase Productivity</a>
+	</div>
 <!-- //testimonial --> 
 
 <!-- Faqs -->
 
-<div class="faqs-section w3ls-section" id="faqs">
+<div class="faqs-section" id="faqs" style="padding: 6em 0 !important;padding-bottom: 10px !important;">
 		<div class="container">
 		<h3 class="w3ls-title">Frequently Asked Questions</h3>
 			<div class="col-md-7" style="padding: 0;">
@@ -614,11 +634,11 @@
 			    <div class="panel panel-default">
 			      <div class="panel-heading">
 			        <h4 class="panel-title">
-			          <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">How Many Hours Are Interns Supposed to Work?</a>
+			          <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">How many hours are interns supposed to work?</a>
 			        </h4>
 			      </div>
 			      <div id="collapse4" class="panel-collapse collapse">
-			        <div class="panel-body">The federal government sets rules for interns, but they don't include minimum or maximum hours. If the internship is for college credit, the college may lay down some rules. At California University of Pennsylvania, for example, an internship equal to one course credit should represent 40 hours of work, at about 10 to 12 hours a week. If interns are paid or should be paid, they're protected by the same wage and hour laws as other employees</div>
+			        <div class="panel-body">Non-paid intern work hours vary by profession and school.  Depending on the profession, hours may range from 200 to 450 hours.  Each student generally works from 30 to 40 hour weeks.</div>
 			      </div>
 			    </div>
 			  </div> 
@@ -626,21 +646,22 @@
 			  <div class="col-md-5">
 			  	<iframe width="100%" height="280" src="https://www.youtube.com/embed/sz1ndY545ko?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
 			  </div>
-			  <div style="padding-top: 34px;padding-right: 10 px !important;margin-right: 12px;float: right;">
-			  		<a class="hvr-rectangle-out w3_play_icon1" href="##" data-toggle="modal" data-target="#registrationform" style=>
-			  			Partner Registration
-			  		</a>
-			  </div>
 		</div>
 </div>
+	<div class="col-md-12" style="text-align: center;">
+				<a class="hvr-rectangle-out w3_play_icon1" href="##" data-toggle="modal" data-target="#registrationform">Sign Up for Risk FREE Trial</a>
+	</div>
 
-<div id="sponsors" class="sponsors w3ls-section">
+<div id="sponsors" class="sponsors" style="    padding: 4em 0 !important;">
 		<div class="container">
 			<h3 class="w3ls-title">Sponsors, Partners, and Schools</h3>
 			<div class="col-md-12 first-row">
 				<img src="<%=imagePath %>/all_partnets.png"/>
 			</div>
 		</div>
+	</div>
+	<div class="col-md-12" style="text-align: center;">
+				<a class="hvr-rectangle-out w3_play_icon1" href="##" data-toggle="modal" data-target="#registrationform">Join the Club</a>
 	</div>
 
 <!--  //faqs -->
@@ -652,9 +673,6 @@
 				<h3 class="w3ls-title">contact</h3>
 			</div>
 			<div class="col-md-3" style="padding: 0;">
-				<div style="float: right;">
-                 		<a class="hvr-rectangle-out w3_play_icon1" href="##" data-toggle="modal" data-target="#registrationform">Partner Registration</a>
-                 </div>
 			</div>
 			<div class="w3layouts-list">
 					<div class="col-md-4 li"><span class="fa fa-map-marker" aria-hidden="true"></span><h6>Houston, TX USA</h6></div>
@@ -679,7 +697,11 @@
 			</div>
 			<div class="clearfix"></div>
 		</div>
+		<div class="col-md-12" style="text-align: center;     padding-top: 20px;">
+				<a class="hvr-rectangle-out w3_play_icon1" href="##" data-toggle="modal" data-target="#registrationform">Register Now and Save</a>
+		</div>
 	</div>
+	
 
 <script>
 jQuery.noConflict();

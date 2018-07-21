@@ -232,9 +232,9 @@
 				</c:if> --%>
 			</aui:fieldset>
 			<div class="form-group">
-				<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+				<div class="col-md-6 col-sm-6 col-xs-12" style="    left: 19%;">
 					<aui:button-row>
-						<aui:button cssClass="btn-lg btn btn-default sign-in"
+						<aui:button cssClass="btn-lg btn btn-primary sign-in"
 							type="button" value="sign-in" />
 						<a class="pull-right" href="##" data-dismiss="modal"
 							data-toggle="modal" data-target="#forgotpassform" onClick="javascript: jQuery('.modal-backdrop').remove()">Forgot

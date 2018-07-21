@@ -8,7 +8,18 @@
 
 <div class="page-title">
 	<div class="title_left">
-		<h2>Edit Partner</h2>
+		<c:choose>
+		<c:when test="${ partnerId gt 0}">
+			<h2>
+    			Edit Partner
+  			</h2>
+		</c:when>
+		<c:otherwise>
+			<h2>
+    			Add Partner
+  			</h2>
+		</c:otherwise>
+	</c:choose>
 	</div>
 </div>
 <div class="clearfix"></div>

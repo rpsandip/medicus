@@ -45,7 +45,7 @@
 	  <div class="x_content">
 		<c:choose>
 			<c:when test="${isPartner and ! isPartnerSubscried}">
-				<h3> You are not eligible to view students at this time because either you have not subscribed or subscription expired.  Please subscribe to a <a href="/group/medicus/subscription"><h4>Subscription Plan</h4></a>  </h3>
+				<h3> You are not eligible to view students at this time because either you have not subscribed or subscription expired.  Please subscribe to a <a style="color: #33af4a;text-decoration: underline;" href="/group/medicus/subscription">Subscription Plan</a>  </h3>
 			</c:when>
 			<c:otherwise>
 				<div class="row student-list">
