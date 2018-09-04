@@ -14,6 +14,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KHGMKR2');</script>
 <!-- End Google Tag Manager -->
 
+ <link rel="shortcut icon" type="image/x-icon" href="${images_folder}/favicon.ico?v=3">
+
 	<title>${the_title}</title>
 
 	<meta content="initial-scale=1.0, width=device-width" name="viewport" />

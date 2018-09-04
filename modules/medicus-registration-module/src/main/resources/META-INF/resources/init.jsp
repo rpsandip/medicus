@@ -14,4 +14,8 @@
    		.portlet-title-default, .portlet-title-text {
 			display: none;
 		}
+		
+		#registrationform  .modal-dialog{
+			width: 80% !important; 
+		}
 </style>

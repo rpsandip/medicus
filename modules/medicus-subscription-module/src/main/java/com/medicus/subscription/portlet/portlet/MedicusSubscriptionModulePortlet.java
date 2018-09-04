@@ -59,8 +59,11 @@ public class MedicusSubscriptionModulePortlet extends MVCPortlet {
 			
 			
 			for(Subscription subscription : subscirptionList){
-				if(subscription.getName().equals("Subscription Plan")){
-					renderRequest.setAttribute("subsciptionPlan", subscription);
+				if(subscription.getName().equals("Yearly Plan")){
+					renderRequest.setAttribute("yearlyplan", subscription);
+				}
+				if(subscription.getName().equals("Monthly Plan")){
+					renderRequest.setAttribute("monthlyplan", subscription);
 				}
 			}
 			
@@ -70,7 +73,8 @@ public class MedicusSubscriptionModulePortlet extends MVCPortlet {
 			
 			renderRequest.setAttribute("paypalURL", PropsUtil.get("paypal.url"));
 			renderRequest.setAttribute("businessEmail", PropsUtil.get("paypal.bussiness.email"));
-			renderRequest.setAttribute("hostedButtonId", PropsUtil.get("paypal.hosted.button.id"));
+			renderRequest.setAttribute("yearlyPlanHostedButtonId", PropsUtil.get("paypal.hosted.button.id"));
+			renderRequest.setAttribute("monthlyPlanHostedButtonId", PropsUtil.get("monthly.paypal.hosted.button.id"));
 			renderRequest.setAttribute("returnURL", PropsUtil.get("paypal.return.url"));
 			renderRequest.setAttribute("cancelURL", PropsUtil.get("paypal.cancel.url"));
 			

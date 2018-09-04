@@ -146,7 +146,11 @@ jQuery.noConflict();
 					  ticks: {
 						beginAtZero: true
 					  }
-					}]
+					}],
+					xAxes: [{
+			                // Change here
+			            	barPercentage: 0.4
+			            }]
 				  }
 				}
 			  });
@@ -194,7 +198,11 @@ jQuery.noConflict();
 					  ticks: {
 						beginAtZero: true
 					  }
-					}]
+					}],
+					xAxes: [{
+		                // Change here
+		            	barPercentage: 0.4
+		            }]
 				  }
 				}
 			  });

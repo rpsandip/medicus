@@ -63,16 +63,19 @@ public class RegisterUserActionCommand extends BaseMVCActionCommand{
 					user = RegistrationLocalServiceUtil.registerPartner(firstName,MedicusConstant.PARTNER_DEFAULT_LAST_NAME, emailAddress, password1, password2,
 							address1, city, zipcode, state, country, contactPersonName, contactPersonEmail,
 							contactPersonPhoneNumber, websiteLink, themeDisplay.getUserId(), themeDisplay.getScopeGroupId());
-					SessionMessages.add(actionRequest, "user-register-success");
+					//SessionMessages.add(actionRequest, "user-register-success");
+					actionResponse.sendRedirect("/web/guest?registration=success");
 				} catch (PortalException e) {
 					_log.error(e);
 				}
 				if(Validator.isNull(user)){
-					SessionErrors.add(actionRequest, "err-register-user");
+					//SessionErrors.add(actionRequest, "err-register-user");
+					actionResponse.sendRedirect("/web/guest?registration=error");
 					SessionMessages.add(actionRequest, PortalUtil.getPortletId(actionRequest) + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
 				}
 			}else{
-					SessionErrors.add(actionRequest, "user-exist");
+					//SessionErrors.add(actionRequest, "user-exist");
+				    actionResponse.sendRedirect("/web/guest?registration=error");
 					SessionMessages.add(actionRequest, PortalUtil.getPortletId(actionRequest) + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
 
 			}

@@ -12,8 +12,12 @@ import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.io.IOException;
@@ -23,6 +27,7 @@ import javax.portlet.Portlet;
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+import javax.servlet.http.HttpServletRequest;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -51,6 +56,18 @@ public class MedicusHomePageModulePortlet extends MVCPortlet {
 		
 			if(themeDisplay.isSignedIn()){
 				PortalUtil.getHttpServletResponse(renderResponse).sendRedirect("/group/medicus/");
+			}
+			
+			//
+			HttpServletRequest httpReq = PortalUtil.getOriginalServletRequest(PortalUtil.getHttpServletRequest(renderRequest));
+			String registrationResponse = httpReq.getParameter("registration");
+			if(Validator.isNotNull(registrationResponse)){
+				if(registrationResponse.equals("success")){
+					SessionMessages.add(renderRequest, "user-register-success");
+				}else if(registrationResponse.endsWith("error")){
+					SessionErrors.add(renderRequest, "err-register-user");
+					SessionMessages.add(renderRequest, PortalUtil.getPortletId(renderRequest) + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
+				}
 			}
 		
 			include(viewTemplate, renderRequest, renderResponse);

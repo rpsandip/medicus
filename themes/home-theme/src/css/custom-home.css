@@ -41,11 +41,19 @@
     vertical-align: text-top;
 }
 
-#p_p_id_com_example_portlet_MedicusRegistrationModulemvcportletPortlet_ .lfr-alert-wrapper{
-	position: absolute;
-    top: 5%;
-    right: 150%;
-    width: 500px;
+#p_p_id_com_medicus_home_page_portlet_portlet_MedicusHomePageModulePortlet_ .lfr-alert-wrapper{
+	    width: 650px;
+    z-index: 99999;
+    text-align: center;
+    height: 100px !important;
+}
+
+#p_p_id_com_medicus_home_page_portlet_portlet_MedicusHomePageModulePortlet_ .lfr-alert-container{
+	    z-index: 9999;
+}
+
+#p_p_id_com_medicus_home_page_portlet_portlet_MedicusHomePageModulePortlet_ .alert-dismissable .close{
+	right: 0 !important;
 }
 
 .input-group-addon {
@@ -76,4 +84,74 @@
 .w3ls-section {
     padding: 3em 0 !important;
 }
+
+.zoom-img{
+	width: 262px;
+    height: 220px;
+}
+
+.lb-image{
+	width: 451px !important;
+    height: 300px !important;	
+}
+
+.modal-backdrop{
+	z-index: 1032 !important; 	
+}
+
+.lightbox{
+    left: 18% !important;
+}
+
+.lb-outerContainer{
+	float: left;
+}
+
+.lb-dataContainer{
+	padding: 0px;
+    margin-left: 20px;
+    float: left;
+}
+
+.lb-details{
+	    margin-top: 0;
+}
+
+.lb-details .lb-caption h3{
+	color: #fff;
+}
+
+
+#callaction, #service, #doctor, #facilities, #testimonial, #pricing, #partner, footer .topside{display:none}
+
+
+#registrationform .modal-lg{width:80%}
+#registrationform .modal-body{padding-right:7%}
+#registrationform .inputfield, #loginform .inputfield, #forgotpassform .inputfield{
+	padding: 0;
+    padding-left: 5px;
+}
+#registrationform .inputfield input, #registrationform .inputfield select, #loginform .inputfield input,
+#forgotpassform .inputfield input{
+	border-radius: 50px;
+    padding: 6px 20px;
+}
+#registrationform .control-label, #loginform .control-label{font-size:14px; padding:0;padding-top:5px}
+#registrationform .form-horizontal .form-group{
+	margin-right: -0px;
+    margin-left: 0px;
+    padding:0
+}
+#registrationform .vl{
+	border-left: 1px solid #eee;
+    height: 220px;
+    position: absolute;
+    left: 50%;
+    margin-left: -3px;
+    top: 0;
+}
+.frgt-link{    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;}
+
+
 /* Liferay CSS : END */

@@ -18,13 +18,12 @@
           <div class="row">
             <div class="col-md-12">
               <!-- price element -->
+              <c:if test="${empty userSubscription or  (not empty userSubscription && userSubscription.subscriptionId eq yearlyplan.subscriptionId)}">
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="pricing">
                   <div class="title">
-                  <c:set var="subscriptionPrice"><fmt:formatNumber type="number" minFractionDigits="0" maxFractionDigits="2" value="${subsciptionPlan.price/12}" /></c:set>
-                    <h2>${subsciptionPlan.name }</h2>
-                    <h1>$${subscriptionPrice }/Month</h1>
-                     <span>$${subsciptionPlan.price}/Year</span>
+                    <h2>${yearlyplan.name }</h2>
+                     <h1>$${yearlyplan.price}/Year</h1>
                   </div>
                   <div class="x_content">
                     <div class="">
@@ -45,32 +44,31 @@
                     </div>
                     <div class="pricing_footer">
                        <c:choose>
-                       	<c:when test="${ not empty userSubscription and (userSubscription.subscriptionId eq subsciptionPlan.subscriptionId)}">
+                       	<c:when test="${ not empty userSubscription and (userSubscription.subscriptionId eq yearlyplan.subscriptionId)}">
                        		<a class="btn btn-success btn-block" >Subscribed</a>
                        		<b>Next Renewal Subscription Date : ${nextSubDate }</b>
                        	</c:when>
                        	<c:otherwise>
                        		<a href="javascript:void(0);" class="btn btn-success btn-block" role="button"
-                       data-toggle="modal" data-formName="silverFrm" data-target="#confirmplan">Buy Plan</a>
+                       data-toggle="modal" data-formName="yearlyfrm" data-target="#confirmplan">Buy Plan</a>
                        	</c:otherwise>
                        </c:choose>
                        <c:if test="${isSuperAdmin }">
                         <portlet:renderURL var="editSilverSubcriptionURL">
        							 <portlet:param name="mvcRenderCommandName" value="/edit_subscription" />
-       							 <portlet:param name="subscriptionId" value="${ subsciptionPlan.subscriptionId}" />
+       							 <portlet:param name="subscriptionId" value="${ yearlyplan.subscriptionId}" />
 					    </portlet:renderURL>
                       	<a href="${editSilverSubcriptionURL }" class="btn btn-success btn-block" >Edit</a>
                       </c:if> 
                      </div>
                     <div class="silver-plan" style="display: none;">
-                      <form action="${paypalURL }" method="post" target="_top" id="silverFrm">
+                      <form action="${paypalURL }" method="post" target="_top" id="yearlyfrm">
 						<input type="hidden" name="cmd" value="_s-xclick">
 						<input type="hidden" name="business" value="${businessEmail }">
-						<input type="hidden" name="hosted_button_id" value="${hostedButtonId} ">
+						<input type="hidden" name="hosted_button_id" value="${yearlyPlanHostedButtonId} ">
 						<input type="image" src="https://www.sandbox.paypal.com/en_GB/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
 						<img alt="" border="0" src="https://www.sandbox.paypal.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-						<input type="hidden" name="amount" value="${subsciptionPlan.price }">
-						<input type="hidden" name="custom" value="${userId },${subsciptionPlan.subscriptionId }">
+						<input type="hidden" name="custom" value="${userId },${yearlyplan.subscriptionId }">
 						<input type="hidden" name="return" value="${returnURL }">
 						<input type="hidden" name="cancel_return" value="${cancelURL }">
 					   </form> 
@@ -78,6 +76,68 @@
                   </div>
                 </div>
               </div>
+              </c:if>
+              <c:if test="${empty userSubscription or  (not empty userSubscription && userSubscription.subscriptionId eq monthlyplan.subscriptionId)}">
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="pricing">
+                  <div class="title">
+                  <c:set var="subscriptionPrice"><fmt:formatNumber type="number" minFractionDigits="0" maxFractionDigits="2" value="${monthlyplan.price/12}" /></c:set>
+                    <h2>${monthlyplan.name }</h2>
+                    <h1>$${subscriptionPrice }/Month</h1>
+                     <span>$${monthlyplan.price}/Year</span>
+                  </div>
+                  <div class="x_content">
+                    <div class="">
+                      <div class="pricing_features">
+                        <ul class="list-unstyled text-left">
+                          <div>We have one plan to meet your every internship need.</div>
+                          <div>Our plan includes the following advantages:</div>
+                          <li><i class="fa fa-check text-success"></i>Real time access to students available to intern</li>
+                          <li><i class="fa fa-check text-success"></i>Unlimited searches</li>
+                          <li><i class="fa fa-check text-success"></i>Customization of your search by Zip Code, Gender, Language, Profession, etc.</li>
+                          <li><i class="fa fa-check text-success"></i>Selection of schools and campuses near you</li>
+                          <li><i class="fa fa-check text-success"></i>Ability to work with the school to interview students before acceptance</li>
+                          <li><i class="fa fa-check text-success"></i>Liability insurance of the student</li>
+                          <li><i class="fa fa-check text-success"></i>Streamline process to select and obtain interns</li>
+                          <li><i class="fa fa-check text-success"></i>Your return on investment is at least 300% in financial and positive impact</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="pricing_footer">
+                       <c:choose>
+                       	<c:when test="${ not empty userSubscription and (userSubscription.subscriptionId eq monthlyplan.subscriptionId)}">
+                       		<a class="btn btn-success btn-block" >Subscribed</a>
+                       		<b>Next Renewal Subscription Date : ${nextSubDate }</b>
+                       	</c:when>
+                       	<c:otherwise>
+                       		<a href="javascript:void(0);" class="btn btn-success btn-block" role="button"
+                       data-toggle="modal" data-formName="monthlyfrm" data-target="#confirmplan">Buy Plan</a>
+                       	</c:otherwise>
+                       </c:choose>
+                       <c:if test="${isSuperAdmin }">
+                        <portlet:renderURL var="editSilverSubcriptionURL">
+       							 <portlet:param name="mvcRenderCommandName" value="/edit_subscription" />
+       							 <portlet:param name="subscriptionId" value="${ monthlyplan.subscriptionId}" />
+					    </portlet:renderURL>
+                      	<a href="${editSilverSubcriptionURL }" class="btn btn-success btn-block" >Edit</a>
+                      </c:if> 
+                     </div>
+                    <div class="silver-plan" style="display: none;">
+                      <form action="${paypalURL }" method="post" target="_top" id="monthlyfrm">
+						<input type="hidden" name="cmd" value="_s-xclick">
+						<input type="hidden" name="business" value="${businessEmail }">
+						<input type="hidden" name="hosted_button_id" value="${monthlyPlanHostedButtonId} ">
+						<input type="image" src="https://www.sandbox.paypal.com/en_GB/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
+						<img alt="" border="0" src="https://www.sandbox.paypal.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+						<input type="hidden" name="custom" value="${userId },${monthlyplan.subscriptionId }">
+						<input type="hidden" name="return" value="${returnURL }">
+						<input type="hidden" name="cancel_return" value="${cancelURL }">
+					   </form> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </c:if>
               <!-- price element -->
             </div>
           </div>
