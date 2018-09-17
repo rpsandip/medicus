@@ -204,7 +204,7 @@
 						style="color: red;"></div>
 				</div>
 				<div class="form-group">
-					<div class="col-md-10 col-sm-6 col-xs-12">
+					<div class="col-md-10 col-sm-6 col-xs-12 inputfield">
 						<aui:input cssClass="clearable form-control col-md-7 col-xs-12"
 							label="<%=loginLabel%>" name="login"
 							showRequiredLabel="<%=false%>" type="text" value="<%=login%>">
@@ -213,7 +213,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<div class="col-md-10 col-sm-6 col-xs-12">
+					<div class="col-md-10 col-sm-6 col-xs-12 inputfield">
 						<aui:input cssClass="form-control" name="password"
 							showRequiredLabel="<%=false%>" type="password"
 							value="<%=password%>">

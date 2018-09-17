@@ -252,6 +252,10 @@ public class PartnerLocalServiceUtil {
 		return getService().getPartners(start, end);
 	}
 
+	public static java.util.List<com.medicus.common.service.model.Partner> getSubscribePartners() {
+		return getService().getSubscribePartners();
+	}
+
 	public static java.util.List<com.medicus.common.service.model.Partner> getUnSubscribePartners() {
 		return getService().getUnSubscribePartners();
 	}

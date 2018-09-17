@@ -120,4 +120,19 @@ public class PartnerLocalServiceImpl extends PartnerLocalServiceBaseImpl {
 		return unsubsubscribePartnerList;
 	}
 	
+	public List<Partner> getSubscribePartners(){
+		List<Partner> unsubsubscribePartnerList = new ArrayList<Partner>();
+		
+		DynamicQuery userSubsribedQuery = User_SubscriptionLocalServiceUtil.dynamicQuery();
+		userSubsribedQuery.setProjection(ProjectionFactoryUtil.property("userId"));
+		
+		
+		DynamicQuery partnerQuery = PartnerLocalServiceUtil.dynamicQuery();
+		partnerQuery.add(PropertyFactoryUtil.forName("userId").in(userSubsribedQuery));
+		
+		unsubsubscribePartnerList = PartnerLocalServiceUtil.dynamicQuery(partnerQuery);		
+		
+		return unsubsubscribePartnerList;
+	}
+	
 }

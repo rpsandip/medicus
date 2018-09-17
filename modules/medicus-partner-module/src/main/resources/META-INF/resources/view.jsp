@@ -12,7 +12,14 @@
         <portlet:param name="mvcRenderCommandName" value="/subscribe_partners" />
 </portlet:renderURL>
 
+<portlet:renderURL var="subscribePartnersListURL">
+        <portlet:param name="mvcRenderCommandName" value="/subscribe_partners_list" />
+</portlet:renderURL>
+
 <portlet:actionURL var="deletePartnerURL" name="/delete_partner">
+</portlet:actionURL>
+
+<portlet:actionURL var="activatePartnerURL" name="/active_partner">
 </portlet:actionURL>
 
 <liferay-ui:success key="partner-subscribe-success" message="partner-subscribe-success"/>
@@ -20,14 +27,16 @@
 <liferay-ui:success key="partner-delete-success" message="partner-delete-success"/>
 <liferay-ui:success key="partner-add-success" message="partner-add-success"/>
 <liferay-ui:error key="partner-delete-error" message="partner-delete-error"/>
-
+<liferay-ui:error key="partner-activate-error" message="partner-activate-error"/>
+<liferay-ui:success key="partner-activate-success" message="partner-activate-success"/>
 
 <div class="page-title">
   <div class="title_left" style="width: 100% !important;">
     <h2>Partners</h2>
     	<a href="${addPartnerURL}" class="btn btn-primary">Add Partner</a>
     	<a href="${importPartnerURL }" class="btn btn-primary">Import Partners</a>
-    	<a href="${subscribePartnersURL }" class="btn btn-primary">Subscribe Partners</a>
+    	<a href="${subscribePartnersURL }" class="btn btn-primary">Unsubscribe Partners</a>
+    	<a href="${subscribePartnersListURL }" class="btn btn-primary">Subscribed Partners</a>
   </div>
 </div>
 <div class="clearfix"></div>
@@ -78,6 +87,9 @@
 							</portlet:renderURL>
 							<a href="${editPartnerURL }" class="btn btn-block btn-primary">Edit</a>	
 							<a class="btn btn-primary" data-partnerId="${partnerBean.partnerId }" data-partnerName="${ partnerBean.firstName}"  data-toggle="modal" data-target="#delete-partner">Delete</a>
+							<c:if test="${partnerBean.user.status ne 0 }">
+						 		<a class="btn btn-primary" data-partnerId="${partnerBean.partnerId }" data-partnerName="${ partnerBean.firstName}"  data-toggle="modal" data-target="#activate-partner">Activate</a>
+			                </c:if>	
 			               	</td>
         			    </tr>
            			</c:forEach>
@@ -121,6 +133,40 @@
   </div>
 </div>
 
+
+<div id="activate-partner" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Activate Partner</h4>
+        <div class="msg">
+        	
+        </div>
+      </div>
+      <div class="modal-body">
+       	<div class="form-group">
+       	   <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+       	   		Are you sure you want to Activate <span class="activate-partner-name"></span> Partner?
+       	   </div>
+       	   <br/>
+       	   <aui:form name="activatePartner" action="${activatePartnerURL}" cssClass="form-horizontal form-label-left">
+	       	   <div class="col-md-8 col-sm-6 col-xs-12 col-md-offset-3 approve-request-box">
+	       	   		<aui:input type="hidden" name="activatepartnerId"/>
+	       	   		<aui:input type="hidden" name="activatepartnerName"/>
+	       	   </div>
+	           <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+	           		<aui:button type="submit" value="Yes"  cssClass="btn btn-success" onClick="javascript: jQuery('.modal-backdrop').remove()"/>
+	                <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+	           </div>
+           </aui:form>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
  jQuery.noConflict();
     (function($) {
@@ -134,6 +180,15 @@
 
     			  $(e.currentTarget).find('#<portlet:namespace />partnerId').val(partnerId);
     			  $(e.currentTarget).find('.partner-name').text(partnerName);
+              });
+    		  
+    		  $('#activate-partner').on('show.bs.modal', function(e) {
+    			  //get data-id attribute of the clicked element
+    			  var partnerId = $(e.relatedTarget).data('partnerid');
+    			  var partnerName = $(e.relatedTarget).data('partnername');
+
+    			  $(e.currentTarget).find('#<portlet:namespace />activatepartnerId').val(partnerId);
+    			  $(e.currentTarget).find('.activate-partner-name').text(partnerName);
               });
     		    		  
     	  });

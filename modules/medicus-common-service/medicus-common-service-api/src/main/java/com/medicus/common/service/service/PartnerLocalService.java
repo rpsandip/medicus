@@ -225,6 +225,9 @@ public interface PartnerLocalService extends BaseLocalService,
 	public List<Partner> getPartners(int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Partner> getSubscribePartners();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Partner> getUnSubscribePartners();
 
 	/**

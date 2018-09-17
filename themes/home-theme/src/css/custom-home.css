@@ -14,14 +14,14 @@
 .form-group .control-label{
 	display: inline-block;
     float: left;
-    width: 22%;
+    width: 32%;
     margin-right: 3%;
 }
 
 .form-group input.form-control, .form-group select.form-control, .form-group textarea.form-control  {
 	display: inline-block;
     float: left;
-    width: 75%;
+    width: 65%;
 }
 
 .add-student-fm .form-group input.form-control, .add-student-fm .form-group select.form-control, .add-student-fm .form-group textarea.form-control  {
@@ -125,6 +125,26 @@
 #callaction, #service, #doctor, #facilities, #testimonial, #pricing, #partner, footer .topside{display:none}
 
 
+.modal-header{
+	background: #1962CE;
+    color: #fff;
+}
+.modal-header h4{color:#fff}
+.modal-body{padding-top:30px}
+#registrationform .modal-header h4 img{
+	width: 89px;
+    position: absolute;
+    right: 10px;
+    top: -6px;
+}
+.modal-header .close{
+	color: #fff;
+    opacity: 1;
+}
+#registrationform .modal-header .close{
+    margin-top: -10px;
+    margin-right: 0px;
+}
 #registrationform .modal-lg{width:80%}
 #registrationform .modal-body{padding-right:7%}
 #registrationform .inputfield, #loginform .inputfield, #forgotpassform .inputfield{
@@ -142,6 +162,15 @@
     margin-left: 0px;
     padding:0
 }
+
+#registrationform .form-horizontal .form-group2{
+	margin-right: -0px;
+    margin-left: 0px;
+    padding:0;
+    padding-left: 10px;
+    
+}
+
 #registrationform .vl{
 	border-left: 1px solid #eee;
     height: 220px;
@@ -150,8 +179,41 @@
     margin-left: -3px;
     top: 0;
 }
-.frgt-link{    font-size: 14px;
-    font-family: 'Open Sans', sans-serif;}
+.frgt-link{    
+	font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+}
 
+#registrationform label .lexicon-icon, .control-label .lexicon-icon{
+	    margin-top: -2.13em !important;
+}
+
+#registrationform .required{
+	    margin-left: 50px;
+}    
+
+#loginform .btn-default:hover, #registrationform .btn-default:hover, #forgotpassform .btn-default:hover{
+	color: #fff !important;
+    background-color: #5cb85c !important;
+    border-color: #4cae4c !important;
+}
+
+div[id^='p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet']{
+		   background: white;
+}
+	
+#portlet_new-password{
+    padding-top: 150px;
+    background: white;	
+}
+
+#portlet_new-password  .form-group .control-label{
+	width: 15% !important;
+}
+
+#portlet_new-password .form-group input.form-control{
+	    width: 30% !important;
+	    float: none !important;
+}
 
 /* Liferay CSS : END */

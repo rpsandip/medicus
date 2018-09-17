@@ -7,6 +7,10 @@
 <liferay-ui:error key="user-exist" message="user-exist"/>
 <liferay-ui:success key="user-register-success" message="user-register-success"/>
 <liferay-ui:error key="medicus-organization-not-exist" message="medicus-organization-not-exist"/>
+
+<%
+	String imagePath = themeDisplay.getPathThemeImages(); //request.getContextPath()+"/images";
+%> 	
  	
 <div id="registrationform" class="modal fade" role="dialog">
 		  <div class="modal-dialog modal-lg">
@@ -14,27 +18,29 @@
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal">&times;</button>
-		        <h4 class="modal-title">Sign Up - Partner Registration</h4>
+		        <h4 class="modal-title">Sign Up - Partner Registration <img src="<%=imagePath %>/45days.png" style="margin-right: 20px;" />
 		      </div>
 		      <div class="modal-body">
 		            <aui:form name="addPartnerFm" action="${registerPartnerURL}" id="add-new-school-form" cssClass="form-horizontal form-label-left">
-		              <div class="vl"></div>
-		              <div class="form-group col-md-6 col-xs-12">
-		               	 <div class="col-md-12 col-sm-12 col-xs-12 inputfield">
-			               	<aui:input name="firstName" label="Facility" cssClass="form-control col-md-7 col-xs-12">
-						     	<aui:validator name="required" />
-						     	<aui:validator name="maxLength">60</aui:validator>
-							 </aui:input>
-						</div>
-					  </div>
-		              <div class="form-group col-md-6 col-xs-12">
-		              	<div class="col-md-12 col-sm-12 col-xs-12 inputfield">
-			                 <aui:input name="emailAddress" label="emailAddress" cssClass="form-control col-md-7 col-xs-12">
-						     	<aui:validator name="required" />
-						     	<aui:validator name="maxLength">50</aui:validator>
-							 </aui:input>
-						 </div>
+		              <div class="col-md-12 col-xs-12">
+			              <div class="form-group col-md-6 col-xs-12">
+			               	 <div class="col-md-12 col-sm-12 col-xs-12 inputfield">
+				               	<aui:input name="firstName" label="Facility" cssClass="form-control col-md-7 col-xs-12">
+							     	<aui:validator name="required" />
+							     	<aui:validator name="maxLength">60</aui:validator>
+								 </aui:input>
+							</div>
+						  </div>
+			              <div class="form-group2 col-md-6 col-xs-12">
+			              	<div class="col-md-12 col-sm-12 col-xs-12 inputfield">
+				                 <aui:input name="emailAddress" label="emailAddress" cssClass="form-control col-md-7 col-xs-12">
+							     	<aui:validator name="required" />
+							     	<aui:validator name="maxLength">50</aui:validator>
+								 </aui:input>
+							 </div>
+			              </div>
 		              </div>
+		              <div class="col-md-12 col-xs-12">
 		               <div class="form-group col-md-6 col-xs-12">
 		              		<div class="col-md-12 col-sm-12 col-xs-12 inputfield">
 				                <aui:input  name="password" type="password" label="new.password" cssClass="form-control col-md-7 col-xs-12" placeholder="Min 8 chars(1 Num 1 UC, 1 LC)">
@@ -49,7 +55,7 @@
 				                  </aui:input>
 		              	</div>
 		              </div>
-		              <div class="form-group col-md-6 col-xs-12">
+		              <div class="form-group2 col-md-6 col-xs-12">
 		              		<div class="col-md-12 col-sm-12 col-xs-12 inputfield">
 				              	<aui:input  name="password2" type="password" label="confirm.password"  cssClass="form-control col-md-7 col-xs-12" placeholder="Min 8 chars(1 Num 1 UC, 1 LC)">
 				                 	<aui:validator name="required"></aui:validator>
@@ -57,6 +63,8 @@
 				                 </aui:input>
 		                 	</div>
 		              </div>
+		              </div>
+		              <div class="col-md-12 col-xs-12">
 		              <div class="form-group col-md-6 col-xs-12">
 		               	 <div class="col-md-12 col-sm-12 col-xs-12 inputfield">
 			               	<aui:input name="address1" label="address1" cssClass="form-control col-md-7 col-xs-12">
@@ -65,7 +73,7 @@
 							 </aui:input>
 						</div>
 					  </div>
-					  <div class="form-group col-md-6 col-xs-12">
+					  <div class="form-group2 col-md-6 col-xs-12">
 		               	 <div class="col-md-12 col-sm-12 col-xs-12 inputfield">
 			               	<aui:input name="zipcode" label="zipcode" cssClass="form-control col-md-7 col-xs-12">
 						     	<aui:validator name="required" />
@@ -73,7 +81,8 @@
 							 </aui:input>
 						</div>
 					  </div>
-					  
+					  </div>
+					  <div class="col-md-12 col-xs-12">
 					  <div class="form-group col-md-6 col-xs-12">
 		               	 <div class="col-md-12 col-sm-12 col-xs-12 inputfield">
 			               	<aui:input name="city" label="city" cssClass="form-control col-md-7 col-xs-12">
@@ -83,7 +92,7 @@
 						</div>
 					  </div>
 					  
-					  <div class="form-group col-md-6 col-xs-12">
+					  <div class="form-group2 col-md-6 col-xs-12">
 		               	 <div class="col-md-12 col-sm-12 col-xs-12 inputfield">
 			               	<aui:select name="state" label="state" cssClass="form-control col-md-7 col-xs-12">
 			               		<c:forEach items="${usStateList }" var="state">
@@ -92,8 +101,8 @@
 			               	</aui:select>
 						</div>
 					  </div>
-					  
-					  
+					  </div>
+					  <div class="col-md-12 col-xs-12">
 					  <div class="form-group col-md-6 col-xs-12">
 		               	 <div class="col-md-12 col-sm-12 col-xs-12 inputfield">
 			               	<aui:input name="country" label="country" cssClass="form-control col-md-7 col-xs-12" value="US" readonly="true">
@@ -103,14 +112,15 @@
 						</div>
 					  </div>
 					  
-					  <div class="form-group col-md-6 col-xs-12">
+					  <div class="form-group2 col-md-6 col-xs-12">
 		               	 <div class="col-md-12 col-sm-12 col-xs-12 inputfield">
 			               	<aui:input name="contactPersonName" label="contactPersonName" cssClass="form-control col-md-7 col-xs-12">
 						     	<aui:validator name="maxLength">60</aui:validator>
 							 </aui:input>
 						</div>
 					  </div>
-					  					  
+					  </div>					  
+					  <div class="col-md-12 col-xs-12">
 					  <div class="form-group col-md-6 col-xs-12">
 		               	 <div class="col-md-12 col-sm-12 col-xs-12 inputfield">
 			               	<aui:input name="contactPersonEmail" label="contactPersonEmail" cssClass="form-control col-md-7 col-xs-12">
@@ -121,16 +131,16 @@
 					  </div>
 					  
 					  
-					  <div class="form-group col-md-6 col-xs-12">
+					  <div class="form-group2 col-md-6 col-xs-12">
 		               	 <div class="col-md-12 col-sm-12 col-xs-12 inputfield">
 			               	<aui:input name="contactPersonPhoneNumber" label="contactPersonPhoneNumber" cssClass="form-control col-md-7 col-xs-12" placeholder="xxx-xxx-xxxx">
 						     	<aui:validator name="maxLength">14</aui:validator>
 							 </aui:input>
 						</div>
 					  </div>
+					  </div>
 					  
-					  
-					  <div class="form-group col-md-6 col-xs-12">
+					  <div class="form-group2 col-md-6 col-xs-12">
 		               	 <div class="col-md-12 col-sm-12 col-xs-12 inputfield">
 			               	<aui:input name="websiteLink" label="websiteLink" cssClass="form-control col-md-7 col-xs-12">
 						     	<aui:validator name="maxLength">50</aui:validator>
@@ -141,7 +151,7 @@
 		              <div class="ln_solid"></div>
 		              <div class="form-group">
 			                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-6">
-		                		<aui:button type="button" value="Submit"  cssClass="registerUserBtn btn btn-success" style="padding: 0;"/>
+		                		<aui:button type="button" value="Submit"  cssClass="registerUserBtn btn btn-success" style="padding: 10px;"/>
 		              		</div>
 		              </div>
 		           </aui:form>
@@ -150,8 +160,6 @@
 		    </div>
 		  </div>
 		</div> 
-         
-         
          <div id="forgotpassform" class="modal fade" role="dialog">
 			<div class="modal-dialog">
 				<!-- Modal content-->
@@ -171,7 +179,7 @@
 						<aui:form name="forgotpassfm" action=""
 							cssClass="form-horizontal form-label-left">
 							<div class="form-group">
-								<div class="col-md-10 col-sm-6 col-xs-12">
+								<div class="col-md-10 col-sm-6 col-xs-12 inputfield">
 									<aui:input name="email" label="Email Address"
 										cssClass="form-control col-md-7 col-xs-12">
 										<aui:validator name="required" />
@@ -181,7 +189,7 @@
 							</div>
 							<div class="ln_solid"></div>
 							<div class="form-group">
-								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" style="    margin-top: 15px;">
 									<button type="button" class="btn btn-primary forgotpassBtn">Submit</button>
 								</div>
 							</div>

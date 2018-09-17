@@ -64,7 +64,7 @@
 					<div class="col-md-3"><h1>1745</h1><h4>Students</h4><div class="vl"></div></div>
 					<div class="col-md-3"><h1>5750</h1><h4>Partners</h4></div>
 				</div>
-				<div class="custom-plan col-sm-10 col-md-10">
+				<div class="custom-plan col-sm-10 col-md-10" style="height:750px;">
 					<div class="service-title"><img src="<%=imagePath %>/custom_plan_icon.png"><h3>Custom Plan</h3></div>
 					<p class="title-caption">We have one flexible plan to meet your every internship need. Our plan includes the following advantages:</p>
 					<ul class="custom-plan-list" style="padding-left:20px"> 
@@ -74,8 +74,25 @@
 						<li><p>You have direct access to school representatives to coordinate interviews </p></li>
 						<li><p>Student liability insurance is covered by the school while working at your office</p></li>
 						<li><p>Your return on investment (ROI) is guaranteed to exceed 300%</p></li>
-						<li><p>Take advantage of our 45 days Risk-Free money back trial period</p></li>
+						<li><p>Take advantage of our 45 days Risk-Free money back trial period in annual package</p></li>
 					</ul>
+					
+					<div class="col-md-12 annual-pack">
+						<span class="save-annum">Save<br>20%<br>Annually</span>
+						<div class="col-md-12 text-center"><h3>Annual Package</h3></div>
+						<div class="col-md-4 text-center price"><h4>$41.58</h4></div>
+						<div class="col-md-8 text-center request"><h4><a href="##" data-toggle="modal" data-target="#registrationform">REQUEST YOUR INTERN TODAY</a></h4></div>
+						<div class="col-md-4 text-center"><h5>Per month, Billed Annually</h5></div>
+						<div class="col-md-8"><h5>SIGN UP UNDER A MINUTE</h5></div>
+					</div>
+					
+					<div class="col-md-12 monthly-pack">
+						<div class="col-md-12 text-center"><h3>Monthly Package</h3></div>
+						<div class="col-md-4 text-center price"><h4>$52.08</h4></div>
+						<div class="col-md-8 text-center request"><h4><a href="##" data-toggle="modal" data-target="#registrationform">REQUEST YOUR INTERN TODAY</a></h4></div>
+						<div class="col-md-4 text-center"><h5>Per month, Billed Monthly</h5></div>
+						<div class="col-md-8"><h5>SIGN UP UNDER A MINUTE</h5></div>
+					</div>
 				</div>
 				<div class="col-sm-12 col-md-12 roi">
 					<a class="roi-btn" href="##" data-toggle="modal" data-target="#registrationform">Click Here to Get 300% ROI</a>
@@ -457,7 +474,7 @@ jQuery.noConflict();
 	            itemsMobile : [480,2],
 		});
 		
-		$(document).on( "click", ".close", function() {
+		 $(document).on( "click", ".alert .close", function() {
 			$(this).parent().hide();
 		});
 		

@@ -30,9 +30,11 @@
                       <div class="pricing_features">
                         <ul class="list-unstyled text-left">
                           <div>We have one plan to meet your every internship need.</div>
-                          <div>Our plan includes the following advantages:</div>
+                          <div>Our yearly plan includes the following advantages:</div>
                           <li><i class="fa fa-check text-success"></i>Real time access to students available to intern</li>
                           <li><i class="fa fa-check text-success"></i>Unlimited searches</li>
+                          <li><i class="fa fa-check text-success"></i>45 days free Trial</li>
+                          <li><i class="fa fa-check text-success"></i>Risk free, 100% money back gauarentee before trial ends</li>
                           <li><i class="fa fa-check text-success"></i>Customization of your search by Zip Code, Gender, Language, Profession, etc.</li>
                           <li><i class="fa fa-check text-success"></i>Selection of schools and campuses near you</li>
                           <li><i class="fa fa-check text-success"></i>Ability to work with the school to interview students before acceptance</li>
@@ -84,7 +86,6 @@
                   <c:set var="subscriptionPrice"><fmt:formatNumber type="number" minFractionDigits="0" maxFractionDigits="2" value="${monthlyplan.price/12}" /></c:set>
                     <h2>${monthlyplan.name }</h2>
                     <h1>$${subscriptionPrice }/Month</h1>
-                     <span>$${monthlyplan.price}/Year</span>
                   </div>
                   <div class="x_content">
                     <div class="">

@@ -2339,3 +2339,80 @@ a.btn:focus{
 	}
 }
 #callaction, #service, #doctor, #facilities, #testimonial, #pricing, #partner, footer .topside{display:none}
+
+.annual-pack{
+	background: #eee;
+    padding: 10px;
+    width:80%;
+    margin-top:20px;
+    margin-left:10%
+}
+.annual-pack h3{font-size:26px} 
+.annual-pack .price h4{
+	background: #fff;
+    padding: 10px;
+    font-weight: 600;
+    color: #fb7803;
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 10px;
+}
+.annual-pack .request h4{
+	background: #22CF37;
+    padding: 10px;
+    font-weight: 600;
+    color: #fff;
+    font-size: 17px;
+    line-height: 25px;
+    margin-bottom: 10px;
+}
+.annual-pack .request h4 a{
+    color: #fff;
+}
+.annual-pack h5{font-size:18px;margin-bottom: 0;}
+.save-annum{
+	position: absolute;
+    z-index: 999;
+    background: #226AD0;
+    color: #fff;
+    top: -30px;
+    left: -40px;
+    font-size: 18px;
+    text-align: center;
+    padding: 18px;
+    line-height: 18px;
+    border-radius: 50%;
+}
+
+.monthly-pack{
+	background: #eee;
+    padding: 15px;
+    width:80%;
+    margin-top:20px;
+    margin-left:10%
+}
+.monthly-pack h3{font-size:26px} 
+.monthly-pack .price h4{
+	background: #fff;
+    padding: 10px;
+    font-weight: 600;
+    color: #fb7803;
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 10px;
+}
+.monthly-pack .request h4{
+	background: #fff;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 10px;
+}
+
+.monthly-pack .request h4 a {
+	 color: #226AD0;
+}
+.monthly-pack h5{font-size:18px;margin-bottom: 0;}
+
+

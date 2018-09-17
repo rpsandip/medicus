@@ -16,6 +16,6 @@
 		}
 		
 		#registrationform  .modal-dialog{
-			width: 80% !important; 
+			width: 75% !important; 
 		}
 </style>

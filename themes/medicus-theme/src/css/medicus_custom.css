@@ -4361,5 +4361,14 @@ display: block; }
 
 .approve-request-box label{
 			text-align: left !important;
-		}
+}
+
+#portlet_new-password  .form-group .control-label{
+	width: 15% !important;
+}
+
+#portlet_new-password .form-group input.form-control{
+	    width: 30% !important;
+	    float: none !important;
+}
 /* Liferay CSS : END */

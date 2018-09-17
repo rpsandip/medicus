@@ -3,7 +3,7 @@
 </portlet:actionURL>
 <div class="page-title">
   <div class="title_left">
-    <h2>Subscribe Partners</h2>
+    <h2>Unsubscribe Partners</h2>
   </div>
 </div>
 <div class="clearfix"></div>

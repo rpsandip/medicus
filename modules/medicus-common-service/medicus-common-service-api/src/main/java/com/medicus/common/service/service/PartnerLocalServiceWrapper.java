@@ -261,6 +261,11 @@ public class PartnerLocalServiceWrapper implements PartnerLocalService,
 	}
 
 	@Override
+	public java.util.List<com.medicus.common.service.model.Partner> getSubscribePartners() {
+		return _partnerLocalService.getSubscribePartners();
+	}
+
+	@Override
 	public java.util.List<com.medicus.common.service.model.Partner> getUnSubscribePartners() {
 		return _partnerLocalService.getUnSubscribePartners();
 	}
